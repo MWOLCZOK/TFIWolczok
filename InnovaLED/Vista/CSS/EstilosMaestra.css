@@ -1,10 +1,11 @@
 ﻿.fondoGris {
     background-color: #336699;
+    /*background-color: Azul;*/
 }
 
 .fondoClaro {
-    background-color: #FF9C47;
-    /*background-color: gold;*/
+    background-color: #f0eeed;
+    /*background-color: blanco;*/
 }
 
 .bordeMenu {
