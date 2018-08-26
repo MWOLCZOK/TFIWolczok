@@ -1,0 +1,72 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="MasterPage.master.vb" Inherits="Vista.MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>InnovaLED</title>
+
+    <link href="CSS/bootstrap-theme.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/CSS/jquery-ui.css" />
+    <link href="CSS/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="CSS/font-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="CSS/EstilosMaestra.css" rel="stylesheet" type="text/css" />
+    <link href="CSS/MisEstilos.css" rel="stylesheet" type="text/css" />
+    <link href="CSS/jquery.ui.timepicker.css" rel="stylesheet" type="text/css" />
+    <link href="CSS/jquery.bracket.min.css" rel="stylesheet" type="text/css" />
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <script type="text/javascript" src="JS/bootstrap.js"></script>
+    <script type="text/javascript" src="JS/jquery-ui.js"></script>
+    <script type="text/javascript" src="JS/jquery.ui.timepicker.js"></script>
+    <script type="text/javascript" src="JS/jquery.bracket.min.js"></script>
+
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+
+</head>
+<body>
+    <form id="Master" runat="server">
+        <div class="container-fluid FondoPagina">
+            <div class="row fondoGris bordeImagen">
+                <asp:Image ID="LogoMenu" runat="server" ImageUrl="Imagenes/banner6.jpg" CssClass="img-responsive" />
+            </div>
+            <div class="row fondoClaro bordeMenu">
+                <div class="col-md-12 MenuFrente">
+                    <asp:Menu ID="Menu" runat="server" Orientation="Horizontal" Font-Bold="true" Font-Size="12px" ForeColor="#336699" Height="30px">
+                        <StaticSelectedStyle BackColor="#FFFFFF" />
+
+                        <StaticMenuItemStyle HorizontalPadding="10px" VerticalPadding="7px" />
+                        <StaticHoverStyle BackColor="#B9BB14" ForeColor="#BB2314" /> 
+                         <%--Hover Backcolor Para cambiar el color de fondo de la barra de menú cuando selecciono.--%>
+                         <%--  Hover Fore cambia el color de la letra seleccionada de la barra menu--%>
+                        
+                        <DynamicHoverStyle BackColor="#F512D6" ForeColor="#3396FF" />
+                        <%--Dynamic Hover Style sirve para cambiar el color del sombreado de un submenú cuando pasas el mouse--%>
+
+                        <DynamicMenuStyle BackColor="#12F5DA" />
+                        <%--Dynamic Menu Style Define el color de los submenú cuando los desplegas--%>
+
+                        <DynamicSelectedStyle BackColor="#F7F9F9" />
+
+                        <DynamicMenuItemStyle HorizontalPadding="10px" VerticalPadding="7px" />
+                    </asp:Menu>
+                </div>
+            </div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+            <div class="row Azul lineaCopyright"></div>
+            <div class="row Azul">
+                <br />
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <div class="textoCopyright">
+                        <asp:Label ID="lblcopyright" runat="server" Text="Trabajo Final de Ingenieria - Wolczok - 2018"></asp:Label>
+                    </div>
+                </div>
+                <br />
+                <br />
+            </div>
+
+        </div>
+    </form>
+</body>
+</html>

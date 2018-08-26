@@ -100,9 +100,181 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ActualizarStock.aspx" />
+    <Content Include="CambiarContraseña.aspx" />
+    <Content Include="CargarVenta.aspx" />
+    <Content Include="CrearIdioma.aspx" />
+    <Content Include="CrearNuevoCliente.aspx" />
+    <Content Include="CrearProducto.aspx" />
+    <Content Include="CSS\bootstrap-datepicker.css" />
+    <Content Include="CSS\bootstrap-datetimepicker.min.css" />
+    <Content Include="CSS\bootstrap-theme.css" />
+    <Content Include="CSS\bootstrap-theme.min.css" />
+    <Content Include="CSS\bootstrap.css" />
+    <Content Include="CSS\bootstrap.min.css" />
+    <Content Include="CSS\DateTimePicker.css" />
+    <Content Include="CSS\EstilosMaestra.css" />
+    <Content Include="CSS\font-awesome.css" />
+    <Content Include="CSS\index.html" />
+    <Content Include="CSS\jquery-ui.css" />
+    <Content Include="CSS\jquery-ui.min.css" />
+    <Content Include="CSS\jquery-ui.structure.css" />
+    <Content Include="CSS\jquery-ui.structure.min.css" />
+    <Content Include="CSS\jquery-ui.theme.css" />
+    <Content Include="CSS\jquery-ui.theme.min.css" />
+    <Content Include="CSS\jquery.bracket.min.css" />
+    <Content Include="CSS\jquery.ui.timepicker.css" />
+    <Content Include="CSS\MisEstilos.css" />
+    <Content Include="Default.aspx" />
+    <Content Include="GenerarDocumento.aspx" />
+    <Content Include="GenerarEnvio.aspx" />
+    <Content Include="GenerarPresupuesto.aspx" />
+    <Content Include="GestionarRoles.aspx" />
+    <Content Include="GestionarSolucionesLED.aspx" />
+    <Content Include="GestiondeBitacora.aspx" />
+    <Content Include="GestiondeUsuario.aspx" />
+    <Content Include="IMAGENES\Banner6.jpg" />
+    <Content Include="IMAGENES\edificio.jpg" />
+    <Content Include="Institucional.aspx" />
+    <Content Include="JS\bootstrap.js" />
+    <Content Include="JS\bootstrap.min.js" />
+    <Content Include="JS\dropdown.js" />
+    <Content Include="JS\jquery-1.10.2.js" />
+    <Content Include="JS\jquery-1.9.1.min.js" />
+    <Content Include="JS\jquery-ui.js" />
+    <Content Include="JS\jquery.bracket.min.js" />
+    <Content Include="JS\jquery.ui.timepicker.js" />
+    <Content Include="JS\npm.js" />
+    <Content Include="Login.aspx" />
+    <Content Include="MyOrders.aspx" />
+    <Content Include="Orders.aspx" />
+    <Content Include="PagoaProveedores.aspx" />
+    <Content Include="ProductList.aspx" />
+    <Content Include="Proveedores.aspx" />
+    <Content Include="ReporteStock.aspx" />
+    <Content Include="SolicitudPedido.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActualizarStock.aspx.designer.vb">
+      <DependentUpon>ActualizarStock.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ActualizarStock.aspx.vb">
+      <DependentUpon>ActualizarStock.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="CambiarContraseña.aspx.designer.vb">
+      <DependentUpon>CambiarContraseña.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CambiarContraseña.aspx.vb">
+      <DependentUpon>CambiarContraseña.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="CargarVenta.aspx.designer.vb">
+      <DependentUpon>CargarVenta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CargarVenta.aspx.vb">
+      <DependentUpon>CargarVenta.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="CrearIdioma.aspx.designer.vb">
+      <DependentUpon>CrearIdioma.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CrearIdioma.aspx.vb">
+      <DependentUpon>CrearIdioma.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="CrearNuevoCliente.aspx.designer.vb">
+      <DependentUpon>CrearNuevoCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CrearNuevoCliente.aspx.vb">
+      <DependentUpon>CrearNuevoCliente.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="CrearProducto.aspx.designer.vb">
+      <DependentUpon>CrearProducto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CrearProducto.aspx.vb">
+      <DependentUpon>CrearProducto.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="GenerarDocumento.aspx.designer.vb">
+      <DependentUpon>GenerarDocumento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GenerarDocumento.aspx.vb">
+      <DependentUpon>GenerarDocumento.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="GenerarEnvio.aspx.designer.vb">
+      <DependentUpon>GenerarEnvio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GenerarEnvio.aspx.vb">
+      <DependentUpon>GenerarEnvio.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="GenerarPresupuesto.aspx.designer.vb">
+      <DependentUpon>GenerarPresupuesto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GenerarPresupuesto.aspx.vb">
+      <DependentUpon>GenerarPresupuesto.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="GestionarRoles.aspx.designer.vb">
+      <DependentUpon>GestionarRoles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionarRoles.aspx.vb">
+      <DependentUpon>GestionarRoles.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="GestionarSolucionesLED.aspx.designer.vb">
+      <DependentUpon>GestionarSolucionesLED.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionarSolucionesLED.aspx.vb">
+      <DependentUpon>GestionarSolucionesLED.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="GestiondeBitacora.aspx.designer.vb">
+      <DependentUpon>GestiondeBitacora.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestiondeBitacora.aspx.vb">
+      <DependentUpon>GestiondeBitacora.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="GestiondeUsuario.aspx.designer.vb">
+      <DependentUpon>GestiondeUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestiondeUsuario.aspx.vb">
+      <DependentUpon>GestiondeUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Institucional.aspx.designer.vb">
+      <DependentUpon>Institucional.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Institucional.aspx.vb">
+      <DependentUpon>Institucional.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.vb">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.vb">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="MasterPage.Master.designer.vb">
+      <DependentUpon>MasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPage.Master.vb">
+      <DependentUpon>MasterPage.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -122,6 +294,55 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="MyOrders.aspx.designer.vb">
+      <DependentUpon>MyOrders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyOrders.aspx.vb">
+      <DependentUpon>MyOrders.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Orders.aspx.designer.vb">
+      <DependentUpon>Orders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Orders.aspx.vb">
+      <DependentUpon>Orders.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="PagoaProveedores.aspx.designer.vb">
+      <DependentUpon>PagoaProveedores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagoaProveedores.aspx.vb">
+      <DependentUpon>PagoaProveedores.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="ProductList.aspx.designer.vb">
+      <DependentUpon>ProductList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProductList.aspx.vb">
+      <DependentUpon>ProductList.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Proveedores.aspx.designer.vb">
+      <DependentUpon>Proveedores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Proveedores.aspx.vb">
+      <DependentUpon>Proveedores.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="ReporteStock.aspx.designer.vb">
+      <DependentUpon>ReporteStock.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteStock.aspx.vb">
+      <DependentUpon>ReporteStock.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="SolicitudPedido.aspx.designer.vb">
+      <DependentUpon>SolicitudPedido.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SolicitudPedido.aspx.vb">
+      <DependentUpon>SolicitudPedido.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -132,6 +353,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="MasterPage.Master" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
