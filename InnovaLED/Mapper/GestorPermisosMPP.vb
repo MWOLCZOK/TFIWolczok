@@ -4,10 +4,6 @@ Imports DAL
 
 
 
-
-
-
-
 Public Class GestorPermisosMPP
 
     Public Sub Alta(ByVal perm As Rol)

@@ -63,6 +63,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BackupRestoreEntidad.vb" />
     <Compile Include="Bitacora.vb" />
     <Compile Include="IdiomaEntidad.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -80,6 +81,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Palabras.vb" />
     <Compile Include="PermisoBaseEntidad.vb" />
     <Compile Include="Rol.vb" />
     <Compile Include="Tipo_Bitacora.vb" />

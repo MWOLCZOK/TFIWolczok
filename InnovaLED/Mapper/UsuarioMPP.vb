@@ -81,7 +81,7 @@ Public Class UsuarioMPP
             If dt.Rows.Count > 0 Then
                 uSuario.Bloqueo = dt.Rows(0)("Bloqueo")
                 Dim GestorPermisos As New GestorPermisosMPP
-                uSuario.Perfil = GestorPermisos.ConsultarporID(dt.Rows(0)("ID_Perfil"))
+                uSuario.Rol = GestorPermisos.ConsultarporID(dt.Rows(0)("ID_Perfil"))
             End If
         Catch ex As Exception
             Throw ex
@@ -94,6 +94,60 @@ Public Class UsuarioMPP
         Catch ex As Exception
         Throw ex
         End Try
+    End Function
+
+    Public Function GetToken(ByVal ID_usuario As Integer) As String
+        Dim Command As SqlCommand = Acceso.MiComando("Select TOP 1 ID_Token from Token_Usuario inner join Usuario on Usuario.ID_Usuario=Token_Usuario.ID_Usuario where Token_Usuario.ID_Usuario=@Usuario and Fecha_Expiro>Getdate() and Usuario.Bloqueo = 1 order by Fecha_Expiro desc")
+        With Command.Parameters
+            .Add(New SqlParameter("@Usuario", ID_usuario))
+        End With
+        Dim dt As DataTable = Acceso.Lectura(Command)
+        Return dt.Rows(0)("ID_Token")
+        Command.Dispose()
+    End Function
+
+    Public Function GetTokenUser(ByVal token As String) As Integer
+        Dim Command As SqlCommand = Acceso.MiComando("Select TOP 1 Token_Usuario.ID_Usuario, Usuario.NombreUsuario from Token_Usuario inner join Usuario on Usuario.ID_Usuario=Token_Usuario.ID_Usuario where ID_Token=@Token and Fecha_Expiro>Getdate()  order by Fecha_Expiro desc")
+        With Command.Parameters
+            .Add(New SqlParameter("@Token", token))
+        End With
+        Dim dt As DataTable = Acceso.Lectura(Command)
+        Command.Dispose()
+        If dt.Rows.Count > 0 Then
+            Return dt.Rows(0)("ID_Usuario")
+        Else
+            Return Nothing
+        End If
+
+
+    End Function
+
+    Public Function Eliminar(ByRef Usuario As UsuarioEntidad) As Boolean
+        Try
+
+            Return True
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Function TraerUsuario(ByVal Usuario As Entidades.UsuarioEntidad) As Entidades.UsuarioEntidad
+        Try
+            Dim GestorPermisos As New GestorPermisosMPP
+            Usuario.Perfil = GestorPermisos.ConsultarporID(Usuario.Perfil.ID_Permiso)
+            Dim GestorIdioma As New IdiomaMPP
+            Usuario.Idioma = GestorIdioma.ConsultarPorID(Usuario.Idioma.ID_Idioma)
+            If Usuario.Empleado = False Then
+                Dim GestorPerfilesJug As New JugadorDAL
+                Usuario.Perfiles_Jugador = GestorPerfilesJug.TraerPerfiles(Usuario.ID_Usuario)
+            End If
+
+
+            Return Usuario
+        Catch ex As Exception
+            Throw ex
+        End Try
+
     End Function
 
 
