@@ -152,6 +152,7 @@
     <Content Include="PagoaProveedores.aspx" />
     <Content Include="ProductList.aspx" />
     <Content Include="Proveedores.aspx" />
+    <Content Include="Registracion.aspx" />
     <Content Include="ReporteStock.aspx" />
     <Content Include="SolicitudPedido.aspx" />
     <Content Include="Web.config" />
@@ -328,6 +329,13 @@
     </Compile>
     <Compile Include="Proveedores.aspx.vb">
       <DependentUpon>Proveedores.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Registracion.aspx.designer.vb">
+      <DependentUpon>Registracion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Registracion.aspx.vb">
+      <DependentUpon>Registracion.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="ReporteStock.aspx.designer.vb">

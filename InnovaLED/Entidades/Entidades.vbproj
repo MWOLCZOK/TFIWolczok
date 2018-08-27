@@ -63,6 +63,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bitacora.vb" />
     <Compile Include="IdiomaEntidad.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -81,6 +82,7 @@
     </Compile>
     <Compile Include="PermisoBaseEntidad.vb" />
     <Compile Include="Rol.vb" />
+    <Compile Include="Tipo_Bitacora.vb" />
     <Compile Include="UsuarioEntidad.vb" />
   </ItemGroup>
   <ItemGroup>
