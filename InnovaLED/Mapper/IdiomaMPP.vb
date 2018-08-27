@@ -4,9 +4,6 @@ Imports Entidades
 Imports DAL
 
 
-
-
-
 Public Class IdiomaMPP
 
     Public Function GuardarIdioma(ByRef Idioma As IdiomaEntidad) As Boolean

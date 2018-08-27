@@ -33,8 +33,8 @@ Public Class Login
                 Cliente.NombreUsu = txtUsuario.Text
                 Cliente.Password = txtPassword.Text
                 clienteLogeado = GestorUsu.ExisteUsuario(Cliente)
-                Dim Bitac As New BitacoraAuditoria(clienteLogeado, IdiomaActual.Palabras.Find(Function(p) p.Codigo = "BitacoraLoginSuccess1").Traduccion & clienteLogeado.NombreUsu & IdiomaActual.Palabras.Find(Function(p) p.Codigo = "BitacoraLoginSuccess2").Traduccion, Tipo_Bitacora.Login, Now, Request.UserAgent, Request.UserHostAddress, "", "")
-                BitacoraBLL.CrearBitacora(Bitac)
+                'Dim Bitac As New BitacoraAuditoria(clienteLogeado, IdiomaActual.Palabras.Find(Function(p) p.Codigo = "BitacoraLoginSuccess1").Traduccion & clienteLogeado.NombreUsu & IdiomaActual.Palabras.Find(Function(p) p.Codigo = "BitacoraLoginSuccess2").Traduccion, Tipo_Bitacora.Login, Now, Request.UserAgent, Request.UserHostAddress, "", "")
+                'BitacoraBLL.CrearBitacora(Bitac)
                 Current.Session("cliente") = clienteLogeado
                 Me.success.Visible = True
                 Me.alertvalid.Visible = False
@@ -44,23 +44,23 @@ Public Class Login
                 Me.textovalid.InnerText = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "FieldValidator1").Traduccion
                 Me.success.Visible = False
             End If
-        Catch UsuarioBloqueado As Negocio.ExceptionUsuarioBloqueado
+            'Catch UsuarioBloqueado As Negocio.ExceptionUsuarioBloqueado
             Me.alertvalid.Visible = True
-            Me.textovalid.InnerText = UsuarioBloqueado.Mensaje(IdiomaActual)
+            'Me.textovalid.InnerText = UsuarioBloqueado.Mensaje(IdiomaActual)
             Me.success.Visible = False
-        Catch UsuarioNoExiste As Negocio.ExceptionUsuarioNoExiste
+            'Catch UsuarioNoExiste As Negocio.ExceptionUsuarioNoExiste
             Me.alertvalid.Visible = True
-            Me.textovalid.InnerText = UsuarioNoExiste.Mensaje(IdiomaActual)
+            'Me.textovalid.InnerText = UsuarioNoExiste.Mensaje(IdiomaActual)
             Me.success.Visible = False
-        Catch Password As Negocio.ExceptionPasswordIncorrecta
+            'Catch Password As Negocio.ExceptionPasswordIncorrecta
             Me.alertvalid.Visible = True
-            Me.textovalid.InnerText = Password.Mensaje(IdiomaActual)
+            'Me.textovalid.InnerText = Password.Mensaje(IdiomaActual)
             Me.success.Visible = False
-            Dim Bitac As New BitacoraAuditoria(Cliente, IdiomaActual.Palabras.Find(Function(p) p.Codigo = "BitacoraLoginSuccess1").Traduccion & Cliente.NombreUsu & IdiomaActual.Palabras.Find(Function(p) p.Codigo = "BitacoraLoginSuccess3").Traduccion, Tipo_Bitacora.Login, Now, Request.UserAgent, Request.UserHostAddress, "", "")
-            BitacoraBLL.CrearBitacora(Bitac)
+            'Dim Bitac As New BitacoraAuditoria(Cliente, IdiomaActual.Palabras.Find(Function(p) p.Codigo = "BitacoraLoginSuccess1").Traduccion & Cliente.NombreUsu & IdiomaActual.Palabras.Find(Function(p) p.Codigo = "BitacoraLoginSuccess3").Traduccion, Tipo_Bitacora.Login, Now, Request.UserAgent, Request.UserHostAddress, "", "")
+            'BitacoraBLL.CrearBitacora(Bitac)
         Catch ex As Exception
-            Dim Bitac As New Entidades.BitacoraErrores(Cliente, ex.Message, Entidades.Tipo_Bitacora.Errores, Now, Request.UserAgent, Request.UserHostAddress, ex.StackTrace, ex.GetType().ToString, Request.Url.ToString)
-            Negocio.BitacoraBLL.CrearBitacora(Bitac)
+            'Dim Bitac As New Entidades.BitacoraErrores(Cliente, ex.Message, Entidades.Tipo_Bitacora.Errores, Now, Request.UserAgent, Request.UserHostAddress, ex.StackTrace, ex.GetType().ToString, Request.Url.ToString)
+            'Negocio.BitacoraBLL.CrearBitacora(Bitac)
         End Try
     End Sub
 

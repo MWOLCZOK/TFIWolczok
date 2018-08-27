@@ -114,6 +114,16 @@ Public Class UsuarioEntidad
         End Set
     End Property
 
+    Private _empleado As Boolean
+    Public Property Empleado() As Boolean
+        Get
+            Return _empleado
+        End Get
+        Set(ByVal value As Boolean)
+            _empleado = value
+        End Set
+    End Property
+
     Public Overrides Function ToString() As String
         Return Me.Nombre
     End Function
