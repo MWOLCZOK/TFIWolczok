@@ -122,6 +122,8 @@ Public Class UsuarioBLL
 
     End Function
 
+    ' PRueba para Santi
+
 
     Public Sub RefrescarUsuario(ByRef USuario As Entidades.UsuarioEntidad)
         Try
