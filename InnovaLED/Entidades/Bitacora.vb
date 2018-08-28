@@ -71,11 +71,11 @@
     End Property
 
 
-    Sub New(ByVal Midetalle As String, ByVal micodigo As Tipo_Bitacora, ByRef Usuario As UsuarioEntidad)
-        Me.Detalle = Midetalle
-        Me.Tipo_Bitacora = micodigo
-        Me.Usuario = Usuario
-    End Sub
+    'Sub New(ByVal Midetalle As String, ByVal micodigo As Tipo_Bitacora, ByRef Usuario As UsuarioEntidad)
+    '    Me.Detalle = Midetalle
+    '    Me.Tipo_Bitacora = micodigo
+    '    Me.Usuario = Usuario
+    'End Sub
 
 
     Private _valor_anterior As String

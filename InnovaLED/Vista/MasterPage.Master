@@ -24,18 +24,25 @@
 
     <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
 
+
+
 </head>
 <body>
     <form id="Master" runat="server">
         <div class="container-fluid FondoPagina">
             <div class="row fondoGris bordeImagen">
+
+                <asp:Panel ID="panelLogin" runat="server" >
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Login</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ucModalNewMember">¡Soy nuevo!</button>
+        </asp:Panel>
+
+
+             
                 <asp:Image ID="LogoMenu" runat="server" ImageUrl="Imagenes/banner6.jpg" CssClass="img-responsive" />
             </div>
 
-            <div class="barmenu">
-		<span class="openmenu"></span>
-					<a href="/cart" title="Ver Carrito" rel="nofollow" class="car mobi">Ver Carrito</a>
-			</div>
+            
 
             <div class="row fondoClaro bordeMenu">
                 <div class="col-md-12 MenuFrente">
@@ -59,7 +66,11 @@
                     </asp:Menu>
                 </div>
             </div>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+
+
+             
+            </asp:ContentPlaceHolder>
             <div class="row Azul lineaCopyright"></div>
             <div class="row Azul">
                 <br />
@@ -68,6 +79,38 @@
                         <asp:Label ID="lblcopyright" runat="server" Text="Trabajo Final de Ingenieria - Wolczok - 2018"></asp:Label>
                     </div>
                 </div>
+
+<!-- Modal Login -->
+ <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginModalTitle">Login</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+           
+      <div class="modal-body">
+            <div class="form-group">
+                <label for="txtUser">Usuario</label>
+                <input id="txtUser" runat="server" type="text" class="form-control"  placeholder="Ingrese usuario"/>
+              </div>
+              <div class="form-group">
+                <label for="txtPassword">Password</label>
+                  <input id="txtPassword" runat="server" type="password" class="form-control"  placeholder="Ingrese password"/>
+              </div>
+      </div>
+      <div class="modal-footer">
+          <asp:Button ID="btnLogin" runat="server" CssClass="btn btn-primary" OnClick="btnLogin_Click" Text="Login"/>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+         <button type="button" class="btn btn-primary">Olvidé contraseña</button>
+      </div>
+
+    </div>
+  </div>
+</div>
                 <br />
                 <br />
             </div>
@@ -75,132 +118,8 @@
         </div>
 
         <footer>
-  <div class="wrapper">
-    <div class="ch-g1-3">
-      <div class="suscribe">
-        <p><span>SIEMPRE HAY NOVEDADES PARA VOS</span> Recibi alertas de descuentos y nuevos productos</p>
-        <div class="suscribe-input">
-                  <!-- Begin MailChimp Signup Form -->
-                    <link href="//cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
-                    <style type="text/css">
-                              #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
-                              /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
-                                 We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
-                    </style>
-                    <div id="mc_embed_signup">
-                      <form action="//morph.us10.list-manage.com/subscribe/post?u=34b4f3d014eacee0dad3b2be5&amp;id=379498ece5" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
-                          <div id="mc_embed_signup_scroll">
-                                      <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Ingresa tu e-mail" required="">
-                          <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-                          <div style="position: absolute; left: -5000px;"><input type="text" name="b_34b4f3d014eacee0dad3b2be5_379498ece5" tabindex="-1" value=""></div>
-                          <input type="submit" value="QUIERO!" name="subscribe" id="mc-embedded-subscribe" class="button">
-                          </div>
-                      </form>
-                    </div>
-                    <!--End mc_embed_signup-->
-        </div>
-      </div>
-    </div>
-    <div class="ch-g1-3">
-      <div class="footer-content">
-        <h2>CATEGORIAS</h2>
-        <ul class="footer-categorys">
-                                    <li class="menu-item has-submenu" data-image="/cocina_qO4XtOcxSM">
-                <a class="link link-categ" href="/cocina_qO4XoOmaxPriceXtOcXvOgalleryxSM" title="Cocina">
-                  Cocina
-                </a>
-              </li>
-                                                <li class="menu-item has-submenu" data-image="/bano_qO5XtOcxSM">
-                <a class="link link-categ" href="/bano_qO5XoOmaxPriceXtOcXvOgalleryxSM" title="Baño">
-                  Baño
-                </a>
-              </li>
-                                                <li class="menu-item has-submenu" data-image="/iluminacion_qO16XtOcxSM">
-                <a class="link link-categ" href="/iluminacion_qO16XoOmaxPriceXtOcXvOgalleryxSM" title="Iluminación">
-                  Iluminación
-                </a>
-              </li>
-                                                <li class="menu-item has-submenu" data-image="/muebles_qO9XtOcxSM">
-                <a class="link link-categ" href="/muebles_qO9XoOmaxPriceXtOcXvOgalleryxSM" title="Muebles">
-                  Muebles
-                </a>
-              </li>
-                                                <li class="menu-item has-submenu" data-image="/ninos_qO6XtOcxSM">
-                <a class="link link-categ" href="/ninos_qO6XoOmaxPriceXtOcXvOgalleryxSM" title="Niños">
-                  Niños
-                </a>
-              </li>
-                                                <li class="menu-item has-submenu" data-image="/accesorios_qO4882657XtOcxSM">
-                <a class="link link-categ" href="/accesorios_qO4882657XoOmaxPriceXtOcXvOgalleryxSM" title="Accesorios">
-                  Accesorios
-                </a>
-              </li>
-                                                <li class="menu-item has-submenu" data-image="/decoracion_qO4882340XtOcxSM">
-                <a class="link link-categ" href="/decoracion_qO4882340XoOmaxPriceXtOcXvOgalleryxSM" title="Decoración">
-                  Decoración
-                </a>
-              </li>
-                                                <li class="menu-item has-submenu" data-image="/exterior-jardin_qO29XtOcxSM">
-                <a class="link link-categ" href="/exterior-jardin_qO29XoOmaxPriceXtOcXvOgalleryxSM" title="Exterior Jardín">
-                  Exterior Jardín
-                </a>
-              </li>
-                                                <li class="menu-item has-submenu" data-image="/escritorio_qO4882358XtOcxSM">
-                <a class="link link-categ" href="/escritorio_qO4882358XoOmaxPriceXtOcXvOgalleryxSM" title="Escritorio">
-                  Escritorio
-                </a>
-              </li>
-                              </ul>
-      </div>
-      <div class="footer-content">
-        <h2>NOSOTROS</h2>
-        <ul class="footer-menu">
-          <li><a class="link link-categorys" href="/locales-argentina_14xST">Sucursales</a></li>
-          <li><a class="link link-categorys" href="/preguntas-frecuentes_20xST">Preguntas Frecuentes</a></li>
-          <li><a class="link link-categorys" href="https://morph.hiringroom.com/jobs">Trabaja con Nosotros</a></li>
-          <li><a class="link link-categorys" href="/terminos-condiciones_21xST">Terminos y condiciones</a></li>
-          <li><a class="link link-categorys" href="/franquicias_6xST">Franquicias</a></li>
-          <li><a class="link link-categorys" href="https://www.marpolo.com.ar/" target="_blank">Venta Mayorista</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="ch-g1-3">
-      <div class="footer-social">
-        <a href="https://www.instagram.com/morpharg" class="it"></a>
-        <a href="https://www.pinterest.com/morpharg" class="pt"></a>
-        <a href="https://www.facebook.com/morphargentina" class="fb"></a>
-      </div>
-      <div class="footer-contacto">
-        <h2>HOLA!</h2>
-        <p>ventasonline@morph.com.ar <br>
-          (011)48285600 <br>
-          de lunes a Viernes de 9 a 18hs
-        </p>
-      </div>
-    </div>
-    <div class="ch-g1 datos">
-      <div class="flags">
-        <a href="/" class="ar">argentina</a>
-        <a href="http://www.morph.com.ar/locales-colombia_22xST" class="co">colombia</a>
-        <a href="http://www.morph.com.ar/locales-chile_16xST" class="cl">chile</a>
-      </div>
-      <p>Atencion al cliente: 011-48285600 de Lunes a Viernes de 9 a 17:30hs. | Marpolo S.A. © Copyright 2014 | Todos los derechos reservados - <a href="/terminos-condiciones_21xST">Ver Términos y condiciones</a></p>
-    </div>
-    <div class="ch-g1-3 tc">
-      <a href="https://www.argentina.gob.ar/produccion/consumidor" class="link" target="_blank"><img src="/images/defensa-del-consumidor.png" alt="" title=""></a>
-      <a href="http://qr.afip.gob.ar/?qr=buI51Oo6ggasw62LTZr1iQ,," target="_F960AFIPInfo" class="link">
-                <img src="/images/data_fiscal.png" class="fiscal-data-qrcode" width="40" height="57" border="0">
-      </a>
-    </div>
-    <div class="ch-g1-3 tc">
-      <p class="power">powered by <a href="https://www.mercadoshops.com.ar/" target="_blank">MercadoShops</a></p>
-    </div>
-    <div class="ch-g1-3 tc">
-      <a href="http://www.hotsale.com.ar/" class="link-cyber" target="_blank"><img src="/images/hotsale.png" alt="" title=""></a>
-      <!-- <a href="http://www.kactus.com.ar/" class="kac" target="_blank">Diseño y Desarrollo <img src="/images/kactus.png" alt="" title="" /></a> -->
-    </div>
-  </div>
-</footer>
+  
+   </footer>
 
 
     </form>
