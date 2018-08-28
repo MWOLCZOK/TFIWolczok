@@ -19,11 +19,11 @@
                         <img src="Imagenes/PorqueUtilizarLed.jpg" />
                     </div>
 
-                    <div class="item">
-                        <img src="Imagenes/CalculadoraDeAhorro.jpeg" />
+                    <div class="item ">
+                        <img src="Imagenes/CalculadoraDeAhorro.jpg" />
                     </div>
 
-                    <div class="item">
+                    <div class="item ">
                         <img src="Imagenes/SegmentosdeIluminacion.jpg" />
                     </div>
                 </div>

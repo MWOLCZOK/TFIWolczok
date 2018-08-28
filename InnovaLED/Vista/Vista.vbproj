@@ -134,8 +134,10 @@
     <Content Include="GestiondeBitacora.aspx" />
     <Content Include="GestiondeUsuario.aspx" />
     <Content Include="IMAGENES\Banner6.jpg" />
+    <Content Include="IMAGENES\CalculadoraDeAhorro.jpg" />
     <Content Include="IMAGENES\edificio.jpg" />
     <Content Include="IMAGENES\PorqueUtilizarLed.jpg" />
+    <Content Include="IMAGENES\SegmentosdeIluminacion.jpg" />
     <Content Include="Institucional.aspx" />
     <Content Include="JS\bootstrap.js" />
     <Content Include="JS\bootstrap.min.js" />
