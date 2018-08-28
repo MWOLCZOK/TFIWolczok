@@ -3,6 +3,9 @@ Imports System.Runtime.Serialization.Formatters.Binary
 
 Public Class Rol
 
+    Implements ICloneable
+
+
     Private _id_rol As Integer
     Public Property ID_Rol() As Integer
         Get

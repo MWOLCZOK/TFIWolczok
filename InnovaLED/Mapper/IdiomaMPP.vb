@@ -69,28 +69,28 @@ Public Class IdiomaMPP
 
 
     Public Function EliminarIdioma(ByRef Idioma As IdiomaEntidad) As Boolean
-        Try
-            'Dim Command As SqlCommand = Acceso.MiComando("Select ID_Usuario from Usuario where ID_idioma = @ID_Idioma")
-            'With Command.Parameters
-            '    .Add(New SqlParameter("@ID_Idioma", Idioma.ID_Idioma))
-            'End With
-            'Dim dt_usu As DataTable = Acceso.Lectura(Command)
-            'Command.Dispose()
-            'If dt_usu.Rows.Count = 0 Then
-            '    Dim CommandDel As SqlCommand = Acceso.MiComando("Update Idioma set BL=@BL where ID_Idioma = @ID_Idioma")
-            '    With CommandDel.Parameters
-            '        .Add(New SqlParameter("@ID_Idioma", Idioma.ID_Idioma))
-            '        .Add(New SqlParameter("@BL", True))
-            '    End With
-            '    Acceso.Escritura(CommandDel)
-            '    CommandDel.Dispose()
-            Return True
-            Else
-            Return False
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
+        'Try
+        'Dim Command As SqlCommand = Acceso.MiComando("Select ID_Usuario from Usuario where ID_idioma = @ID_Idioma")
+        'With Command.Parameters
+        '    .Add(New SqlParameter("@ID_Idioma", Idioma.ID_Idioma))
+        'End With
+        'Dim dt_usu As DataTable = Acceso.Lectura(Command)
+        'Command.Dispose()
+        'If dt_usu.Rows.Count = 0 Then
+        '    Dim CommandDel As SqlCommand = Acceso.MiComando("Update Idioma set BL=@BL where ID_Idioma = @ID_Idioma")
+        '    With CommandDel.Parameters
+        '        .Add(New SqlParameter("@ID_Idioma", Idioma.ID_Idioma))
+        '        .Add(New SqlParameter("@BL", True))
+        '    End With
+        '    Acceso.Escritura(CommandDel)
+        '    CommandDel.Dispose()
+        '    Return True
+        '    Else
+        '    Return False
+        '    End If
+        'Catch ex As Exception
+        '    Throw ex
+        'End Try
     End Function
 
 
