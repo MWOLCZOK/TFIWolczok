@@ -31,7 +31,7 @@
         Me.Menu.Items.Item(2).ChildItems.Add(New MenuItem("Generar Presupuesto", "GenerarPresupuesto", Nothing, "/GenerarPresupuesto.aspx"))
 
 
-        Me.Menu.Items.Add(New MenuItem("Ventas2", "Ventas"))
+        Me.Menu.Items.Add(New MenuItem("Ventas", "Ventas"))
         Me.Menu.Items.Item(3).ChildItems.Add(New MenuItem("Crear Nuevo Cliente", "CrearNuevoCliente", Nothing, "/CrearNuevoCliente.aspx"))
         Me.Menu.Items.Item(3).ChildItems.Add(New MenuItem("Cargar Venta", "CargarVenta", Nothing, "/CargarVenta.aspx"))
         Me.Menu.Items.Item(3).ChildItems.Add(New MenuItem("Cobro", "Cobro", Nothing, "/Cobro.aspx"))
@@ -62,9 +62,6 @@
 
         Me.Menu.Items.Add(New MenuItem("Institucional", "Inst"))
         Me.Menu.Items.Item(8).ChildItems.Add(New MenuItem("Institucional", "Institucional", Nothing, "/Institucional.aspx"))
-
-        Me.Menu.Items.Add(New MenuItem("Login", "Log"))
-        Me.Menu.Items.Item(9).ChildItems.Add(New MenuItem("Login", "Login", Nothing, "/Login.aspx"))
 
 
     End Sub
