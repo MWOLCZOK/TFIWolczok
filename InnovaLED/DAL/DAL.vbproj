@@ -46,6 +46,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -65,6 +66,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Acceso.vb" />
+    <Compile Include="DataSetInnovaLED.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetInnovaLED.xsd</DependentUpon>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -90,6 +96,17 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="DataSetInnovaLED.xsc">
+      <DependentUpon>DataSetInnovaLED.xsd</DependentUpon>
+    </None>
+    <None Include="DataSetInnovaLED.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetInnovaLED.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="DataSetInnovaLED.xss">
+      <DependentUpon>DataSetInnovaLED.xsd</DependentUpon>
+    </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

@@ -1116,7 +1116,7 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.42857143;
-  color: #333;
+  color: #fff;
   background-color: #fff;
 }
 input,
@@ -6100,16 +6100,16 @@ button.close {
 }
 .modal-open .modal {
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: scroll;
 }
 .modal-dialog {
-  position: relative;
-  width: auto;
+  position: absolute;
+  width: unset;
   margin: 10px;
 }
 .modal-content {
   position: relative;
-  background-color: #fff;
+  background-color: #245269;
   -webkit-background-clip: padding-box;
           background-clip: padding-box;
   border: 1px solid #999;
@@ -6175,7 +6175,7 @@ button.close {
 }
 @media (min-width: 768px) {
   .modal-dialog {
-    width: 600px;
+    width: 400px;
     margin: 30px auto;
   }
   .modal-content {
@@ -6441,7 +6441,6 @@ button.close {
 }
 .carousel {
   position: relative;
-    margin-top: 17px;
 }
 .carousel-inner {
   position: relative;
