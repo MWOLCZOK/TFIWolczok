@@ -47,8 +47,8 @@ Public Class MaillingBLL
             variable(0) = variable(0) & ubicacionserver & "/ConfirmarRecupero.aspx?tok=" & token
             body = variable(0) & variable(3)
             Correo.IsBodyHtml = True
-            Correo.To.Add("Marcos.tassara2@gmail.com")
-            Correo.Subject = "ARGLeague - Registro de Usuario"
+            Correo.To.Add("matias.wolczok2@gmail.com")
+            Correo.Subject = "InnovaLED - Registro de Usuario"
             Correo.Body = body
             Correo.Priority = System.Net.Mail.MailPriority.Normal
             Dim smtp As New System.Net.Mail.SmtpClient

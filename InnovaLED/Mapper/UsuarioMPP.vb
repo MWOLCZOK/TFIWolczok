@@ -173,10 +173,10 @@ Public Class UsuarioMPP
 
     Public Function TraerUsuario(ByVal Usuario As Entidades.UsuarioEntidad) As Entidades.UsuarioEntidad
         Try
-            Dim GestorPermisos As New GestorPermisosMPP
-            Usuario.Rol = GestorPermisos.ConsultarporID(Usuario.Rol.ID_Rol)
-            Dim GestorIdioma As New IdiomaMPP
-            Usuario.Idioma = GestorIdioma.ConsultarPorID(Usuario.Idioma.ID_Idioma)
+            'Dim GestorPermisos As New GestorPermisosMPP
+            'Usuario.Rol = GestorPermisos.ConsultarporID(Usuario.Rol.ID_Rol)
+            'Dim GestorIdioma As New IdiomaMPP
+            'Usuario.Idioma = GestorIdioma.ConsultarPorID(Usuario.Idioma.ID_Idioma)
 
             Return Usuario
         Catch ex As Exception
@@ -268,11 +268,9 @@ Public Class UsuarioMPP
     Public Function CambiarPassword(ByVal Usuario As Entidades.UsuarioEntidad) As Boolean
         Try
 
-            Dim consulta As String = "update Usuario set Password = @Password, salt= @Salt, DVH = @DVH where ID_Usuario=@Usuario And BL = 0"
+            Dim consulta As String = "update UsuarioEntidad set Password = @Password, salt= @Salt where ID_Usuario=@Usuario And BL = 0"
             Dim Command As SqlCommand = Acceso.MiComando(consulta)
-            Dim ListaParametros As New List(Of String)
-            Acceso.AgregarParametros(Usuario, ListaParametros)
-            ListaParametros.Add(False.ToString) 'Agregado de Baja Logica
+          
             With Command.Parameters
                 .Add(New SqlParameter("@Usuario", Usuario.ID_Usuario))
                 .Add(New SqlParameter("@Salt", Usuario.Salt))
@@ -350,13 +348,9 @@ Public Class UsuarioMPP
 
     Public Sub SumarIntentos(ByVal Usuario As Entidades.UsuarioEntidad)
         Try
-            Dim Consulta As String = "update Usuario set Intentos = @Intentos, where NombreUsuario=@NombreUsuario and BL = 0"
+            Dim Consulta As String = "update UsuarioEntidad set Intentos = @Intentos, where NombreUsuario=@NombreUsuario and BL = 0"
             Dim Command = Acceso.MiComando(Consulta)
-
-            Dim ListaParametros As New List(Of String)
-            Acceso.AgregarParametros(Usuario, ListaParametros)
-            ListaParametros.Add(False.ToString) 'Agregado de Baja Logica
-
+            
             With Command.Parameters
                 .Add(New SqlParameter("@Intentos", Usuario.Intento))
                 .Add(New SqlParameter("@NombreUsuario", Usuario.NombreUsu))

@@ -101,12 +101,13 @@ Public Class MasterPage
             If Page.IsValid = True Then
                 Cliente.NombreUsu = txtUser.Value
                 Cliente.Password = txtPassword.Value
-                'clienteLogeado = GestorUsu.ExisteUsuario(Cliente)
-                'Dim Bitac As New Bitacora(clienteLogeado, IdiomaActual.Palabras.Find(Function(p) p.Codigo = "BitacoraLoginSuccess1").Traduccion & clienteLogeado.NombreUsu & IdiomaActual.Palabras.Find(Function(p) p.Codigo = "BitacoraLoginSuccess2").Traduccion, Tipo_Bitacora.Login, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)
-                'BitacoraBLL.CrearBitacora(Bitac)
-                'Current.Session("cliente") = clienteLogeado
-
-
+                clienteLogeado = GestorUsu.ExisteUsuario(Cliente)
+                Dim Bitac As New Bitacora(clienteLogeado, "El usuario "& clienteLogeado.NombreUsu & " Se logueo correctamente", Tipo_Bitacora.Login, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)
+                BitacoraBLL.CrearBitacora(Bitac)
+                Session("cliente") = clienteLogeado
+                Me.success.Visible = True
+                Me.success.InnerText = "Se ha logueado correctamente"
+                Me.alertvalid.Visible = False
 
 
 
@@ -198,6 +199,17 @@ Public Class MasterPage
 
 
     End Sub
+
+
+    Public Sub btnolvidepass_Click(sender As Object, e As EventArgs) Handles btnolvidepass.Click
+        Response.Redirect("~/RecuperarPassword.aspx", False)
+
+    End Sub
+
+
+
+
+
 
     Private Sub EnviarMailRegistro(ByVal token As String)
         Dim body As String = System.IO.File.ReadAllText(HttpContext.Current.Server.MapPath("EmailTemplates/registracion.html"))
