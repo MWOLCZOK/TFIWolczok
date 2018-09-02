@@ -4,7 +4,15 @@ Imports System.Threading
 Imports System.Reflection
 Imports System.Web.Configuration
 
+
 Public Class Acceso
+
+
+    Private Cnn As New SqlConnection
+    Private Tranx As SqlTransaction
+    Private Cmd As SqlCommand
+
+
 
 
     Public Shared BackUpFolder As String = WebConfigurationManager.AppSettings("RutaBackup").ToString()
@@ -58,13 +66,13 @@ Public Class Acceso
         End Try
     End Function
     Public Shared Function MiConexion() As SqlConnection
-        'Dim MiConecction = New SqlConnection(WebConfigurationManager.ConnectionStrings("Saitama").ConnectionString)
-        'Return MiConecction
+        Dim MiConecction = New SqlConnection(WebConfigurationManager.ConnectionStrings("InnovaLED").ConnectionString)
+        Return MiConecction
     End Function
 
     Public Shared Function MiConexionMaster() As SqlConnection
-        'Dim MiConecction = New SqlConnection(System.Web.Configuration.WebConfigurationManager.ConnectionStrings("InnovaLEDMaster").ConnectionString)
-        'Return MiConecction
+        Dim MiConecction = New SqlConnection(System.Web.Configuration.WebConfigurationManager.ConnectionStrings("InnovaLEDMaster").ConnectionString)
+        Return MiConecction
     End Function
 
     Shared Function TraerID(ByRef IDGenerico As String, ByRef TablaGenerica As String) As Integer

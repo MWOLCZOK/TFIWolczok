@@ -8,17 +8,17 @@ Public Class GestorPermisosBLL
     Private PermisosMPP As GestorPermisosMPP
 
     Public Function Alta(ByVal perm As PermisoBaseEntidad) As Boolean
-        Try
-            If ValidarNombre(perm.Nombre) Then
-                PermisosMPP = New GestorPermisosMPP
-                PermisosMPP.Alta(perm)
-                Return True
-            Else
-                Return False
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
+        'Try
+        '    If ValidarNombre(perm.Nombre) Then
+        '        PermisosMPP = New GestorPermisosMPP
+        '        PermisosMPP.Alta(perm)
+        '        Return True
+        '    Else
+        '        Return False
+        '    End If
+        'Catch ex As Exception
+        '    Throw ex
+        'End Try
     End Function
 
     Public Function Baja(ByVal Perfil As RolEntidad)
@@ -43,18 +43,18 @@ Public Class GestorPermisosBLL
 
 
     Public Sub Modificar(ByVal perm As PermisoBaseEntidad)
-        Try
-            PermisosMPP = New GestorPermisosMPP
-            PermisosMPP.Modificar(perm)
-            '    BitacoraBLL.CrearBitacora("Se modificó el Perfil: " & perm.Nombre & " en el sistema.", TipoBitacora.Modificación, SessionBLL.SesionActual.ObtenerUsuarioActual)
-        Catch FalloConexion As InvalidOperationException
-            'Dim Bitacora As New BitacoraEntidad("No se pudo modificar el Perfil: " & perm.Nombre & " en el sistema. Error de Conexion", TipoBitacora.Modificación, SessionBLL.SesionActual.ObtenerUsuarioActual)
-            'BitacoraBLL.ArchivarBitacora(Bitacora)
-            'Throw FalloConexion
-        Catch ex As Exception
-            'BitacoraBLL.CrearBitacora("El Metodo " & ex.TargetSite.ToString & " generó un error. Su mensaje es: " & ex.Message, TipoBitacora.Errores, (New UsuarioEntidad With {.ID_Usuario = 0, .Nombre = "Sistema"}))
-            Throw ex
-        End Try
+        'Try
+        '    PermisosMPP = New GestorPermisosMPP
+        '    PermisosMPP.Modificar(perm)
+        '    '    BitacoraBLL.CrearBitacora("Se modificó el Perfil: " & perm.Nombre & " en el sistema.", TipoBitacora.Modificación, SessionBLL.SesionActual.ObtenerUsuarioActual)
+        'Catch FalloConexion As InvalidOperationException
+        '    'Dim Bitacora As New BitacoraEntidad("No se pudo modificar el Perfil: " & perm.Nombre & " en el sistema. Error de Conexion", TipoBitacora.Modificación, SessionBLL.SesionActual.ObtenerUsuarioActual)
+        '    'BitacoraBLL.ArchivarBitacora(Bitacora)
+        '    'Throw FalloConexion
+        'Catch ex As Exception
+        '    'BitacoraBLL.CrearBitacora("El Metodo " & ex.TargetSite.ToString & " generó un error. Su mensaje es: " & ex.Message, TipoBitacora.Errores, (New UsuarioEntidad With {.ID_Usuario = 0, .Nombre = "Sistema"}))
+        '    Throw ex
+        'End Try
     End Sub
 
     Public Function ListarFamilias(ByVal filtro As Boolean) As List(Of PermisoBaseEntidad)

@@ -98,7 +98,7 @@
         End Set
     End Property
 
-    Sub New(ByRef usu As UsuarioEntidad, ByVal detalle As String, ByVal Tipo_bit As Tipo_Bitacora, ByVal fec As DateTime, ByVal brws As String, ByVal IP As String, ByVal ValorAnterior As String, ByVal ValorPosterior As String, ByVal stack As String, ByVal exception As String, ByVal url As String)
+    Sub New(ByRef usu As UsuarioEntidad, ByVal detalle As String, ByVal Tipo_bit As Tipo_Bitacora, ByVal fec As DateTime, ByVal brws As String, ByVal IP As String, ByVal ValorAnterior As String, ByVal ValorPosterior As String, ByVal url As String)
         Me.Usuario = usu
         Me.Detalle = detalle
         Me.Tipo_Bitacora = Tipo_bit
@@ -107,13 +107,11 @@
         Me.IP_Usuario = IP
         Me.Valor_Anterior = ValorAnterior
         Me.Valor_Posterior = ValorPosterior
-        Me.StackTrace = stack
-        Me.Exception = exception
         Me.URL = url
 
     End Sub
 
-    
+
     Private _url As String
     Public Property URL() As String
         Get
@@ -124,26 +122,6 @@
         End Set
     End Property
 
-    Private _stacktrace As String
-    Public Property StackTrace() As String
-        Get
-            Return _stacktrace
-        End Get
-        Set(ByVal value As String)
-            _stacktrace = value
-        End Set
-    End Property
-    Private _exception As String
-
-
-    Public Property Exception() As String
-        Get
-            Return _exception
-        End Get
-        Set(ByVal value As String)
-            _exception = value
-        End Set
-    End Property
 
     Sub New()
 

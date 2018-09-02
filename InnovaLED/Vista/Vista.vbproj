@@ -103,6 +103,8 @@
     <Content Include="ActualizarStock.aspx" />
     <Content Include="CambiarContraseña.aspx" />
     <Content Include="CargarVenta.aspx" />
+    <Content Include="ConfirmarRecupero.aspx" />
+    <Content Include="ConfirmarRegistracion.aspx" />
     <Content Include="CrearIdioma.aspx" />
     <Content Include="CrearNuevoCliente.aspx" />
     <Content Include="CrearProducto.aspx" />
@@ -126,6 +128,8 @@
     <Content Include="CSS\jquery.ui.timepicker.css" />
     <Content Include="CSS\MisEstilos.css" />
     <Content Include="Default.aspx" />
+    <Content Include="EmailTemplates\Recupero.html" />
+    <Content Include="EmailTemplates\Registracion.html" />
     <Content Include="Fonts\fontawesome-webfont.svg" />
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="GenerarDocumento.aspx" />
@@ -136,10 +140,14 @@
     <Content Include="GestiondeBitacora.aspx" />
     <Content Include="GestiondeUsuario.aspx" />
     <Content Include="IMAGENES\Banner6.jpg" />
+    <Content Include="IMAGENES\blue.png" />
     <Content Include="IMAGENES\CalculadoraDeAhorro.jpg" />
     <Content Include="IMAGENES\edificio.jpg" />
+    <Content Include="IMAGENES\facebook.png" />
     <Content Include="IMAGENES\PorqueUtilizarLed.jpg" />
+    <Content Include="IMAGENES\red.png" />
     <Content Include="IMAGENES\SegmentosdeIluminacion.jpg" />
+    <Content Include="IMAGENES\twitter.png" />
     <Content Include="Institucional.aspx" />
     <Content Include="JS\bootstrap.js" />
     <Content Include="JS\bootstrap.min.js" />
@@ -157,6 +165,7 @@
     <Content Include="PagoaProveedores.aspx" />
     <Content Include="ProductList.aspx" />
     <Content Include="Proveedores.aspx" />
+    <Content Include="RecuperarPassword.aspx" />
     <Content Include="Registracion.aspx" />
     <Content Include="ReporteStock.aspx" />
     <Content Include="SolicitudPedido.aspx" />
@@ -183,6 +192,20 @@
     <Compile Include="CargarVenta.aspx.vb">
       <DependentUpon>CargarVenta.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="ConfirmarRecupero.aspx.designer.vb">
+      <DependentUpon>ConfirmarRecupero.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ConfirmarRecupero.aspx.vb">
+      <DependentUpon>ConfirmarRecupero.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ConfirmarRegistracion.aspx.designer.vb">
+      <DependentUpon>ConfirmarRegistracion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ConfirmarRegistracion.aspx.vb">
+      <DependentUpon>ConfirmarRegistracion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="CrearIdioma.aspx.designer.vb">
       <DependentUpon>CrearIdioma.aspx</DependentUpon>
@@ -334,6 +357,13 @@
     </Compile>
     <Compile Include="Proveedores.aspx.vb">
       <DependentUpon>Proveedores.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="RecuperarPassword.aspx.designer.vb">
+      <DependentUpon>RecuperarPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RecuperarPassword.aspx.vb">
+      <DependentUpon>RecuperarPassword.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Registracion.aspx.designer.vb">

@@ -124,6 +124,18 @@ Public Class UsuarioEntidad
         End Set
     End Property
 
+    Private _mail As String
+    Public Property Mail() As String
+        Get
+            Return _mail
+        End Get
+        Set(ByVal value As String)
+            _mail = value
+        End Set
+    End Property
+
+
+
     Public Overrides Function ToString() As String
         Return Me.Nombre
     End Function

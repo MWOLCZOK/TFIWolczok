@@ -19,15 +19,15 @@
     End Sub
 
     Private Sub Cargar()
-        Try
-            _Milistapermisos = _MigestorPermiso.ListarFamilias(True)
-        Catch ex As BLL.excepcionGenerica
-            Me.error.Visible = True
-            Me.lbl_TituloError.Text = ex.Mensaje
-        Catch ex As Exception
-            Me.error.Visible = True
-            Me.lbl_TituloError.Text = ex.Message
-        End Try
+        'Try
+        '    _Milistapermisos = _MigestorPermiso.ListarFamilias(True)
+        'Catch ex As BLL.excepcionGenerica
+        '    Me.error.Visible = True
+        '    Me.lbl_TituloError.Text = ex.Mensaje
+        'Catch ex As Exception
+        '    Me.error.Visible = True
+        '    Me.lbl_TituloError.Text = ex.Message
+        'End Try
     End Sub
 
     Private Sub CargarGridView()
@@ -37,20 +37,20 @@
     End Sub
 
     Protected Sub Editar_Command(sender As Object, e As CommandEventArgs)
-        Try
-            Dim Context As HttpContext = HttpContext.Current
-            If Context.Items.Contains("FamiliaaEditar") = True Then
-                Context.Items.Remove("FamiliaaEditar")
-            End If
-            Context.Items.Add("FamiliaaEditar", CInt(e.CommandArgument))
-            Server.Transfer("agregarPerfil.aspx", True)
-        Catch ex As BLL.excepcionGenerica
-            Me.error.Visible = True
-            Me.lbl_TituloError.Text = ex.Mensaje
-        Catch ex As Exception
-            Me.error.Visible = True
-            Me.lbl_TituloError.Text = ex.Message
-        End Try
+        'Try
+        '    Dim Context As HttpContext = HttpContext.Current
+        '    If Context.Items.Contains("FamiliaaEditar") = True Then
+        '        Context.Items.Remove("FamiliaaEditar")
+        '    End If
+        '    Context.Items.Add("FamiliaaEditar", CInt(e.CommandArgument))
+        '    Server.Transfer("agregarPerfil.aspx", True)
+        'Catch ex As BLL.excepcionGenerica
+        '    Me.error.Visible = True
+        '    Me.lbl_TituloError.Text = ex.Mensaje
+        'Catch ex As Exception
+        '    Me.error.Visible = True
+        '    Me.lbl_TituloError.Text = ex.Message
+        'End Try
     End Sub
 
     Protected Sub gv_Perfiles_PageIndexChanging(sender As Object, e As GridViewPageEventArgs)
@@ -95,17 +95,17 @@
     End Sub
 
     Protected Sub btn_Eliminar_Click(sender As Object, e As ImageClickEventArgs)
-        Try
-            _MigestorPermiso.Baja(sender.CommandArgument)
-            Session.Remove("Id_Permiso")
-            Response.Redirect("administrarPerfiles.aspx")
-        Catch ex As BLL.excepcionGenerica
-            Me.error.Visible = True
-            Me.lbl_TituloError.Text = ex.Mensaje
-        Catch ex As Exception
-            Me.error.Visible = True
-            Me.lbl_TituloError.Text = ex.Message
-        End Try
+        'Try
+        '    _MigestorPermiso.Baja(sender.CommandArgument)
+        '    Session.Remove("Id_Permiso")
+        '    Response.Redirect("administrarPerfiles.aspx")
+        'Catch ex As BLL.excepcionGenerica
+        '    Me.error.Visible = True
+        '    Me.lbl_TituloError.Text = ex.Mensaje
+        'Catch ex As Exception
+        '    Me.error.Visible = True
+        '    Me.lbl_TituloError.Text = ex.Message
+        'End Try
     End Sub
 
 

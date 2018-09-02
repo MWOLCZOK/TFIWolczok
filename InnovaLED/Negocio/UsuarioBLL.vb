@@ -1,9 +1,9 @@
-﻿Imports System.Web.HttpContext
+﻿
 Imports System.Xml.Serialization
 Imports System.IO
 Imports Entidades
 Imports Mapper
-
+'imports system.web.httpcontext
 
 Public Class UsuarioBLL
 
@@ -13,15 +13,12 @@ Public Class UsuarioBLL
 
     Public Function ValidarNombre(usu As UsuarioEntidad) As Boolean
         Try
-            'If DigitoVerificadorBLL.Integridad Then
+
             If IsNothing((New UsuarioMPP).ExisteUsuario(usu)) Then
                 Return True
             Else
                 Return False
             End If
-            'Else
-            '    Throw New ExceptionIntegridadUsuario
-            'End If
         Catch ExcepcionUsuario As ExceptionIntegridadUsuario
             Throw ExcepcionUsuario
         Catch ExcepcionBitacora As ExceptionIntegridadBitacora
@@ -31,7 +28,6 @@ Public Class UsuarioBLL
         Catch FalloConexion As InvalidOperationException
             Throw FalloConexion
         Catch ex As Exception
-            'BitacoraBLL.CrearBitacora("El Metodo " & ex.TargetSite.ToString & " generó un error. Su mensaje es: " & ex.Message, TipoBitacora.Errores, (New UsuarioEntidad With {.ID_Usuario = 0, .Nombre = "Sistema"}))
             Throw ex
         End Try
     End Function
@@ -66,11 +62,8 @@ Public Class UsuarioBLL
             End If
 
         Catch FalloConexion As InvalidOperationException
-            'Dim Bitacora As New BitacoraEntidad("No se pudo bloquear el Usuario: " & Usuario.Nombre & " en el sistema. Error de Conexion", TipoBitacora.Login, SessionBLL.SesionActual.ObtenerUsuarioActual)
-            'BitacoraBLL.ArchivarBitacora(Bitacora)
             Throw FalloConexion
         Catch ex As Exception
-            'BitacoraBLL.CrearBitacora("El Metodo " & ex.TargetSite.ToString & " generó un error. Su mensaje es: " & ex.Message, TipoBitacora.Errores, (New UsuarioEntidad With {.ID_Usuario = 0, .Nombre = "Sistema"}))
             Throw ex
         End Try
     End Function
@@ -122,7 +115,6 @@ Public Class UsuarioBLL
 
     End Function
 
-    ' PRueba para Santi
 
 
     Public Sub RefrescarUsuario(ByRef USuario As Entidades.UsuarioEntidad)
@@ -131,7 +123,6 @@ Public Class UsuarioBLL
         Catch FalloConexion As InvalidOperationException
             Throw FalloConexion
         Catch ex As Exception
-            'BitacoraBLL.CrearBitacora("El Metodo " & ex.TargetSite.ToString & " generó un error. Su mensaje es: " & ex.Message, TipoBitacora.Errores, (New UsuarioEntidad With {.ID_Usuario = 0, .Nombre = "Sistema"}))
             Throw ex
         End Try
 
@@ -146,7 +137,6 @@ Public Class UsuarioBLL
         Catch FalloConexion As InvalidOperationException
             Throw FalloConexion
         Catch ex As Exception
-            'BitacoraBLL.CrearBitacora("El Metodo " & ex.TargetSite.ToString & " generó un error. Su mensaje es: " & ex.Message, TipoBitacora.Errores, (New UsuarioEntidad With {.ID_Usuario = 0, .Nombre = "Sistema"}))
             Throw ex
         End Try
 
@@ -156,7 +146,6 @@ Public Class UsuarioBLL
         Try
             If Me.ValidarNombre(Usuario) Then
                 If UsuarioMPP.Alta(Usuario) Then
-                    'BitacoraBLL.CrearBitacora("Se creó el Usuario: " & Usuario.Nombre & " en el sistema.", TipoBitacora.Alta, SessionBLL.SesionActual.ObtenerUsuarioActual)
                     Return True
                 Else
                     Return False
@@ -192,7 +181,6 @@ Public Class UsuarioBLL
     Public Function Modificar(ByVal Usuario As UsuarioEntidad) As Boolean
         Try
             If UsuarioMPP.Modificar(Usuario) Then
-                'BitacoraBLL.CrearBitacora("Se modificó el Usuario: " & NombreUsuario & " en el sistema.", TipoBitacora.Modificación, SessionBLL.SesionActual.ObtenerUsuarioActual)
                 Return True
             Else
                 Return False
@@ -210,17 +198,13 @@ Public Class UsuarioBLL
     Public Function Eliminar(ByVal Usuario As UsuarioEntidad) As Boolean
         Try
             If UsuarioMPP.Eliminar(Usuario) Then
-                'BitacoraBLL.CrearBitacora("Se eliminó el Usuario: " & Usuario.Nombre & " en el sistema.", TipoBitacora.Baja, SessionBLL.SesionActual.ObtenerUsuarioActual)
                 Return True
             Else
                 Return False
             End If
         Catch FalloConexion As InvalidOperationException
-            'Dim Bitacora As New BitacoraEntidad("No se pudo eliminar el Usuario: " & Usuario.Nombre & " en el sistema. Error de Conexion", TipoBitacora.Baja, SessionBLL.SesionActual.ObtenerUsuarioActual)
-            'BitacoraBLL.ArchivarBitacora(Bitacora)
             Throw FalloConexion
         Catch ex As Exception
-            'BitacoraBLL.CrearBitacora("El Metodo " & ex.TargetSite.ToString & " generó un error. Su mensaje es: " & ex.Message, TipoBitacora.Errores, (New UsuarioEntidad With {.ID_Usuario = 0, .Nombre = "Sistema"}))
             Throw ex
         End Try
 
@@ -229,11 +213,9 @@ Public Class UsuarioBLL
 
     Public Function TraerUsuarios() As List(Of UsuarioEntidad)
         Try
-            'If DigitoVerificadorBLL.Integridad Then
+
             Return UsuarioMPP.TraerUsuarios()
-            'Else
-            '    Throw New ExceptionIntegridadUsuario
-            'End If
+
         Catch ExcepcionUsuario As ExceptionIntegridadUsuario
             Throw ExcepcionUsuario
         Catch ExcepcionBitacora As ExceptionIntegridadBitacora
@@ -243,7 +225,6 @@ Public Class UsuarioBLL
         Catch FalloConexion As InvalidOperationException
             Throw FalloConexion
         Catch ex As Exception
-            'BitacoraBLL.CrearBitacora("El Metodo " & ex.TargetSite.ToString & " generó un error. Su mensaje es: " & ex.Message, TipoBitacora.Errores, (New UsuarioEntidad With {.ID_Usuario = 0, .Nombre = "Sistema"}))
             Throw ex
         End Try
 
@@ -251,11 +232,8 @@ Public Class UsuarioBLL
 
     Public Function TraerUsuariosParaBloqueo(ByRef Usuario As Entidades.UsuarioEntidad) As List(Of UsuarioEntidad)
         Try
-            'If DigitoVerificadorBLL.Integridad Then
+
             Return UsuarioMPP.TraerUsuariosParaBloqueo(Usuario)
-            'Else
-            '    Throw New ExceptionIntegridadUsuario
-            'End If
         Catch ExcepcionUsuario As ExceptionIntegridadUsuario
             Throw ExcepcionUsuario
         Catch ExcepcionBitacora As ExceptionIntegridadBitacora
@@ -265,7 +243,6 @@ Public Class UsuarioBLL
         Catch FalloConexion As InvalidOperationException
             Throw FalloConexion
         Catch ex As Exception
-            'BitacoraBLL.CrearBitacora("El Metodo " & ex.TargetSite.ToString & " generó un error. Su mensaje es: " & ex.Message, TipoBitacora.Errores, (New UsuarioEntidad With {.ID_Usuario = 0, .Nombre = "Sistema"}))
             Throw ex
         End Try
 
@@ -299,7 +276,6 @@ Public Class UsuarioBLL
         Catch FalloConexion As InvalidOperationException
             Throw FalloConexion
         Catch ex As Exception
-            'BitacoraBLL.CrearBitacora("El Metodo " & ex.TargetSite.ToString & " generó un error. Su mensaje es: " & ex.Message, TipoBitacora.Errores, (New UsuarioEntidad With {.ID_Usuario = 0, .Nombre = "Sistema"}))
             Throw ex
         End Try
     End Sub
@@ -311,7 +287,6 @@ Public Class UsuarioBLL
             UsuarioMPP.SumarIntentos(Usuario)
             If Usuario.Intento > 2 Then
                 UsuarioMPP.Bloquear(Usuario)
-                'BitacoraBLL.CrearBitacora("El Usuario: " & SessionBLL.SesionActual.ObtenerUsuarioActual.Nombre & " ha sido bloqueado por esceso de intentos.", TipoBitacora.Login, SessionBLL.SesionActual.ObtenerUsuarioActual)
             End If
 
         Catch ExcepcionUsuario As ExceptionIntegridadUsuario
@@ -321,11 +296,8 @@ Public Class UsuarioBLL
         Catch ExcepcionEvento As ExceptionIntegridadEvento
             Throw ExcepcionEvento
         Catch FalloConexion As InvalidOperationException
-            'Dim Bitacora As New BitacoraEntidad("No pudo bloquearse o sumar intentos en el Usuario: " & SessionBLL.SesionActual.ObtenerUsuarioActual.Nombre & " en el sistema. Error de Conexion", TipoBitacora.Login, SessionBLL.SesionActual.ObtenerUsuarioActual)
-            'BitacoraBLL.ArchivarBitacora(Bitacora)
             Throw FalloConexion
         Catch ex As Exception
-            'BitacoraBLL.CrearBitacora("El Metodo " & ex.TargetSite.ToString & " generó un error. Su mensaje es: " & ex.Message, TipoBitacora.Errores, (New UsuarioEntidad With {.ID_Usuario = 0, .Nombre = "Sistema"}))
             Throw ex
         End Try
     End Sub
@@ -368,17 +340,13 @@ Public Class UsuarioBLL
     Public Function Bloquear(ByRef Usuario As UsuarioEntidad) As Boolean
         Try
             If UsuarioMPP.Bloquear(Usuario) Then
-                'BitacoraBLL.CrearBitacora("Se bloqueó el Usuario: " & Usuario.Nombre & " en el sistema.", TipoBitacora.Alta, SessionBLL.SesionActual.ObtenerUsuarioActual)
                 Return True
             Else
                 Return False
             End If
         Catch FalloConexion As InvalidOperationException
-            'Dim Bitacora As New BitacoraEntidad("No se pudo bloquear el Usuario: " & Usuario.Nombre & " en el sistema. Error de Conexion", TipoBitacora.Login, SessionBLL.SesionActual.ObtenerUsuarioActual)
-            'BitacoraBLL.ArchivarBitacora(Bitacora)
             Throw FalloConexion
         Catch ex As Exception
-            'BitacoraBLL.CrearBitacora("El Metodo " & ex.TargetSite.ToString & " generó un error. Su mensaje es: " & ex.Message, TipoBitacora.Errores, (New UsuarioEntidad With {.ID_Usuario = 0, .Nombre = "Sistema"}))
             Throw ex
         End Try
     End Function
@@ -387,51 +355,6 @@ Public Class UsuarioBLL
     Public Shared Function ProbarConectividad() As Boolean
         Return (New Mapper.UsuarioMPP).ProbarConectividad
     End Function
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 End Class

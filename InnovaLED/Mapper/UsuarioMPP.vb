@@ -9,20 +9,60 @@ Imports DAL
 
 Public Class UsuarioMPP
 
+    Dim acc As New DAL.Acceso
+
+
+    'Public Function alta(Unsuario As Entidades.UsuarioEntidad) As String
+    '    Dim parametros(2) As SqlParameter
+    '    parametros(0) = acc.crearparametros("@NombreUsuario", Unsuario.NombreUsu)
+    '    parametros(1) = acc.crearparametros("@apellido", unpasajero.apellido)
+    '    parametros(2) = acc.crearparametros("@direccion", unpasajero.direccion)
+
+    '    Return acc.escribir("PASAJERO_ALTA", parametros)
+    'End Function
+
     Public Function Alta(ByRef Usuario As UsuarioEntidad) As Boolean
         Try
+            Dim Command As SqlCommand = Acceso.MiComando("insert into UsuarioEntidad (NombreUsuario,Password,Nombre,Apellido,Fecha_Alta,Salt,Bloqueo,Intentos,Idioma,Rol,mail,Empleado,BL) OUTPUT INSERTED.ID_Usuario values (@NombreUsuario, @Password,@Nombre,@Apellido,@Fecha ,@Salt, @Bloqueo, @Intento, @Idioma, @Perfil,@mail,@Empleado,@BL)")
+            With Command.Parameters
+                .Add(New SqlParameter("@NombreUsuario", Usuario.NombreUsu))
+                .Add(New SqlParameter("@Password", Usuario.Password))
+                .Add(New SqlParameter("@Nombre", Usuario.Nombre))
+                .Add(New SqlParameter("@Apellido", Usuario.Apellido))
+                .Add(New SqlParameter("@Fecha", Usuario.FechaAlta))
+                .Add(New SqlParameter("@Salt", Usuario.Salt))
+                .Add(New SqlParameter("@Bloqueo", Usuario.Bloqueo))
+                .Add(New SqlParameter("@Intento", Usuario.Intento))
+                .Add(New SqlParameter("@Idioma", Usuario.Idioma.ID_Idioma))
+                .Add(New SqlParameter("@Perfil", 1))
+                .Add(New SqlParameter("@Mail", Usuario.Mail))
+                .Add(New SqlParameter("@Empleado", Usuario.Empleado))
+                .Add(New SqlParameter("@BL", False))
+            End With
+
+            Usuario.ID_Usuario = Acceso.Scalar(Command)
+            Command.Dispose()
+
+
+
+
+
+            If Usuario.Bloqueo = True Then
+                CrearToken(Usuario, True)
+            End If
 
             Return True
         Catch ex As Exception
             Throw ex
-
         End Try
     End Function
+
+
 
     Public Function CrearToken(usu As UsuarioEntidad, ByVal registro As Boolean) As String
 
         If usu.ID_Usuario = 0 Then
-            Dim Command As SqlCommand = Acceso.MiComando("Select top 1 ID_Usuario from Usuario where NombreUsuario=@NombreUsuario")
+            Dim Command As SqlCommand = Acceso.MiComando("Select top 1 ID_Usuario from UsuarioEntidad where NombreUsuario=@NombreUsuario")
             With Command.Parameters
                 .Add(New SqlParameter("@NombreUsuario", usu.NombreUsu))
             End With
@@ -54,7 +94,7 @@ Public Class UsuarioMPP
     End Function
 
     Public Sub LimpiarTokens(ByVal token As String)
-        Dim Command As SqlCommand = Acceso.MiComando("Select u.ID_Usuario,TK.ID_Token from Usuario as U inner join Token_Usuario as TK on U.ID_usuario=Tk.ID_Usuario where TK.Fecha_Expiro<getdate() or TK.ID_Token=@Token")
+        Dim Command As SqlCommand = Acceso.MiComando("Select u.ID_Usuario,TK.ID_Token from UsuarioEntidad as U inner join Token_Usuario as TK on U.ID_usuario=Tk.ID_Usuario where TK.Fecha_Expiro<getdate() or TK.ID_Token=@Token")
         With Command.Parameters
             .Add(New SqlParameter("@Token", token))
         End With
@@ -72,7 +112,7 @@ Public Class UsuarioMPP
 
     Public Function RefrescarUsuario(uSuario As UsuarioEntidad) As UsuarioEntidad
         Try
-            Dim consulta As String = "Select Bloqueo,ID_Perfil from Usuario where ID_Usuario=@ID_Usuario"
+            Dim consulta As String = "Select Bloqueo,ID_Perfil from UsuarioEntidad where ID_Usuario=@ID_Usuario"
             Dim Command As SqlCommand = Acceso.MiComando(consulta)
             With Command.Parameters
                 .Add(New SqlParameter("@ID_Usuario", uSuario.ID_Usuario))
@@ -97,7 +137,7 @@ Public Class UsuarioMPP
     End Function
 
     Public Function GetToken(ByVal ID_usuario As Integer) As String
-        Dim Command As SqlCommand = Acceso.MiComando("Select TOP 1 ID_Token from Token_Usuario inner join Usuario on Usuario.ID_Usuario=Token_Usuario.ID_Usuario where Token_Usuario.ID_Usuario=@Usuario and Fecha_Expiro>Getdate() and Usuario.Bloqueo = 1 order by Fecha_Expiro desc")
+        Dim Command As SqlCommand = Acceso.MiComando("Select TOP 1 ID_Token from Token_Usuario inner join UsuarioEntidad on UsuarioEntidad.ID_Usuario=Token_Usuario.ID_Usuario where Token_Usuario.ID_Usuario=@Usuario and Fecha_Expiro>Getdate() and UsuarioEntidad.Bloqueo = 1 order by Fecha_Expiro desc")
         With Command.Parameters
             .Add(New SqlParameter("@Usuario", ID_usuario))
         End With
@@ -107,7 +147,7 @@ Public Class UsuarioMPP
     End Function
 
     Public Function GetTokenUser(ByVal token As String) As Integer
-        Dim Command As SqlCommand = Acceso.MiComando("Select TOP 1 Token_Usuario.ID_Usuario, Usuario.NombreUsuario from Token_Usuario inner join Usuario on Usuario.ID_Usuario=Token_Usuario.ID_Usuario where ID_Token=@Token and Fecha_Expiro>Getdate()  order by Fecha_Expiro desc")
+        Dim Command As SqlCommand = Acceso.MiComando("Select TOP 1 Token_Usuario.ID_Usuario, UsuarioEntidad.NombreUsuario from Token_Usuario inner join UsuarioEntidad on UsuarioEntidad.ID_Usuario=Token_Usuario.ID_Usuario where ID_Token=@Token and Fecha_Expiro>Getdate()  order by Fecha_Expiro desc")
         With Command.Parameters
             .Add(New SqlParameter("@Token", token))
         End With
@@ -147,7 +187,7 @@ Public Class UsuarioMPP
 
     Public Function ExisteUsuario(ByVal Usuario As Entidades.UsuarioEntidad) As Entidades.UsuarioEntidad
         Try
-            Dim consulta As String = "Select * from Usuario where NombreUsuario= @NombreUsuario And BL = 0"
+            Dim consulta As String = "Select * from UsuarioEntidad where NombreUsuario= @NombreUsuario And BL = 0"
             Dim Command As SqlCommand = Acceso.MiComando(consulta)
             With Command.Parameters
                 .Add(New SqlParameter("@NombreUsuario", Usuario.NombreUsu))
@@ -167,7 +207,7 @@ Public Class UsuarioMPP
 
     Public Function BuscarUsuarioID(ByVal Usuario As Entidades.UsuarioEntidad) As Entidades.UsuarioEntidad
         Try
-            Dim consulta As String = "Select * from Usuario where ID_Usuario=@ID_Usuario"
+            Dim consulta As String = "Select * from UsuarioEntidad where ID_Usuario=@ID_Usuario"
             Dim Command As SqlCommand = Acceso.MiComando(consulta)
             With Command.Parameters
                 .Add(New SqlParameter("@ID_Usuario", Usuario.ID_Usuario))
@@ -187,7 +227,7 @@ Public Class UsuarioMPP
 
     Public Function BuscarUsuarioIDBitacora(ByVal Usuario As Entidades.UsuarioEntidad) As Entidades.UsuarioEntidad
         Try
-            Dim consulta As String = "Select * from Usuario where ID_Usuario= @ID_Usuario"
+            Dim consulta As String = "Select * from UsuarioEntidad where ID_Usuario= @ID_Usuario"
             Dim Command As SqlCommand = Acceso.MiComando(consulta)
             With Command.Parameters
                 .Add(New SqlParameter("@ID_Usuario", Usuario.ID_Usuario))
@@ -207,7 +247,7 @@ Public Class UsuarioMPP
 
     Public Function VerificarPassword(ByVal Usuario As Entidades.UsuarioEntidad) As Boolean
         Try
-            Dim consulta As String = "Select * from Usuario where NombreUsuario= @NombreUsuario And Password= @Password And BL = 0"
+            Dim consulta As String = "Select * from UsuarioEntidad where NombreUsuario= @NombreUsuario And Password= @Password And BL = 0"
             Dim Command As SqlCommand = Acceso.MiComando(consulta)
             With Command.Parameters
                 .Add(New SqlParameter("@NombreUsuario", Usuario.NombreUsu))
@@ -249,12 +289,10 @@ Public Class UsuarioMPP
 
     Public Sub ResetearIntentos(ByVal Usuario As Entidades.UsuarioEntidad)
         Try
-            Dim Consulta As String = "update Usuario set Intentos = @Intentos, DVH = @DVH where NombreUsuario=@NombreUsuario and BL=0"
+            Dim Consulta As String = "update UsuarioEntidad set Intentos = @Intentos where NombreUsuario=@NombreUsuario and BL=0"
             Dim Command = Acceso.MiComando(Consulta)
             Usuario.Intento = 0
-            Dim ListaParametros As New List(Of String)
-            Acceso.AgregarParametros(Usuario, ListaParametros)
-            ListaParametros.Add(False.ToString) 'Agregado de Baja Logica
+           
             With Command.Parameters
                 .Add(New SqlParameter("@Intentos", Usuario.Intento))
                 .Add(New SqlParameter("@NombreUsuario", Usuario.NombreUsu))
@@ -275,12 +313,10 @@ Public Class UsuarioMPP
     Public Function Bloquear(ByVal Usuario As Entidades.UsuarioEntidad) As Boolean
         Try
             If Usuario.Bloqueo = True Then
-                Dim Consulta As String = "update Usuario set Bloqueo = 'False', where ID_Usuario=@Usuario and BL = 0"
+                Dim Consulta As String = "update UsuarioEntidad set Bloqueo = 0 where ID_Usuario=@Usuario and BL = 0"
                 Dim Command = Acceso.MiComando(Consulta)
                 Usuario.Bloqueo = False
-                Dim ListaParametros As New List(Of String)
-                Acceso.AgregarParametros(Usuario, ListaParametros)
-                ListaParametros.Add(False.ToString) 'Agregado de Baja Logica
+              
                 With Command.Parameters
                     .Add(New SqlParameter("@Usuario", Usuario.ID_Usuario))
 
@@ -292,12 +328,10 @@ Public Class UsuarioMPP
 
                 Return False
             Else
-                Dim Consulta As String = "update Usuario set Bloqueo = 'True',  where ID_Usuario=@Usuario and BL = 0"
+                Dim Consulta As String = "update UsuarioEntidad set Bloqueo = 1 where ID_Usuario=@Usuario and BL = 0"
                 Dim Command = Acceso.MiComando(Consulta)
                 Usuario.Bloqueo = True
-                Dim ListaParametros As New List(Of String)
-                Acceso.AgregarParametros(Usuario, ListaParametros)
-                ListaParametros.Add(False.ToString) 'Agregado de Baja Logica
+                 
                 With Command.Parameters
                     .Add(New SqlParameter("@Usuario", Usuario.ID_Usuario))
 
@@ -341,7 +375,7 @@ Public Class UsuarioMPP
 
     Public Function TraerUsuariosIdioma(ByVal id_idioma As Integer) As List(Of UsuarioEntidad)
         Try
-            Dim consulta As String = "Select * from Usuario where Bloqueo=0 and BL=0 and ID_Usuario <> 0 and ID_Idioma=@ID_Idioma"
+            Dim consulta As String = "Select * from UsuarioEntidad where Bloqueo=0 and BL=0 and ID_Usuario <> 0 and ID_Idioma=@ID_Idioma"
             Dim Command As SqlCommand = Acceso.MiComando(consulta)
             With Command.Parameters
                 .Add(New SqlParameter("@ID_Idioma", id_idioma))
@@ -361,7 +395,7 @@ Public Class UsuarioMPP
 
     Public Function TraerUsuariosPerfil(ByRef ID_Perfil As Integer) As List(Of UsuarioEntidad)
         Try
-            Dim consulta As String = "Select * from Usuario where Bloqueo=0 and BL=0 and ID_Usuario <> 0 and ID_Perfil=@ID_Perfil"
+            Dim consulta As String = "Select * from UsuarioEntidad where Bloqueo=0 and BL=0 and ID_Usuario <> 0 and ID_Perfil=@ID_Perfil"
             Dim Command As SqlCommand = Acceso.MiComando(consulta)
             With Command.Parameters
                 .Add(New SqlParameter("@ID_Perfil", ID_Perfil))
@@ -383,7 +417,7 @@ Public Class UsuarioMPP
 
     Public Function TraerUsuarios() As List(Of UsuarioEntidad)
         Try
-            Dim consulta As String = "Select * from Usuario where Bloqueo=0 and BL=0 and ID_Usuario <> 0"
+            Dim consulta As String = "Select * from UsuarioEntidad where Bloqueo=0 and BL=0 and ID_Usuario <> 0"
             Dim Command As SqlCommand = Acceso.MiComando(consulta)
             Dim dt As DataTable = Acceso.Lectura(Command)
             Dim ListaUsuario As List(Of UsuarioEntidad) = New List(Of UsuarioEntidad)
@@ -401,7 +435,7 @@ Public Class UsuarioMPP
 
     Public Function TraerUsuariosParaBloqueo(ByRef Usuari As Entidades.UsuarioEntidad) As List(Of UsuarioEntidad)
         Try
-            Dim consulta As String = "Select Usuario.*, Permiso.Nombre as PermN,Idioma.Nombre as IdioN from Usuario inner join Permiso on ID_Rol=ID_Perfil inner join Idioma on Usuario.ID_Idioma=Idioma.ID_Idioma where ID_Usuario <>0 and ID_Usuario <>@ID_Usuario and Usuario.BL=0"
+            Dim consulta As String = "Select Usuario.*, Permiso.Nombre as PermN,Idioma.Nombre as IdioN from UsuarioEntidad inner join Permiso on ID_Rol=ID_Perfil inner join Idioma on Usuario.ID_Idioma=Idioma.ID_Idioma where ID_Usuario <>0 and ID_Usuario <>@ID_Usuario and Usuario.BL=0"
             Dim Command As SqlCommand = Acceso.MiComando(consulta)
             With Command.Parameters
                 .Add(New SqlParameter("@ID_Usuario", Usuari.ID_Usuario))
@@ -423,7 +457,7 @@ Public Class UsuarioMPP
     End Function
 
     Public Sub PerfilEliminadoActualizacion()
-        Dim Command As SqlCommand = Acceso.MiComando("Select * from Usuario where Perfil = @PerfilEliminado and BL =@BL")
+        Dim Command As SqlCommand = Acceso.MiComando("Select * from UsuarioEntidad where Perfil = @PerfilEliminado and BL =@BL")
         With Command.Parameters
             .Add(New SqlParameter("@PerfilEliminado", 0))
             .Add(New SqlParameter("@BL", False))
@@ -453,7 +487,7 @@ Public Class UsuarioMPP
     End Sub
 
     Public Sub IdiomaEliminadoActualizacion()
-        'Dim Command As SqlCommand = Acceso.MiComando("Select * from Usuario where Idioma = @Idioma and BL =@BL")
+        'Dim Command As SqlCommand = Acceso.MiComando("Select * from UsuarioEntidad where Idioma = @Idioma and BL =@BL")
         'With Command.Parameters
         '    .Add(New SqlParameter("@Idioma", 1))
         '    .Add(New SqlParameter("@BL", False))
@@ -485,18 +519,18 @@ Public Class UsuarioMPP
     Public Sub FormatearUsuario(ByVal Usuario As Entidades.UsuarioEntidad, ByVal row As DataRow)
         Try
 
-            'Usuario.ID_Usuario = row("ID_Usuario")
-            'Usuario.NombreUsu = row("NombreUsuario")
-            'Usuario.Apellido = row("Apellido")
-            'Usuario.Nombre = row("Nombre")
-            'Usuario.FechaAlta = row("Fecha_Alta")
-            'Usuario.Salt = row("Salt")
-            'Usuario.Password = row("Password")
-            'Usuario.Intento = row("Intentos")
-            'Usuario.Bloqueo = row("Bloqueo")
+            Usuario.ID_Usuario = row("ID_Usuario")
+            Usuario.NombreUsu = row("NombreUsuario")
+            Usuario.Apellido = row("Apellido")
+            Usuario.Nombre = row("Nombre")
+            Usuario.FechaAlta = row("Fecha_Alta")
+            Usuario.Salt = row("Salt")
+            Usuario.Password = row("Password")
+            Usuario.Intento = row("Intentos")
+            Usuario.Bloqueo = row("Bloqueo")
             'Usuario.Perfil = New Entidades.PermisoCompuestoEntidad With {.ID_Permiso = row("ID_Perfil")}
             'Usuario.Idioma = New Entidades.IdiomaEntidad With {.ID_Idioma = row("ID_Idioma")}
-            'Usuario.Empleado = row("Empleado")
+            Usuario.Empleado = row("Empleado")
         Catch ex As Exception
             Throw ex
         End Try
