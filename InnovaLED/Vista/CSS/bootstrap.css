@@ -6077,7 +6077,7 @@ button.close {
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 1050;
+  z-index: 9999;
   display: none;
   overflow: hidden;
   -webkit-overflow-scrolling: touch;
@@ -6137,7 +6137,7 @@ button.close {
   opacity: .5;
 }
 .modal-header {
-  padding: 15px;
+  padding: 5px;
   border-bottom: 1px solid #e5e5e5;
 }
 .modal-header .close {
@@ -6152,7 +6152,7 @@ button.close {
   padding: 15px;
 }
 .modal-footer {
-  padding: 15px;
+  padding: 10px;
   text-align: right;
   border-top: 1px solid #e5e5e5;
 }

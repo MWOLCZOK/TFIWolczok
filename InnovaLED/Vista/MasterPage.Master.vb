@@ -18,7 +18,6 @@
         Me.Menu.Items.Add(New MenuItem("Home", "Home", Nothing, "/Default.aspx"))
         Me.Menu.Items.Add(New MenuItem("Seguridad", "Seg"))
         Me.Menu.Items.Item(1).ChildItems.Add(New MenuItem("Gestionar Roles", "GestionarRoles", Nothing, "/GestionarRoles.aspx"))
-        Me.Menu.Items.Item(1).ChildItems.Add(New MenuItem("Opciones", "Opciones", Nothing, "/Opciones.aspx"))
         Me.Menu.Items.Item(1).ChildItems.Add(New MenuItem("Gestion de Usuario", "GestiondeUsuario", Nothing, "/GestiondeUsuario.aspx"))
         Me.Menu.Items.Item(1).ChildItems.Add(New MenuItem("Crear Idioma", "CrearIdioma", Nothing, "/CrearIdioma.aspx"))
         Me.Menu.Items.Item(1).ChildItems.Add(New MenuItem("Cambiar Contraseña", "CambiarContraseña", Nothing, "/CambiarContraseña.aspx"))
@@ -26,8 +25,8 @@
 
 
 
-        Me.Menu.Items.Add(New MenuItem("Ingeniería de Preventa", "IngPrev"))
-        Me.Menu.Items.Item(2).ChildItems.Add(New MenuItem("Gestionar Soluciones LED", "GestionarSolucionesLED", Nothing, "/GestionarSolucionesLED.aspx"))
+        Me.Menu.Items.Add(New MenuItem("Arma tu Solución LED", "IngPrev"))
+        Me.Menu.Items.Item(2).ChildItems.Add(New MenuItem("Soluciones LED", "GestionarSolucionesLED", Nothing, "/GestionarSolucionesLED.aspx"))
         Me.Menu.Items.Item(2).ChildItems.Add(New MenuItem("Generar Presupuesto", "GenerarPresupuesto", Nothing, "/GenerarPresupuesto.aspx"))
 
 
