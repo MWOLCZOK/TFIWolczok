@@ -84,7 +84,7 @@
     </Compile>
     <Compile Include="Palabras.vb" />
     <Compile Include="PermisoBaseEntidad.vb" />
-    <Compile Include="Rol.vb" />
+    <Compile Include="RolEntidad.vb" />
     <Compile Include="Tipo_Bitacora.vb" />
     <Compile Include="UsuarioEntidad.vb" />
   </ItemGroup>

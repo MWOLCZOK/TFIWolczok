@@ -94,12 +94,12 @@ Public Class UsuarioEntidad
         End Set
     End Property
 
-    Private _rol As Rol
-    Public Property Rol() As Rol
+    Private _rol As RolEntidad
+    Public Property Rol() As RolEntidad
         Get
             Return _rol
         End Get
-        Set(ByVal value As Rol)
+        Set(ByVal value As RolEntidad)
             _rol = value
         End Set
     End Property

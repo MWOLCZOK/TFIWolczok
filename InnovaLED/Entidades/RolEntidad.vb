@@ -1,7 +1,7 @@
 ﻿Imports System.IO
 Imports System.Runtime.Serialization.Formatters.Binary
 
-Public Class Rol
+Public Class RolEntidad
 
     Implements ICloneable
 

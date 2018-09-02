@@ -6,7 +6,7 @@ Imports DAL
 
 Public Class GestorPermisosMPP
 
-    Public Sub Alta(ByVal perm As Rol)
+    Public Sub Alta(ByVal perm As RolEntidad)
 
     End Sub
 
@@ -14,7 +14,7 @@ Public Class GestorPermisosMPP
 
     End Function
 
-    Public Sub Modificar(ByVal perm As Rol)
+    Public Sub Modificar(ByVal perm As RolEntidad)
 
     End Sub
 
@@ -22,7 +22,7 @@ Public Class GestorPermisosMPP
 
     End Function
 
-    Public Function ConsultarporID(ByVal ID As Integer) As Entidades.Rol
+    Public Function ConsultarporID(ByVal ID As Integer) As Entidades.RolEntidad
         'Try
         '    Dim Command As SqlCommand = Acceso.MiComando("Select * from Permiso where ID_ROL=@ID_ROL")
         '    Command.Parameters.Add(New SqlParameter("@ID_ROL", ID))
