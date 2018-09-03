@@ -19,6 +19,8 @@ Public Class MasterPage
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
 
+        Me.lbl_NombredeUsuarioLogueado.Visible = False
+        Me.Lbl_apellidoUsuarioLogueado.Visible = False
 
         Me.Menu.Items.Clear()
         ArmarMenuCompleto()
@@ -105,6 +107,16 @@ Public Class MasterPage
                 Dim Bitac As New Bitacora(clienteLogeado, "El usuario "& clienteLogeado.NombreUsu & " Se logueo correctamente", Tipo_Bitacora.Login, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)
                 BitacoraBLL.CrearBitacora(Bitac)
                 Session("cliente") = clienteLogeado
+                Me.lbl_NombredeUsuarioLogueado.Visible = True
+                Me.Lbl_apellidoUsuarioLogueado.Visible = True
+                Me.lbl_NombredeUsuarioLogueado.Text = DirectCast(Session("cliente"), Entidades.UsuarioEntidad).Nombre
+
+                Me.Lbl_apellidoUsuarioLogueado.Text = DirectCast(Session("cliente"), Entidades.UsuarioEntidad).Apellido & ", "
+
+
+
+
+
                 Me.success.Visible = True
                 Me.success.InnerText = "Se ha logueado correctamente"
                 Me.alertvalid.Visible = False

@@ -66,3 +66,10 @@
     margin-top: 7px;
     margin-left: 6px;
 }
+
+.textoNombreUsuario {
+       font-size:16px;
+  font-family:'Estrangelo Edessa';
+  color: white;
+  font-weight:bold;
+}

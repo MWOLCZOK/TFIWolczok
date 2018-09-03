@@ -41,6 +41,24 @@ Partial Public Class MasterPage
     Protected WithEvents panelLogin As Global.System.Web.UI.WebControls.Panel
     
     '''<summary>
+    '''Control lbl_NombredeUsuarioLogueado.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lbl_NombredeUsuarioLogueado As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Control Lbl_apellidoUsuarioLogueado.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Lbl_apellidoUsuarioLogueado As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
     '''Control LogoMenu.
     '''</summary>
     '''<remarks>
