@@ -21,6 +21,8 @@ Public Class MasterPage
 
         Me.lbl_NombredeUsuarioLogueado.Visible = False
         Me.Lbl_apellidoUsuarioLogueado.Visible = False
+        Me.btnlogout.Visible = False
+
 
         Me.Menu.Items.Clear()
         ArmarMenuCompleto()
@@ -104,14 +106,16 @@ Public Class MasterPage
                 Cliente.NombreUsu = txtUser.Value
                 Cliente.Password = txtPassword.Value
                 clienteLogeado = GestorUsu.ExisteUsuario(Cliente)
-                Dim Bitac As New Bitacora(clienteLogeado, "El usuario "& clienteLogeado.NombreUsu & " Se logueo correctamente", Tipo_Bitacora.Login, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)
+                Dim Bitac As New Bitacora(clienteLogeado, "El usuario " & clienteLogeado.NombreUsu & " Se logueo correctamente", Tipo_Bitacora.Login, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)
                 BitacoraBLL.CrearBitacora(Bitac)
                 Session("cliente") = clienteLogeado
+
                 Me.lbl_NombredeUsuarioLogueado.Visible = True
                 Me.Lbl_apellidoUsuarioLogueado.Visible = True
                 Me.lbl_NombredeUsuarioLogueado.Text = DirectCast(Session("cliente"), Entidades.UsuarioEntidad).Nombre
 
                 Me.Lbl_apellidoUsuarioLogueado.Text = DirectCast(Session("cliente"), Entidades.UsuarioEntidad).Apellido & ", "
+                Me.btnlogout.Visible = True
 
 
 
@@ -279,12 +283,16 @@ Public Class MasterPage
         End Try
     End Function
 
+    Protected Sub btnlogout_Click(sender As Object, e As EventArgs) Handles btnlogout.Click
+        If Not IsNothing(Session("Usuario")) Then
+            Session.Remove("Usuario")
+            'Me.menuVertical.Items.Clear()
+            'Me.armarMenuBasico()
+            Response.Redirect("Index.aspx")
+            'Me.opcionesUsuario.Visible = False
+            Lbl_apellidoUsuarioLogueado.Visible = False
+            lbl_NombredeUsuarioLogueado.Visible = False
 
-
-
-
-
-
-
-
+        End If
+    End Sub
 End Class
