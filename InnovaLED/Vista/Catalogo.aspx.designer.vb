@@ -12,5 +12,5 @@ Option Explicit On
 
 
 
-Partial Public Class GestiondeBitacora
+Partial Public Class Catalogo
 End Class

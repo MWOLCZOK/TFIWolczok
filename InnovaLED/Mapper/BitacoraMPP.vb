@@ -38,7 +38,55 @@ Public Class BitacoraMPP
     End Function
 
     Public Function ConsultarBitacora(Optional ByVal tipoBitacora As Entidades.Tipo_Bitacora = Nothing, Optional ByVal Desde As Date = Nothing, Optional ByVal Hasta As Date = Nothing, Optional ByRef Usu As Entidades.UsuarioEntidad = Nothing) As List(Of Entidades.Bitacora)
+        Try
+            Dim consulta As String = ""
 
+            If Desde = DateTime.MinValue And Hasta = DateTime.MinValue Then
+                consulta = "Select Top 50 "
+            Else
+                consulta = "Select "
+            End If
+            consulta += " Valor_Anterior, Valor_Posterior, Detalle, Fecha, IP_Usuario, WebBrowser,Tipo_Bitacora, ID_Bitacora, ID_Usuario from BitacoraEntidad where Fecha between isnull(@desde,'19000101') and isnull(@hasta,'99990101') and ID_Usuario=isnull(@Usuario,ID_Usuario) and Tipo_Bitacora=isnull(@TipoBitacora,Tipo_Bitacora) order by ID_Bitacora DESC "
+
+            Dim Command As SqlCommand = Acceso.MiComando(consulta)
+            With Command.Parameters
+                If Not Desde = DateTime.MinValue And Not Hasta = DateTime.MinValue Then
+                    .Add(New SqlParameter("@Desde", Desde))
+                    .Add(New SqlParameter("@Hasta", Hasta))
+                Else
+                    .Add(New SqlParameter("@Desde", DBNull.Value))
+                    .Add(New SqlParameter("@Hasta", DBNull.Value))
+                End If
+                If tipoBitacora > 0 Then
+                    .Add(New SqlParameter("@TipoBitacora", tipoBitacora))
+                Else
+                    .Add(New SqlParameter("@TipoBitacora", DBNull.Value))
+                End If
+                If Not IsNothing(Usu) Then
+                    If Usu.ID_Usuario > 0 Then
+                        .Add(New SqlParameter("@Usuario", Usu.ID_Usuario))
+                    Else
+                        .Add(New SqlParameter("@Usuario", DBNull.Value))
+                    End If
+                Else
+                    .Add(New SqlParameter("@Usuario", DBNull.Value))
+                End If
+            End With
+            Dim dt As DataTable = Acceso.Lectura(Command)
+            Dim listaBita As New List(Of Entidades.Bitacora)
+            If dt.Rows.Count > 0 Then
+                For Each dr As DataRow In dt.Rows
+                    Dim Bita As New Entidades.Bitacora
+                    FormatearBitacora(Bita, dr)
+                    listaBita.Add(Bita)
+                Next
+                Return listaBita
+            Else
+                Return Nothing
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Function
 
 
@@ -47,7 +95,7 @@ Public Class BitacoraMPP
             Bita.Browser = row("WebBrowser")
             Bita.Detalle = row("Detalle")
             Bita.Fecha = row("Fecha")
-            Bita.Id_Bitacora = row("ID_Bitacora_Auditoria")
+            Bita.Id_Bitacora = row("ID_Bitacora")
             Bita.IP_Usuario = row("IP_Usuario")
             Bita.Tipo_Bitacora = row("Tipo_Bitacora")
             Bita.Valor_Anterior = row("Valor_Anterior")
@@ -60,8 +108,6 @@ Public Class BitacoraMPP
             Throw ex
         End Try
     End Sub
-
-
 
 
 
