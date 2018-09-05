@@ -30,33 +30,33 @@ Public Class BitacoraBLL
                 bitdal.GuardarBitacora(Bita)
             End If
         Catch ex As Exception
-            ArchivarBitacora(Bita)
+            'ArchivarBitacora(Bita)
         End Try
     End Sub
 
 
-    Public Shared Sub ArchivarBitacora(ByRef Bitacora As Bitacora)
-        Dim bitaudit As New Bitacora
+    'Public Shared Sub ArchivarBitacora(ByRef Bitacora As Bitacora)
+    '    Dim bitaudit As New Bitacora
 
 
-        If Bitacora.GetType() = bitaudit.GetType Then
-            Dim Jsonarray As SerializadorJSON(Of List(Of Bitacora)) = New SerializadorJSON(Of List(Of Bitacora))
-            If File.Exists("Bitacora.json") Then
-                Dim mistreamreader = File.Open("Bitacora.json", FileMode.Open, FileAccess.Read)
-                Dim p As List(Of Bitacora) = Jsonarray.Deserializar(mistreamreader, New List(Of Bitacora))
-                mistreamreader.Close()
-                File.Delete("Bitacora.json")
-                p.Add(Bitacora)
-                Jsonarray.Serializar(p)
-            Else
-                Dim mistream = File.Open("Bitacora.json", FileMode.Create)
-                Dim p As New List(Of Bitacora)
-                p.Add(Bitacora)
-                mistream.Close()
-                Jsonarray.Serializar(p)
-            End If
-        End If
-    End Sub
+    '    If Bitacora.GetType() = bitaudit.GetType Then
+    '        Dim Jsonarray As SerializadorJSON(Of List(Of Bitacora)) = New SerializadorJSON(Of List(Of Bitacora))
+    '        If File.Exists("Bitacora.json") Then
+    '            Dim mistreamreader = File.Open("Bitacora.json", FileMode.Open, FileAccess.Read)
+    '            Dim p As List(Of Bitacora) = Jsonarray.Deserializar(mistreamreader, New List(Of Bitacora))
+    '            mistreamreader.Close()
+    '            File.Delete("Bitacora.json")
+    '            p.Add(Bitacora)
+    '            Jsonarray.Serializar(p)
+    '        Else
+    '            Dim mistream = File.Open("Bitacora.json", FileMode.Create)
+    '            Dim p As New List(Of Bitacora)
+    '            p.Add(Bitacora)
+    '            mistream.Close()
+    '            Jsonarray.Serializar(p)
+    '        End If
+    '    End If
+    'End Sub
 
     Public Function makeLog(log As Entidades.Bitacora) As Boolean
         Return BitacoraMPP.GuardarBitacora(log)

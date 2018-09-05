@@ -48,7 +48,7 @@ Public Class MasterPage
         Me.Menu.Items.Item(1).ChildItems.Add(New MenuItem("Gestion de Usuario", "GestiondeUsuario", Nothing, "/GestiondeUsuario.aspx"))
         Me.Menu.Items.Item(1).ChildItems.Add(New MenuItem("Crear Idioma", "CrearIdioma", Nothing, "/CrearIdioma.aspx"))
         Me.Menu.Items.Item(1).ChildItems.Add(New MenuItem("Cambiar Contraseña", "CambiarContraseña", Nothing, "/CambiarContraseña.aspx"))
-        Me.Menu.Items.Item(1).ChildItems.Add(New MenuItem("Gestión de Bitácora", "GestiondeBitacora", Nothing, "/GestiondeBitacora.aspx"))
+        Me.Menu.Items.Item(1).ChildItems.Add(New MenuItem("Gestión de Bitácora", "GestiondeBitacora", Nothing, "/BitacoraAuditoria.aspx"))
 
 
 

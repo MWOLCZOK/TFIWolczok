@@ -101,6 +101,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ActualizarStock.aspx" />
+    <Content Include="BitacoraAuditoria.aspx" />
     <Content Include="CambiarContraseña.aspx" />
     <Content Include="CargarVenta.aspx" />
     <Content Include="ConfirmarRecupero.aspx" />
@@ -178,6 +179,13 @@
     <Compile Include="ActualizarStock.aspx.vb">
       <DependentUpon>ActualizarStock.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="BitacoraAuditoria.aspx.designer.vb">
+      <DependentUpon>BitacoraAuditoria.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BitacoraAuditoria.aspx.vb">
+      <DependentUpon>BitacoraAuditoria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="CambiarContraseña.aspx.designer.vb">
       <DependentUpon>CambiarContraseña.aspx</DependentUpon>
