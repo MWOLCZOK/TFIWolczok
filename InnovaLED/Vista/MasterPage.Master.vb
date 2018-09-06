@@ -18,13 +18,25 @@ Public Class MasterPage
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
-        Usuario = Session("Usuario")
+
+
+        Usuario = Session("cliente")
         If Usuario IsNot Nothing Then
+
+            VisibilidadAcceso(False)
+            CargarSinPerfilIdioma(Usuario)
+        Else
             VisibilidadAcceso(True)
         End If
+
+
+
+
         If Not IsPostBack Then
+
+
             Me.Menu.Items.Clear()
-            ArmarMenuCompleto()
+            'ArmarMenuCompleto()
         End If
 
         If Usuario IsNot Nothing Then
@@ -49,8 +61,8 @@ Public Class MasterPage
             Lbl_apellidoUsuarioLogueado.Visible = False
 
         Else
-            panelLoginON.Visible = False
-            panelLoginOFF.Visible = True
+            panelLoginOFF.Visible = False
+            panelLoginON.Visible = True
             btnlogout.Visible = True
             lbl_NombredeUsuarioLogueado.Visible = True
             Lbl_apellidoUsuarioLogueado.Visible = True
