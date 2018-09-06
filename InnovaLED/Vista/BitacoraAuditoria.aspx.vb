@@ -8,11 +8,11 @@ Public Class ConsultarBitacoraAuditoria
         If Not IsPostBack Then
             Try
                 Dim IdiomaActual As Entidades.IdiomaEntidad
-                If IsNothing(Current.Session("Cliente")) Then
-                    IdiomaActual = Application("Español")
-                Else
-                    IdiomaActual = Application(TryCast(Current.Session("Cliente"), Entidades.UsuarioEntidad).Idioma.Nombre)
-                End If
+                'If IsNothing(Current.Session("Cliente")) Then
+                '    IdiomaActual = Application("Español")
+                'Else
+                '    IdiomaActual = Application(TryCast(Current.Session("Cliente"), Entidades.UsuarioEntidad).Idioma.Nombre)
+                'End If
                 CargarBitacoras()
                 CargarUsuarios(IdiomaActual)
                 CargarTipos(IdiomaActual)
@@ -28,7 +28,7 @@ Public Class ConsultarBitacoraAuditoria
         Dim tipo As New Entidades.Tipo_Bitacora
         Dim itemValues As Array = System.Enum.GetValues(tipo.GetType)
         Dim itemNames As Array = System.Enum.GetNames(tipo.GetType)
-        Me.lsttipos.Items.Add(New ListItem(Idioma.Palabras.Find(Function(p) p.Codigo = "MensajeTodos").Traduccion, -1))
+        'Me.lsttipos.Items.Add(New ListItem(Idioma.Palabras.Find(Function(p) p.Codigo = "MensajeTodos").Traduccion, -1))
         For i As Integer = 0 To itemNames.Length - 1
             Dim item As New ListItem(itemNames(i), itemValues(i))
             Me.lsttipos.Items.Add(item)
@@ -38,7 +38,7 @@ Public Class ConsultarBitacoraAuditoria
     Private Sub CargarUsuarios(ByRef Idioma As Entidades.IdiomaEntidad)
         Dim lista As New List(Of Entidades.UsuarioEntidad)
         Dim Gestor As New Negocio.UsuarioBLL
-        lista.Add(New Entidades.UsuarioEntidad With {.ID_Usuario = -1, .NombreUsu = Idioma.Palabras.Find(Function(p) p.Codigo = "MensajeTodos").Traduccion})
+        'lista.Add(New Entidades.UsuarioEntidad With {.ID_Usuario = -1, .NombreUsu = Idioma.Palabras.Find(Function(p) p.Codigo = "MensajeTodos").Traduccion})
         lista.AddRange(Gestor.TraerUsuariosParaBloqueo(New Entidades.UsuarioEntidad With {.ID_Usuario = 0}))
         Me.lstusuarios.DataSource = lista
         Me.lstusuarios.DataBind()

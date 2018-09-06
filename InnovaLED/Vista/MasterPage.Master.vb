@@ -14,18 +14,24 @@ Public Class MasterPage
     Inherits System.Web.UI.MasterPage
     Private GestorUsu As New UsuarioBLL
 
-
+    Dim Usuario As New Entidades.UsuarioEntidad
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
+        Usuario = Session("Usuario")
+        If Usuario IsNot Nothing Then
+            VisibilidadAcceso(True)
+        End If
+        If Not IsPostBack Then
+            Me.Menu.Items.Clear()
+            ArmarMenuCompleto()
+        End If
 
-        Me.lbl_NombredeUsuarioLogueado.Visible = False
-        Me.Lbl_apellidoUsuarioLogueado.Visible = False
-        Me.btnlogout.Visible = False
+        If Usuario IsNot Nothing Then
+            CargarSinPerfilIdioma(Usuario)
 
+        End If
 
-        Me.Menu.Items.Clear()
-        ArmarMenuCompleto()
 
 
 
@@ -33,8 +39,24 @@ Public Class MasterPage
 
 
 
+    Private Sub VisibilidadAcceso(B As Boolean)
 
+        If B = True Then
+            panelLoginOFF.Visible = True
+            panelLoginON.Visible = False
+            btnlogout.Visible = False
+            lbl_NombredeUsuarioLogueado.Visible = False
+            Lbl_apellidoUsuarioLogueado.Visible = False
 
+        Else
+            panelLoginON.Visible = False
+            panelLoginOFF.Visible = True
+            btnlogout.Visible = True
+            lbl_NombredeUsuarioLogueado.Visible = True
+            Lbl_apellidoUsuarioLogueado.Visible = True
+        End If
+
+    End Sub
 
 
 
@@ -76,7 +98,7 @@ Public Class MasterPage
 
 
         Me.Menu.Items.Add(New MenuItem("Area de Cliente", "Cliente"))
-        Me.Menu.Items.Item(6).ChildItems.Add(New MenuItem("Carrito", "Carrito", Nothing, "/Orders.aspx"))
+        Me.Menu.Items.Item(6).ChildItems.Add(New MenuItem("Ordenes", "Carrito", Nothing, "/Orders.aspx"))
         Me.Menu.Items.Item(6).ChildItems.Add(New MenuItem("Mis Compras", "Compras", Nothing, "/MyOrders.aspx"))
         Me.Menu.Items.Item(6).ChildItems.Add(New MenuItem("Lista de Productos", "Productos", Nothing, "/ProductList.aspx"))
 
@@ -91,6 +113,23 @@ Public Class MasterPage
 
 
     End Sub
+
+    Private Sub CargarSinPerfilIdioma(ByRef UsuarioInvitado As Entidades.UsuarioEntidad)
+
+        Me.Menu.Items.Add(New MenuItem("Home", "Home", Nothing, "/Default.aspx"))
+            Me.Menu.Items.Add(New MenuItem("Empresa", "Institucional", Nothing, "/Institucional.aspx"))
+            Me.Menu.Items.Add(New MenuItem("Nuestros Productos", "Nuestos Productos", Nothing, "/Catalogo.aspx"))
+            Me.Menu.Items.Add(New MenuItem("¿Quienes Somos?", "¿Quienes Somos?", Nothing, "/Institucional.aspx"))
+            Me.Menu.Items.Add(New MenuItem("Novedades", "Novedades", Nothing, "/Novedades.aspx"))
+            Me.Menu.Items.Add(New MenuItem("Newsletter", "Newsletter", Nothing, "/Newsletter.aspx"))
+
+    End Sub
+
+
+
+
+
+
 
     Public Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
         Dim Cliente As New Entidades.UsuarioEntidad

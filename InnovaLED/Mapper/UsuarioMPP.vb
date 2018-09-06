@@ -428,19 +428,36 @@ Public Class UsuarioMPP
 
 
     Public Function TraerUsuariosParaBloqueo(ByRef Usuari As Entidades.UsuarioEntidad) As List(Of UsuarioEntidad)
+        'Try
+        '    Dim consulta As String = "Select Usuario.*, Permiso.Nombre as PermN,Idioma.Nombre as IdioN from UsuarioEntidad inner join Permiso on ID_Rol=ID_Perfil inner join Idioma on Usuario.ID_Idioma=Idioma.ID_Idioma where ID_Usuario <>0 and ID_Usuario <>@ID_Usuario and Usuario.BL=0"
+        '    Dim Command As SqlCommand = Acceso.MiComando(consulta)
+        '    With Command.Parameters
+        '        .Add(New SqlParameter("@ID_Usuario", Usuari.ID_Usuario))
+        '    End With
+        '    Dim dt As DataTable = Acceso.Lectura(Command)
+        '    Dim ListaUsuario As List(Of UsuarioEntidad) = New List(Of UsuarioEntidad)
+        '    For Each row As DataRow In dt.Rows
+        '        Dim Usuario As UsuarioEntidad = New UsuarioEntidad
+        '        FormatearUsuario(Usuario, row)
+        '        Usuario.Idioma.Nombre = row("IdioN")
+        '        Usuario.Rol.Nombre = row("PermN")
+        '        ListaUsuario.Add(Usuario)
+        '    Next
+        '    Return ListaUsuario
+        'Catch ex As Exception
+        '    Throw ex
+        'End Try
+
+
+
         Try
-            Dim consulta As String = "Select Usuario.*, Permiso.Nombre as PermN,Idioma.Nombre as IdioN from UsuarioEntidad inner join Permiso on ID_Rol=ID_Perfil inner join Idioma on Usuario.ID_Idioma=Idioma.ID_Idioma where ID_Usuario <>0 and ID_Usuario <>@ID_Usuario and Usuario.BL=0"
+            Dim consulta As String = "Select * from UsuarioEntidad where Bloqueo=0 and BL=0 and ID_Usuario <> 0"
             Dim Command As SqlCommand = Acceso.MiComando(consulta)
-            With Command.Parameters
-                .Add(New SqlParameter("@ID_Usuario", Usuari.ID_Usuario))
-            End With
             Dim dt As DataTable = Acceso.Lectura(Command)
             Dim ListaUsuario As List(Of UsuarioEntidad) = New List(Of UsuarioEntidad)
             For Each row As DataRow In dt.Rows
                 Dim Usuario As UsuarioEntidad = New UsuarioEntidad
                 FormatearUsuario(Usuario, row)
-                Usuario.Idioma.Nombre = row("IdioN")
-                Usuario.Rol.Nombre = row("PermN")
                 ListaUsuario.Add(Usuario)
             Next
             Return ListaUsuario

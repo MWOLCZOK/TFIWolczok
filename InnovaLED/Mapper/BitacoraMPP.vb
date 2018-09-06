@@ -12,12 +12,13 @@ Public Class BitacoraMPP
         Try
             Dim Command As SqlCommand
 
-            Command = Acceso.MiComando("insert into BitacoraEntidad (Tipo_Bitacora, Fecha, Detalle, ID_Usuario,IP_Usuario, WebBrowser, Valor_Anterior, Valor_Posterior) Output Inserted.ID_Bitacora values (@Tipo_Bitacora,@Fecha,@Descripcion,@id_usuario,@iP_usuario, @Browser,@Valor_Anterior,@Valor_Posterior)")
+            Command = Acceso.MiComando("insert into BitacoraEntidad (Tipo_Bitacora, Fecha, Detalle, ID_Usuario,IP_Usuario, WebBrowser, Valor_Anterior, Valor_Posterior, URL) Output Inserted.ID_Bitacora values (@Tipo_Bitacora,@Fecha,@Detalle,@id_usuario,@iP_usuario, @Browser,@Valor_Anterior,@Valor_Posterior,@URL)")
             With Command.Parameters
                 .Add(New SqlParameter("@Valor_Anterior", Bitacora.Valor_Anterior))
                 .Add(New SqlParameter("@Valor_Posterior", Bitacora.Valor_Posterior))
-                .Add(New SqlParameter("@Descripcion", Bitacora.Detalle))
+                .Add(New SqlParameter("@Detalle", Bitacora.Detalle))
                 .Add(New SqlParameter("@Fecha", Bitacora.Fecha))
+                .Add(New SqlParameter("@URL", Bitacora.URL))
                 If Not IsNothing(Bitacora.Usuario) Then
                     .Add(New SqlParameter("@id_usuario", Bitacora.Usuario.ID_Usuario))
                 Else
@@ -46,7 +47,7 @@ Public Class BitacoraMPP
             Else
                 consulta = "Select "
             End If
-            consulta += " Valor_Anterior, Valor_Posterior, Detalle, Fecha, IP_Usuario, WebBrowser,Tipo_Bitacora, ID_Bitacora, ID_Usuario from BitacoraEntidad where Fecha between isnull(@desde,'19000101') and isnull(@hasta,'99990101') and ID_Usuario=isnull(@Usuario,ID_Usuario) and Tipo_Bitacora=isnull(@TipoBitacora,Tipo_Bitacora) order by ID_Bitacora DESC "
+            consulta += "URL, Valor_Anterior, Valor_Posterior, Detalle, Fecha, IP_Usuario, WebBrowser,Tipo_Bitacora, ID_Bitacora, ID_Usuario from BitacoraEntidad where Fecha between isnull(@desde,'19000101') and isnull(@hasta,'99990101') and ID_Usuario=isnull(@Usuario,ID_Usuario) and Tipo_Bitacora=isnull(@TipoBitacora,Tipo_Bitacora) order by ID_Bitacora DESC "
 
             Dim Command As SqlCommand = Acceso.MiComando(consulta)
             With Command.Parameters
@@ -100,7 +101,11 @@ Public Class BitacoraMPP
             Bita.Tipo_Bitacora = row("Tipo_Bitacora")
             Bita.Valor_Anterior = row("Valor_Anterior")
             Bita.Valor_Posterior = row("Valor_Posterior")
-            Bita.URL = row("URL")
+
+            If Not IsDBNull(row("URL")) Then
+                Bita.URL = row("URL")
+            End If
+
             Dim usu As New Entidades.UsuarioEntidad
             usu.ID_Usuario = row("ID_Usuario")
             Bita.Usuario = New UsuarioMPP().BuscarUsuarioIDBitacora(usu)

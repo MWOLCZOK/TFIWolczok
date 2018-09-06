@@ -162,6 +162,8 @@
     <Content Include="JS\npm.js" />
     <Content Include="Login.aspx" />
     <Content Include="MyOrders.aspx" />
+    <Content Include="Newsletter1.aspx" />
+    <Content Include="Novedades.aspx" />
     <Content Include="Orders.aspx" />
     <Content Include="PagoaProveedores.aspx" />
     <Content Include="ProductList.aspx" />
@@ -337,6 +339,20 @@
     </Compile>
     <Compile Include="MyOrders.aspx.vb">
       <DependentUpon>MyOrders.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Newsletter1.aspx.designer.vb">
+      <DependentUpon>Newsletter1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Newsletter1.aspx.vb">
+      <DependentUpon>Newsletter1.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Novedades.aspx.designer.vb">
+      <DependentUpon>Novedades.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Novedades.aspx.vb">
+      <DependentUpon>Novedades.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Orders.aspx.designer.vb">
