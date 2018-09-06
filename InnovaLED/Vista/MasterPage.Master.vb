@@ -13,16 +13,11 @@ Imports Negocio
 Public Class MasterPage
     Inherits System.Web.UI.MasterPage
     Private GestorUsu As New UsuarioBLL
-
     Dim Usuario As New Entidades.UsuarioEntidad
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
-
-
-        Usuario = Session("cliente")
-        If Usuario IsNot Nothing Then
-
+        If Usuario.NombreUsu IsNot Nothing Then
             VisibilidadAcceso(False)
             CargarSinPerfilIdioma(Usuario)
         Else
@@ -33,8 +28,6 @@ Public Class MasterPage
 
 
         If Not IsPostBack Then
-
-
             Me.Menu.Items.Clear()
             'ArmarMenuCompleto()
         End If
@@ -43,9 +36,6 @@ Public Class MasterPage
             CargarSinPerfilIdioma(Usuario)
 
         End If
-
-
-
 
     End Sub
 
@@ -160,26 +150,20 @@ Public Class MasterPage
                 Dim Bitac As New Bitacora(clienteLogeado, "El usuario " & clienteLogeado.NombreUsu & " Se logueo correctamente", Tipo_Bitacora.Login, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)
                 BitacoraBLL.CrearBitacora(Bitac)
                 Session("cliente") = clienteLogeado
-
+                Usuario = DirectCast(Session("cliente"), Entidades.UsuarioEntidad)
                 Me.lbl_NombredeUsuarioLogueado.Visible = True
                 Me.Lbl_apellidoUsuarioLogueado.Visible = True
                 Me.lbl_NombredeUsuarioLogueado.Text = DirectCast(Session("cliente"), Entidades.UsuarioEntidad).Nombre
-
                 Me.Lbl_apellidoUsuarioLogueado.Text = DirectCast(Session("cliente"), Entidades.UsuarioEntidad).Apellido & ", "
-                Me.btnlogout.Visible = True
-
-
-
-
-
                 Me.success.Visible = True
                 Me.success.InnerText = "Se ha logueado correctamente"
                 Me.alertvalid.Visible = False
-
-
-
+                If Usuario.NombreUsu IsNot Nothing Then
+                    VisibilidadAcceso(False)
+                End If
             End If
-        Catch
+        Catch ex As Exception
+            MsgBox(ex.Message)
 
             '        Me.success.Visible = True
             '        Me.alertvalid.Visible = False
@@ -343,6 +327,7 @@ Public Class MasterPage
             'Me.opcionesUsuario.Visible = False
             Lbl_apellidoUsuarioLogueado.Visible = False
             lbl_NombredeUsuarioLogueado.Visible = False
+            Me.Usuario = Nothing
 
         End If
     End Sub
