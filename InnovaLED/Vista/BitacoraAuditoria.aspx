@@ -28,8 +28,8 @@
                             <div class="col-md-2 col-md-offset-2">
                                 <asp:Label ID="lblfechadesde" runat="server" Text="Fecha Desde:" CssClass="control-label labelform"></asp:Label>
                                 <div class="input-group">
-                                    <input runat="server" clientidmode="Static" class="form-control" type="text" id="datepicker1"  readonly="true"  name="datepicker1" />
-                                    <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                                        <input runat="server" clientidmode="Static" class="form-control" type="text" id="datepicker1"  readonly="true"  name="datepicker1" />
+                                        <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
                                         <asp:TextBox ID="Fecha_Desde" runat="server" Visible="False"></asp:TextBox>
                                     </span>
 

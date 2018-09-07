@@ -140,7 +140,7 @@
     <Content Include="GestionarRoles.aspx" />
     <Content Include="GestionarSolucionesLED.aspx" />
     <Content Include="GestiondeUsuario.aspx" />
-    <Content Include="IMAGENES\Banner6.jpg" />
+    <Content Include="IMAGENES\banner6.jpg" />
     <Content Include="IMAGENES\blue.png" />
     <Content Include="IMAGENES\CalculadoraDeAhorro.jpg" />
     <Content Include="IMAGENES\edificio.jpg" />

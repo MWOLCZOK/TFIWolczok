@@ -13,7 +13,8 @@ Public Class ConfirmarRegistracion
             End If
             Dim GestorCliente As New Negocio.UsuarioBLL
             If Not GestorCliente.ACtivarUsuario(Request.QueryString("tok")) Then
-                Me.success.InnerText = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "ConfirmarRegSuccess").Traduccion
+                'Me.success.InnerText = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "ConfirmarRegSuccess").Traduccion
+                Me.success.InnerText = "Registro exitoso"
                 Me.success.Visible = True
                 Me.alertvalid.Visible = False
             Else

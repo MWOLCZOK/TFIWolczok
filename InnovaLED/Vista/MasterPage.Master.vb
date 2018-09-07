@@ -12,30 +12,33 @@ Imports Negocio
 
 Public Class MasterPage
     Inherits System.Web.UI.MasterPage
+
     Private GestorUsu As New UsuarioBLL
     Dim Usuario As New Entidades.UsuarioEntidad
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
-        If Usuario.NombreUsu IsNot Nothing Then
-            VisibilidadAcceso(False)
-            CargarSinPerfilIdioma(Usuario)
-        Else
-            VisibilidadAcceso(True)
-        End If
+        'If Usuario.NombreUsu IsNot Nothing Then
+        '    VisibilidadAcceso(False)
+        '    ArmarMenuCompleto()
+        'Else
+        '    VisibilidadAcceso(True)
+        'End If
 
 
+        'If Not IsPostBack Then
+        '    Me.Menu.Items.Clear()
+        '    'ArmarMenuCompleto()
+        'End If
+
+        'If Usuario IsNot Nothing Then
+        '    CargarSinPerfilIdioma(Usuario)
+
+        'End If
+        Me.Menu.Items.Clear()
+        ArmarMenuCompleto()
 
 
-        If Not IsPostBack Then
-            Me.Menu.Items.Clear()
-            'ArmarMenuCompleto()
-        End If
-
-        If Usuario IsNot Nothing Then
-            CargarSinPerfilIdioma(Usuario)
-
-        End If
 
     End Sub
 
@@ -60,11 +63,6 @@ Public Class MasterPage
 
     End Sub
 
-
-
-
-
-
     Private Sub ArmarMenuCompleto()
         Me.Menu.Items.Add(New MenuItem("Home", "Home", Nothing, "/Default.aspx"))
         Me.Menu.Items.Add(New MenuItem("Seguridad", "Seg"))
@@ -73,7 +71,6 @@ Public Class MasterPage
         Me.Menu.Items.Item(1).ChildItems.Add(New MenuItem("Crear Idioma", "CrearIdioma", Nothing, "/CrearIdioma.aspx"))
         Me.Menu.Items.Item(1).ChildItems.Add(New MenuItem("Cambiar Contraseña", "CambiarContraseña", Nothing, "/CambiarContraseña.aspx"))
         Me.Menu.Items.Item(1).ChildItems.Add(New MenuItem("Gestión de Bitácora", "GestiondeBitacora", Nothing, "/BitacoraAuditoria.aspx"))
-
 
 
         Me.Menu.Items.Add(New MenuItem("Arma tu Solución LED", "IngPrev"))
@@ -98,20 +95,13 @@ Public Class MasterPage
         Me.Menu.Items.Item(5).ChildItems.Add(New MenuItem("Reporte Stock", "ReporteStock", Nothing, "/ReporteStock.aspx"))
 
 
-
-        Me.Menu.Items.Add(New MenuItem("Area de Cliente", "Cliente"))
-        Me.Menu.Items.Item(6).ChildItems.Add(New MenuItem("Ordenes", "Carrito", Nothing, "/Orders.aspx"))
-        Me.Menu.Items.Item(6).ChildItems.Add(New MenuItem("Mis Compras", "Compras", Nothing, "/MyOrders.aspx"))
-        Me.Menu.Items.Item(6).ChildItems.Add(New MenuItem("Lista de Productos", "Productos", Nothing, "/ProductList.aspx"))
-
-
         Me.Menu.Items.Add(New MenuItem("Almacenes y Logística", "AlmyLog"))
-        Me.Menu.Items.Item(7).ChildItems.Add(New MenuItem("Actualizar Stock", "ActualizarStock", Nothing, "/ActualizarStock.aspx"))
-        Me.Menu.Items.Item(7).ChildItems.Add(New MenuItem("Crear Producto", "CrearProducto", Nothing, "/CrearProducto.aspx"))
-        Me.Menu.Items.Item(7).ChildItems.Add(New MenuItem("Generar Envío", "GenerarEnvio", Nothing, "/GenerarEnvio.aspx"))
+        Me.Menu.Items.Item(6).ChildItems.Add(New MenuItem("Actualizar Stock", "ActualizarStock", Nothing, "/ActualizarStock.aspx"))
+        Me.Menu.Items.Item(6).ChildItems.Add(New MenuItem("Crear Producto", "CrearProducto", Nothing, "/CrearProducto.aspx"))
+        Me.Menu.Items.Item(6).ChildItems.Add(New MenuItem("Generar Envío", "GenerarEnvio", Nothing, "/GenerarEnvio.aspx"))
 
         Me.Menu.Items.Add(New MenuItem("Institucional", "Inst"))
-        Me.Menu.Items.Item(8).ChildItems.Add(New MenuItem("Institucional", "Institucional", Nothing, "/Institucional.aspx"))
+        Me.Menu.Items.Item(7).ChildItems.Add(New MenuItem("Institucional", "Institucional", Nothing, "/Institucional.aspx"))
 
 
     End Sub
