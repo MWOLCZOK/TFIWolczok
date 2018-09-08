@@ -32,31 +32,22 @@ Partial Public Class MasterPage
     Protected WithEvents Master As Global.System.Web.UI.HtmlControls.HtmlForm
     
     '''<summary>
-    '''Control panelLoginOFF.
+    '''Control NoLogueo.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents panelLoginOFF As Global.System.Web.UI.WebControls.Panel
+    Protected WithEvents NoLogueo As Global.System.Web.UI.HtmlControls.HtmlGenericControl
     
     '''<summary>
-    '''Control panelLoginON.
+    '''Control YaLogueo.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents panelLoginON As Global.System.Web.UI.WebControls.Panel
-    
-    '''<summary>
-    '''Control Lbl_apellidoUsuarioLogueado.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents Lbl_apellidoUsuarioLogueado As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents YaLogueo As Global.System.Web.UI.HtmlControls.HtmlGenericControl
     
     '''<summary>
     '''Control lbl_NombredeUsuarioLogueado.

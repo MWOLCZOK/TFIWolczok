@@ -71,38 +71,26 @@ Public Class GestorPermisosMPP
 
     'Ver Con Marki
     Private Function ConvertirDataRowEnPermiso(_dr As DataRow) As PermisoBaseEntidad
-        'Try
-        '    Dim _permiso As PermisoBaseEntidad
-        '    If Not _dr.Item("esAccion") Is DBNull.Value AndAlso Convert.ToBoolean(_dr.Item("esAccion")) Then
-        '        _permiso = New Rol
-        '    End If
-        '    _permiso.ID_Permiso = CInt(_dr.Item("ID_Rol"))
-        '    _permiso.Nombre = Convert.ToString(_dr.Item("Nombre"))
-        '    _permiso.URL = Convert.ToString(_dr.Item("URL"))
-        '    If _permiso.tieneHijos Then
-        '        Dim ListaHijos As List(Of PermisoBaseEntidad) = Me.ListarHijos(_permiso.ID_Permiso)
-        '        For Each hijo As PermisoBaseEntidad In ListaHijos
-        '            _permiso.agregarHijo(hijo)
-        '        Next
-        '    End If
-        '    Return _permiso
-        'Catch ex As Exception
-        '    Throw ex
-        'End Try
+        Try
+            Dim _permiso As New PermisoBaseEntidad
+            _permiso.Nombre = Convert.ToString(_dr.Item("Nombre"))
+            _permiso.ID_Permiso = CInt(_dr.Item("ID_Permiso"))
+            _permiso.URL = Convert.ToString(_dr.Item("URL"))
+            Return _permiso
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Function
 
 
-    Private Function ListarHijos(ByVal _id As Integer) As List(Of PermisoBaseEntidad)
+    Private Function ConvertirDataRowEnRol(_dr As DataRow) As RolEntidad
         Try
-            Dim lista As List(Of PermisoBaseEntidad) = New List(Of PermisoBaseEntidad)
-            Dim Command As SqlClient.SqlCommand = Acceso.MiComando("SELECT P.ID_ROL,Nombre,esAccion,URL FROM Permiso as P LEFT JOIN Permiso_Permiso as PP ON (PP.ID_Permiso=P.ID_ROL) WHERE PP.ID_ROL = @IDPadre  ORDER BY P.ID_Rol ASC")
-            Command.Parameters.Add(New SqlParameter("@IDPadre", _id))
-            Dim dt As DataTable = Acceso.Lectura(Command)
-            For Each row As DataRow In dt.Rows
-                Dim MiPermiso As PermisoBaseEntidad = Me.ConvertirDataRowEnPermiso(row)
-                lista.Add(MiPermiso)
-            Next
-            Return lista
+            Dim _rol As New RolEntidad
+            _rol.Nombre = Convert.ToString(_dr.Item("Nombre"))
+            _rol.ID_Rol = CInt(_dr.Item("ID_Rol"))
+            _rol.Hijos = Me.ListarHijos(_rol.ID_Rol)
+
+            Return _rol
         Catch ex As Exception
             Throw ex
         End Try
@@ -116,6 +104,43 @@ Public Class GestorPermisosMPP
 
 
 
+    Private Function ListarHijos(ByVal _id As Integer) As List(Of PermisoBaseEntidad)
+        Try
+            Dim lista As List(Of PermisoBaseEntidad) = New List(Of PermisoBaseEntidad)
+            Dim Command As SqlClient.SqlCommand = Acceso.MiComando("Select * from RolEntidad_PermisoBaseEntidad as RP inner join PermisoBaseEntidad as PB on RP.ID_PermisoBase = PB.ID_Permiso where RP.ID_Rol=@ID_Rol")
+            Command.Parameters.Add(New SqlParameter("@ID_Rol", _id))
+            Dim dt As DataTable = Acceso.Lectura(Command)
+            For Each row As DataRow In dt.Rows
+                Dim MiPermiso As PermisoBaseEntidad = Me.ConvertirDataRowEnPermiso(row)
+                lista.Add(MiPermiso)
+            Next
+            Return lista
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Friend Function ConsultarporIDUsuario(iD_Usuario As Integer) As List(Of RolEntidad)
+
+        Try
+            Dim Command As SqlCommand = Acceso.MiComando("Select * from UsuarioEntidad_RolEntidad inner join RolEntidad on RolEntidad.ID_rol = UsuarioEntidad_RolEntidad.ID_Rol  where ID_Usuario=@ID_Usuario")
+            Command.Parameters.Add(New SqlParameter("@ID_Usuario", iD_Usuario))
+            Dim _dt As DataTable = Acceso.Lectura(Command)
+            If _dt.Rows.Count > 0 Then
+                Dim rolusuario As New List(Of RolEntidad)
+                For Each _row In _dt.Rows
+                    rolusuario.Add(ConvertirDataRowEnRol(_row))
+                Next
+                Return rolusuario
+
+            Else
+                Return Nothing
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
 
 
+
+    End Function
 End Class

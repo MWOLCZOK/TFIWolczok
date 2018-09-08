@@ -18,70 +18,60 @@ Public Class MasterPage
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
-        'If Usuario.NombreUsu IsNot Nothing Then
-        '    VisibilidadAcceso(False)
-        '    ArmarMenuCompleto()
-        'Else
-        '    VisibilidadAcceso(True)
-        'End If
 
 
-        'If Not IsPostBack Then
-        '    Me.Menu.Items.Clear()
-        '    'ArmarMenuCompleto()
-        'End If
+        If IsNothing(Current.Session("cliente")) Or IsDBNull(Current.Session("Cliente")) Then
+            Dim UsuarioInvitado As New Entidades.UsuarioEntidad
+            CargarSinPerfilIdioma(UsuarioInvitado)
+            VisibilidadAcceso(False)
+            'TraducirPagina(UsuarioInvitado)
+        Else
+            Try
+                Dim Usuario As Entidades.UsuarioEntidad = TryCast(Current.Session("cliente"), Entidades.UsuarioEntidad)
+                CargarPerfil(Usuario)
+                VisibilidadAcceso(True)
+                'TraducirPagina(Usuario)
+            Catch ex As Exception
 
-        'If Usuario IsNot Nothing Then
-        '    CargarSinPerfilIdioma(Usuario)
-
-        'End If
-        Me.Menu.Items.Clear()
-        ArmarMenuCompleto()
-
-
-
+            End Try
+        End If
+        
     End Sub
 
 
 
     Private Sub VisibilidadAcceso(B As Boolean)
 
+        Me.lbl_NombredeUsuarioLogueado.Visible = B
         If B = True Then
-            panelLoginOFF.Visible = True
-            panelLoginON.Visible = False
-            btnlogout.Visible = False
-            lbl_NombredeUsuarioLogueado.Visible = False
-            Lbl_apellidoUsuarioLogueado.Visible = False
-
+            Me.lbl_NombredeUsuarioLogueado.Text = DirectCast(Session("cliente"), UsuarioEntidad).Apellido & ", " & DirectCast(Session("cliente"), UsuarioEntidad).Nombre
+            YaLogueo.Visible = True
+            NoLogueo.Visible = False
         Else
-            panelLoginOFF.Visible = False
-            panelLoginON.Visible = True
-            btnlogout.Visible = True
-            lbl_NombredeUsuarioLogueado.Visible = True
-            Lbl_apellidoUsuarioLogueado.Visible = True
+            YaLogueo.Visible = False
+            NoLogueo.Visible = True
+
         End If
 
     End Sub
 
     Private Sub ArmarMenuCompleto()
         Me.Menu.Items.Add(New MenuItem("Home", "Home", Nothing, "/Default.aspx"))
-        Me.Menu.Items.Add(New MenuItem("Seguridad", "Seg"))
-        Me.Menu.Items.Item(1).ChildItems.Add(New MenuItem("Gestionar Roles", "GestionarRoles", Nothing, "/GestionarRoles.aspx"))
-        Me.Menu.Items.Item(1).ChildItems.Add(New MenuItem("Gestion de Usuario", "GestiondeUsuario", Nothing, "/GestiondeUsuario.aspx"))
-        Me.Menu.Items.Item(1).ChildItems.Add(New MenuItem("Crear Idioma", "CrearIdioma", Nothing, "/CrearIdioma.aspx"))
-        Me.Menu.Items.Item(1).ChildItems.Add(New MenuItem("Cambiar Contraseña", "CambiarContraseña", Nothing, "/CambiarContraseña.aspx"))
-        Me.Menu.Items.Item(1).ChildItems.Add(New MenuItem("Gestión de Bitácora", "GestiondeBitacora", Nothing, "/BitacoraAuditoria.aspx"))
+
+        Me.Menu.Items.Add(New MenuItem("Empresa", "Empresa"))
+        Me.Menu.Items.Item(1).ChildItems.Add(New MenuItem("¿Quienes Somos?", "Institucional", Nothing, "/Institucional.aspx"))
+        Me.Menu.Items.Item(1).ChildItems.Add(New MenuItem("Faqs", "Faqs", Nothing, "/Faqs.aspx"))
+        Me.Menu.Items.Item(1).ChildItems.Add(New MenuItem("Politicas y Seguridad", "PoliticasySeguridad", Nothing, "/PoliticasySeguridad.aspx"))
+
+        Me.Menu.Items.Add(New MenuItem("Catalogo", "Catalogo"))
+        Me.Menu.Items.Item(2).ChildItems.Add(New MenuItem("Nuestros Productos", "Catalogo", Nothing, "/Catalogo.aspx"))
+        Me.Menu.Items.Item(2).ChildItems.Add(New MenuItem("Novedades", "Novedades", Nothing, "/Novedades.aspx"))
 
 
-        Me.Menu.Items.Add(New MenuItem("Arma tu Solución LED", "IngPrev"))
-        Me.Menu.Items.Item(2).ChildItems.Add(New MenuItem("Soluciones LED", "GestionarSolucionesLED", Nothing, "/GestionarSolucionesLED.aspx"))
-        Me.Menu.Items.Item(2).ChildItems.Add(New MenuItem("Generar Presupuesto", "GenerarPresupuesto", Nothing, "/GenerarPresupuesto.aspx"))
 
-
-        Me.Menu.Items.Add(New MenuItem("Ventas", "Ventas"))
-        Me.Menu.Items.Item(3).ChildItems.Add(New MenuItem("Crear Nuevo Cliente", "CrearNuevoCliente", Nothing, "/CrearNuevoCliente.aspx"))
-        Me.Menu.Items.Item(3).ChildItems.Add(New MenuItem("Cargar Venta", "CargarVenta", Nothing, "/CargarVenta.aspx"))
-        Me.Menu.Items.Item(3).ChildItems.Add(New MenuItem("Cobro", "Cobro", Nothing, "/Cobro.aspx"))
+        Me.Menu.Items.Add(New MenuItem("Solución LED", "IngPrev"))
+        Me.Menu.Items.Item(3).ChildItems.Add(New MenuItem("Soluciones LED", "SolucionesLED", Nothing, "/GestionarSolucionesLED.aspx"))
+        Me.Menu.Items.Item(3).ChildItems.Add(New MenuItem("Generar Presupuesto", "GenerarPresupuesto", Nothing, "/GenerarPresupuesto.aspx"))
 
 
         Me.Menu.Items.Add(New MenuItem("Facturacion", "Facturacion"))
@@ -100,8 +90,12 @@ Public Class MasterPage
         Me.Menu.Items.Item(6).ChildItems.Add(New MenuItem("Crear Producto", "CrearProducto", Nothing, "/CrearProducto.aspx"))
         Me.Menu.Items.Item(6).ChildItems.Add(New MenuItem("Generar Envío", "GenerarEnvio", Nothing, "/GenerarEnvio.aspx"))
 
-        Me.Menu.Items.Add(New MenuItem("Institucional", "Inst"))
-        Me.Menu.Items.Item(7).ChildItems.Add(New MenuItem("Institucional", "Institucional", Nothing, "/Institucional.aspx"))
+        Me.Menu.Items.Add(New MenuItem("Seguridad", "Seguridad"))
+
+        Me.Menu.Items.Item(7).ChildItems.Add(New MenuItem("Gestionar Roles", "GestionarRoles", Nothing, "/GestionarRoles.aspx"))
+        Me.Menu.Items.Item(7).ChildItems.Add(New MenuItem("Gestion de Usuario", "GestiondeUsuario", Nothing, "/GestiondeUsuario.aspx"))
+        Me.Menu.Items.Item(7).ChildItems.Add(New MenuItem("Gestion Idioma", "CrearIdioma", Nothing, "/CrearIdioma.aspx"))
+        Me.Menu.Items.Item(7).ChildItems.Add(New MenuItem("Gestión de Bitácora", "GestiondeBitacora", Nothing, "/BitacoraAuditoria.aspx"))
 
 
     End Sub
@@ -109,13 +103,75 @@ Public Class MasterPage
     Private Sub CargarSinPerfilIdioma(ByRef UsuarioInvitado As Entidades.UsuarioEntidad)
 
         Me.Menu.Items.Add(New MenuItem("Home", "Home", Nothing, "/Default.aspx"))
-            Me.Menu.Items.Add(New MenuItem("Empresa", "Institucional", Nothing, "/Institucional.aspx"))
-            Me.Menu.Items.Add(New MenuItem("Nuestros Productos", "Nuestos Productos", Nothing, "/Catalogo.aspx"))
-            Me.Menu.Items.Add(New MenuItem("¿Quienes Somos?", "¿Quienes Somos?", Nothing, "/Institucional.aspx"))
-            Me.Menu.Items.Add(New MenuItem("Novedades", "Novedades", Nothing, "/Novedades.aspx"))
-            Me.Menu.Items.Add(New MenuItem("Newsletter", "Newsletter", Nothing, "/Newsletter.aspx"))
+
+        Me.Menu.Items.Add(New MenuItem("Empresa", "Empresa"))
+        Me.Menu.Items.Item(1).ChildItems.Add(New MenuItem("¿Quienes Somos?", "Institusional", Nothing, "/Institucional.aspx"))
+        Me.Menu.Items.Item(1).ChildItems.Add(New MenuItem("Faqs", "Faqs", Nothing, "/Faqs.aspx"))
+        Me.Menu.Items.Item(1).ChildItems.Add(New MenuItem("Politicas y Seguridad", "PoliticasySeguridad", Nothing, "/PoliticasySeguridad.aspx"))
+
+        Me.Menu.Items.Add(New MenuItem("Catalogo", "Catalogo"))
+        Me.Menu.Items.Item(2).ChildItems.Add(New MenuItem("Nuestros Productos", "Catalogo", Nothing, "/Catalogo.aspx"))
+        Me.Menu.Items.Item(2).ChildItems.Add(New MenuItem("Novedades", "Novedades", Nothing, "/Novedades.aspx"))
 
     End Sub
+
+
+    Private Sub CargarPerfil(ByRef Usuario As Entidades.UsuarioEntidad)
+
+        Dim GestorUsuario As New Negocio.UsuarioBLL
+
+        'GestorUsuario.RefrescarUsuario(Usuario)
+
+        'If Usuario.Bloqueo = True Then
+        '    Current.Session("cliente") = Nothing
+        '    Response.Redirect("/Default.aspx", False)
+        'End If
+
+
+        Me.Menu.Items.Clear()
+        ArmarMenuCompleto()
+        Dim listaAremover As New List(Of MenuItem)
+        For Each pagina As MenuItem In Menu.Items
+            If pagina.ChildItems.Count > 0 Then
+                RecursividadMenu(pagina, Usuario, listaAremover)
+            Else
+
+                If Usuario.ValidarURL(pagina.NavigateUrl) = False Then
+                    listaAremover.Add(pagina)
+                End If
+            End If
+        Next
+        For Each item As MenuItem In listaAremover
+            Menu.Items.Remove(item)
+            For Each subnivel As MenuItem In Menu.Items
+                subnivel.ChildItems.Remove(item)
+            Next
+        Next
+        If Usuario.ValidarURL(Me.Page.Request.FilePath) = False Then
+            Response.Redirect("AccesoRestringido.aspx", False)
+        End If
+    End Sub
+
+
+    Private Sub RecursividadMenu(ByRef pagina As MenuItem, ByRef Usuario As Entidades.UsuarioEntidad, ByRef ListaAremover As List(Of MenuItem))
+        Dim flag As Integer = 0
+        For Each paginadentro As MenuItem In pagina.ChildItems
+            If paginadentro.ChildItems.Count > 0 Then
+                RecursividadMenu(paginadentro, Usuario, ListaAremover)
+            Else
+                If Not Usuario.ValidarURL(paginadentro.NavigateUrl) Then
+                    ListaAremover.Add(paginadentro)
+                    flag += 1
+                End If
+            End If
+        Next
+        If flag = pagina.ChildItems.Count Then
+            ListaAremover.Add(pagina)
+        End If
+    End Sub
+
+
+
 
 
 
@@ -130,7 +186,7 @@ Public Class MasterPage
         If IsNothing(Current.Session("Cliente")) Then
             IdiomaActual = Application("Español")
         Else
-            IdiomaActual = Application(TryCast(Current.Session("Cliente"), Entidades.UsuarioEntidad).Idioma.Nombre)
+            'IdiomaActual = Application(TryCast(Current.Session("Cliente"), Entidades.UsuarioEntidad).Idioma.Nombre)
         End If
         Try
             If Page.IsValid = True Then
@@ -141,19 +197,20 @@ Public Class MasterPage
                 BitacoraBLL.CrearBitacora(Bitac)
                 Session("cliente") = clienteLogeado
                 Usuario = DirectCast(Session("cliente"), Entidades.UsuarioEntidad)
-                Me.lbl_NombredeUsuarioLogueado.Visible = True
-                Me.Lbl_apellidoUsuarioLogueado.Visible = True
-                Me.lbl_NombredeUsuarioLogueado.Text = DirectCast(Session("cliente"), Entidades.UsuarioEntidad).Nombre
-                Me.Lbl_apellidoUsuarioLogueado.Text = DirectCast(Session("cliente"), Entidades.UsuarioEntidad).Apellido & ", "
+
+
                 Me.success.Visible = True
                 Me.success.InnerText = "Se ha logueado correctamente"
                 Me.alertvalid.Visible = False
-                If Usuario.NombreUsu IsNot Nothing Then
-                    VisibilidadAcceso(False)
-                End If
+
+                VisibilidadAcceso(True)
+
+                'Response.Redirect(Default., False)
+                Response.Redirect(Request.Url.ToString, False)
+
             End If
         Catch ex As Exception
-            MsgBox(ex.Message)
+            VisibilidadAcceso(False)
 
             '        Me.success.Visible = True
             '        Me.alertvalid.Visible = False
@@ -309,16 +366,10 @@ Public Class MasterPage
     End Function
 
     Protected Sub btnlogout_Click(sender As Object, e As EventArgs) Handles btnlogout.Click
-        If Not IsNothing(Session("Usuario")) Then
-            Session.Remove("Usuario")
-            'Me.menuVertical.Items.Clear()
-            'Me.armarMenuBasico()
-            Response.Redirect("Index.aspx")
-            'Me.opcionesUsuario.Visible = False
-            Lbl_apellidoUsuarioLogueado.Visible = False
-            lbl_NombredeUsuarioLogueado.Visible = False
-            Me.Usuario = Nothing
 
-        End If
+        Session("cliente") = Nothing
+        VisibilidadAcceso(False)
+        Response.Redirect("Default.aspx", False)
+
     End Sub
 End Class

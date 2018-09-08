@@ -94,15 +94,22 @@ Public Class UsuarioEntidad
         End Set
     End Property
 
-    Private _rol As RolEntidad
-    Public Property Rol() As RolEntidad
+    Private _rol As New List(Of RolEntidad)
+    Public Property Rol() As List(Of RolEntidad)
         Get
             Return _rol
         End Get
-        Set(ByVal value As RolEntidad)
+        Set(ByVal value As List(Of RolEntidad))
             _rol = value
         End Set
     End Property
+
+
+
+
+
+
+
 
     Private _idioma As IdiomaEntidad
     Public Property Idioma() As IdiomaEntidad
@@ -148,6 +155,10 @@ Public Class UsuarioEntidad
         Return f.Deserialize(m)
     End Function
 
+
+    Public Function ValidarURL(paramURL As String) As Boolean
+        Return _rol.Any(Function(Rol) Rol.ValidarURL(paramURL))
+    End Function
 
 
 

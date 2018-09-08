@@ -112,7 +112,8 @@ Public Class UsuarioMPP
 
     Public Function RefrescarUsuario(uSuario As UsuarioEntidad) As UsuarioEntidad
         Try
-            Dim consulta As String = "Select Bloqueo,ID_Perfil from UsuarioEntidad where ID_Usuario=@ID_Usuario"
+            Dim consulta As String = "Select Bloqueo,ID_Rol from UsuarioEntidad inner join UsuarioEntidad_RolEntidad on UsuarioEntidad.ID_Usuario = UsuarioEntidad_RolEntidad.ID_Usuario where ID_Usuario=@ID_Usuario"
+
             Dim Command As SqlCommand = Acceso.MiComando(consulta)
             With Command.Parameters
                 .Add(New SqlParameter("@ID_Usuario", uSuario.ID_Usuario))
@@ -121,7 +122,7 @@ Public Class UsuarioMPP
             If dt.Rows.Count > 0 Then
                 uSuario.Bloqueo = dt.Rows(0)("Bloqueo")
                 Dim GestorPermisos As New GestorPermisosMPP
-                uSuario.Rol = GestorPermisos.ConsultarporID(dt.Rows(0)("ID_Perfil"))
+                uSuario.Rol.Add(GestorPermisos.ConsultarporID(dt.Rows(0)("ID_Rol")))
             End If
         Catch ex As Exception
             Throw ex
@@ -173,8 +174,8 @@ Public Class UsuarioMPP
 
     Public Function TraerUsuario(ByVal Usuario As Entidades.UsuarioEntidad) As Entidades.UsuarioEntidad
         Try
-            'Dim GestorPermisos As New GestorPermisosMPP
-            'Usuario.Rol = GestorPermisos.ConsultarporID(Usuario.Rol.ID_Rol)
+            Dim GestorPermisos As New GestorPermisosMPP
+            Usuario.Rol = GestorPermisos.ConsultarporIDUsuario(Usuario.ID_Usuario)
             'Dim GestorIdioma As New IdiomaMPP
             'Usuario.Idioma = GestorIdioma.ConsultarPorID(Usuario.Idioma.ID_Idioma)
 
@@ -187,7 +188,7 @@ Public Class UsuarioMPP
 
     Public Function ExisteUsuario(ByVal Usuario As Entidades.UsuarioEntidad) As Entidades.UsuarioEntidad
         Try
-            Dim consulta As String = "Select * from UsuarioEntidad where NombreUsuario= @NombreUsuario And BL = 0"
+            Dim consulta As String = "Select * from UsuarioEntidad  where NombreUsuario= @NombreUsuario And BL = 0 "
             Dim Command As SqlCommand = Acceso.MiComando(consulta)
             With Command.Parameters
                 .Add(New SqlParameter("@NombreUsuario", Usuario.NombreUsu))
@@ -539,7 +540,8 @@ Public Class UsuarioMPP
             Usuario.Password = row("Password")
             Usuario.Intento = row("Intentos")
             Usuario.Bloqueo = row("Bloqueo")
-            'Usuario.Perfil = New Entidades.PermisoCompuestoEntidad With {.ID_Permiso = row("ID_Perfil")}
+            'Usuario.Rol.Add(New Entidades.RolEntidad With {.ID_Rol = row("ID_Rol")})
+            TraerUsuario(Usuario)
             'Usuario.Idioma = New Entidades.IdiomaEntidad With {.ID_Idioma = row("ID_Idioma")}
             Usuario.Empleado = row("Empleado")
         Catch ex As Exception

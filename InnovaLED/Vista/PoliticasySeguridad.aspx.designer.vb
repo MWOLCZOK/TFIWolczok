@@ -12,5 +12,5 @@ Option Explicit On
 
 
 
-Partial Public Class ProductList
+Partial Public Class PoliticasySeguridad
 End Class

@@ -79,7 +79,7 @@ Public Class UsuarioBLL
                     If UsuarioRetorno.Bloqueo = False Then
                         Usuario.Intento = 0
                         Me.ResetearIntentos(UsuarioRetorno)
-                        Return UsuarioMPP.TraerUsuario(UsuarioRetorno)
+                        Return UsuarioRetorno
                     Else
                         Throw New ExceptionUsuarioBloqueado
                     End If

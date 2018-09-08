@@ -132,6 +132,7 @@
     <Content Include="Default.aspx" />
     <Content Include="EmailTemplates\Recupero.html" />
     <Content Include="EmailTemplates\Registracion.html" />
+    <Content Include="Faqs.aspx" />
     <Content Include="Fonts\fontawesome-webfont.svg" />
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="GenerarDocumento.aspx" />
@@ -141,6 +142,7 @@
     <Content Include="GestionarSolucionesLED.aspx" />
     <Content Include="GestiondeUsuario.aspx" />
     <Content Include="IMAGENES\banner6.jpg" />
+    <Content Include="IMAGENES\bannerregistracion.png" />
     <Content Include="IMAGENES\blue.png" />
     <Content Include="IMAGENES\CalculadoraDeAhorro.jpg" />
     <Content Include="IMAGENES\edificio.jpg" />
@@ -148,6 +150,7 @@
     <Content Include="IMAGENES\PorqueUtilizarLed.jpg" />
     <Content Include="IMAGENES\red.png" />
     <Content Include="IMAGENES\SegmentosdeIluminacion.jpg" />
+    <Content Include="IMAGENES\Test.jpg" />
     <Content Include="IMAGENES\twitter.png" />
     <Content Include="Institucional.aspx" />
     <Content Include="JS\bootstrap.js" />
@@ -166,7 +169,7 @@
     <Content Include="Novedades.aspx" />
     <Content Include="Orders.aspx" />
     <Content Include="PagoaProveedores.aspx" />
-    <Content Include="ProductList.aspx" />
+    <Content Include="PoliticasySeguridad.aspx" />
     <Content Include="Proveedores.aspx" />
     <Content Include="RecuperarPassword.aspx" />
     <Content Include="Registracion.aspx" />
@@ -250,6 +253,13 @@
     </Compile>
     <Compile Include="Default.aspx.vb">
       <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Faqs.aspx.designer.vb">
+      <DependentUpon>Faqs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Faqs.aspx.vb">
+      <DependentUpon>Faqs.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="GenerarDocumento.aspx.designer.vb">
@@ -369,11 +379,11 @@
       <DependentUpon>PagoaProveedores.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="ProductList.aspx.designer.vb">
-      <DependentUpon>ProductList.aspx</DependentUpon>
+    <Compile Include="PoliticasySeguridad.aspx.designer.vb">
+      <DependentUpon>PoliticasySeguridad.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ProductList.aspx.vb">
-      <DependentUpon>ProductList.aspx</DependentUpon>
+    <Compile Include="PoliticasySeguridad.aspx.vb">
+      <DependentUpon>PoliticasySeguridad.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Proveedores.aspx.designer.vb">
