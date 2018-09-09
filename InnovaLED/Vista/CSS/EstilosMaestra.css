@@ -18,10 +18,13 @@
 
 .MenuFrente {
     z-index:9999;
+    font-family:Bahnschrift;
+    background: linear-gradient(to right, #0066cc 0%, #ccffff 100%);
+    border-color:white;
 }
 
 .bordeImagen {
-    border-color: black;
+    border-color: white;
     border-width: 1px;
     border-right: solid;
     border-left: solid;
@@ -69,7 +72,7 @@
 
 .textoNombreUsuario {
        font-size:16px;
-  font-family:'Estrangelo Edessa';
+  font-family:'Bahnschrift';
   color: #368be1;
   font-weight:bold;
 }

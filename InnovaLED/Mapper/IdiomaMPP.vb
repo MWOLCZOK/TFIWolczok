@@ -183,8 +183,8 @@ Public Class IdiomaMPP
 
     Public Function ConsultarPorID(ByRef ID_Idioma As Integer) As IdiomaEntidad
         Try
-            Dim Command As SqlCommand = Acceso.MiComando("Select * from Idioma where ID_Idioma=@IDIdioma and bl= 0")
-            Command.Parameters.Add(New SqlParameter("@IDIdioma", ID_Idioma))
+            Dim Command As SqlCommand = Acceso.MiComando("Select * from IdiomaEntidad where ID_Idioma=@ID_Idioma and bl= 0")
+            Command.Parameters.Add(New SqlParameter("@ID_Idioma", ID_Idioma))
             Dim _dt As DataTable = Acceso.Lectura(Command)
             Dim Miidioma As IdiomaEntidad = New IdiomaEntidad
             For Each row As DataRow In _dt.Rows
@@ -202,7 +202,7 @@ Public Class IdiomaMPP
 
     Public Function ConsultarPorCultura(cultura As CultureInfo) As IdiomaEntidad
         Try
-            Dim Command As SqlCommand = Acceso.MiComando("Select Top 1 * from Idioma where Cultura=@Cultura and bl= 0")
+            Dim Command As SqlCommand = Acceso.MiComando("Select Top 1 * from IdiomaEntidad where Cultura=@Cultura and bl= 0")
             Command.Parameters.Add(New SqlParameter("@Cultura", cultura.Name))
             Dim _dt As DataTable = Acceso.Lectura(Command)
             Dim Miidioma As IdiomaEntidad = New IdiomaEntidad
@@ -221,8 +221,8 @@ Public Class IdiomaMPP
 
     Public Function TraerPalabras(ByRef ID_Idioma As Integer) As List(Of Palabras)
         Try
-            Dim Command As SqlCommand = Acceso.MiComando("Select * from Traduccion INNER JOIN Control on Traduccion.ID_Control = Control.ID_Control where ID_Idioma =@IDIdioma")
-            Command.Parameters.Add(New SqlParameter("@IDIdioma", ID_Idioma))
+            Dim Command As SqlCommand = Acceso.MiComando("Select * from Traduccion INNER JOIN Control on Traduccion.ID_Control = Control.ID_Control where ID_Idioma =@ID_Idioma")
+            Command.Parameters.Add(New SqlParameter("@ID_Idioma", ID_Idioma))
             Dim _dt As DataTable = Acceso.Lectura(Command)
             Dim listaPalabras As List(Of Palabras) = New List(Of Palabras)
             For Each row As DataRow In _dt.Rows

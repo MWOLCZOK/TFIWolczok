@@ -10,12 +10,12 @@
                 <div class="panel-heading text-center">
                     <asp:Label ID="lblPanelNosotros" runat="server" Text="¿Quienes somos?" CssClass="TituloPanel"></asp:Label>
                 </div>
-                <div class="panel-body FondoPanel">
+                <div class="panel-body FondoPanel ">
                     <div class="col-md-2 media" style="padding-bottom: 10px">
                         <asp:Image ID="LogoMenu" runat="server" ImageUrl="Imagenes/edificio.jpg" CssClass="img-responsive" Height="160px" />
                     </div>
                     <div class="col-md-10">
-                        <asp:Label ID="lblnosotros1" runat="server" Text="
+                        <asp:Label ID="lblnosotros1"  runat="server" Text="
 
 Somos una empresa joven en el rubro de eficiencia energética en Latinoamérica, con proyección de estar entre los principales líderes de la luminaria LED.
 

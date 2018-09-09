@@ -46,7 +46,7 @@
 
                  <div id="YaLogueo" runat="server" cssclass="col-md-4 col-md-offset-8" Visible="false" >
                        
-                                 <asp:Label ID="lbl_NombredeUsuarioLogueado" font="Estrangelo Edessa" Font-Bold="True"  font-size="18px" runat="server" class="col-md-offset-8 col-md-3 control-label labelform text-right" ForeColor="#368BE1"></asp:Label>
+                                 <asp:Label ID="lbl_NombredeUsuarioLogueado" font="Bahnschrift" Font-Bold="True"  font-size="18px" runat="server" class="col-md-offset-8 col-md-3 control-label labelform text-right" ForeColor="#368BE1"></asp:Label>
                                       
                             <asp:Button ID="btnlogout" runat="server" class="btn btn-primary col-md-1" Text="Logout" /> 
                           </div>
@@ -63,7 +63,7 @@
             <label runat="server" id="textovalid" class="text-danger"></label>
         </div>
         <div id="success" runat="server" name="success" class="alert alert-success  text-center" visible="false">
-            <label  id="Label1" class="text-success"></label>
+            <label  id="lbl_success" class="text-success"></label>
         </div>
 
             </div>
@@ -73,7 +73,7 @@
 
             <div class="row fondoClaro bordeMenu">
                 <div class="col-md-12 MenuFrente">
-                    <asp:Menu ID="Menu" runat="server" Orientation="Horizontal" Font-Bold="true" Font-Size="12px" ForeColor="#336699" Height="30px">
+                    <asp:Menu ID="Menu" runat="server" Orientation="Horizontal" Font-Size="16px" ForeColor="#FFFFFF" Height="30px" >
                         <StaticSelectedStyle BackColor="#FFFFFF" />
 
                         <StaticMenuItemStyle HorizontalPadding="10px" VerticalPadding="7px" />
@@ -99,9 +99,9 @@
              
             </asp:ContentPlaceHolder>
             <div class="row Azul lineaCopyright"></div>
-            <div class="row Azul">
+            <div class="row Azul MenuFrente">
                 <br />
-                <div class="col-md-8 col-md-offset-2 text-center">
+                <div class="col-md-8 col-md-offset-2 text-center" >
                     <div class="textoCopyright">
                         <asp:Label ID="lblcopyright" runat="server" Text="Trabajo Final de Ingenieria - Wolczok - 2018"></asp:Label>
                     </div>
@@ -133,15 +133,13 @@
       </div>
       <div class="modal-footer">
           <asp:Button ID="btnLogin" runat="server" CssClass="btn btn-primary" OnClick="btnLogin_Click" Text="Login"/>
-          <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+          <button id="btncerrar" type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
          <asp:Button ID="btnolvidepass" runat="server" CssClass="btn btn-default " OnClick="btnolvidepass_Click" Text="Olvidé mi contraseña"/>
       </div>
 
     </div>
   </div>
-</div>
-
-                
+</div>                
 
                 <!-- Modal Registrarse -->
  <div class="modal fade" id="ucModalNewMember" tabindex="-1" role="dialog" aria-labelledby="Registro" aria-hidden="true">
@@ -149,7 +147,7 @@
       
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="Registro">Registro</h5>
+        <label  class="modal-title" id="Registro">Registro</label>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

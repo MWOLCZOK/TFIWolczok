@@ -112,7 +112,7 @@ Public Class UsuarioMPP
 
     Public Function RefrescarUsuario(uSuario As UsuarioEntidad) As UsuarioEntidad
         Try
-            Dim consulta As String = "Select Bloqueo,ID_Rol from UsuarioEntidad inner join UsuarioEntidad_RolEntidad on UsuarioEntidad.ID_Usuario = UsuarioEntidad_RolEntidad.ID_Usuario where ID_Usuario=@ID_Usuario"
+            Dim consulta As String = "Select Bloqueo from UsuarioEntidad where ID_Usuario=@ID_Usuario"
 
             Dim Command As SqlCommand = Acceso.MiComando(consulta)
             With Command.Parameters
@@ -122,7 +122,7 @@ Public Class UsuarioMPP
             If dt.Rows.Count > 0 Then
                 uSuario.Bloqueo = dt.Rows(0)("Bloqueo")
                 Dim GestorPermisos As New GestorPermisosMPP
-                uSuario.Rol.Add(GestorPermisos.ConsultarporID(dt.Rows(0)("ID_Rol")))
+                uSuario.Rol = GestorPermisos.ConsultarporIDUsuario(uSuario.ID_Usuario)
             End If
         Catch ex As Exception
             Throw ex
@@ -176,9 +176,8 @@ Public Class UsuarioMPP
         Try
             Dim GestorPermisos As New GestorPermisosMPP
             Usuario.Rol = GestorPermisos.ConsultarporIDUsuario(Usuario.ID_Usuario)
-            'Dim GestorIdioma As New IdiomaMPP
-            'Usuario.Idioma = GestorIdioma.ConsultarPorID(Usuario.Idioma.ID_Idioma)
-
+            Dim GestorIdioma As New IdiomaMPP
+            Usuario.Idioma = GestorIdioma.ConsultarPorID(Usuario.Idioma.ID_Idioma)
             Return Usuario
         Catch ex As Exception
             Throw ex
@@ -540,9 +539,8 @@ Public Class UsuarioMPP
             Usuario.Password = row("Password")
             Usuario.Intento = row("Intentos")
             Usuario.Bloqueo = row("Bloqueo")
-            'Usuario.Rol.Add(New Entidades.RolEntidad With {.ID_Rol = row("ID_Rol")})
+            Usuario.Idioma = New Entidades.IdiomaEntidad With {.ID_Idioma = row("ID_Idioma")}
             TraerUsuario(Usuario)
-            'Usuario.Idioma = New Entidades.IdiomaEntidad With {.ID_Idioma = row("ID_Idioma")}
             Usuario.Empleado = row("Empleado")
         Catch ex As Exception
             Throw ex

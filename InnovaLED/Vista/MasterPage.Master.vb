@@ -24,13 +24,13 @@ Public Class MasterPage
             Dim UsuarioInvitado As New Entidades.UsuarioEntidad
             CargarSinPerfilIdioma(UsuarioInvitado)
             VisibilidadAcceso(False)
-            'TraducirPagina(UsuarioInvitado)
+            TraducirPagina(UsuarioInvitado)
         Else
             Try
                 Dim Usuario As Entidades.UsuarioEntidad = TryCast(Current.Session("cliente"), Entidades.UsuarioEntidad)
                 CargarPerfil(Usuario)
                 VisibilidadAcceso(True)
-                'TraducirPagina(Usuario)
+                TraducirPagina(Usuario)
             Catch ex As Exception
 
             End Try
@@ -56,11 +56,11 @@ Public Class MasterPage
     End Sub
 
     Private Sub ArmarMenuCompleto()
-        Me.Menu.Items.Add(New MenuItem("Home", "Home", Nothing, "/Default.aspx"))
+        Me.Menu.Items.Add(New MenuItem("Inicio", "Inicio", Nothing, "/Default.aspx"))
 
         Me.Menu.Items.Add(New MenuItem("Empresa", "Empresa"))
         Me.Menu.Items.Item(1).ChildItems.Add(New MenuItem("¿Quienes Somos?", "Institucional", Nothing, "/Institucional.aspx"))
-        Me.Menu.Items.Item(1).ChildItems.Add(New MenuItem("Faqs", "Faqs", Nothing, "/Faqs.aspx"))
+        Me.Menu.Items.Item(1).ChildItems.Add(New MenuItem("Preguntas Frecuentes", "PreguntasFrecuentes", Nothing, "/Faqs.aspx"))
         Me.Menu.Items.Item(1).ChildItems.Add(New MenuItem("Politicas y Seguridad", "PoliticasySeguridad", Nothing, "/PoliticasySeguridad.aspx"))
 
         Me.Menu.Items.Add(New MenuItem("Catalogo", "Catalogo"))
@@ -69,7 +69,7 @@ Public Class MasterPage
 
 
 
-        Me.Menu.Items.Add(New MenuItem("Solución LED", "IngPrev"))
+        Me.Menu.Items.Add(New MenuItem("Solución LED", "SolucionLED"))
         Me.Menu.Items.Item(3).ChildItems.Add(New MenuItem("Soluciones LED", "SolucionesLED", Nothing, "/GestionarSolucionesLED.aspx"))
         Me.Menu.Items.Item(3).ChildItems.Add(New MenuItem("Generar Presupuesto", "GenerarPresupuesto", Nothing, "/GenerarPresupuesto.aspx"))
 
@@ -105,13 +105,52 @@ Public Class MasterPage
         Me.Menu.Items.Add(New MenuItem("Home", "Home", Nothing, "/Default.aspx"))
 
         Me.Menu.Items.Add(New MenuItem("Empresa", "Empresa"))
-        Me.Menu.Items.Item(1).ChildItems.Add(New MenuItem("¿Quienes Somos?", "Institusional", Nothing, "/Institucional.aspx"))
+        Me.Menu.Items.Item(1).ChildItems.Add(New MenuItem("¿Quienes Somos?", "Institucional", Nothing, "/Institucional.aspx"))
         Me.Menu.Items.Item(1).ChildItems.Add(New MenuItem("Faqs", "Faqs", Nothing, "/Faqs.aspx"))
         Me.Menu.Items.Item(1).ChildItems.Add(New MenuItem("Politicas y Seguridad", "PoliticasySeguridad", Nothing, "/PoliticasySeguridad.aspx"))
 
         Me.Menu.Items.Add(New MenuItem("Catalogo", "Catalogo"))
         Me.Menu.Items.Item(2).ChildItems.Add(New MenuItem("Nuestros Productos", "Catalogo", Nothing, "/Catalogo.aspx"))
         Me.Menu.Items.Item(2).ChildItems.Add(New MenuItem("Novedades", "Novedades", Nothing, "/Novedades.aspx"))
+
+        Dim Rol As New Entidades.RolEntidad
+        Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/Empresa.aspx"})
+        Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/Institucional.aspx"})
+        Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/Faqs.aspx"})
+        Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/PoliticasySeguridad.aspx"})
+        Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/Catalogo.aspx"})
+        Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/Novedades.aspx"})
+        Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/AccesoRestringido.aspx"})
+        Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/ConfirmarRecupero.aspx"})
+        Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/ConfirmarRegistracion.aspx"})
+        Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/RecuperarPassword.aspx"})
+        Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/Newsletter.aspx"})
+        Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/Default.aspx"})
+
+        UsuarioInvitado.Rol.Add(Rol)
+
+
+        Dim GestorIdioma As New Negocio.IdiomaBLL
+        If IsNothing(Current.Session("Idioma")) Then
+            UsuarioInvitado.Idioma = GestorIdioma.ConsultarPorCultura(Request.UserLanguages(0))
+            If IsNothing(Application(UsuarioInvitado.Idioma.Nombre)) Then
+                Application(UsuarioInvitado.Idioma.Nombre) = UsuarioInvitado.Idioma
+            End If
+        Else
+            If IsNothing(Application(TryCast(Current.Session("Idioma"), Entidades.IdiomaEntidad).Nombre)) Then
+                Application(TryCast(Current.Session("Idioma"), Entidades.IdiomaEntidad).Nombre) = GestorIdioma.ConsultarPorID(TryCast(Current.Session("Idioma"), Entidades.IdiomaEntidad).ID_Idioma)
+            End If
+            UsuarioInvitado.Idioma = Application(TryCast(Current.Session("Idioma"), Entidades.IdiomaEntidad).Nombre)
+        End If
+
+        If UsuarioInvitado.ValidarURL(Me.Page.Request.FilePath) = False Then
+            'El usuario valida que la URL exista, por medio del Rol.
+            Response.Redirect("AccesoRestringido.aspx", False)
+        End If
+
+
+
+
 
     End Sub
 
@@ -120,12 +159,12 @@ Public Class MasterPage
 
         Dim GestorUsuario As New Negocio.UsuarioBLL
 
-        'GestorUsuario.RefrescarUsuario(Usuario)
-
-        'If Usuario.Bloqueo = True Then
-        '    Current.Session("cliente") = Nothing
-        '    Response.Redirect("/Default.aspx", False)
-        'End If
+        GestorUsuario.RefrescarUsuario(Usuario)
+        ' Permite cambiar permisos en caliente, si el usuario 1 cambia el permiso do usuario 2, cuando el usuario 2 quiera entrar a otra página ya no podrá.
+        If Usuario.Bloqueo = True Then
+            Current.Session("cliente") = Nothing
+            Response.Redirect("/Default.aspx", False)
+        End If
 
 
         Me.Menu.Items.Clear()
@@ -170,6 +209,117 @@ Public Class MasterPage
         End If
     End Sub
 
+    Protected Sub TraducirPagina(ByRef Usuario As Entidades.UsuarioEntidad)
+        Try
+
+            Dim MiPagina As String = Right(Request.Path, Len(Request.Path) - 1)
+
+            Dim GestorIdioma As New Negocio.IdiomaBLL
+            If IsNothing(Application(Usuario.Idioma.Nombre)) Then
+                Application(Usuario.Idioma.Nombre) = GestorIdioma.ConsultarPorID(Usuario.Idioma.ID_Idioma)
+            End If
+
+            Me.traducirMenu(Usuario.Idioma.Nombre)
+            traducirControl(Me.Master.Controls, Usuario.Idioma.Nombre)
+
+            Dim mpContentPlaceHolder As New ContentPlaceHolder
+            mpContentPlaceHolder = Me.FindControl("ContentPlaceHolder1")
+
+            traducirControl(mpContentPlaceHolder.Controls, Usuario.Idioma.Nombre)
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub traducirMenu(ByVal Idioma As String)
+        Try
+            Dim MasterMenu As Menu
+            MasterMenu = Me.FindControl("Menu")
+            If MasterMenu.Items.Count > 0 Then
+                traducirMenuRecursivo(MasterMenu.Items, Idioma)
+            End If
+
+        Catch ex As Exception
+        End Try
+
+    End Sub
+
+    Private Sub traducir(ByVal _menuitem As MenuItem, ByVal Idioma As String)
+        Try
+            Dim LStPalabras As List(Of Entidades.Palabras) = CType(Application(Idioma), Entidades.IdiomaEntidad).Palabras
+            Dim PalabraAEncontrar As Entidades.Palabras = LStPalabras.Find(Function(p) p.Codigo = _menuitem.Value)
+            If Not IsNothing(PalabraAEncontrar) Then
+                _menuitem.Text = PalabraAEncontrar.Traduccion
+            End If
+
+        Catch ex As Exception
+        End Try
+    End Sub
+
+
+    Private Sub traducir(ByVal _button As Button, ByVal Idioma As String)
+        Try
+            Dim LStPalabras As List(Of Entidades.Palabras) = CType(Application(Idioma), Entidades.IdiomaEntidad).Palabras
+            Dim PalabraAEncontrar As Entidades.Palabras = LStPalabras.Find(Function(p) p.Codigo = _button.ID)
+            If Not IsNothing(PalabraAEncontrar) Then
+                _button.Text = PalabraAEncontrar.Traduccion
+            End If
+
+
+        Catch ex As System.Data.SqlClient.SqlException
+        Catch ex As Exception
+        End Try
+    End Sub
+
+    Private Sub traducir(ByVal _label As Label, ByVal Idioma As String)
+        Try
+            Dim LStPalabras As List(Of Entidades.Palabras) = CType(Application(Idioma), Entidades.IdiomaEntidad).Palabras
+            Dim PalabraAEncontrar As Entidades.Palabras = LStPalabras.Find(Function(p) p.Codigo = _label.ID)
+            If Not IsNothing(PalabraAEncontrar) Then
+                _label.Text = PalabraAEncontrar.Traduccion
+            End If
+        Catch ex As System.Data.SqlClient.SqlException
+        Catch ex As Exception
+        End Try
+    End Sub
+
+    Private Sub traducirMenuRecursivo(ByVal _items As MenuItemCollection, ByVal Idioma As String)
+        Try
+            For Each MiMenuItem As MenuItem In _items
+                Me.traducir(MiMenuItem, Idioma)
+                If MiMenuItem.ChildItems.Count > 0 Then
+                    traducirMenuRecursivo(MiMenuItem.ChildItems, Idioma)
+                End If
+            Next
+        Catch ex As Exception
+        End Try
+
+    End Sub
+
+    Private Sub traducirControl(ByVal paramListaControl As ControlCollection, ByVal Idioma As String)
+        Try
+            For Each miControl As Control In paramListaControl
+                If TypeOf miControl Is Button Then
+                    traducir(DirectCast(miControl, Button), Idioma)
+                ElseIf TypeOf miControl Is Label Then
+                    traducir(DirectCast(miControl, Label), Idioma)
+                ElseIf TypeOf miControl Is GridView Then
+                    Dim ControlGrview As GridView = DirectCast(miControl, GridView)
+                    For Each GrvLabel In ControlGrview.BottomPagerRow.Cells(0).Controls
+                        If TypeOf GrvLabel Is Label Then
+                            traducir(DirectCast(GrvLabel, Label), Idioma)
+                        End If
+                    Next
+                End If
+            Next
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+
+
 
 
 
@@ -186,7 +336,7 @@ Public Class MasterPage
         If IsNothing(Current.Session("Cliente")) Then
             IdiomaActual = Application("Español")
         Else
-            'IdiomaActual = Application(TryCast(Current.Session("Cliente"), Entidades.UsuarioEntidad).Idioma.Nombre)
+            IdiomaActual = Application(TryCast(Current.Session("Cliente"), Entidades.UsuarioEntidad).Idioma.Nombre)
         End If
         Try
             If Page.IsValid = True Then

@@ -142,6 +142,7 @@
     <Content Include="GestionarRoles.aspx" />
     <Content Include="GestionarSolucionesLED.aspx" />
     <Content Include="GestiondeUsuario.aspx" />
+    <Content Include="Global.asax" />
     <Content Include="IMAGENES\banner1.jpg" />
     <Content Include="IMAGENES\bannerregistracion.png" />
     <Content Include="IMAGENES\blue.png" />
@@ -311,6 +312,9 @@
     <Compile Include="GestiondeUsuario.aspx.vb">
       <DependentUpon>GestiondeUsuario.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Global.asax.vb">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Institucional.aspx.designer.vb">
       <DependentUpon>Institucional.aspx</DependentUpon>
