@@ -34,7 +34,7 @@ Public Class UsuarioMPP
                 .Add(New SqlParameter("@Bloqueo", Usuario.Bloqueo))
                 .Add(New SqlParameter("@Intento", Usuario.Intento))
                 .Add(New SqlParameter("@Idioma", Usuario.Idioma.ID_Idioma))
-                .Add(New SqlParameter("@Perfil", 1))
+                .Add(New SqlParameter("@Perfil", 2))
                 .Add(New SqlParameter("@Mail", Usuario.Mail))
                 .Add(New SqlParameter("@Empleado", Usuario.Empleado))
                 .Add(New SqlParameter("@BL", False))

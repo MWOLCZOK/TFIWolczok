@@ -1,11 +1,11 @@
 ﻿.fondoGris {
-    background-color: #336699;
-    /*background-color: Azul;*/
+    background-color: #ffffff;
+    /*background-color: Blanco;*/
 }
 
 .fondoClaro {
-    background-color: #f0eeed;
-    /*background-color: blanco;*/
+    background-color: #368be1;
+    /*background-color: Azul;*/
 }
 
 .bordeMenu {
@@ -70,6 +70,6 @@
 .textoNombreUsuario {
        font-size:16px;
   font-family:'Estrangelo Edessa';
-  color: white;
+  color: #368be1;
   font-weight:bold;
 }

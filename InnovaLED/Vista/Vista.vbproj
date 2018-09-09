@@ -100,6 +100,7 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AccesoRestringido.aspx" />
     <Content Include="ActualizarStock.aspx" />
     <Content Include="BitacoraAuditoria.aspx" />
     <Content Include="CambiarContraseña.aspx" />
@@ -141,7 +142,7 @@
     <Content Include="GestionarRoles.aspx" />
     <Content Include="GestionarSolucionesLED.aspx" />
     <Content Include="GestiondeUsuario.aspx" />
-    <Content Include="IMAGENES\banner6.jpg" />
+    <Content Include="IMAGENES\banner1.jpg" />
     <Content Include="IMAGENES\bannerregistracion.png" />
     <Content Include="IMAGENES\blue.png" />
     <Content Include="IMAGENES\CalculadoraDeAhorro.jpg" />
@@ -178,6 +179,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccesoRestringido.aspx.designer.vb">
+      <DependentUpon>AccesoRestringido.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AccesoRestringido.aspx.vb">
+      <DependentUpon>AccesoRestringido.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="ActualizarStock.aspx.designer.vb">
       <DependentUpon>ActualizarStock.aspx</DependentUpon>
     </Compile>
