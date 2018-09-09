@@ -94,14 +94,17 @@ Public Class MasterPage
 
         Me.Menu.Items.Item(7).ChildItems.Add(New MenuItem("Gestionar Roles", "GestionarRoles", Nothing, "/GestionarRoles.aspx"))
         Me.Menu.Items.Item(7).ChildItems.Add(New MenuItem("Gestion de Usuario", "GestiondeUsuario", Nothing, "/GestiondeUsuario.aspx"))
-        Me.Menu.Items.Item(7).ChildItems.Add(New MenuItem("Gestion Idioma", "CrearIdioma", Nothing, "/CrearIdioma.aspx"))
+        Me.Menu.Items.Item(7).ChildItems.Add(New MenuItem("Gestion Idioma", "CrearIdioma", Nothing, "/AgregarIdioma.aspx"))
+        Me.Menu.Items.Item(7).ChildItems.Add(New MenuItem("Modificar Idioma", "ModificarIdioma", Nothing, "/ModificarIdioma.aspx"))
+        Me.Menu.Items.Item(7).ChildItems.Add(New MenuItem("Eliminar Idioma", "EliminarIdioma", Nothing, "/EliminarIdioma.aspx"))
         Me.Menu.Items.Item(7).ChildItems.Add(New MenuItem("Gestión de Bitácora", "GestiondeBitacora", Nothing, "/BitacoraAuditoria.aspx"))
 
+        Me.Menu.Items.Add(New MenuItem("Cambiar Idioma", "SeleccionarIdioma", Nothing, "/SeleccionarIdioma.aspx"))
 
     End Sub
 
     Private Sub CargarSinPerfilIdioma(ByRef UsuarioInvitado As Entidades.UsuarioEntidad)
-
+        Me.Menu.Items.Clear()
         Me.Menu.Items.Add(New MenuItem("Home", "Home", Nothing, "/Default.aspx"))
 
         Me.Menu.Items.Add(New MenuItem("Empresa", "Empresa"))
@@ -112,6 +115,8 @@ Public Class MasterPage
         Me.Menu.Items.Add(New MenuItem("Catalogo", "Catalogo"))
         Me.Menu.Items.Item(2).ChildItems.Add(New MenuItem("Nuestros Productos", "Catalogo", Nothing, "/Catalogo.aspx"))
         Me.Menu.Items.Item(2).ChildItems.Add(New MenuItem("Novedades", "Novedades", Nothing, "/Novedades.aspx"))
+
+        Me.Menu.Items.Add(New MenuItem("Seleccionar Idioma", "SeleccionarIdioma", Nothing, "/SeleccionarIdioma.aspx"))
 
         Dim Rol As New Entidades.RolEntidad
         Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/Empresa.aspx"})
@@ -126,6 +131,7 @@ Public Class MasterPage
         Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/RecuperarPassword.aspx"})
         Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/Newsletter.aspx"})
         Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/Default.aspx"})
+        Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/SeleccionarIdioma.aspx"})
 
         UsuarioInvitado.Rol.Add(Rol)
 
@@ -321,14 +327,6 @@ Public Class MasterPage
 
 
 
-
-
-
-
-
-
-
-
     Public Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
         Dim Cliente As New Entidades.UsuarioEntidad
         Dim IdiomaActual As Entidades.IdiomaEntidad
@@ -350,7 +348,7 @@ Public Class MasterPage
 
 
                 Me.success.Visible = True
-                Me.success.InnerText = "Se ha logueado correctamente"
+                Me.lbl_success.InnerText = "Se ha logueado correctamente"
                 Me.alertvalid.Visible = False
 
                 VisibilidadAcceso(True)

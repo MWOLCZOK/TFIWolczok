@@ -8,27 +8,27 @@ Public Class IdiomaMPP
 
     Public Function GuardarIdioma(ByRef Idioma As IdiomaEntidad) As Boolean
         Try
-            'Dim Command As SqlCommand = Acceso.MiComando("insert into Idioma (Nombre, Editable, Cultura, BL) OUTPUT INSERTED.ID_Idioma values (@Nombre, @Editable, @Cultura , @BL)")
-            'With Command.Parameters
-            '    .Add(New SqlParameter("@Nombre", Idioma.Nombre))
-            '    .Add(New SqlParameter("@Editable", Idioma.Editable))
-            '    .Add(New SqlParameter("@Cultura", Idioma.Cultura.Name))
-            '    .Add(New SqlParameter("@BL", False))
-            'End With
-            'Idioma.ID_Idioma = Acceso.Scalar(Command)
-            'Command.Dispose()
-            'Dim Micomando As SqlCommand
-            'Dim ComandoStr As String = "insert into Traduccion values (@ID_Control, @ID_Idioma, @Palabra)"
-            'For Each MiPalabra As Palabras In Idioma.Palabras
-            '    Micomando = Acceso.MiComando(ComandoStr)
-            '    With Micomando.Parameters
-            '        .Add(New SqlParameter("@ID_Control", MiPalabra.ID_Control))
-            '        .Add(New SqlParameter("@ID_Idioma", Idioma.ID_Idioma))
-            '        .Add(New SqlParameter("@Palabra", MiPalabra.Traduccion))
+            Dim Command As SqlCommand = Acceso.MiComando("insert into IdiomaEntidad (Nombre, Editable, Cultura, BL) OUTPUT INSERTED.ID_Idioma values (@Nombre, @Editable, @Cultura , @BL)")
+            With Command.Parameters
+                .Add(New SqlParameter("@Nombre", Idioma.Nombre))
+                .Add(New SqlParameter("@Editable", Idioma.Editable))
+                .Add(New SqlParameter("@Cultura", Idioma.Cultura.Name))
+                .Add(New SqlParameter("@BL", False))
+            End With
+            Idioma.ID_Idioma = Acceso.Scalar(Command)
+            Command.Dispose()
+            Dim Micomando As SqlCommand
+            Dim ComandoStr As String = "insert into Traduccion values (@ID_Control, @ID_Idioma, @Palabra)"
+            For Each MiPalabra As Palabras In Idioma.Palabras
+                Micomando = Acceso.MiComando(ComandoStr)
+                With Micomando.Parameters
+                    .Add(New SqlParameter("@ID_Control", MiPalabra.ID_Control))
+                    .Add(New SqlParameter("@ID_Idioma", Idioma.ID_Idioma))
+                    .Add(New SqlParameter("@Palabra", MiPalabra.Traduccion))
 
-            '    End With
-            '    Acceso.Escritura(Micomando)
-            'Next
+                End With
+                Acceso.Escritura(Micomando)
+            Next
             Return True
         Catch ex As Exception
             Throw ex
@@ -38,29 +38,29 @@ Public Class IdiomaMPP
 
     Public Function ModificarIdioma(ByRef Idioma As IdiomaEntidad) As Boolean
         Try
-            'Dim Command As SqlCommand = Acceso.MiComando("Update Idioma set Cultura=@Cultura where ID_Idioma = @ID_Idioma")
-            'With Command.Parameters
-            '    .Add(New SqlParameter("@ID_Idioma", Idioma.ID_Idioma))
-            '    .Add(New SqlParameter("@Cultura", Idioma.Cultura.Name))
-            'End With
-            'Acceso.Escritura(Command)
-            'Command.Dispose()
-            'Dim Micomando As SqlCommand
+            Dim Command As SqlCommand = Acceso.MiComando("Update IdiomaEntidad set Cultura=@Cultura where ID_Idioma = @ID_Idioma")
+            With Command.Parameters
+                .Add(New SqlParameter("@ID_Idioma", Idioma.ID_Idioma))
+                .Add(New SqlParameter("@Cultura", Idioma.Cultura.Name))
+            End With
+            Acceso.Escritura(Command)
+            Command.Dispose()
+            Dim Micomando As SqlCommand
 
-            'Dim CommandoEliminador As SqlCommand = Acceso.MiComando("Delete From Traduccion where ID_Idioma = @ID_Idioma")
-            'CommandoEliminador.Parameters.Add(New SqlParameter("@ID_Idioma", Idioma.ID_Idioma))
-            'Acceso.Escritura(CommandoEliminador)
+            Dim CommandoEliminador As SqlCommand = Acceso.MiComando("Delete From Traduccion where ID_Idioma = @ID_Idioma")
+            CommandoEliminador.Parameters.Add(New SqlParameter("@ID_Idioma", Idioma.ID_Idioma))
+            Acceso.Escritura(CommandoEliminador)
 
-            'Dim ComandoStr As String = "insert into Traduccion values (@ID_Control, @ID_Idioma, @Palabra)"
-            'For Each MiPalabra As Palabras In Idioma.Palabras
-            '    Micomando = Acceso.MiComando(ComandoStr)
-            '    With Micomando.Parameters
-            '        .Add(New SqlParameter("@ID_Control", MiPalabra.ID_Control))
-            '        .Add(New SqlParameter("@ID_Idioma", Idioma.ID_Idioma))
-            '        .Add(New SqlParameter("@Palabra", MiPalabra.Traduccion))
-            '    End With
-            '    Acceso.Escritura(Micomando)
-            'Next
+            Dim ComandoStr As String = "insert into Traduccion values (@ID_Control, @ID_Idioma, @Palabra)"
+            For Each MiPalabra As Palabras In Idioma.Palabras
+                Micomando = Acceso.MiComando(ComandoStr)
+                With Micomando.Parameters
+                    .Add(New SqlParameter("@ID_Control", MiPalabra.ID_Control))
+                    .Add(New SqlParameter("@ID_Idioma", Idioma.ID_Idioma))
+                    .Add(New SqlParameter("@Palabra", MiPalabra.Traduccion))
+                End With
+                Acceso.Escritura(Micomando)
+            Next
             Return True
         Catch ex As Exception
             Throw ex
@@ -69,53 +69,46 @@ Public Class IdiomaMPP
 
 
     Public Function EliminarIdioma(ByRef Idioma As IdiomaEntidad) As Boolean
-        'Try
-        'Dim Command As SqlCommand = Acceso.MiComando("Select ID_Usuario from Usuario where ID_idioma = @ID_Idioma")
-        'With Command.Parameters
-        '    .Add(New SqlParameter("@ID_Idioma", Idioma.ID_Idioma))
-        'End With
-        'Dim dt_usu As DataTable = Acceso.Lectura(Command)
-        'Command.Dispose()
-        'If dt_usu.Rows.Count = 0 Then
-        '    Dim CommandDel As SqlCommand = Acceso.MiComando("Update Idioma set BL=@BL where ID_Idioma = @ID_Idioma")
-        '    With CommandDel.Parameters
-        '        .Add(New SqlParameter("@ID_Idioma", Idioma.ID_Idioma))
-        '        .Add(New SqlParameter("@BL", True))
-        '    End With
-        '    Acceso.Escritura(CommandDel)
-        '    CommandDel.Dispose()
-        '    Return True
-        '    Else
-        '    Return False
-        '    End If
-        'Catch ex As Exception
-        '    Throw ex
-        'End Try
+        Try
+            Dim Command As SqlCommand = Acceso.MiComando("Select ID_Usuario from UsuarioEntidad where idioma = @ID_Idioma")
+            With Command.Parameters
+                .Add(New SqlParameter("@ID_Idioma", Idioma.ID_Idioma))
+            End With
+            Dim dt_usu As DataTable = Acceso.Lectura(Command)
+            Command.Dispose()
+            If dt_usu.Rows.Count = 0 Then
+                Dim CommandDel As SqlCommand = Acceso.MiComando("Update IdiomaEntidad set BL=@BL where ID_Idioma = @ID_Idioma")
+                With CommandDel.Parameters
+                    'si tenes un usuario con ese idioma seleccionado, no lo deja borrar.
+                    .Add(New SqlParameter("@ID_Idioma", Idioma.ID_Idioma))
+                    .Add(New SqlParameter("@BL", True))
+                End With
+                Acceso.Escritura(CommandDel)
+                CommandDel.Dispose()
+                Return True
+            Else
+                Return False
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Function
 
 
     Public Function SeleccionarIdioma(ByRef Usuario As UsuarioEntidad, ByRef ID_Idioma As Integer) As IdiomaEntidad
         Try
-            'Dim Command As SqlCommand = Acceso.MiComando("Update Usuario SET ID_Idioma=@ID_Idioma, DVH=@DVH where ID_Usuario=@ID_Usuario")
-            'Dim ListaParametros As New List(Of String)
-            'Usuario.Idioma.ID_Idioma = ID_Idioma
-            'Acceso.AgregarParametros(Usuario, ListaParametros)
-            'ListaParametros.Add(False.ToString) 'Agregado de Baja Logica
+            Dim Command As SqlCommand = Acceso.MiComando("Update UsuarioEntidad SET Idioma=@ID_Idioma where ID_Usuario=@ID_Usuario")
+            Dim ListaParametros As New List(Of String)
+            Usuario.Idioma.ID_Idioma = ID_Idioma
 
-            'With Command.Parameters
-            '    .Add(New SqlParameter("@ID_Idioma", ID_Idioma))
-            '    .Add(New SqlParameter("@ID_Usuario", Usuario.ID_Usuario))
-            '    .Add(New SqlParameter("@DVH", DigitoVerificadorDAL.CalcularDVH(ListaParametros)))
-            'End With
-            'Acceso.Escritura(Command)
-            'Command.Dispose()
-            'Dim CommandVerificador As SqlCommand = Acceso.MiComando("Select DVH from Usuario")
-            'Dim DataTabla = Acceso.Lectura(CommandVerificador)
-            'Dim Digitos As New List(Of String)
-            'For Each row As DataRow In DataTabla.Rows
-            '    Digitos.Add(row.Item("DVH"))
-            'Next
-            'Return Me.ConsultarPorID(ID_Idioma)
+            With Command.Parameters
+                .Add(New SqlParameter("@ID_Idioma", ID_Idioma))
+                .Add(New SqlParameter("@ID_Usuario", Usuario.ID_Usuario))
+            End With
+            Acceso.Escritura(Command)
+            Command.Dispose()
+
+            Return Me.ConsultarPorID(ID_Idioma)
         Catch ex As Exception
             Throw ex
         End Try
@@ -125,7 +118,7 @@ Public Class IdiomaMPP
         Try
             Dim _listaidiomas As List(Of IdiomaEntidad) = New List(Of IdiomaEntidad)
             Dim Command As SqlCommand
-            Command = Acceso.MiComando("Select Nombre from Idioma where bl= 0")
+            Command = Acceso.MiComando("Select Nombre from IdiomaEntidad where bl= 0")
             Dim _dt As DataTable = Acceso.Lectura(Command)
             For Each _dr As DataRow In _dt.Rows
                 Dim _idiom As IdiomaEntidad = New IdiomaEntidad
@@ -144,7 +137,7 @@ Public Class IdiomaMPP
         Try
             Dim _listaidiomas As List(Of IdiomaEntidad) = New List(Of IdiomaEntidad)
             Dim Command As SqlCommand
-            Command = Acceso.MiComando("Select * from Idioma where bl= 0")
+            Command = Acceso.MiComando("Select * from IdiomaEntidad where bl= 0")
             Dim _dt As DataTable = Acceso.Lectura(Command)
             For Each _dr As DataRow In _dt.Rows
                 Dim _idiom As IdiomaEntidad = New IdiomaEntidad
@@ -165,7 +158,7 @@ Public Class IdiomaMPP
         Try
             Dim _listaidiomas As New List(Of IdiomaEntidad)
             Dim Command As SqlCommand
-            Command = Acceso.MiComando("Select * from Idioma where Editable = 1 and bl= 0")
+            Command = Acceso.MiComando("Select * from IdiomaEntidad where Editable = 1 and bl= 0")
             Dim _dt As DataTable = Acceso.Lectura(Command)
             For Each _dr As DataRow In _dt.Rows
                 Dim _idiom As IdiomaEntidad = New IdiomaEntidad

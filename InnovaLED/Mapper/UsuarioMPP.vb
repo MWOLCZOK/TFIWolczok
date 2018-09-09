@@ -539,7 +539,7 @@ Public Class UsuarioMPP
             Usuario.Password = row("Password")
             Usuario.Intento = row("Intentos")
             Usuario.Bloqueo = row("Bloqueo")
-            Usuario.Idioma = New Entidades.IdiomaEntidad With {.ID_Idioma = row("ID_Idioma")}
+            Usuario.Idioma = New Entidades.IdiomaEntidad With {.ID_Idioma = row("Idioma")}
             TraerUsuario(Usuario)
             Usuario.Empleado = row("Empleado")
         Catch ex As Exception

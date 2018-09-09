@@ -8,11 +8,11 @@ Public Class ConsultarBitacoraAuditoria
         If Not IsPostBack Then
             Try
                 Dim IdiomaActual As Entidades.IdiomaEntidad
-                'If IsNothing(Current.Session("Cliente")) Then
-                '    IdiomaActual = Application("Español")
-                'Else
-                '    IdiomaActual = Application(TryCast(Current.Session("Cliente"), Entidades.UsuarioEntidad).Idioma.Nombre)
-                'End If
+                If IsNothing(Current.Session("Cliente")) Then
+                    IdiomaActual = Application("Español")
+                Else
+                    IdiomaActual = Application(TryCast(Current.Session("Cliente"), Entidades.UsuarioEntidad).Idioma.Nombre)
+                End If
                 CargarBitacoras()
                 CargarUsuarios(IdiomaActual)
                 CargarTipos(IdiomaActual)
@@ -38,7 +38,7 @@ Public Class ConsultarBitacoraAuditoria
     Private Sub CargarUsuarios(ByRef Idioma As Entidades.IdiomaEntidad)
         Dim lista As New List(Of Entidades.UsuarioEntidad)
         Dim Gestor As New Negocio.UsuarioBLL
-        'lista.Add(New Entidades.UsuarioEntidad With {.ID_Usuario = -1, .NombreUsu = Idioma.Palabras.Find(Function(p) p.Codigo = "MensajeTodos").Traduccion})
+        lista.Add(New Entidades.UsuarioEntidad With {.ID_Usuario = -1, .NombreUsu = Idioma.Palabras.Find(Function(p) p.Codigo = "MensajeTodos").Traduccion})
         lista.AddRange(Gestor.TraerUsuariosParaBloqueo(New Entidades.UsuarioEntidad With {.ID_Usuario = 0}))
         Me.lstusuarios.DataSource = lista
         Me.lstusuarios.DataBind()
@@ -88,8 +88,11 @@ Public Class ConsultarBitacoraAuditoria
                     IdiomaActual = Application(TryCast(Current.Session("Cliente"), Entidades.UsuarioEntidad).Idioma.Nombre)
                 End If
 
+                gv_Bitacora.Columns(0).Visible = False
+
+
                 With gv_Bitacora.HeaderRow
-                    .Cells(0).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "HeaderID").Traduccion
+
                     .Cells(1).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "HeaderDetalle").Traduccion
                     .Cells(2).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "HeaderFecha").Traduccion
                     .Cells(3).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "HeaderUsuario").Traduccion
@@ -102,9 +105,7 @@ Public Class ConsultarBitacoraAuditoria
                 gv_Bitacora.BottomPagerRow.CssClass = "table-bottom-dark"
             End If
         Catch ex As Exception
-            Dim clienteLogeado As Entidades.UsuarioEntidad = Current.Session("cliente")
-            Dim Bitac As New Entidades.Bitacora(clienteLogeado, ex.Message, Entidades.Tipo_Bitacora.Errores, Now, Request.UserAgent, Request.UserHostAddress, ex.StackTrace, ex.GetType().ToString, Request.Url.ToString)
-            Negocio.BitacoraBLL.CrearBitacora(Bitac)
+
         End Try
     End Sub
 
@@ -160,9 +161,7 @@ Public Class ConsultarBitacoraAuditoria
             CargarBitacoras(tipo, Desde, Hasta, usu)
 
         Catch ex As Exception
-            Dim clienteLogeado As Entidades.UsuarioEntidad = Current.Session("cliente")
-            Dim Bitac As New Entidades.Bitacora(clienteLogeado, ex.Message, Entidades.Tipo_Bitacora.Errores, Now, Request.UserAgent, Request.UserHostAddress, ex.StackTrace, ex.GetType().ToString, Request.Url.ToString)
-            Negocio.BitacoraBLL.CrearBitacora(Bitac)
+
         End Try
     End Sub
 

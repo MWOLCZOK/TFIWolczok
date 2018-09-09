@@ -86,13 +86,13 @@ Partial Public Class MasterPage
     Protected WithEvents alertvalid As Global.System.Web.UI.HtmlControls.HtmlGenericControl
     
     '''<summary>
-    '''Control textovalid.
+    '''Control lbl_textovalid.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents textovalid As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents lbl_textovalid As Global.System.Web.UI.HtmlControls.HtmlGenericControl
     
     '''<summary>
     '''Control success.
@@ -102,6 +102,15 @@ Partial Public Class MasterPage
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents success As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    
+    '''<summary>
+    '''Control lbl_success.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lbl_success As Global.System.Web.UI.HtmlControls.HtmlGenericControl
     
     '''<summary>
     '''Control Menu.

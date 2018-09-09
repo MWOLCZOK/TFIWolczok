@@ -59,16 +59,17 @@
                            
                 <asp:Image ID="LogoMenu" runat="server" ImageUrl="Imagenes/banner1.jpg" CssClass="img-responsive" />
 
-                 <div id="alertvalid" runat="server" name="alertvalid" class="alert alert-danger  text-center" visible="false">
-            <label runat="server" id="textovalid" class="text-danger"></label>
-        </div>
-        <div id="success" runat="server" name="success" class="alert alert-success  text-center" visible="false">
-            <label  id="lbl_success" class="text-success"></label>
-        </div>
 
             </div>
 
 
+                 <div id="alertvalid" runat="server" name="alertvalid" class="alert alert-danger  text-center" visible="false">
+            <label runat="server" id="lbl_textovalid" class="text-danger"></label>
+        </div>
+
+        <div id="success" runat="server" name="success" class="alert alert-success  text-center" visible="false">
+            <label  id="lbl_success" runat="server" class="text-success"></label>
+        </div>
             
 
             <div class="row fondoClaro bordeMenu">
