@@ -4,6 +4,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+   
     <script>
         $(function () {
             $("#datepicker1").datepicker();
@@ -11,8 +12,15 @@
         });
 
     </script>
+      <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager> 
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
+
+
+
     <div class="container-fluid">
         <br />
+    
                 <div id="alertvalid" runat="server" name="alertvalid" class="alert alert-warning  text-center" visible="false">
             <label runat="server" id="lblBitacora404" class="text-danger">No se encontraron Bitacoras para los filtros seleccionados</label>
         </div>
@@ -70,12 +78,17 @@
                         </div>
                         <br />
 
+                    
+
                         <br />
                         <br />
+                                                
+
                         <div class="form-horizontal">
 
                             <div class="form-group">
                                 <div class="col-md-12">
+                                    
                                     <asp:GridView CssClass="table table-hover table-bordered table-responsive table-success " ID="gv_Bitacora" runat="server" AutoGenerateColumns="False" HorizontalAlign="Center" AllowPaging="true" PageSize="5" OnPageIndexChanging="gv_Bitacora_PageIndexChanging" RowStyle-Height="40px">
                                         <HeaderStyle CssClass="thead-dark" />
                                         <PagerTemplate>
@@ -110,13 +123,20 @@
 
                                         </Columns>
                                     </asp:GridView>
+                                  
                                 </div>
                             </div>
                         </div>
+                                 
+
                     </div>
 
                 </div>
             </div>
         </div>
+             
     </div>
+         </ContentTemplate>
+        </asp:UpdatePanel>
+
 </asp:Content>

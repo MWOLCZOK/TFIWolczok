@@ -28,7 +28,7 @@ Public Class ConsultarBitacoraAuditoria
         Dim tipo As New Entidades.Tipo_Bitacora
         Dim itemValues As Array = System.Enum.GetValues(tipo.GetType)
         Dim itemNames As Array = System.Enum.GetNames(tipo.GetType)
-        'Me.lsttipos.Items.Add(New ListItem(Idioma.Palabras.Find(Function(p) p.Codigo = "MensajeTodos").Traduccion, -1))
+        Me.lsttipos.Items.Add(New ListItem(Idioma.Palabras.Find(Function(p) p.Codigo = "MensajeTodos").Traduccion, -1))
         For i As Integer = 0 To itemNames.Length - 1
             Dim item As New ListItem(itemNames(i), itemValues(i))
             Me.lsttipos.Items.Add(item)
