@@ -98,6 +98,7 @@ Public Class MasterPage
         Me.Menu.Items.Item(7).ChildItems.Add(New MenuItem("Modificar Idioma", "ModificarIdioma", Nothing, "/ModificarIdioma.aspx"))
         Me.Menu.Items.Item(7).ChildItems.Add(New MenuItem("Eliminar Idioma", "EliminarIdioma", Nothing, "/EliminarIdioma.aspx"))
         Me.Menu.Items.Item(7).ChildItems.Add(New MenuItem("Gestión de Bitácora", "GestiondeBitacora", Nothing, "/BitacoraAuditoria.aspx"))
+        Me.Menu.Items.Item(7).ChildItems.Add(New MenuItem("Agregar Perfil", "AgregarPerfil", Nothing, "/AgregarPerfil.aspx"))
 
         Me.Menu.Items.Add(New MenuItem("Cambiar Idioma", "SeleccionarIdioma", Nothing, "/SeleccionarIdioma.aspx"))
 

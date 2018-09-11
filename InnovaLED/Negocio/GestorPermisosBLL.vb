@@ -7,18 +7,18 @@ Public Class GestorPermisosBLL
 
     Private PermisosMPP As GestorPermisosMPP
 
-    Public Function Alta(ByVal perm As PermisoBaseEntidad) As Boolean
-        'Try
-        '    If ValidarNombre(perm.Nombre) Then
-        '        PermisosMPP = New GestorPermisosMPP
-        '        PermisosMPP.Alta(perm)
-        '        Return True
-        '    Else
-        '        Return False
-        '    End If
-        'Catch ex As Exception
-        '    Throw ex
-        'End Try
+    Public Function Alta(ByVal perm As RolEntidad) As Boolean
+        Try
+            If ValidarNombre(perm.Nombre) Then
+                PermisosMPP = New GestorPermisosMPP
+                PermisosMPP.Alta(perm)
+                Return True
+            Else
+                Return False
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Function
 
     Public Function Baja(ByVal Perfil As RolEntidad)
@@ -42,25 +42,23 @@ Public Class GestorPermisosBLL
     End Function
 
 
-    Public Sub Modificar(ByVal perm As PermisoBaseEntidad)
-        'Try
-        '    PermisosMPP = New GestorPermisosMPP
-        '    PermisosMPP.Modificar(perm)
-        '    '    BitacoraBLL.CrearBitacora("Se modificó el Perfil: " & perm.Nombre & " en el sistema.", TipoBitacora.Modificación, SessionBLL.SesionActual.ObtenerUsuarioActual)
-        'Catch FalloConexion As InvalidOperationException
-        '    'Dim Bitacora As New BitacoraEntidad("No se pudo modificar el Perfil: " & perm.Nombre & " en el sistema. Error de Conexion", TipoBitacora.Modificación, SessionBLL.SesionActual.ObtenerUsuarioActual)
-        '    'BitacoraBLL.ArchivarBitacora(Bitacora)
-        '    'Throw FalloConexion
-        'Catch ex As Exception
-        '    'BitacoraBLL.CrearBitacora("El Metodo " & ex.TargetSite.ToString & " generó un error. Su mensaje es: " & ex.Message, TipoBitacora.Errores, (New UsuarioEntidad With {.ID_Usuario = 0, .Nombre = "Sistema"}))
-        '    Throw ex
-        'End Try
+    Public Sub Modificar(ByVal perm As RolEntidad)
+        Try
+            PermisosMPP = New GestorPermisosMPP
+            PermisosMPP.Modificar(perm)
+
+        Catch FalloConexion As InvalidOperationException
+
+        Catch ex As Exception
+
+            Throw ex
+        End Try
     End Sub
 
-    Public Function ListarFamilias(ByVal filtro As Boolean) As List(Of PermisoBaseEntidad)
+    Public Function ListarFamilias() As List(Of RolEntidad)
         Try
-            Dim Permisos As List(Of PermisoBaseEntidad) = New List(Of PermisoBaseEntidad)
-            Permisos = (New GestorPermisosMPP).ListarFamilias(filtro)
+            Dim Permisos As List(Of RolEntidad) = New List(Of RolEntidad)
+            Permisos = (New GestorPermisosMPP).ListarFamilias()
             If Permisos.Count > 0 Then
                 Return Permisos
             Else
@@ -71,12 +69,14 @@ Public Class GestorPermisosBLL
         Catch FalloConexion As InvalidOperationException
             Throw FalloConexion
         Catch ex As Exception
-            'BitacoraBLL.CrearBitacora("El Metodo " & ex.TargetSite.ToString & " generó un error. Su mensaje es: " & ex.Message, TipoBitacora.Errores, (New UsuarioEntidad With {.ID_Usuario = 0, .Nombre = "Sistema"}))
+
             Throw ex
         End Try
     End Function
 
+
     Public Function ConsultarporID(ByVal ID As Integer) As RolEntidad
+        'Lista un ROL, le paso un ID, me devuelve un ROL.
         Try
             Dim Permisos As RolEntidad = New RolEntidad
             Permisos = (New GestorPermisosMPP).ConsultarporID(ID)
@@ -122,13 +122,6 @@ Public Class GestorPermisosBLL
             Throw ex
         End Try
     End Function
-
-
-
-
-
-
-
 
 
 

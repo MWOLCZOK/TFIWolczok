@@ -103,6 +103,7 @@
     <Content Include="AccesoRestringido.aspx" />
     <Content Include="ActualizarStock.aspx" />
     <Content Include="AgregarIdioma.aspx" />
+    <Content Include="AgregarPerfil.aspx" />
     <Content Include="BitacoraAuditoria.aspx" />
     <Content Include="CambiarContraseña.aspx" />
     <Content Include="CargarVenta.aspx" />
@@ -204,6 +205,13 @@
       <DependentUpon>AgregarIdioma.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="AgregarPerfil.aspx.designer.vb">
+      <DependentUpon>AgregarPerfil.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AgregarPerfil.aspx.vb">
+      <DependentUpon>AgregarPerfil.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="BitacoraAuditoria.aspx.designer.vb">
       <DependentUpon>BitacoraAuditoria.aspx</DependentUpon>
     </Compile>
@@ -246,6 +254,7 @@
       <DependentUpon>ConfirmarRegistracion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="ControladorPermisos.vb" />
     <Compile Include="CrearNuevoCliente.aspx.designer.vb">
       <DependentUpon>CrearNuevoCliente.aspx</DependentUpon>
     </Compile>
