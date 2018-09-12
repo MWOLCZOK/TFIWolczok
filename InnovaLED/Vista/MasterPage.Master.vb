@@ -411,9 +411,10 @@ Public Class MasterPage
                 End If
 
                 Dim PassSalt As List(Of String) = Negocio.EncriptarBLL.EncriptarPassword(txtPasswordreg.Value)
+                usu.Apellido = txtapereg.Value
                 usu.Nombre = txtnombrereg.Value
                 usu.NombreUsu = txtUserreg.Value
-                usu.Apellido = txtapereg.Value
+                usu.DNI = txtdni.Value
                 usu.Salt = PassSalt.Item(0)
                 usu.Password = PassSalt.Item(1)
                 usu.Idioma = New Entidades.IdiomaEntidad With {.ID_Idioma = 1}
@@ -424,8 +425,8 @@ Public Class MasterPage
                 If GestorCliente.Alta(usu) Then
                     Dim Bitac As New Bitacora(usu, usu.NombreUsu, Tipo_Bitacora.Login, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)
                     BitacoraBLL.CrearBitacora(Bitac)
-                    'Me.success.Visible = True
-                    'Me.alertvalid.Visible = False
+                    Me.success.Visible = True
+                    Me.alertvalid.Visible = False
                     'Me.txtusuario.Text = ""
                     EnviarMailRegistro(GestorCliente.GEtToken(usu.ID_Usuario))
                 End If

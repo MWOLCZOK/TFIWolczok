@@ -68,7 +68,7 @@
         </div>
 
         <div id="success" runat="server" name="success" class="alert alert-success  text-center" visible="false">
-            <label  id="lbl_success" runat="server" class="text-success"></label>
+            <label  id="lbl_success" runat="server" class="text-success">Para finalizar la registración ingrese a la direccion provista en el correo que acaba de ser enviado a su cuenta.</label>
         </div>
             
 
@@ -156,24 +156,30 @@
 
            
       <div class="modal-body">
+
+
             <div class="form-group">
-
-                <div class="form-group">
-                <label for="txtnombrereg">Nombre</label>
-                  <input id="txtnombrereg" runat="server" type="text " class="form-control"  placeholder="Ingrese su nombre"/>
-              </div>
-
-                <div class="form-group">
-                <label for="txtapereg">Apellido</label>
-                  <input id="txtapereg" runat="server" type="text " class="form-control"  placeholder="Ingrese su Apellido"/>
-              </div>
-
                 <label for="txtUserreg">Usuario</label>
                 <input id="txtUserreg" runat="server" type="text" class="form-control"  placeholder="Ingrese usuario"/>
               </div>
 
               <div class="form-group">
-                <label for="txtPasswordreg">Password</label>
+                <label for="txtnombrereg">Nombre</label>
+                <input id="txtnombrereg" runat="server" type="text " class="form-control"  placeholder="Ingrese su nombre"/>
+              </div>
+
+                <div class="form-group">
+                  <label for="txtapereg">Apellido</label>
+                  <input id="txtapereg" runat="server" type="text " class="form-control"  placeholder="Ingrese su Apellido"/>
+              </div>
+
+             <div>
+                <label for="txtdni">DNI</label>
+                <input id="txtdni" runat="server" type="text" class="form-control"  placeholder="Ingrese DNI"/>
+              </div>                
+
+              <div class="form-group">
+                  <label for="txtPasswordreg">Password</label>
                   <input id="txtPasswordreg" runat="server" type="password" class="form-control"  placeholder="Ingrese password"/>
               </div>
 
@@ -181,11 +187,10 @@
                 <label for="txtmail">Correo Electronico</label>
                   <input id="txtmail" runat="server" type="password " class="form-control"  placeholder="Ingrese su correo Electronico"/>
               </div>
-      </div>
-      <div class="modal-footer">
+   
+        <div class="modal-footer">
           <asp:Button ID="btnregistracion" runat="server" CssClass="btn btn-primary" OnClick="btnregistracion_Click" Text="Aceptar"/>
           <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
-      
       </div>
 
     </div>

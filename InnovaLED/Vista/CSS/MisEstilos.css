@@ -1,11 +1,20 @@
 ﻿.FondoPagina {
-    background-color: #368be1;
+    background: linear-gradient(to right, #0066cc 0%, #ccffff 100%);
 }
 
 .FondoPanel {
     background-color: #EEEEEE;
     color: #337ab7 !important ;
 }
+
+.FondoPaginaRol {
+background-color:##dfe4f2;
+font-family:Bahnschrift;
+font-weight:bold;
+font-size:18px;
+
+}
+
 
 
 .TituloPanel {

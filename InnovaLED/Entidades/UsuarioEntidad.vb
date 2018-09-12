@@ -43,6 +43,16 @@ Public Class UsuarioEntidad
         End Set
     End Property
 
+    Private _dni As Integer
+    Public Property DNI() As Integer
+        Get
+            Return _dni
+        End Get
+        Set(ByVal value As Integer)
+            _dni = value
+        End Set
+    End Property
+
     Private _fecha_alta As DateTime
     Public Property FechaAlta() As DateTime
         Get

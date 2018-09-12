@@ -3,9 +3,13 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div class="row">
 
-    <asp:Label ID="lblroles" class="col-md-offset-1 col-md-3" Font-Bold="True"  font-size="18px" runat="server" Text="Label"></asp:Label>
+
+
+    <div class="row">
+        <br />
+        <br />
+    <asp:Label ID="lblroles" class="  col-md-offset-1 col-md-3" font-weight="lighter" font-size="24px" runat="server" Text="Label"></asp:Label>
         </div>
     <div class="row">
     <br />
@@ -16,9 +20,9 @@
 
         <div class="row">
             <br />
-        <asp:Label ID="Lblpermisosactuales" Class=" col-md-offset-1 col-md-3" Font-Bold="True"  font-size="18px" runat="server" Text="Label"></asp:Label>
+        <asp:Label ID="Lblpermisosactuales" Class="  col-md-offset-1 col-md-3" font-weight="lighter" font-size="24px" runat="server" Text="Label"></asp:Label>
 
-        <asp:Label ID="Lblpermisosdisponibles" Class=" col-md-offset-4 col-md-3 " Font-Bold="True"  font-size="18px" runat="server" Text="Label"></asp:Label>
+        <asp:Label ID="Lblpermisosdisponibles" Class="  col-md-offset-4 col-md-3 " font-weight="lighter"  font-size="24px" runat="server" Text="Label"></asp:Label>
     <br />
     </div>
 

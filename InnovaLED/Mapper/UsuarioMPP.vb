@@ -23,18 +23,18 @@ Public Class UsuarioMPP
 
     Public Function Alta(ByRef Usuario As UsuarioEntidad) As Boolean
         Try
-            Dim Command As SqlCommand = Acceso.MiComando("insert into UsuarioEntidad (NombreUsuario,Password,Nombre,Apellido,Fecha_Alta,Salt,Bloqueo,Intentos,Idioma,Rol,mail,Empleado,BL) OUTPUT INSERTED.ID_Usuario values (@NombreUsuario, @Password,@Nombre,@Apellido,@Fecha ,@Salt, @Bloqueo, @Intento, @Idioma, @Perfil,@mail,@Empleado,@BL)")
+            Dim Command As SqlCommand = Acceso.MiComando("insert into UsuarioEntidad (NombreUsuario,Password,Nombre,Apellido,DNI,Fecha_Alta,Salt,Bloqueo,Intentos,Idioma,mail,Empleado,BL) OUTPUT INSERTED.ID_Usuario values (@NombreUsuario, @Password,@Nombre,@Apellido,@DNI,@Fecha_Alta ,@Salt, @Bloqueo, @Intento, @Idioma,@mail,@Empleado,@BL)")
             With Command.Parameters
                 .Add(New SqlParameter("@NombreUsuario", Usuario.NombreUsu))
                 .Add(New SqlParameter("@Password", Usuario.Password))
                 .Add(New SqlParameter("@Nombre", Usuario.Nombre))
                 .Add(New SqlParameter("@Apellido", Usuario.Apellido))
-                .Add(New SqlParameter("@Fecha", Usuario.FechaAlta))
+                .Add(New SqlParameter("@DNI", Usuario.DNI))
+                .Add(New SqlParameter("@Fecha_Alta", Usuario.FechaAlta))
                 .Add(New SqlParameter("@Salt", Usuario.Salt))
                 .Add(New SqlParameter("@Bloqueo", Usuario.Bloqueo))
                 .Add(New SqlParameter("@Intento", Usuario.Intento))
                 .Add(New SqlParameter("@Idioma", Usuario.Idioma.ID_Idioma))
-                .Add(New SqlParameter("@Perfil", 2))
                 .Add(New SqlParameter("@Mail", Usuario.Mail))
                 .Add(New SqlParameter("@Empleado", Usuario.Empleado))
                 .Add(New SqlParameter("@BL", False))
@@ -42,11 +42,7 @@ Public Class UsuarioMPP
 
             Usuario.ID_Usuario = Acceso.Scalar(Command)
             Command.Dispose()
-
-
-
-
-
+            
             If Usuario.Bloqueo = True Then
                 CrearToken(Usuario, True)
             End If

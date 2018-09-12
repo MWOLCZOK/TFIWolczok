@@ -176,6 +176,15 @@ Partial Public Class MasterPage
     Protected WithEvents btnolvidepass As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
+    '''Control txtUserreg.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents txtUserreg As Global.System.Web.UI.HtmlControls.HtmlInputText
+    
+    '''<summary>
     '''Control txtnombrereg.
     '''</summary>
     '''<remarks>
@@ -194,13 +203,13 @@ Partial Public Class MasterPage
     Protected WithEvents txtapereg As Global.System.Web.UI.HtmlControls.HtmlInputGenericControl
     
     '''<summary>
-    '''Control txtUserreg.
+    '''Control txtdni.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtUserreg As Global.System.Web.UI.HtmlControls.HtmlInputText
+    Protected WithEvents txtdni As Global.System.Web.UI.HtmlControls.HtmlInputText
     
     '''<summary>
     '''Control txtPasswordreg.
