@@ -103,7 +103,6 @@
     <Content Include="AccesoRestringido.aspx" />
     <Content Include="ActualizarStock.aspx" />
     <Content Include="AgregarIdioma.aspx" />
-    <Content Include="AgregarPerfil.aspx" />
     <Content Include="AgregarPerfil2.aspx" />
     <Content Include="BitacoraAuditoria.aspx" />
     <Content Include="CambiarContraseña.aspx" />
@@ -142,6 +141,7 @@
     <Content Include="GenerarDocumento.aspx" />
     <Content Include="GenerarEnvio.aspx" />
     <Content Include="GenerarPresupuesto.aspx" />
+    <Content Include="AgregarPerfil.aspx" />
     <Content Include="GestionarRoles.aspx" />
     <Content Include="GestionarSolucionesLED.aspx" />
     <Content Include="GestiondeUsuario.aspx" />
@@ -208,13 +208,6 @@
     <Compile Include="AgregarIdioma.aspx.vb">
       <DependentUpon>AgregarIdioma.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AgregarPerfil.aspx.designer.vb">
-      <DependentUpon>AgregarPerfil.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AgregarPerfil.aspx.vb">
-      <DependentUpon>AgregarPerfil.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="AgregarPerfil2.aspx.designer.vb">
       <DependentUpon>AgregarPerfil2.aspx</DependentUpon>
@@ -320,6 +313,13 @@
     </Compile>
     <Compile Include="GenerarPresupuesto.aspx.vb">
       <DependentUpon>GenerarPresupuesto.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="AgregarPerfil.aspx.designer.vb">
+      <DependentUpon>AgregarPerfil.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AgregarPerfil.aspx.vb">
+      <DependentUpon>AgregarPerfil.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="GestionarRoles.aspx.designer.vb">
