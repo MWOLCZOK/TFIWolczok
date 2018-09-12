@@ -104,6 +104,7 @@
     <Content Include="ActualizarStock.aspx" />
     <Content Include="AgregarIdioma.aspx" />
     <Content Include="AgregarPerfil.aspx" />
+    <Content Include="AgregarPerfil2.aspx" />
     <Content Include="BitacoraAuditoria.aspx" />
     <Content Include="CambiarContraseña.aspx" />
     <Content Include="CargarVenta.aspx" />
@@ -149,7 +150,9 @@
     <Content Include="IMAGENES\bannerregistracion.png" />
     <Content Include="IMAGENES\blue.png" />
     <Content Include="IMAGENES\CalculadoraDeAhorro.jpg" />
+    <Content Include="IMAGENES\Delete-32.png" />
     <Content Include="IMAGENES\edificio.jpg" />
+    <Content Include="IMAGENES\Edit-32.png" />
     <Content Include="IMAGENES\facebook.png" />
     <Content Include="IMAGENES\PorqueUtilizarLed.jpg" />
     <Content Include="IMAGENES\red.png" />
@@ -179,6 +182,7 @@
     <Content Include="RecuperarPassword.aspx" />
     <Content Include="Registracion.aspx" />
     <Content Include="ReporteStock.aspx" />
+    <Content Include="script.sql" />
     <Content Include="SeleccionarIdioma.aspx" />
     <Content Include="SolicitudPedido.aspx" />
     <Content Include="Web.config" />
@@ -210,6 +214,13 @@
     </Compile>
     <Compile Include="AgregarPerfil.aspx.vb">
       <DependentUpon>AgregarPerfil.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="AgregarPerfil2.aspx.designer.vb">
+      <DependentUpon>AgregarPerfil2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AgregarPerfil2.aspx.vb">
+      <DependentUpon>AgregarPerfil2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="BitacoraAuditoria.aspx.designer.vb">

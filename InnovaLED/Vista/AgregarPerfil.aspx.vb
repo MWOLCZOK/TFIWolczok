@@ -1,72 +1,39 @@
-﻿Imports Entidades
-
-
-
-Imports System.Web.HttpContext
-Public Class AgregarPerfil
+﻿Public Class AgregarPerfil1
     Inherits System.Web.UI.Page
 
+    Protected mensajeConfirmacion As String
+
+    Dim _gestorpermiso As New Negocio.GestorPermisosBLL
+    Private _listapermisos As List(Of Entidades.PermisoBaseEntidad)
+
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        Me.Cargar()
         If Not IsPostBack Then
-            Try
-                TreeView1.Attributes.Add("onclick", "postBackByObject()")
-                ControladorPermisos.CargarPermisos(Me.TreeView1)
-            Catch ex As Exception
-
-            End Try
-
+            Me.CargarGridView()
         End If
+
+
     End Sub
 
-    Private Sub TreeView1_TreeNodeCheckChanged(sender As Object, e As TreeNodeEventArgs) Handles TreeView1.TreeNodeCheckChanged
-        Try
-            ControladorPermisos.CheckChildNodes(e.Node)
-        Catch ex As Exception
 
+
+    Public Sub Cargar()
+        Try
+            _listapermisos = _gestorpermiso.ListarPermisos()
+        Catch ex As Negocio.ExceptionPermisoNoExiste
+            Me.error.Visible = True
+            Me.lbl_TituloError.Text = ex.Message
+        Catch ex As Exception
+            Me.error.Visible = True
+            Me.lbl_TituloError.Text = ex.Message
         End Try
     End Sub
 
-    Private Sub btnAddPerfil_Click(sender As Object, e As EventArgs) Handles btnAddPerfil.Click
-        Try
-            Dim IdiomaActual As Entidades.IdiomaEntidad
-            If IsNothing(Current.Session("Cliente")) Then
-                IdiomaActual = Application("Español")
-            Else
-                IdiomaActual = Application(TryCast(Current.Session("Cliente"), Entidades.UsuarioEntidad).Idioma.Nombre)
-            End If
-            Dim Perfil As New Entidades.RolEntidad
-            Perfil.Nombre = txtnombre.Text
-            Perfil = ControladorPermisos.RecorrerArbol(Nothing, Perfil, TreeView1)
-            If Perfil.Hijos.Count > 0 Then
-                Dim GestorPermisos As New Negocio.GestorPermisosBLL
-                If GestorPermisos.Alta(Perfil) Then
-                    Dim clienteLogeado As Entidades.UsuarioEntidad = Current.Session("cliente")
-                    Dim Bitac As New Bitacora(clienteLogeado, IdiomaActual.Palabras.Find(Function(p) p.Codigo = "BitacoraAddPerfilSuccess1").Traduccion & Perfil.Nombre & IdiomaActual.Palabras.Find(Function(p) p.Codigo = "BitacoraSuccesfully").Traduccion, Tipo_Bitacora.Alta, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)
-                    Negocio.BitacoraBLL.CrearBitacora(Bitac)
-                    txtnombre.Text = ""
-                    alertvalid.Visible = False
-                    success.Visible = True
-                Else
-                    alertvalid.InnerText = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "AddPerfilError1").Traduccion
-                    alertvalid.Visible = True
-                    success.Visible = False
-                End If
-
-
-            Else
-                alertvalid.InnerText = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "AddPerfilError2").Traduccion
-                alertvalid.Visible = True
-                success.Visible = False
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
+    Private Sub CargarGridView()
+        Me.gv_Perfiles.DataSource = _listapermisos
+        Me.gv_Perfiles.DataBind()
+        Me.gv_Perfiles.Columns(0).Visible = False
     End Sub
-
-
-
-
-
 
 
 

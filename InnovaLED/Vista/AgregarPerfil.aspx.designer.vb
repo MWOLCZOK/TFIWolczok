@@ -11,86 +11,41 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class AgregarPerfil
+Partial Public Class AgregarPerfil1
     
     '''<summary>
-    '''Control alertvalid.
+    '''Control error.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents alertvalid As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents [error] As Global.System.Web.UI.HtmlControls.HtmlGenericControl
     
     '''<summary>
-    '''Control textovalid.
+    '''Control lbl_TituloError.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents textovalid As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents lbl_TituloError As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''Control success.
+    '''Control cab_adminPerfil.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents success As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents cab_adminPerfil As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''Control lblPanelAddPerfil.
+    '''Control gv_Perfiles.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblPanelAddPerfil As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''Control lblnombreAddPerfil.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents lblnombreAddPerfil As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''Control txtnombre.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents txtnombre As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''Control RequiredFieldValidator6.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator6 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
-    '''<summary>
-    '''Control TreeView1.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents TreeView1 As Global.System.Web.UI.WebControls.TreeView
-    
-    '''<summary>
-    '''Control btnAddPerfil.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents btnAddPerfil As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents gv_Perfiles As Global.System.Web.UI.WebControls.GridView
 End Class

@@ -51,6 +51,9 @@ Public Class ConsultarBitacoraAuditoria
             Me.alertvalid.Visible = True
             Me.gv_Bitacora.DataSource = lista
             Me.gv_Bitacora.DataBind()
+            With gv_Bitacora.HeaderRow
+
+            End With
         Else
             Me.alertvalid.Visible = False
             Me.gv_Bitacora.DataSource = lista
