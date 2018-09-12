@@ -23,13 +23,31 @@ Partial Public Class GestionarPerfiles
     Protected WithEvents lblroles As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''Control Dropdwnroles.
+    '''Control DropdwnrolesListar.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents Dropdwnroles As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents DropdwnrolesListar As Global.System.Web.UI.WebControls.DropDownList
+    
+    '''<summary>
+    '''Control Lblpermisosactuales.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Lblpermisosactuales As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Control Lblpermisosdisponibles.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Lblpermisosdisponibles As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
     '''Control Lstperfilesactuales.
@@ -66,4 +84,58 @@ Partial Public Class GestionarPerfiles
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents Lsttodoslosperfiles As Global.System.Web.UI.WebControls.ListBox
+    
+    '''<summary>
+    '''Control Btnaceptar.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Btnaceptar As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''Control Btncancelar.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Btncancelar As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''Control Btncrearrol.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Btncrearrol As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''Control Txtcrearrol.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Txtcrearrol As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Control Btneliminarrol.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Btneliminarrol As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''Control DropdwnrolesElim.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents DropdwnrolesElim As Global.System.Web.UI.WebControls.DropDownList
 End Class
