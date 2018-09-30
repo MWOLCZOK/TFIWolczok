@@ -66,7 +66,9 @@
     <Compile Include="BackupRestoreEntidad.vb" />
     <Compile Include="Bitacora.vb" />
     <Compile Include="Cliente.vb" />
+    <Compile Include="Encuesta.vb" />
     <Compile Include="IdiomaEntidad.vb" />
+    <Compile Include="Mensaje.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -82,8 +84,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Novedad.vb" />
     <Compile Include="Palabras.vb" />
     <Compile Include="PermisoBaseEntidad.vb" />
+    <Compile Include="Pregunta.vb" />
+    <Compile Include="Respuesta.vb" />
     <Compile Include="RolEntidad.vb" />
     <Compile Include="Tipo_Bitacora.vb" />
     <Compile Include="UsuarioEntidad.vb" />
