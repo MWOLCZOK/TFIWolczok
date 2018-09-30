@@ -33,7 +33,7 @@
                <div class="container-fluid FondoPagina">
 
             
-                      <div class="row fondoGris bordeImagen">
+                      <div class="row fondoGris Blanco bordeImagen">
                
                
 
@@ -72,7 +72,7 @@
         </div>
             
 
-            <div class="row fondoClaro bordeMenu">
+            <div class="row fondoClaro Blanco bordeMenu">
                 <div class="col-md-12 MenuFrente">
                     <asp:Menu ID="Menu" runat="server" Orientation="Horizontal" Font-Size="16px" ForeColor="#FFFFFF" Height="30px" >
                         <StaticSelectedStyle BackColor="#FFFFFF" />
@@ -103,7 +103,7 @@
             <div class="row Azul MenuFrente">
                 <br />
                 <div class="col-md-8 col-md-offset-2 text-center" >
-                    <div class="textoCopyright">
+                    <div class="textoCopyright Blanco">
                         <asp:Label ID="lblcopyright" runat="server" Text="Trabajo Final de Ingenieria - Wolczok - 2018"></asp:Label>
                     </div>
                 </div>
@@ -114,14 +114,14 @@
       
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="loginModalTitle">Login</h5>
+        <h5 class="modal-title Blanco" id="loginModalTitle">Login</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
 
            
-      <div class="modal-body">
+      <div class="modal-body Blanco">
             <div class="form-group">
                 <label for="txtUser">Usuario</label>
                 <input id="txtUser" runat="server" type="text" class="form-control"  placeholder="Ingrese usuario"/>
@@ -148,14 +148,14 @@
       
     <div class="modal-content">
       <div class="modal-header">
-        <label  class="modal-title" id="Registro">Registro</label>
+        <label  class="modal-title Blanco" id="Registro">Registro</label>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
 
            
-      <div class="modal-body">
+      <div class="modal-body Blanco">
 
 
             <div class="form-group">

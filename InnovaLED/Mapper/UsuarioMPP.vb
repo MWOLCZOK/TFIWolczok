@@ -41,10 +41,23 @@ Public Class UsuarioMPP
             End With
 
             Usuario.ID_Usuario = Acceso.Scalar(Command)
-            Command.Dispose()
-            
+            'Command.Dispose()
+
+            For Each rol As RolEntidad In Usuario.Rol
+                Dim Command3 As SqlCommand = Acceso.MiComando("insert into UsuarioEntidad_RolEntidad values (@ID_Usuario,@ID_Rol)")
+                With Command3.Parameters
+                    .Add(New SqlParameter("@ID_Usuario", Usuario.ID_Usuario))
+                    .Add(New SqlParameter("@ID_Rol", rol.ID_Rol))
+
+                End With
+                Acceso.Escritura(Command3)
+            Next
+
+
             If Usuario.Bloqueo = True Then
                 CrearToken(Usuario, True)
+
+
             End If
 
             Return True
@@ -127,11 +140,51 @@ Public Class UsuarioMPP
 
     Public Function Modificar(ByRef Usuario As UsuarioEntidad) As Boolean
 
-        'Return True
-        'Catch ex As Exception
-        'Throw ex
-        'End Try
+        Try
+            Dim Command As SqlCommand = Acceso.MiComando("update UsuarioEntidad set NombreUsuario=@NombreUsuario, Idioma=@Idioma where ID_Usuario=@ID_Usuario and BL=@BL")
+            Dim ListaParametros As New List(Of String)
+
+            With Command.Parameters
+                .Add(New SqlParameter("@ID_Usuario", Usuario.ID_Usuario))
+                .Add(New SqlParameter("@NombreUsuario", Usuario.NombreUsu))
+                .Add(New SqlParameter("@Idioma", Usuario.Idioma.ID_Idioma))
+
+                .Add(New SqlParameter("@BL", False))
+
+            End With
+            Acceso.Escritura(Command)
+            Command.Dispose()
+
+
+            Dim Command2 As SqlCommand = Acceso.MiComando("delete from UsuarioEntidad_RolEntidad where ID_Usuario=@ID_Usuario")
+                With Command2.Parameters
+                    .Add(New SqlParameter("@ID_Usuario", Usuario.ID_Usuario))
+                End With
+            Acceso.Escritura(Command2)
+            Command2.Dispose()
+            For Each rol As RolEntidad In Usuario.Rol
+                Dim Command3 As SqlCommand = Acceso.MiComando("insert into UsuarioEntidad_RolEntidad values (@ID_Usuario,@ID_Rol)")
+                With Command3.Parameters
+                    .Add(New SqlParameter("@ID_Usuario", Usuario.ID_Usuario))
+                    .Add(New SqlParameter("@ID_Rol", rol.ID_Rol))
+
+                End With
+                Acceso.Escritura(Command3)
+            Next
+            Return True
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+
     End Function
+
+
+
+
+
+
+
 
     Public Function GetToken(ByVal ID_usuario As Integer) As String
         Dim Command As SqlCommand = Acceso.MiComando("Select TOP 1 ID_Token from Token_Usuario inner join UsuarioEntidad on UsuarioEntidad.ID_Usuario=Token_Usuario.ID_Usuario where Token_Usuario.ID_Usuario=@Usuario and Fecha_Expiro>Getdate() and UsuarioEntidad.Bloqueo = 1 order by Fecha_Expiro desc")
@@ -161,6 +214,16 @@ Public Class UsuarioMPP
 
     Public Function Eliminar(ByRef Usuario As UsuarioEntidad) As Boolean
         Try
+            Dim Command As SqlCommand = Acceso.MiComando("Update UsuarioEntidad Set BL=@BL where ID_Usuario = @ID_Usuario")
+            Dim ListaParametros As New List(Of String)
+
+            With Command.Parameters
+                .Add(New SqlParameter("@BL", True))
+                .Add(New SqlParameter("@ID_Usuario", Usuario.ID_Usuario))
+
+            End With
+            Acceso.Escritura(Command)
+            Command.Dispose()
 
             Return True
         Catch ex As Exception
@@ -447,7 +510,7 @@ Public Class UsuarioMPP
 
 
         Try
-            Dim consulta As String = "Select * from UsuarioEntidad where Bloqueo=0 and BL=0 and ID_Usuario <> 0"
+            Dim consulta As String = "Select * from UsuarioEntidad where BL=0 and ID_Usuario <> 0"
             Dim Command As SqlCommand = Acceso.MiComando(consulta)
             Dim dt As DataTable = Acceso.Lectura(Command)
             Dim ListaUsuario As List(Of UsuarioEntidad) = New List(Of UsuarioEntidad)

@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class Login
+Partial Public Class Restore
     
     '''<summary>
     '''Control alertvalid.
@@ -41,92 +41,92 @@ Partial Public Class Login
     Protected WithEvents success As Global.System.Web.UI.HtmlControls.HtmlGenericControl
     
     '''<summary>
-    '''Control lblPanelLogin.
+    '''Control lblPanelRestore.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblPanelLogin As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblPanelRestore As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''Control lblUsuario.
+    '''Control lblinfobackup.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblUsuario As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblinfobackup As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''Control txtUsuario.
+    '''Control BtnBackup.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtUsuario As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents BtnBackup As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
-    '''Control RtxtUsuario.
+    '''Control lblinforestore.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents RtxtUsuario As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents lblinforestore As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''Control lblpass.
+    '''Control lblbackupserv.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblpass As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblbackupserv As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''Control txtPassword.
+    '''Control Backups.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtPassword As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents Backups As Global.System.Web.UI.WebControls.DropDownList
     
     '''<summary>
-    '''Control RtxtPassword.
+    '''Control lblbackup.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents RtxtPassword As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents lblbackup As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''Control btnIngresar.
+    '''Control FileUpload1.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents btnIngresar As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents FileUpload1 As Global.System.Web.UI.WebControls.FileUpload
     
     '''<summary>
-    '''Control btnolvpass.
+    '''Control btnserver.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents btnolvpass As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnserver As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
-    '''Control btnregistrarse.
+    '''Control btnlocal.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents btnregistrarse As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnlocal As Global.System.Web.UI.WebControls.Button
 End Class

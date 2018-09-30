@@ -1114,9 +1114,9 @@ html {
 }
 body {
   font-family: "Bahnschrift";
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.42857143;
-  color: #fff;
+  color: #333;
     background-color: #fff;
 }
 input,
@@ -4086,7 +4086,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .input-group-btn,
 .input-group .form-control {
   display: table-cell;
-    top: 0px;
+    top: 1px;
     left: 0px;
 }
 .input-group-addon:not(:first-child):not(:last-child),

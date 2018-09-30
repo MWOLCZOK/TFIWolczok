@@ -67,6 +67,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BackupRestoreBLL.vb" />
     <Compile Include="BitacoraBLL.vb" />
     <Compile Include="EncriptarBLL.vb" />
     <Compile Include="GestorErroresBLL.vb" />

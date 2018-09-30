@@ -74,6 +74,25 @@ Public Class GestorPermisosBLL
         End Try
     End Function
 
+    Public Function ListarFamiliasGestion() As List(Of RolEntidad)
+        Try
+            Dim Permisos As List(Of RolEntidad) = New List(Of RolEntidad)
+            Permisos = (New GestorPermisosMPP).ListarFamiliasGestion()
+            If Permisos.Count > 0 Then
+                Return Permisos
+            Else
+                Throw New ExceptionNoHayPerfiles
+            End If
+        Catch NoHayPerfiles As ExceptionNoHayPerfiles
+            Throw NoHayPerfiles
+        Catch FalloConexion As InvalidOperationException
+            Throw FalloConexion
+        Catch ex As Exception
+
+            Throw ex
+        End Try
+    End Function
+
 
     Public Function ConsultarporID(ByVal ID As Integer) As RolEntidad
         'Lista un ROL, le paso un ID, me devuelve un ROL.

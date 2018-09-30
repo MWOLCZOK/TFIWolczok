@@ -63,6 +63,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BackupRestoreMPP.vb" />
     <Compile Include="BitacoraMPP.vb" />
     <Compile Include="GestorPermisosMPP.vb" />
     <Compile Include="IdiomaMPP.vb" />

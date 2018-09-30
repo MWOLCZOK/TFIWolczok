@@ -49,6 +49,12 @@
         Return Me.Nombre.Equals(nombrePermiso)
     End Function
 
+    Public Overrides Function ToString() As String
+        Return Me.Nombre
+    End Function
+
+
+
 
 
 

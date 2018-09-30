@@ -6,19 +6,27 @@
 
 
 
-    <div class="row">
+    <div class="row Blanco">
         <br />
         <br />
+          <div id="alertvalid" runat="server" name="alertvalid" class="alert alert-danger  text-center" visible="false">
+            <label runat="server" id="lbl_textovalid" class="text-danger"></label>
+        </div>
+
+        <div id="success" runat="server" name="success" class="alert alert-success  text-center" visible="false">
+            <label  id="lbl_success" runat="server" class="text-success"></label>
+        </div>
+
     <asp:Label ID="lblroles" class="  col-md-offset-1 col-md-3" font-weight="lighter" font-size="24px" runat="server" Text="Label"></asp:Label>
         </div>
     <div class="row">
     <br />
-    <asp:DropDownList ID="DropdwnrolesListar" CssClass="btn btn-default dropdown-toggle col-md-offset-1 col-md-2" runat="server">
+    <asp:DropDownList ID="DropdwnrolesListar" CssClass="btn btn-default dropdown-toggle col-md-offset-1 col-md-2" DataTextField="Nombre" DataValueField="ID_Rol" runat="server" AutoPostBack="true">
     </asp:DropDownList>
     <br />
         </div>
 
-        <div class="row">
+        <div class="row Blanco">
             <br />
         <asp:Label ID="Lblpermisosactuales" Class="  col-md-offset-1 col-md-3" font-weight="lighter" font-size="24px" runat="server" Text="Label"></asp:Label>
 
@@ -27,11 +35,11 @@
     </div>
 
     <div class="row">
-    <asp:ListBox ID="Lstperfilesactuales" Class=" col-md-offset-1 col-md-3" runat="server" Rows="20"></asp:ListBox>
+    <asp:ListBox ID="Lstperfilesactuales" Class=" col-md-offset-1 col-md-3" runat="server" Rows="20" DataTextField="Nombre" DataValueField="ID_Permiso" AutoPostBack="true"></asp:ListBox>
        <asp:Button ID="Btnagregarrol" class="btn btn-info col-md-offset-1 col-md-1 btn-lg " runat="server" Text="Agregar"/>
        <asp:Button ID="Btnquitarrol" class="btn btn-info col-md-1  btn-lg" runat="server" Text="Quitar" />
        
-         <asp:ListBox ID="Lsttodoslosperfiles" Class=" col-md-3 col-md-offset-1" runat="server" Rows="20"></asp:ListBox>
+         <asp:ListBox ID="Lsttodoslosperfiles" Class=" col-md-3 col-md-offset-1" DataTextField="Nombre" DataValueField="ID_Permiso" runat="server" Rows="20" AutoPostBack="true"></asp:ListBox>
         
      </div>
 
@@ -55,7 +63,8 @@
             <asp:Button ID="Btneliminarrol" Class=" btn btn-info col-md-offset-4 col-md-1 btn-sm"  runat="server" Text="Button" />
             <asp:DropDownList ID="DropdwnrolesElim" class="btn btn-default dropdown-toggle col-md-2" runat="server">
             </asp:DropDownList>
-            <br />
+
+               <br />
           <br />
           <br />
           <br />

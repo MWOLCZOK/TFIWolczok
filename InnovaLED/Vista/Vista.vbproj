@@ -103,7 +103,6 @@
     <Content Include="AccesoRestringido.aspx" />
     <Content Include="ActualizarStock.aspx" />
     <Content Include="AgregarIdioma.aspx" />
-    <Content Include="AgregarPerfil2.aspx" />
     <Content Include="BitacoraAuditoria.aspx" />
     <Content Include="CambiarContraseña.aspx" />
     <Content Include="CargarVenta.aspx" />
@@ -144,16 +143,21 @@
     <Content Include="AgregarPerfil.aspx" />
     <Content Include="GestionarRoles.aspx" />
     <Content Include="GestionarSolucionesLED.aspx" />
-    <Content Include="GestiondeUsuario.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="IMAGENES\Arrow.png" />
     <Content Include="IMAGENES\banner1.jpg" />
     <Content Include="IMAGENES\bannerregistracion.png" />
     <Content Include="IMAGENES\blue.png" />
     <Content Include="IMAGENES\CalculadoraDeAhorro.jpg" />
+    <Content Include="IMAGENES\check.png" />
+    <Content Include="IMAGENES\clear.png" />
     <Content Include="IMAGENES\Delete-32.png" />
     <Content Include="IMAGENES\edificio.jpg" />
     <Content Include="IMAGENES\Edit-32.png" />
+    <Content Include="IMAGENES\edit.png" />
     <Content Include="IMAGENES\facebook.png" />
+    <Content Include="IMAGENES\padlock-close.png" />
+    <Content Include="IMAGENES\padlock-open.png" />
     <Content Include="IMAGENES\PorqueUtilizarLed.jpg" />
     <Content Include="IMAGENES\red.png" />
     <Content Include="IMAGENES\SegmentosdeIluminacion.jpg" />
@@ -170,8 +174,8 @@
     <Content Include="JS\jquery.bracket.min.js" />
     <Content Include="JS\jquery.ui.timepicker.js" />
     <Content Include="JS\npm.js" />
-    <Content Include="Login.aspx" />
     <Content Include="ModificarIdioma.aspx" />
+    <Content Include="GestionarUsuarios.aspx" />
     <Content Include="MyOrders.aspx" />
     <Content Include="Newsletter1.aspx" />
     <Content Include="Novedades.aspx" />
@@ -182,6 +186,7 @@
     <Content Include="RecuperarPassword.aspx" />
     <Content Include="Registracion.aspx" />
     <Content Include="ReporteStock.aspx" />
+    <Content Include="Restore.aspx" />
     <Content Include="script.sql" />
     <Content Include="SeleccionarIdioma.aspx" />
     <Content Include="SolicitudPedido.aspx" />
@@ -207,13 +212,6 @@
     </Compile>
     <Compile Include="AgregarIdioma.aspx.vb">
       <DependentUpon>AgregarIdioma.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AgregarPerfil2.aspx.designer.vb">
-      <DependentUpon>AgregarPerfil2.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AgregarPerfil2.aspx.vb">
-      <DependentUpon>AgregarPerfil2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="BitacoraAuditoria.aspx.designer.vb">
@@ -336,13 +334,6 @@
       <DependentUpon>GestionarSolucionesLED.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="GestiondeUsuario.aspx.designer.vb">
-      <DependentUpon>GestiondeUsuario.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="GestiondeUsuario.aspx.vb">
-      <DependentUpon>GestiondeUsuario.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -351,13 +342,6 @@
     </Compile>
     <Compile Include="Institucional.aspx.vb">
       <DependentUpon>Institucional.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="Login.aspx.designer.vb">
-      <DependentUpon>Login.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Login.aspx.vb">
-      <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="MasterPage.Master.designer.vb">
@@ -372,6 +356,13 @@
     </Compile>
     <Compile Include="ModificarIdioma.aspx.vb">
       <DependentUpon>ModificarIdioma.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionarUsuarios.aspx.designer.vb">
+      <DependentUpon>GestionarUsuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionarUsuarios.aspx.vb">
+      <DependentUpon>GestionarUsuarios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -462,6 +453,13 @@
     <Compile Include="ReporteStock.aspx.vb">
       <DependentUpon>ReporteStock.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Restore.aspx.designer.vb">
+      <DependentUpon>Restore.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Restore.aspx.vb">
+      <DependentUpon>Restore.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="SeleccionarIdioma.aspx.designer.vb">
       <DependentUpon>SeleccionarIdioma.aspx</DependentUpon>

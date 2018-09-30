@@ -92,13 +92,14 @@ Public Class MasterPage
 
         Me.Menu.Items.Add(New MenuItem("Seguridad", "Seguridad"))
 
-        Me.Menu.Items.Item(7).ChildItems.Add(New MenuItem("Gestionar Roles", "GestionarRoles", Nothing, "/GestionarRoles.aspx"))
-        Me.Menu.Items.Item(7).ChildItems.Add(New MenuItem("Gestion de Usuario", "GestiondeUsuario", Nothing, "/GestiondeUsuario.aspx"))
+
+        Me.Menu.Items.Item(7).ChildItems.Add(New MenuItem("Gestionar Usuarios", "GestionarUsuarios", Nothing, "/GestionarUsuarios.aspx"))
         Me.Menu.Items.Item(7).ChildItems.Add(New MenuItem("Gestion Idioma", "CrearIdioma", Nothing, "/AgregarIdioma.aspx"))
         Me.Menu.Items.Item(7).ChildItems.Add(New MenuItem("Modificar Idioma", "ModificarIdioma", Nothing, "/ModificarIdioma.aspx"))
         Me.Menu.Items.Item(7).ChildItems.Add(New MenuItem("Eliminar Idioma", "EliminarIdioma", Nothing, "/EliminarIdioma.aspx"))
         Me.Menu.Items.Item(7).ChildItems.Add(New MenuItem("Gestión de Bitácora", "GestiondeBitacora", Nothing, "/BitacoraAuditoria.aspx"))
-        Me.Menu.Items.Item(7).ChildItems.Add(New MenuItem("Agregar Perfil", "AgregarPerfil", Nothing, "/AgregarPerfil.aspx"))
+        Me.Menu.Items.Item(7).ChildItems.Add(New MenuItem("Gestionar Roles", "AgregarPerfil", Nothing, "/AgregarPerfil.aspx"))
+        Me.Menu.Items.Item(7).ChildItems.Add(New MenuItem("Backup & Restore", "Backup&Restore", Nothing, "/Restore.aspx"))
 
         Me.Menu.Items.Add(New MenuItem("Cambiar Idioma", "SeleccionarIdioma", Nothing, "/SeleccionarIdioma.aspx"))
 
@@ -418,7 +419,7 @@ Public Class MasterPage
                 usu.Salt = PassSalt.Item(0)
                 usu.Password = PassSalt.Item(1)
                 usu.Idioma = New Entidades.IdiomaEntidad With {.ID_Idioma = 1}
-                'usu.Perfil = New Entidades.PermisoCompuestoEntidad With {.ID_Permiso = 0}
+                usu.Rol.Add(New RolEntidad With {.ID_Rol = 2})
                 usu.FechaAlta = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
                 usu.Empleado = False
                 usu.Bloqueo = True
@@ -456,18 +457,12 @@ Public Class MasterPage
 
 
 
-
-
-
     Private Sub EnviarMailRegistro(ByVal token As String)
         Dim body As String = System.IO.File.ReadAllText(HttpContext.Current.Server.MapPath("EmailTemplates/registracion.html"))
         Dim ruta As String = HttpContext.Current.Server.MapPath("Imagenes")
         Dim ur As Uri = Request.Url
         Negocio.MaillingBLL.enviarMailRegistroUsuario(token, body, ruta, Replace(ur.AbsoluteUri, ur.AbsolutePath, ""))
     End Sub
-
-
-
 
     Dim invalid As Boolean = False
 

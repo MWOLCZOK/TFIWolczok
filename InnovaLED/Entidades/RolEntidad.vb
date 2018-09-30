@@ -62,13 +62,9 @@ Public Class RolEntidad
         Return f.Deserialize(m)
     End Function
 
-
-
-
-
-
-
-
+    Public Overrides Function ToString() As String
+        Return Me.Nombre
+    End Function
 
 
 End Class
