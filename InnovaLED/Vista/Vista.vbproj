@@ -146,8 +146,10 @@
     <Content Include="Global.asax" />
     <Content Include="IMAGENES\Arrow.png" />
     <Content Include="IMAGENES\banner1.jpg" />
+    <Content Include="IMAGENES\bannermail.jpg" />
     <Content Include="IMAGENES\bannerregistracion.png" />
     <Content Include="IMAGENES\blue.png" />
+    <Content Include="IMAGENES\bulb.png" />
     <Content Include="IMAGENES\CalculadoraDeAhorro.jpg" />
     <Content Include="IMAGENES\check.png" />
     <Content Include="IMAGENES\clear.png" />
@@ -156,6 +158,9 @@
     <Content Include="IMAGENES\Edit-32.png" />
     <Content Include="IMAGENES\edit.png" />
     <Content Include="IMAGENES\facebook.png" />
+    <Content Include="IMAGENES\faro.png" />
+    <Content Include="IMAGENES\idea.png" />
+    <Content Include="IMAGENES\luz-led.png" />
     <Content Include="IMAGENES\padlock-close.png" />
     <Content Include="IMAGENES\padlock-open.png" />
     <Content Include="IMAGENES\PorqueUtilizarLed.jpg" />
