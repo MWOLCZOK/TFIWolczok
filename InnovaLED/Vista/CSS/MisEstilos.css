@@ -3,7 +3,7 @@
 }
 
 .FondoPanel {
-    background-color: #EEEEEE;
+    background-color: #fff;
     color: #337ab7 !important ;
 }
 
@@ -26,8 +26,9 @@ font-size:18px;
 
 
 .TituloPanel {
+    font-family: "Bahnschrift";
     font-size: 18px;
-    font-weight: bold;
+   
 }
 
 .labelform {

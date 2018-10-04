@@ -161,6 +161,7 @@
     <Content Include="IMAGENES\faro.png" />
     <Content Include="IMAGENES\idea.png" />
     <Content Include="IMAGENES\luz-led.png" />
+    <Content Include="IMAGENES\NewEdificio.jpg" />
     <Content Include="IMAGENES\padlock-close.png" />
     <Content Include="IMAGENES\padlock-open.png" />
     <Content Include="IMAGENES\PorqueUtilizarLed.jpg" />
