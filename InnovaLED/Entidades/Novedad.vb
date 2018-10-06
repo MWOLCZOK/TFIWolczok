@@ -66,13 +66,23 @@
         End Set
     End Property
 
-    Private _fecha_Alta As Date
-    Public Property Fecha_Alta() As Date
+    Private _fecha_Alta As DateTime
+    Public Property Fecha_Alta() As DateTime
         Get
             Return _fecha_Alta
         End Get
-        Set(ByVal value As Date)
+        Set(ByVal value As DateTime)
             _fecha_Alta = value
+        End Set
+    End Property
+
+    Private _fecha_fin_vigencia As Date
+    Public Property Fecha_Fin_Vigencia() As Date
+        Get
+            Return _fecha_fin_vigencia
+        End Get
+        Set(ByVal value As Date)
+            _fecha_fin_vigencia = value
         End Set
     End Property
 

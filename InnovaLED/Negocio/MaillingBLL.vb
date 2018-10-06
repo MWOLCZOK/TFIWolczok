@@ -58,6 +58,8 @@ Public Class MaillingBLL
         End Try
     End Sub
 
+    Public Shared Sub enviarMailNewsletter()
 
+    End Sub
 
 End Class
