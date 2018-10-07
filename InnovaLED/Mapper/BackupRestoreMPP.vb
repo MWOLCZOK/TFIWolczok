@@ -18,8 +18,8 @@ Public Class BackupRestoreMPP
         Using MiConectionMaster = Acceso.MiConexionMaster()
             Try
                 Dim MiStringBuilder As New StringBuilder
-                MiStringBuilder.Append("BACKUP DATABASE [ARGLeague] TO DISK = '" & ruta & "' ")
-                MiStringBuilder.Append("WITH DESCRIPTION = 'Backup ARGLeague', NOFORMAT, NOINIT, ")
+                MiStringBuilder.Append("BACKUP DATABASE [InnovaLED] TO DISK = '" & ruta & "' ")
+                MiStringBuilder.Append("WITH DESCRIPTION = 'Backup InnovaLED', NOFORMAT, NOINIT, ")
                 MiStringBuilder.Append("NAME = '" & BackupEntidad.Nombre & "', SKIP, NOREWIND, NOUNLOAD, STATS = 10")
                 Dim MiComando As New SqlCommand(MiStringBuilder.ToString, MiConectionMaster)
                 MiConectionMaster.Open()
@@ -38,7 +38,7 @@ Public Class BackupRestoreMPP
         Dim MiConectionMaster As New SqlConnection
         Try
             MiConectionMaster = Acceso.MiConexionMaster
-            Dim Strcomando As String = " ALTER DATABASE  [ARGLeague] SET SINGLE_USER WITH ROLLBACK IMMEDIATE RESTORE DATABASE [ARGLeague] FROM DISK = '" & BackupEntidad.Nombre & "'  With Replace ALTER DATABASE [ARGLeague] SET MULTI_USER "
+            Dim Strcomando As String = " ALTER DATABASE  [InnovaLED] SET SINGLE_USER WITH ROLLBACK IMMEDIATE RESTORE DATABASE [InnovaLED] FROM DISK = '" & BackupEntidad.Nombre & "'  With Replace ALTER DATABASE [InnovaLED] SET MULTI_USER "
             Dim MiComando As New SqlCommand(Strcomando, MiConectionMaster)
             MiConectionMaster.Open()
             MiComando.ExecuteNonQuery()
