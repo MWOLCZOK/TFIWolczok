@@ -53,11 +53,11 @@ Public Class ModificarUsuario
         lista = Gestor.ListarFamiliasGestion()
         If lista.Count > 0 Then
             Session("Roles") = lista
-            Me.lstperfil.DataSource = lista
             Me.DropDownListRol.DataSource = lista
+
             Me.DropDownListRol.DataBind()
 
-            Me.lstperfil.DataBind()
+            Me.DropDownListRol.DataBind()
         End If
 
     End Sub
@@ -68,8 +68,8 @@ Public Class ModificarUsuario
         lista = Gestor.ConsultarIdiomas()
         If lista.Count > 0 Then
             Session("Idiomas") = lista
-            Me.lstidioma.DataSource = lista
-            Me.lstidioma.DataBind()
+            Me.DropDownListIdioma.DataSource = lista
+            Me.DropDownListIdioma.DataBind()
             Me.DropDownListIdioma.DataSource = lista
             Me.DropDownListIdioma.DataBind()
         End If
@@ -161,14 +161,13 @@ Public Class ModificarUsuario
         End Try
     End Sub
     Private Sub Ocultamiento(ByVal bi As Boolean)
-        Me.usuariot.Visible = bi
-        Me.perfilt.Visible = bi
-        Me.idiomat.Visible = bi
-        Me.botont.Visible = bi
-        Me.botont2.Visible = bi
+
+        Me.btnModificar.Visible = bi
+        Me.btneliminar.Visible = bi
     End Sub
 
     Private Sub gv_Usuarios_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles gv_Usuarios.RowCommand
+        'Funcion para que luego de clickear en el Grid lo pase a los textbox
         Try
             Ocultamiento(False)
             Dim gestor As New Negocio.UsuarioBLL
@@ -217,13 +216,19 @@ Public Class ModificarUsuario
                     End If
 
                 Case "E"
-                    txtusuario.Text = Usuario.NombreUsu
-                    lstidioma.ClearSelection()
-                    lstperfil.ClearSelection()
+                    'txtusuario.Text = Usuario.NombreUsu
+                    txtapellido.Text = Usuario.Apellido
+                    txtnombre.Text = Usuario.Nombre
+                    txtnomusuario.Text = Usuario.NombreUsu
+                    TxtDNI.Text = Usuario.DNI
+                    txtmail.Text = Usuario.Mail
 
-                    lstidioma.Items.FindByValue(Usuario.Idioma.ID_Idioma).Selected = True
+                    DropDownListIdioma.ClearSelection()
+                    DropDownListRol.ClearSelection()
 
-                    lstperfil.Items.FindByValue(Usuario.Rol(0).ID_Rol).Selected = True
+                    DropDownListIdioma.Items.FindByValue(Usuario.Idioma.ID_Idioma).Selected = True
+
+                    DropDownListRol.Items.FindByValue(Usuario.Rol(0).ID_Rol).Selected = True
 
                     Ocultamiento(True)
             End Select
@@ -236,7 +241,7 @@ Public Class ModificarUsuario
         Dim GestorCliente As New Negocio.UsuarioBLL
         Try
             Dim Usuario As Entidades.UsuarioEntidad = TryCast(Session("Usuarios"), List(Of Entidades.UsuarioEntidad))(Me.id_usuario.Value)
-          
+
             Dim IdiomaActual As Entidades.IdiomaEntidad
             If IsNothing(Current.Session("Cliente")) Then
                 IdiomaActual = Application("Español")
@@ -244,10 +249,10 @@ Public Class ModificarUsuario
                 IdiomaActual = Application(TryCast(Current.Session("Cliente"), Entidades.UsuarioEntidad).Idioma.Nombre)
             End If
             If Page.IsValid = True Then
-                Usuario.NombreUsu = txtusuario.Text
-                Usuario.Idioma = New Entidades.IdiomaEntidad With {.ID_Idioma = lstidioma.SelectedValue}
+                Usuario.NombreUsu = txtnomusuario.Text
+                Usuario.Idioma = New Entidades.IdiomaEntidad With {.ID_Idioma = DropDownListIdioma.SelectedValue}
                 Usuario.Rol.Clear()
-                Usuario.Rol.Add(New RolEntidad With {.ID_Rol = lstperfil.SelectedValue})
+                Usuario.Rol.Add(New RolEntidad With {.ID_Rol = DropDownListRol.SelectedValue})
                 If GestorCliente.Modificar(Usuario) Then
                     Dim clienteLogeado As Entidades.UsuarioEntidad = Current.Session("cliente")
                     Dim Bitac As New Bitacora(Usuario, "El usuario " & Usuario.NombreUsu & " Se modificó correctamente", Tipo_Bitacora.Modificacion, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)
@@ -341,8 +346,8 @@ Public Class ModificarUsuario
                 Dim PassSalt As List(Of String) = Negocio.EncriptarBLL.EncriptarPassword(txtpass.Value)
                 usu.Salt = PassSalt.Item(0)
                 usu.Password = PassSalt.Item(1)
-                usu.Idioma = New Entidades.IdiomaEntidad With {.ID_Idioma = lstidioma.SelectedValue}
-                usu.Rol.Add(New RolEntidad With {.ID_Rol = lstperfil.SelectedValue})
+                usu.Idioma = New Entidades.IdiomaEntidad With {.ID_Idioma = DropDownListIdioma.SelectedValue}
+                usu.Rol.Add(New RolEntidad With {.ID_Rol = DropDownListRol.SelectedValue})
                 usu.FechaAlta = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
                 usu.Empleado = True
                 If GestorCliente.Alta(usu) Then

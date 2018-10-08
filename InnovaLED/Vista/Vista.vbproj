@@ -106,7 +106,6 @@
     <Content Include="BitacoraAuditoria.aspx" />
     <Content Include="CambiarContraseña.aspx" />
     <Content Include="CargarVenta.aspx" />
-    <Content Include="Catalogo.aspx" />
     <Content Include="ConfirmarRecupero.aspx" />
     <Content Include="ConfirmarRegistracion.aspx" />
     <Content Include="CrearNuevoCliente.aspx" />
@@ -143,6 +142,7 @@
     <Content Include="AgregarPerfil.aspx" />
     <Content Include="GestionarRoles.aspx" />
     <Content Include="GestionarSolucionesLED.aspx" />
+    <Content Include="Catalogo.aspx" />
     <Content Include="Global.asax" />
     <Content Include="IMAGENES\Arrow.png" />
     <Content Include="IMAGENES\banner1.jpg" />
@@ -164,6 +164,7 @@
     <Content Include="IMAGENES\NewEdificio.jpg" />
     <Content Include="IMAGENES\padlock-close.png" />
     <Content Include="IMAGENES\padlock-open.png" />
+    <Content Include="IMAGENES\Plafon.jpg" />
     <Content Include="IMAGENES\PorqueUtilizarLed.jpg" />
     <Content Include="IMAGENES\red.png" />
     <Content Include="IMAGENES\SegmentosdeIluminacion.jpg" />
@@ -239,13 +240,6 @@
     </Compile>
     <Compile Include="CargarVenta.aspx.vb">
       <DependentUpon>CargarVenta.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="Catalogo.aspx.designer.vb">
-      <DependentUpon>Catalogo.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Catalogo.aspx.vb">
-      <DependentUpon>Catalogo.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="ConfirmarRecupero.aspx.designer.vb">
@@ -339,6 +333,13 @@
     <Compile Include="GestionarSolucionesLED.aspx.vb">
       <DependentUpon>GestionarSolucionesLED.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Catalogo.aspx.designer.vb">
+      <DependentUpon>Catalogo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Catalogo.aspx.vb">
+      <DependentUpon>Catalogo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>

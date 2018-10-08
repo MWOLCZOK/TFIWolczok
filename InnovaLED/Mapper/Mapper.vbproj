@@ -83,6 +83,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="NovedadMPP.vb" />
+    <Compile Include="ProductoMPP.vb" />
     <Compile Include="UsuarioMPP.vb" />
   </ItemGroup>
   <ItemGroup>

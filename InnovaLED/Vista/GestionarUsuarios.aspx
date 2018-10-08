@@ -14,130 +14,22 @@
         </div>
 
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-success">
+            <div class="col-md-12">
+                <div class="panel panel-primary class">
                     <div class="panel-heading text-center">
-                        <asp:Label ID="lblPanelModUser" runat="server" Text="Gestión de Usuarios" CssClass="TituloPanel"></asp:Label>
+                        <asp:Label ID="lblPanelModUser" runat="server" Text="Gestión de Usuarios" font-size="24px" CssClass="TituloPanel"></asp:Label>
                     </div>
-                    <div class="panel-body FondoPanel">
-                        <div class="form-horizontal has-success">
-                                   <div class="form-group">
-                                <asp:Label ID="lblapellido" runat="server" Text="Apellido:" CssClass="col-sm-4 control-label labelform"></asp:Label>
-                                <div class="col-md-6">
-                                    <div class="input-group">
-                                        <asp:TextBox ID="txtapellido" runat="server" CssClass="form-control"></asp:TextBox>
-                                        <span class="input-group-addon" id="basic-addon1"><span class="	glyphicon glyphicon-user" aria-hidden="true"></span></span>
-                                    </div>
-                                </div>
-                                <div class="col-md-1">
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtapellido" ErrorMessage="*" EnableClientScript="false" Display="Dynamic" CssClass="textoValidacion"></asp:RequiredFieldValidator>
-                                </div>
-                            </div>        
-                            <div class="form-group">
-                                <asp:Label ID="lblnombre" runat="server" Text="Nombre:" CssClass="col-sm-4 control-label labelform"></asp:Label>
-                                <div class="col-md-6">
-                                    <div class="input-group">
-                                        <asp:TextBox ID="txtnombre" runat="server" CssClass="form-control"></asp:TextBox>
-                                        <span class="input-group-addon" id="basic-addon2"><span class="	glyphicon glyphicon-user" aria-hidden="true"></span></span>
-                                    </div>
-                                </div>
-                                <div class="col-md-1">
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtnombre" ErrorMessage="*" EnableClientScript="false" Display="Dynamic" CssClass="textoValidacion"></asp:RequiredFieldValidator>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <asp:Label ID="Label1" runat="server" Text="Nombre de Usuario:" CssClass="col-sm-4 control-label labelform"></asp:Label>
-                                <div class="col-md-6">
-                                    <div class="input-group">
-                                        <asp:TextBox ID="txtnomusuario" runat="server" CssClass="form-control"></asp:TextBox>
-                                        <span class="input-group-addon" id="basic-addon8"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
-                                    </div>
-                                </div>
-                                <div class="col-md-1">
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtnomusuario" ErrorMessage="*" EnableClientScript="false" Display="Dynamic" CssClass="textoValidacion"></asp:RequiredFieldValidator>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <asp:Label ID="lblpass" runat="server" Text="Contraseña:" CssClass="col-sm-4 control-label labelform"></asp:Label>
-                                <div class="col-md-6">
-                                    <div class="input-group">
-                                        <input type="password" id="txtpass" runat="server" class="form-control" />
-                                        <span class="input-group-addon" id="basic-addon9"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></span>
-                                    </div>
-                                </div>
-                                <div class="col-md-1">
-                                   
-                                </div>
-                            </div>
+                 </div>
+            </div>
 
-                             <div class="form-group">
-                                <asp:Label ID="LblDNI" runat="server" Text="DNI:" CssClass="col-sm-4 control-label labelform"></asp:Label>
-                                <div class="col-md-6">
-                                    <div class="input-group">
-                                         <asp:TextBox ID="TxtDNI" runat="server" CssClass="form-control"></asp:TextBox>
-                                        <span class="input-group-addon" id="basic-addon9"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></span>
-                                    </div>
-                                </div>
-                                <div class="col-md-1">
-                                   
-                                </div>
-                                 <div class="col-md-1">
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="TxtDNI" ErrorMessage="*" EnableClientScript="false" Display="Dynamic" CssClass="textoValidacion"></asp:RequiredFieldValidator>
-                                </div>
-                            </div>
-
-
-                              <div class="form-group">
-                                <asp:Label ID="Lblmail" runat="server" Text="Mail:" CssClass="col-sm-4 control-label labelform"></asp:Label>
-                                <div class="col-md-6">
-                                    <div class="input-group">
-                                        <asp:TextBox ID="txtmail" runat="server" CssClass="form-control"></asp:TextBox>
-                                        <span class="input-group-addon" id="basic-addon8"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
-                                    </div>
-                                </div>
-                                <div class="col-md-1">
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtmail" ErrorMessage="*" EnableClientScript="false" Display="Dynamic" CssClass="textoValidacion"></asp:RequiredFieldValidator>
-                                </div>
-                            </div>
-
-
-
-                            <div class="form-group">
-                                <asp:Label ID="Label2" runat="server" Text="Perfil:" CssClass="col-sm-4 control-label labelform"></asp:Label>
-                                <div class="col-md-6">
-                                    <div class="input-group">
-                                        <asp:DropDownList ID="DropDownListRol" runat="server" CssClass="form-control" AutoPostBack="true" DataValueField="ID_Rol" DataTextField="Nombre"></asp:DropDownList>
-                                        <span class="input-group-addon" id="basic-addon10"><span class="	glyphicon glyphicon-list-alt" aria-hidden="true"></span></span>
-                                    </div>
-                                </div>
-                            </div>
-                                                        <div class="form-group">
-                                <asp:Label ID="Label3" runat="server" Text="Idioma:" CssClass="col-sm-4 control-label labelform"></asp:Label>
-                                <div class="col-md-6">
-                                    <div class="input-group">
-                                        <asp:DropDownList ID="DropDownListIdioma" runat="server" CssClass="form-control" AutoPostBack="true" DataValueField="ID_Idioma" DataTextField="Nombre"></asp:DropDownList>
-                                        <span class="input-group-addon" id="basic-addon11"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <br />
-                        <br />
-                        <div class="row">
-                            <div class="col-md-4 col-md-offset-4">
-                                <asp:Button ClientIDMode="Static" ID="btnAceptar" name="btnAceptar" runat="server" Text="Aceptar" CssClass="btn btn-block btn-success" />
-                            </div>
-                        </div>
-                        <br />
-                    
-          
-
-                        <br />
-                        <br />
+           <br />
+           <br />
                         <div class="form-horizontal has-success col-md-12">
                             <div class="form-group">
-                                <div>
-                                    <div>
+                           
+                                <%-- Sección Grid  --%>
+
+                                    <div class="col-md-5 col-md-offset-1">
                                         <asp:GridView CssClass="table table-hover table-bordered table-responsive table-success " ID="gv_Usuarios" runat="server" AutoGenerateColumns="False" HorizontalAlign="Center" AllowPaging="true" PageSize="5" OnPageIndexChanging="gv_Usuarios_PageIndexChanging" RowStyle-Height="40px">
                                             <HeaderStyle CssClass="thead-dark" />
                                             <PagerTemplate>
@@ -179,59 +71,140 @@
                                                 </asp:TemplateField>
                                             </Columns>
                                         </asp:GridView>
+                                        </div>
+                         
+                                <%-- Sección Tabla Usuarios  --%>
+
+                                   <div class="form-horizontal has-success col-md-6 ">
+                                   <div class="form-group">
+                                <asp:Label ID="lblapellido" runat="server" Text="Apellido:" CssClass="col-sm-4 control-label labelform"></asp:Label>
+                                <div class="col-md-4">
+                                    <div class="input-group">
+                                        <asp:TextBox ID="txtapellido" runat="server" CssClass="form-control"></asp:TextBox>
+                                        <span class="input-group-addon" id="basic-addon1"><span class="	glyphicon glyphicon-user" aria-hidden="true"></span></span>
                                     </div>
                                 </div>
-                            </div>
-                            <div id="usuariot" class="form-group" runat="server">
-                                <asp:Label ID="lblusuarioname" runat="server" Text="Nombre de Usuario:" CssClass="col-sm-4 control-label labelform"></asp:Label>
-                                <div class="col-md-6">
+                                <div class="col-md-1">
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtapellido" ErrorMessage="*" EnableClientScript="false" Display="Dynamic" CssClass="textoValidacion"></asp:RequiredFieldValidator>
+                                </div>
+                            </div>        
+                            <div class="form-group">
+                                <asp:Label ID="lblnombre" runat="server" Text="Nombre:" CssClass="col-sm-4 control-label labelform"></asp:Label>
+                                <div class="col-md-4">
                                     <div class="input-group">
-                                        <asp:TextBox ID="txtusuario" runat="server" CssClass="form-control"></asp:TextBox>
+                                        <asp:TextBox ID="txtnombre" runat="server" CssClass="form-control"></asp:TextBox>
+                                        <span class="input-group-addon" id="basic-addon2"><span class="	glyphicon glyphicon-user" aria-hidden="true"></span></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtnombre" ErrorMessage="*" EnableClientScript="false" Display="Dynamic" CssClass="textoValidacion"></asp:RequiredFieldValidator>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <asp:Label ID="Label1" runat="server" Text="Nombre de Usuario:" CssClass="col-sm-4 control-label labelform"></asp:Label>
+                                <div class="col-md-4">
+                                    <div class="input-group">
+                                        <asp:TextBox ID="txtnomusuario" runat="server" CssClass="form-control"></asp:TextBox>
                                         <span class="input-group-addon" id="basic-addon8"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
                                     </div>
                                 </div>
                                 <div class="col-md-1">
-                                    
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtnomusuario" ErrorMessage="*" EnableClientScript="false" Display="Dynamic" CssClass="textoValidacion"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
-                            <div id="perfilt" runat="server" class="form-group">
-                                <asp:Label ID="lblperfil" runat="server" Text="Rol:" CssClass="col-sm-4 control-label labelform"></asp:Label>
-                                <div class="col-md-6">
+                            <div class="form-group">
+                                <asp:Label ID="lblpass" runat="server" Text="Contraseña:" CssClass="col-sm-4 control-label labelform"></asp:Label>
+                                <div class="col-md-4">
                                     <div class="input-group">
-                                        <asp:DropDownList ID="lstperfil" runat="server" CssClass="form-control" AutoPostBack="true" DataValueField="ID_Rol" DataTextField="Nombre"></asp:DropDownList>
+                                        <input type="password" id="txtpass" runat="server" class="form-control" />
+                                        <span class="input-group-addon" id="basic-addon9"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                   
+                                </div>
+                            </div>
+
+                             <div class="form-group">
+                                <asp:Label ID="LblDNI" runat="server" Text="DNI:" CssClass="col-sm-4 control-label labelform"></asp:Label>
+                                <div class="col-md-4">
+                                    <div class="input-group">
+                                         <asp:TextBox ID="TxtDNI" runat="server" CssClass="form-control"></asp:TextBox>
+                                        <span class="input-group-addon" id="basic-addon9"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                   
+                                </div>
+                                 <div class="col-md-1">
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="TxtDNI" ErrorMessage="*" EnableClientScript="false" Display="Dynamic" CssClass="textoValidacion"></asp:RequiredFieldValidator>
+                                </div>
+                            </div>
+
+
+                              <div class="form-group">
+                                <asp:Label ID="Lblmail" runat="server" Text="Mail:" CssClass="col-sm-4 control-label labelform"></asp:Label>
+                                <div class="col-md-4">
+                                    <div class="input-group">
+                                        <asp:TextBox ID="txtmail" runat="server" CssClass="form-control"></asp:TextBox>
+                                        <span class="input-group-addon" id="basic-addon8"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtmail" ErrorMessage="*" EnableClientScript="false" Display="Dynamic" CssClass="textoValidacion"></asp:RequiredFieldValidator>
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <asp:Label ID="Label2" runat="server" Text="Rol:" CssClass="col-sm-4 control-label labelform"></asp:Label>
+                                <div class="col-md-4">
+                                    <div class="input-group">
+                                        <asp:DropDownList ID="DropDownListRol" runat="server" CssClass="form-control" AutoPostBack="true" DataValueField="ID_Rol" DataTextField="Nombre"></asp:DropDownList>
                                         <span class="input-group-addon" id="basic-addon10"><span class="	glyphicon glyphicon-list-alt" aria-hidden="true"></span></span>
                                     </div>
                                 </div>
                             </div>
-                            <div id="idiomat" class="form-group" runat="server">
-                                <asp:Label ID="lblidioma" runat="server" Text="Idioma:" CssClass="col-sm-4 control-label labelform"></asp:Label>
-                                <div class="col-md-6">
+                                                        <div class="form-group">
+                                <asp:Label ID="Label3" runat="server" Text="Idioma:" CssClass="col-sm-4 control-label labelform"></asp:Label>
+                                <div class="col-md-4">
                                     <div class="input-group">
-                                        <asp:DropDownList ID="lstidioma" runat="server" CssClass="form-control" AutoPostBack="true" DataValueField="ID_Idioma" DataTextField="Nombre"></asp:DropDownList>
+                                        <asp:DropDownList ID="DropDownListIdioma" runat="server" CssClass="form-control" AutoPostBack="true" DataValueField="ID_Idioma" DataTextField="Nombre"></asp:DropDownList>
                                         <span class="input-group-addon" id="basic-addon11"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <br />
-                        <br />
 
-                        <div id="botont2" runat="server" class="row">
-                            <div class="col-md-4 col-md-offset-4">
-                                <asp:Button ClientIDMode="Static" ID="btneliminar" name="btneliminar" runat="server" Text="Eliminar" CssClass="btn btn-block btn-danger" />
-                            </div>
-                        </div>
+                                                      
+                            <br />
+                            <br />
 
-                        <br />
-                        <div id="botont" runat="server" class="row">
-                            <div class="col-md-6 col-md-offset-3">
+                            <div class="row">
+                             <div class="col-md-3 col-md-offset-1">
+                                <asp:Button ClientIDMode="Static" ID="btnAceptar" name="btnAceptar" runat="server" Text="Nuevo" CssClass="btn btn-block btn-success" />
+                              </div>
+                          
+                              <div class="col-md-3 col-md-offset-1 ">
                                 <asp:Button ClientIDMode="Static" ID="btnModificar" name="btnModificar" runat="server" Text="Modificar" CssClass="btn btn-block btn-warning" />
+                              </div>
+                         
+                             <div class="col-md-3 col-md-offset-1 ">
+                                <asp:Button ClientIDMode="Static" ID="btneliminar" name="btneliminar" runat="server" Text="Eliminar" CssClass="btn btn-block btn-danger" />
+                             </div>
                             </div>
+                            <br />
+                            <br />                                                              
                         </div>
+                       </div>
+                        <br />
+                        <br />                  
+                       </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
+      
+ 
+   
     <asp:HiddenField ID="id_usuario" runat="server" />
+   
 </asp:Content>

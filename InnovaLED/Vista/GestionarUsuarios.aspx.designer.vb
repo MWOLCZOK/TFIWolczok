@@ -50,6 +50,15 @@ Partial Public Class ModificarUsuario
     Protected WithEvents lblPanelModUser As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
+    '''Control gv_Usuarios.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents gv_Usuarios As Global.System.Web.UI.WebControls.GridView
+    
+    '''<summary>
     '''Control lblapellido.
     '''</summary>
     '''<remarks>
@@ -248,103 +257,13 @@ Partial Public Class ModificarUsuario
     Protected WithEvents btnAceptar As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
-    '''Control gv_Usuarios.
+    '''Control btnModificar.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents gv_Usuarios As Global.System.Web.UI.WebControls.GridView
-    
-    '''<summary>
-    '''Control usuariot.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents usuariot As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
-    '''<summary>
-    '''Control lblusuarioname.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents lblusuarioname As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''Control txtusuario.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents txtusuario As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''Control perfilt.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents perfilt As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
-    '''<summary>
-    '''Control lblperfil.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents lblperfil As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''Control lstperfil.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents lstperfil As Global.System.Web.UI.WebControls.DropDownList
-    
-    '''<summary>
-    '''Control idiomat.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents idiomat As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
-    '''<summary>
-    '''Control lblidioma.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents lblidioma As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''Control lstidioma.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents lstidioma As Global.System.Web.UI.WebControls.DropDownList
-    
-    '''<summary>
-    '''Control botont2.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents botont2 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents btnModificar As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
     '''Control btneliminar.
@@ -354,24 +273,6 @@ Partial Public Class ModificarUsuario
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents btneliminar As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''Control botont.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents botont As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
-    '''<summary>
-    '''Control btnModificar.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents btnModificar As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
     '''Control id_usuario.

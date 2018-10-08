@@ -65,9 +65,11 @@
   <ItemGroup>
     <Compile Include="BackupRestoreEntidad.vb" />
     <Compile Include="Bitacora.vb" />
+    <Compile Include="CategoriaProducto.vb" />
     <Compile Include="Cliente.vb" />
     <Compile Include="Encuesta.vb" />
     <Compile Include="IdiomaEntidad.vb" />
+    <Compile Include="LineaProducto.vb" />
     <Compile Include="Mensaje.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -88,6 +90,7 @@
     <Compile Include="Palabras.vb" />
     <Compile Include="PermisoBaseEntidad.vb" />
     <Compile Include="Pregunta.vb" />
+    <Compile Include="Producto.vb" />
     <Compile Include="Respuesta.vb" />
     <Compile Include="RolEntidad.vb" />
     <Compile Include="Tipo_Bitacora.vb" />

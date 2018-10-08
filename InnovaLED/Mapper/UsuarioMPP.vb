@@ -598,6 +598,8 @@ Public Class UsuarioMPP
             Usuario.Password = row("Password")
             Usuario.Intento = row("Intentos")
             Usuario.Bloqueo = row("Bloqueo")
+            Usuario.DNI = row("DNI")
+            Usuario.Mail = row("Mail")
             Usuario.Idioma = New Entidades.IdiomaEntidad With {.ID_Idioma = row("Idioma")}
             TraerUsuario(Usuario)
             Usuario.Empleado = row("Empleado")

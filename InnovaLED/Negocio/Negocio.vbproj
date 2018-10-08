@@ -90,6 +90,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="NovedadBLL.vb" />
+    <Compile Include="ProductoBLL.vb" />
     <Compile Include="SerializadorJSON.vb" />
     <Compile Include="UsuarioBLL.vb" />
   </ItemGroup>
