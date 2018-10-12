@@ -300,6 +300,7 @@ Public Class ModificarUsuario
     End Sub
 
     Protected Sub btneliminar_Click(sender As Object, e As EventArgs) Handles btneliminar.Click
+
         Dim GestorCliente As New Negocio.UsuarioBLL
         Try
             Dim Usuario As Entidades.UsuarioEntidad = TryCast(Session("Usuarios"), List(Of Entidades.UsuarioEntidad))(Me.id_usuario.Value)
@@ -309,16 +310,27 @@ Public Class ModificarUsuario
             Else
                 IdiomaActual = Application(TryCast(Current.Session("Cliente"), Entidades.UsuarioEntidad).Idioma.Nombre)
             End If
-            If GestorCliente.Eliminar(Usuario) Then
-                Dim clienteLogeado As Entidades.UsuarioEntidad = Current.Session("cliente")
-                Dim Bitac As New Bitacora(Usuario, "El usuario " & Usuario.NombreUsu & " Se eliminó correctamente", Tipo_Bitacora.Modificacion, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)
-                BitacoraBLL.CrearBitacora(Bitac)
-                Me.success.Visible = True
-                'Me.success.InnerText = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "DelUserSuccess").Traduccion
-                Me.success.InnerText = "Se eliminó el usuario correctamente."
-                Me.alertvalid.Visible = False
-                CargarUsuarios()
-                Ocultamiento(False)
+
+            Dim usulog As New UsuarioEntidad
+
+
+            If usulog = Current.Session("Usuarios") Then
+
+
+
+                If GestorCliente.Eliminar(Usuario) Then
+                    Dim clienteLogeado As Entidades.UsuarioEntidad = Current.Session("cliente")
+                    Dim Bitac As New Bitacora(Usuario, "El usuario " & Usuario.NombreUsu & " Se eliminó correctamente", Tipo_Bitacora.Modificacion, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)
+                    BitacoraBLL.CrearBitacora(Bitac)
+                    Me.success.Visible = True
+                    'Me.success.InnerText = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "DelUserSuccess").Traduccion
+                    Me.success.InnerText = "Se eliminó el usuario correctamente."
+                    Me.alertvalid.Visible = False
+                    CargarUsuarios()
+                    Ocultamiento(False)
+                End If
+            Else
+                Me.success.InnerText = "No se puede eliminar el usuario que esta logueado"
             End If
         Catch ex As Exception
 
