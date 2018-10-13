@@ -2,9 +2,20 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
-     <br />
+    <div class="container-fluid fondoGris" >
         <br />
+<div class="row">
+  <div class="col-md-12">
+     <div class="panel panel-primary class">
+       <div class="panel-heading text-center">
+         <asp:Label ID="lblPanelModUser" runat="server" Text="Politicas y Seguridad" font-size="24px" CssClass="TituloPanel"></asp:Label>
+       </div>
+     </div>
+   </div>
+</div>
+
+<br />
+<br />
 
      <div class="row text-center col-md-12">
          <br />
@@ -14,7 +25,7 @@
           <br />
 
          <div class="row">
-             <asp:Label ID="LblEnquecasosdescr" runat="server" font-size="20px" text="No compartiremos sus datos, salvo en los casos limitados descritos a continuación.
+             <asp:Label ID="LblEnquecasosdescr" runat="server" font-size="18px" text="No compartiremos sus datos, salvo en los casos limitados descritos a continuación.
                              En caso de que sea necesario a los efectos de cumplir con los fines descritos en esta Política, podremos divulgar sus datos a las entidades siguientes:"></asp:label>
                <br />
                <br />
@@ -80,6 +91,6 @@
 
        <br />
 </div>
-
+</div>
 
 </asp:Content>

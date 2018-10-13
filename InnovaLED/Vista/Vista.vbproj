@@ -140,7 +140,6 @@
     <Content Include="GenerarEnvio.aspx" />
     <Content Include="GenerarPresupuesto.aspx" />
     <Content Include="AgregarPerfil.aspx" />
-    <Content Include="GestionarRoles.aspx" />
     <Content Include="GestionarSolucionesLED.aspx" />
     <Content Include="Catalogo.aspx" />
     <Content Include="Global.asax" />
@@ -320,13 +319,6 @@
     </Compile>
     <Compile Include="AgregarPerfil.aspx.vb">
       <DependentUpon>AgregarPerfil.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="GestionarRoles.aspx.designer.vb">
-      <DependentUpon>GestionarRoles.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="GestionarRoles.aspx.vb">
-      <DependentUpon>GestionarRoles.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="GestionarSolucionesLED.aspx.designer.vb">

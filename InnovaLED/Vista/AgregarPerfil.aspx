@@ -2,13 +2,20 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
-
+<br />
+<div class="row">
+  <div class="col-md-12">
+     <div class="panel panel-primary class">
+       <div class="panel-heading text-center">
+         <asp:Label ID="lblPanelModUser" runat="server" Text="Gestionar Roles" font-size="24px" CssClass="TituloPanel"></asp:Label>
+       </div>
+     </div>
+   </div>
+</div>
+<br />
 
 
     <div class="row Blanco">
-        <br />
-        <br />
           <div id="alertvalid" runat="server" name="alertvalid" class="alert alert-danger  text-center" visible="false">
             <label runat="server" id="lbl_textovalid" class="text-danger"></label>
         </div>
@@ -19,13 +26,14 @@
 
     <asp:Label ID="lblroles" class="  col-md-offset-1 col-md-3" font-weight="lighter" font-size="24px" runat="server" Text="Label"></asp:Label>
         </div>
-    <div class="row">
+    <div class="dropdown">
     <br />
-    <asp:DropDownList ID="DropdwnrolesListar" CssClass="btn btn-default dropdown-toggle col-md-offset-1 col-md-2" DataTextField="Nombre" DataValueField="ID_Rol" runat="server" AutoPostBack="true">
+    <asp:DropDownList ID="DropdwnrolesListar" Class="btn btn-default dropdown-toggle col-md-offset-1 col-md-2" DataTextField="Nombre" DataValueField="ID_Rol" runat="server" AutoPostBack="true" Height="25px" Width="200px">
     </asp:DropDownList>
     <br />
         </div>
 
+   
         <div class="row Blanco">
             <br />
         <asp:Label ID="Lblpermisosactuales" Class="  col-md-offset-1 col-md-3" font-weight="lighter" font-size="24px" runat="server" Text="Label"></asp:Label>
@@ -61,7 +69,7 @@
             <asp:TextBox ID="Txtcrearrol" Class=" col-md-2" runat="server"></asp:TextBox>
 
             <asp:Button ID="Btneliminarrol" Class=" btn btn-info col-md-offset-4 col-md-1 btn-sm"  runat="server" Text="Button" />
-            <asp:DropDownList ID="DropdwnrolesElim" class="btn btn-default dropdown-toggle col-md-2" runat="server">
+            <asp:DropDownList ID="DropdwnrolesElim" class="btn btn-default dropdown-toggle col-md-2" runat="server" Height="25px" Width="200px">
             </asp:DropDownList>
 
                <br />
