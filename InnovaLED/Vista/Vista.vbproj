@@ -187,6 +187,7 @@
     <Content Include="Newsletter1.aspx" />
     <Content Include="Novedades.aspx" />
     <Content Include="Orders.aspx" />
+    <Content Include="PaginaGenerica.aspx" />
     <Content Include="PagoaProveedores.aspx" />
     <Content Include="PoliticasySeguridad.aspx" />
     <Content Include="Proveedores.aspx" />
@@ -197,6 +198,7 @@
     <Content Include="script.sql" />
     <Content Include="SeleccionarIdioma.aspx" />
     <Content Include="SolicitudPedido.aspx" />
+    <Content Include="TerminosyCondiciones.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -419,6 +421,13 @@
       <DependentUpon>Orders.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="PaginaGenerica.aspx.designer.vb">
+      <DependentUpon>PaginaGenerica.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaginaGenerica.aspx.vb">
+      <DependentUpon>PaginaGenerica.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="PagoaProveedores.aspx.designer.vb">
       <DependentUpon>PagoaProveedores.aspx</DependentUpon>
     </Compile>
@@ -480,6 +489,13 @@
     </Compile>
     <Compile Include="SolicitudPedido.aspx.vb">
       <DependentUpon>SolicitudPedido.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="TerminosyCondiciones.aspx.designer.vb">
+      <DependentUpon>TerminosyCondiciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TerminosyCondiciones.aspx.vb">
+      <DependentUpon>TerminosyCondiciones.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
   </ItemGroup>

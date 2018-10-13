@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class Institucional
+Partial Public Class TerminosyCondiciones
     
     '''<summary>
     '''Control lblPanelModUser.
@@ -23,56 +23,92 @@ Partial Public Class Institucional
     Protected WithEvents lblPanelModUser As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''Control LogoMenu.
+    '''Control Lbl_Aceptacion.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents LogoMenu As Global.System.Web.UI.WebControls.Image
+    Protected WithEvents Lbl_Aceptacion As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''Control lblnosotros1.
+    '''Control Lbl_Aceptacion_Desc.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblnosotros1 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents Lbl_Aceptacion_Desc As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''Control LblMision.
+    '''Control Lbl_Modificacion_Cond.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents LblMision As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents Lbl_Modificacion_Cond As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''Control LblMisionDescripcion.
+    '''Control Lbl_Modificacion_Cond_Desc.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents LblMisionDescripcion As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents Lbl_Modificacion_Cond_Desc As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''Control LblVision.
+    '''Control Lbl_Politica.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents LblVision As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents Lbl_Politica As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''Control LblVisionDescripcion.
+    '''Control Lbl_Politica_Desc.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents LblVisionDescripcion As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents Lbl_Politica_Desc As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Control Lbl_Registro.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Lbl_Registro As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Control Lbl_Registro_Desc.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Lbl_Registro_Desc As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Control Lbl_actualizacion.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Lbl_actualizacion As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Control Lbl_actualizacion2.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Lbl_actualizacion2 As Global.System.Web.UI.WebControls.Label
 End Class

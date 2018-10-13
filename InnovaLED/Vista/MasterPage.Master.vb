@@ -62,6 +62,7 @@ Public Class MasterPage
         Me.Menu.Items.Item(1).ChildItems.Add(New MenuItem("¿Quienes Somos?", "Institucional", Nothing, "/Institucional.aspx"))
         Me.Menu.Items.Item(1).ChildItems.Add(New MenuItem("Preguntas Frecuentes", "PreguntasFrecuentes", Nothing, "/Faqs.aspx"))
         Me.Menu.Items.Item(1).ChildItems.Add(New MenuItem("Politicas y Seguridad", "PoliticasySeguridad", Nothing, "/PoliticasySeguridad.aspx"))
+        Me.Menu.Items.Item(1).ChildItems.Add(New MenuItem("Terminos y Condiciones", "TerminosyCondiciones", Nothing, "/TerminosyCondiciones.aspx"))
 
         Me.Menu.Items.Add(New MenuItem("Catalogo", "Catalogo"))
         Me.Menu.Items.Item(2).ChildItems.Add(New MenuItem("Nuestros Productos", "Catalogo", Nothing, "/Catalogo.aspx"))
@@ -113,6 +114,9 @@ Public Class MasterPage
         Me.Menu.Items.Item(1).ChildItems.Add(New MenuItem("¿Quienes Somos?", "Institucional", Nothing, "/Institucional.aspx"))
         Me.Menu.Items.Item(1).ChildItems.Add(New MenuItem("Faqs", "Faqs", Nothing, "/Faqs.aspx"))
         Me.Menu.Items.Item(1).ChildItems.Add(New MenuItem("Politicas y Seguridad", "PoliticasySeguridad", Nothing, "/PoliticasySeguridad.aspx"))
+        Me.Menu.Items.Item(1).ChildItems.Add(New MenuItem("Terminos y Condiciones", "TerminosyCondiciones", Nothing, "/TerminosyCondiciones.aspx"))
+
+
 
         Me.Menu.Items.Add(New MenuItem("Catalogo", "Catalogo"))
         Me.Menu.Items.Item(2).ChildItems.Add(New MenuItem("Nuestros Productos", "Catalogo", Nothing, "/Catalogo.aspx"))
@@ -134,7 +138,7 @@ Public Class MasterPage
         Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/Newsletter.aspx"})
         Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/Default.aspx"})
         Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/SeleccionarIdioma.aspx"})
-
+        Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/TerminosyCondiciones.aspx"})
         UsuarioInvitado.Rol.Add(Rol)
 
 
