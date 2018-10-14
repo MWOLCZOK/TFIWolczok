@@ -17,6 +17,8 @@ Public Class NovedadMPP
                 .Add(New SqlParameter("@Fecha_Alta", paramNovedad.Fecha_Alta))
                 .Add(New SqlParameter("@Fecha_Fin_Vigencia", paramNovedad.Fecha_Alta))
                 .Add(New SqlParameter("@BL", paramNovedad.BL))
+
+                '
             End With
             Dim ListaParametros As New List(Of String)
             Acceso.Scalar(Command)
