@@ -8,6 +8,7 @@ Imports System.Globalization
 Imports Entidades
 Imports Negocio
 
+Imports Newtonsoft.Json.Linq
 
 
 Public Class MasterPage
@@ -35,7 +36,7 @@ Public Class MasterPage
 
             End Try
         End If
-        
+
     End Sub
 
 
@@ -331,43 +332,67 @@ Public Class MasterPage
 
     End Sub
 
+    Public Function IsReCaptchaValid() As Boolean
+        Dim result = False
+        Dim mensaje As String
+        Dim captchaResponse = Me.Request("g-recaptcha-response")
+        Dim secretKey = ConfigurationManager.AppSettings("reCAPTCHA")
+        Dim apiUrl = "https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}"
+        Dim requestUri = String.Format(apiUrl, secretKey, captchaResponse)
+        Dim request = CType(WebRequest.Create(requestUri), HttpWebRequest)
+        Using response As WebResponse = request.GetResponse()
+
+            Using stream As StreamReader = New StreamReader(response.GetResponseStream())
+                Dim jResponse As JObject = JObject.Parse(stream.ReadToEnd())
+                Dim isSuccess = jResponse.Value(Of Boolean)("success")
+                result = If((isSuccess), True, False)
+            End Using
+        End Using
+        If result Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+
 
 
     Public Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
-        Dim Cliente As New Entidades.UsuarioEntidad
-        Dim IdiomaActual As Entidades.IdiomaEntidad
-        Dim clienteLogeado As New Entidades.UsuarioEntidad
-        If IsNothing(Current.Session("Cliente")) Then
-            IdiomaActual = Application("Español")
-        Else
-            IdiomaActual = Application(TryCast(Current.Session("Cliente"), Entidades.UsuarioEntidad).Idioma.Nombre)
-        End If
         Try
-            If Page.IsValid = True Then
-                Cliente.NombreUsu = txtUser.Value
-                Cliente.Password = txtPassword.Value
-                clienteLogeado = GestorUsu.ExisteUsuario(Cliente)
-                Dim Bitac As New Bitacora(clienteLogeado, "El usuario " & clienteLogeado.NombreUsu & " Se logueo correctamente", Tipo_Bitacora.Login, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)
-                BitacoraBLL.CrearBitacora(Bitac)
-                Session("cliente") = clienteLogeado
-                Usuario = DirectCast(Session("cliente"), Entidades.UsuarioEntidad)
-
-
-                Me.success.Visible = True
-                Me.lbl_success.InnerText = "Se ha logueado correctamente"
-                Me.alertvalid.Visible = False
-
-                VisibilidadAcceso(True)
-
-                'Response.Redirect(Default., False)
-                Response.Redirect(Request.Url.ToString, False)
-
-            End If
+            '    If IsReCaptchaValid() = True Then
+            Dim Cliente As New Entidades.UsuarioEntidad
+                Dim IdiomaActual As Entidades.IdiomaEntidad
+                Dim clienteLogeado As New Entidades.UsuarioEntidad
+                If IsNothing(Current.Session("Cliente")) Then
+                    IdiomaActual = Application("Español")
+                Else
+                    IdiomaActual = Application(TryCast(Current.Session("Cliente"), Entidades.UsuarioEntidad).Idioma.Nombre)
+                End If
+                If Page.IsValid = True Then
+                    Cliente.NombreUsu = txtUser.Value
+                    Cliente.Password = txtPassword.Value
+                    clienteLogeado = GestorUsu.ExisteUsuario(Cliente)
+                    Dim Bitac As New Bitacora(clienteLogeado, "El usuario " & clienteLogeado.NombreUsu & " Se logueo correctamente", Tipo_Bitacora.Login, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)
+                    BitacoraBLL.CrearBitacora(Bitac)
+                    Session("cliente") = clienteLogeado
+                    Usuario = DirectCast(Session("cliente"), Entidades.UsuarioEntidad)
+                    Me.success.Visible = True
+                    Me.lbl_success.InnerText = "Se ha logueado correctamente"
+                    Me.alertvalid.Visible = False
+                    VisibilidadAcceso(True)
+                    'Response.Redirect(Default., False)
+                    Response.Redirect(Request.Url.ToString, False)
+                End If
+            ' Else
+            ' Me.label_alert_login.InnerText = "Debe completar el captcha"
+            '  Me.success.Visible = False
+            '  Me.alert_login.Visible = True
+            '  End If
         Catch ex As Exception
             VisibilidadAcceso(False)
-
-            '        Me.success.Visible = True
-            '        Me.alertvalid.Visible = False
+            Me.label_alert_login.InnerText = "Usuario o Contraseña invalidos"
+            Me.success.Visible = False
+            Me.alert_login.Visible = True
             '        Response.Redirect("~/default.aspx", False)
             '    Else
             '        Me.aert
@@ -391,7 +416,6 @@ Public Class MasterPage
             '    Dim Bitac As New Entidades.Bitacora(Cliente, ex.Message, Entidades.Tipo_Bitacora.Errores, Now, Request.UserAgent, Request.UserHostAddress, ex.StackTrace, ex.GetType().ToString, Request.Url.ToString)
             '    Negocio.BitacoraBLL.CrearBitacora(Bitac)
         End Try
-
     End Sub
 
     Public Sub img_opciones_Click(sender As Object, e As ImageClickEventArgs)
@@ -413,10 +437,18 @@ Public Class MasterPage
 
                 If IsValidEmail(txtmail.Value) Then
                     usu.Mail = txtmail.Value
-
                 Else
+                    Me.success.Visible = False
+                    Me.alertvalid.Visible = True
                     Return
                 End If
+
+                If chk_terminos.Checked = False Then
+                    Me.success.Visible = False
+                    Me.alertvalid.Visible = True
+                    Return
+                End If
+
 
                 Dim PassSalt As List(Of String) = Negocio.EncriptarBLL.EncriptarPassword(txtPasswordreg.Value)
                 usu.Apellido = txtapereg.Value
@@ -523,5 +555,9 @@ Public Class MasterPage
         VisibilidadAcceso(False)
         Response.Redirect("Default.aspx", False)
 
+    End Sub
+
+    Private Sub btnsettings_Click(sender As Object, e As EventArgs) Handles btnsettings.Click
+        Response.Redirect("cambiarpassword.aspx", False)
     End Sub
 End Class

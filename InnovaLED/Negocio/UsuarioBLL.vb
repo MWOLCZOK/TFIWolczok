@@ -195,6 +195,25 @@ Public Class UsuarioBLL
     End Function
 
 
+    Public Function ModificarUsuarioLogueado(ByVal Usuario As UsuarioEntidad) As Boolean
+        Try
+            If UsuarioMPP.ModificarUsuarioLogueado(Usuario) Then
+                Return True
+            Else
+                Return False
+            End If
+        Catch FalloConexion As InvalidOperationException
+
+            Throw FalloConexion
+        Catch ex As Exception
+
+        End Try
+
+    End Function
+
+
+
+
     Public Function Eliminar(ByVal Usuario As UsuarioEntidad) As Boolean
         Try
             If UsuarioMPP.Eliminar(Usuario) Then
