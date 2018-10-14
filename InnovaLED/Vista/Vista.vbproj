@@ -277,7 +277,6 @@
     </Compile>
     <Compile Include="CrearProducto.aspx.vb">
       <DependentUpon>CrearProducto.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Default.aspx.designer.vb">
       <DependentUpon>Default.aspx</DependentUpon>
