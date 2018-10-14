@@ -1,4 +1,4 @@
-﻿Public Class Producto
+﻿Public Class ProductoEntidad
 
     Private _id_producto As Integer
     Public Property ID_Producto() As Integer
@@ -47,6 +47,16 @@
         End Get
         Set(ByVal value As CategoriaProducto)
             _categoria = value
+        End Set
+    End Property
+
+    Private _marca As String
+    Public Property Marca() As String
+        Get
+            Return _marca
+        End Get
+        Set(ByVal value As String)
+            _marca = value
         End Set
     End Property
 

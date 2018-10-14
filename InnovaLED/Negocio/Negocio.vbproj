@@ -72,6 +72,7 @@
     <Compile Include="EncriptarBLL.vb" />
     <Compile Include="GestorErroresBLL.vb" />
     <Compile Include="GestorPermisosBLL.vb" />
+    <Compile Include="GestorProductoBLL.vb" />
     <Compile Include="IdiomaBLL.vb" />
     <Compile Include="MaillingBLL.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />

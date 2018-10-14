@@ -88,7 +88,7 @@ Public Class MasterPage
 
         Me.Menu.Items.Add(New MenuItem("Almacenes y Logística", "AlmyLog"))
         Me.Menu.Items.Item(6).ChildItems.Add(New MenuItem("Actualizar Stock", "ActualizarStock", Nothing, "/ActualizarStock.aspx"))
-        Me.Menu.Items.Item(6).ChildItems.Add(New MenuItem("Crear Producto", "CrearProducto", Nothing, "/CrearProducto.aspx"))
+        Me.Menu.Items.Item(6).ChildItems.Add(New MenuItem("Gestionar Productos", "GestionarProductos", Nothing, "/GestionarProductos.aspx"))
         Me.Menu.Items.Item(6).ChildItems.Add(New MenuItem("Generar Envío", "GenerarEnvio", Nothing, "/GenerarEnvio.aspx"))
 
         Me.Menu.Items.Add(New MenuItem("Seguridad", "Seguridad"))
@@ -394,6 +394,9 @@ Public Class MasterPage
 
     End Sub
 
+    Public Sub img_opciones_Click(sender As Object, e As ImageClickEventArgs)
+        Response.Redirect("cambiarIdioma.aspx")
+    End Sub
 
     Public Sub btnregistracion_Click(sender As Object, e As EventArgs) Handles btnregistracion.Click
         Dim GestorCliente As New Negocio.UsuarioBLL

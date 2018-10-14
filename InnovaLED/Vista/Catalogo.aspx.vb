@@ -10,7 +10,7 @@ Public Class Catalogo
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         Dim Gestorproducto As New ProductoBLL
-        Dim listaproductos As List(Of Producto)
+        Dim listaproductos As List(Of ProductoEntidad)
 
 
         If IsNumeric(Request.QueryString("pagid")) Then
