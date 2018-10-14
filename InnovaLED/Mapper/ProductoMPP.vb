@@ -47,7 +47,7 @@ Public Class ProductoMPP
 
     Public Function Alta(ByRef Producto As ProductoEntidad) As Boolean
         Try
-            Dim Command As SqlCommand = Acceso.MiComando("insert into Producto (Marca,Modelo,Precio,Peso,Watt,Imagen,ID_Linea,ID_CategoriaProducto,Marca,BL) values (@Marca, @Modelo,@Precio,@Peso,@Watt,@ID_Linea ,@ID_CategoriaProducto, @BL)")
+            Dim Command As SqlCommand = Acceso.MiComando("insert into ProductoEntidad (Marca,Modelo,Precio,Peso,Watt,Imagen,ID_Linea,ID_CategoriaProducto,BL) values (@Marca, @Modelo,@Precio,@Peso,@Watt,@Imagen, @ID_Linea ,@ID_CategoriaProducto, @BL)")
             With Command.Parameters
                 .Add(New SqlParameter("@Marca", Producto.Marca))
                 .Add(New SqlParameter("@Modelo", Producto.Modelo))
@@ -59,7 +59,7 @@ Public Class ProductoMPP
                 .Add(New SqlParameter("@ID_CategoriaProducto", Producto.CategoriaProducto.ID_Categoria))
                 .Add(New SqlParameter("@BL", False))
             End With
-
+            Acceso.Escritura(Command)
             Return True
         Catch ex As Exception
             Throw ex
@@ -76,12 +76,12 @@ Public Class ProductoMPP
                 .Add(New SqlParameter("@ID_Producto", Producto.ID_Producto))
                 .Add(New SqlParameter("@Marca", Producto.Marca))
                 .Add(New SqlParameter("@Modelo", Producto.Modelo))
-                .Add(New SqlParameter("@Precio", Producto.Modelo))
-                .Add(New SqlParameter("@Peso", Producto.Modelo))
+                .Add(New SqlParameter("@Precio", Producto.Precio))
+                .Add(New SqlParameter("@Peso", Producto.Peso))
                 .Add(New SqlParameter("@Watt", Producto.Watt))
-                .Add(New SqlParameter("@Imagen", Producto.Modelo))
-                .Add(New SqlParameter("@ID_Linea", Producto.Modelo))
-                .Add(New SqlParameter("@ID_CategoriaProducto", Producto.Modelo))
+                .Add(New SqlParameter("@Imagen", Producto.Imagen))
+                .Add(New SqlParameter("@ID_Linea", Producto.LineaProducto.ID_Linea))
+                .Add(New SqlParameter("@ID_CategoriaProducto", Producto.CategoriaProducto.ID_Categoria))
                 .Add(New SqlParameter("@BL", False))
 
             End With

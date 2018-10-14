@@ -70,7 +70,9 @@
     <Compile Include="BackupRestoreBLL.vb" />
     <Compile Include="BitacoraBLL.vb" />
     <Compile Include="EncriptarBLL.vb" />
+    <Compile Include="GestorCategoriaProdBLL.vb" />
     <Compile Include="GestorErroresBLL.vb" />
+    <Compile Include="GestorLineaProdBLL.vb" />
     <Compile Include="GestorPermisosBLL.vb" />
     <Compile Include="GestorProductoBLL.vb" />
     <Compile Include="IdiomaBLL.vb" />

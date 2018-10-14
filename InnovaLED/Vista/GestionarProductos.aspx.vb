@@ -11,6 +11,9 @@ Public Class GestionarProductos
             Try
                 'Ocultamiento(False)
                 CargarProductos()
+                CargarCategoria()
+                CargarLinea()
+
 
             Catch ex As Exception
 
@@ -24,9 +27,9 @@ Public Class GestionarProductos
         Dim Gestor As New GestorProductoBLL
         'If Not IsNothing(Current.Session("producto")) Then
         lista = Gestor.TraerTodosProductos()
-            'Else Return
-            'End If
-            If lista.Count > 0 Then
+        'Else Return
+        'End If
+        If lista.Count > 0 Then
             Session("producto") = lista
             Me.gv_Productos.DataSource = lista
             Me.gv_Productos.DataBind()
@@ -34,6 +37,32 @@ Public Class GestionarProductos
 
         End If
     End Sub
+
+    Private Sub CargarLinea()
+        Dim lista As List(Of LineaProducto)
+        Dim Gestor As New GestorLineaProdBLL
+        lista = Gestor.TraerTodasLineasProd
+        DropDownLinea.DataSource = lista
+        DropDownLinea.DataTextField = "Descripcion"
+        DropDownLinea.DataValueField = "ID_Linea"
+        DropDownLinea.DataBind()
+    End Sub
+
+    Private Sub CargarCategoria()
+        Dim lista As List(Of CategoriaProducto)
+        Dim Gestor As New GestorCategoriaProdBLL
+        lista = Gestor.TraerTodasCatProd
+        DropDowncat.DataSource = lista
+        DropDowncat.DataTextField = "Descripcion"
+        DropDowncat.DataValueField = "ID_Categoria"
+        DropDowncat.DataBind()
+    End Sub
+
+
+
+
+
+
 
     Private Sub gv_Productos_DataBound(sender As Object, e As EventArgs) Handles gv_Productos.DataBound
         Try
@@ -139,11 +168,13 @@ Public Class GestionarProductos
                     txtprecio.Text = producto.Precio
                     txtwatt.Text = producto.Watt
 
-
                     DropDownLinea.ClearSelection()
+                    DropDowncat.ClearSelection()
+                    DropDownLinea.Items.FindByText(producto.LineaProducto.Descripcion).Selected = True
+                    DropDowncat.Items.FindByText(producto.CategoriaProducto.Descripcion).Selected = True
 
 
-                    'DropDownListRol.Items.FindByValue(Usuario.Rol(0).ID_Rol).Selected = True
+                    'DropDownLinea.ClearSelection()
 
                     'Ocultamiento(True)
             End Select
@@ -155,8 +186,8 @@ Public Class GestionarProductos
     Protected Sub btn_Modificar_Click(sender As Object, e As EventArgs) Handles btn_modificar.Click
         Dim GestorProducto As New GestorProductoBLL
         Try
-            Dim Producto As ProductoEntidad = TryCast(Session("producto"), List(Of ProductoEntidad))(Me.id_producto.Value)
-
+            ' Dim Producto As ProductoEntidad = TryCast(Session("producto"), List(Of ProductoEntidad))(Me.id_producto.Value)
+            Dim producto As ProductoEntidad = TryCast(Session("producto"), List(Of ProductoEntidad))(Me.id_producto.Value + (gv_Productos.PageIndex * gv_Productos.PageSize))
             Dim IdiomaActual As Entidades.IdiomaEntidad
             If IsNothing(Current.Session("Cliente")) Then
                 IdiomaActual = Application("Español")
@@ -228,7 +259,8 @@ Public Class GestionarProductos
 
         Dim GestorProducto As New GestorProductoBLL
         Try
-            Dim Producto As ProductoEntidad = TryCast(Session("producto"), List(Of ProductoEntidad))(Me.id_producto.Value)
+            Dim producto As ProductoEntidad = TryCast(Session("producto"), List(Of ProductoEntidad))(Me.id_producto.Value + (gv_Productos.PageIndex * gv_Productos.PageSize))
+            '(Me.id_producto.Value + (gv_Productos.PageIndex * gv_Productos.PageSize)) esto es igual a la posición elegida +(el numero de pagina * la paginación que le puse) eso me devuelve el ID a eliminar, porque el que selecciono desde la grilla no es el ID sino la posicion.
             Dim IdiomaActual As Entidades.IdiomaEntidad
             If IsNothing(Current.Session("Cliente")) Then
                 IdiomaActual = Application("Español")

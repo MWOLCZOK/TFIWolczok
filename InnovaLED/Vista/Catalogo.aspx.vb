@@ -146,6 +146,7 @@ Public Class Catalogo
 
 
     'esto nos va a servir para el ABM de productos (Uploads)
+
     'Dim producto As New Producto
     'Dim productoBLL As New ProductoBLL
     '    producto.ID_Producto = 11
