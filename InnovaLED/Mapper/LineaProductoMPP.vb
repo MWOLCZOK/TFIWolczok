@@ -30,6 +30,24 @@ Public Class LineaProductoMPP
 
 
 
+    Public Function obtenerLineaProducto() As List(Of Entidades.LineaProducto)
+        Try
+            Dim consulta As String = "Select * from LineaProducto where BL=0"
+            Dim lista_lineas As New List(Of LineaProducto)
+            Dim Command As SqlCommand = Acceso.MiComando(consulta)
+            Dim dt As DataTable = Acceso.Lectura(Command)
+            For Each row As DataRow In dt.Rows
+                Dim obj_lin As New LineaProducto
+                FormatearLineaProducto(obj_lin, row)
+                lista_lineas.Add(obj_lin)
+            Next
+            Return lista_lineas
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+    End Function
+
 
     Public Sub FormatearLineaProducto(ByVal linea_Producto As Entidades.LineaProducto, ByVal row As DataRow)
         Try
