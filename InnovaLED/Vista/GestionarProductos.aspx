@@ -171,8 +171,8 @@
                                                 <asp:BoundField DataField="Peso" HeaderText="Peso" />
                                                 <asp:BoundField DataField="Precio" HeaderText="Precio" />
                                                 <asp:BoundField DataField="Watt" HeaderText="Watt" />
-                                                <asp:BoundField DataField="ID_Linea" HeaderText="Linea" />
-                                                <asp:BoundField DataField="ID_CategoriaProducto" HeaderText="Categoria Producto" />
+                                                <asp:BoundField DataField="LineaProducto" HeaderText="Linea" />
+                                                <asp:BoundField DataField="CategoriaProducto" HeaderText="Categoria Producto" />
                                                 
                                                 <asp:TemplateField HeaderText="Acciones" HeaderStyle-Width="100px">
                                                     <ItemTemplate>

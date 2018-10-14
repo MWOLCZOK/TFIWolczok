@@ -114,7 +114,6 @@
     <Content Include="ConfirmarRecupero.aspx" />
     <Content Include="ConfirmarRegistracion.aspx" />
     <Content Include="CrearNuevoCliente.aspx" />
-    <Content Include="CrearProducto.aspx" />
     <Content Include="CSS\bootstrap-datepicker.css" />
     <Content Include="CSS\bootstrap-datetimepicker.min.css" />
     <Content Include="CSS\bootstrap-theme.css" />
@@ -145,6 +144,7 @@
     <Content Include="GenerarEnvio.aspx" />
     <Content Include="GenerarPresupuesto.aspx" />
     <Content Include="AgregarPerfil.aspx" />
+    <Content Include="GestionarProductos.aspx" />
     <Content Include="GestionarSolucionesLED.aspx" />
     <Content Include="Catalogo.aspx" />
     <Content Include="cambiarpassword.aspx" />
@@ -272,12 +272,6 @@
       <DependentUpon>CrearNuevoCliente.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="CrearProducto.aspx.designer.vb">
-      <DependentUpon>CrearProducto.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CrearProducto.aspx.vb">
-      <DependentUpon>CrearProducto.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Default.aspx.designer.vb">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
@@ -326,6 +320,13 @@
     <Compile Include="AgregarPerfil.aspx.vb">
       <DependentUpon>AgregarPerfil.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="GestionarProductos.aspx.designer.vb">
+      <DependentUpon>GestionarProductos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionarProductos.aspx.vb">
+      <DependentUpon>GestionarProductos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="GestionarSolucionesLED.aspx.designer.vb">
       <DependentUpon>GestionarSolucionesLED.aspx</DependentUpon>

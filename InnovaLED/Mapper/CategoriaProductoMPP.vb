@@ -8,16 +8,16 @@ Public Class CategoriaProductoMPP
 
 
 
-    Public Function obtenerLineaProducto(ByVal categoria_producto As Entidades.CategoriaProducto) As Entidades.CategoriaProducto
+    Public Function obtenerCategoriaProducto(ByVal categoria_producto As Entidades.CategoriaProducto) As Entidades.CategoriaProducto
         Try
             Dim consulta As String = "Select * from CategoriaProducto where ID_Categoria=@ID_Categoria"
             Dim Command As SqlCommand = Acceso.MiComando(consulta)
             With Command.Parameters
-                .Add(New SqlParameter("@ID_Linea", categoria_producto.ID_Categoria))
+                .Add(New SqlParameter("@ID_Categoria", categoria_producto.ID_Categoria))
             End With
             Dim dt As DataTable = Acceso.Lectura(Command)
             If dt.Rows.Count = 1 Then
-                FormatearLineaProducto(categoria_producto, dt.Rows(0))
+                FormatearCategoriaProducto(categoria_producto, dt.Rows(0))
                 Return categoria_producto
             Else
                 Return Nothing
@@ -31,7 +31,7 @@ Public Class CategoriaProductoMPP
 
 
 
-    Public Sub FormatearLineaProducto(ByVal categoria_producto As Entidades.CategoriaProducto, ByVal row As DataRow)
+    Public Sub FormatearCategoriaProducto(ByVal categoria_producto As Entidades.CategoriaProducto, ByVal row As DataRow)
         Try
             categoria_producto.ID_Categoria = row("ID_Categoria")
             categoria_producto.Descripcion = row("Descripcion")

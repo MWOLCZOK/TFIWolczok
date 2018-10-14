@@ -196,7 +196,7 @@ Public Class ProductoMPP
         Try
 
             Producto.ID_Producto = row("ID_Producto")
-            If row("marca") Is DBNull.Value Then Producto.Marca = "" Else Producto.Marca = row("Marca")
+            'If row("marca") Is DBNull.Value Then Producto.Marca = "" Else Producto.Marca = row("Marca")
 
             Producto.Marca = row("Marca")
             Producto.Modelo = row("Modelo")
@@ -204,8 +204,11 @@ Public Class ProductoMPP
             Producto.Watt = row("Watt")
             Producto.Imagen = row("Imagen")
             Producto.Precio = row("Precio")
-            'producto.LineaProducto = ""
-            'producto.CategoriaProducto = ""
+            Dim lineaproductoMPP As New LineaProductoMPP
+            Producto.LineaProducto = lineaproductoMPP.obtenerLineaProducto(New LineaProducto With {.ID_Linea = row("ID_Linea")})
+            Dim categoriaprodMPP As New CategoriaProductoMPP
+            Producto.CategoriaProducto = categoriaprodMPP.obtenerCategoriaProducto(New CategoriaProducto With {.ID_Categoria = row("ID_CategoriaProducto")})
+
 
         Catch ex As Exception
             Throw ex
