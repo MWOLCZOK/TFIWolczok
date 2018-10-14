@@ -11,106 +11,16 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class MasterPage
+Partial Public Class cambiarpassword
     
     '''<summary>
-    '''Control head.
+    '''Control alert.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents head As Global.System.Web.UI.WebControls.ContentPlaceHolder
-    
-    '''<summary>
-    '''Control Master.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents Master As Global.System.Web.UI.HtmlControls.HtmlForm
-    
-    '''<summary>
-    '''Control NoLogueo.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents NoLogueo As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
-    '''<summary>
-    '''Control YaLogueo.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents YaLogueo As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
-    '''<summary>
-    '''Control lbl_NombredeUsuarioLogueado.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents lbl_NombredeUsuarioLogueado As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''Control btnsettings.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents btnsettings As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''Control btnlogout.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents btnlogout As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''Control LogoMenu.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents LogoMenu As Global.System.Web.UI.WebControls.Image
-    
-    '''<summary>
-    '''Control alert_login.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents alert_login As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
-    '''<summary>
-    '''Control label_alert_login.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents label_alert_login As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
-    '''<summary>
-    '''Control alertvalid.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents alertvalid As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents alert As Global.System.Web.UI.HtmlControls.HtmlGenericControl
     
     '''<summary>
     '''Control lbl_textovalid.
@@ -122,13 +32,13 @@ Partial Public Class MasterPage
     Protected WithEvents lbl_textovalid As Global.System.Web.UI.HtmlControls.HtmlGenericControl
     
     '''<summary>
-    '''Control success.
+    '''Control div_success.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents success As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents div_success As Global.System.Web.UI.HtmlControls.HtmlGenericControl
     
     '''<summary>
     '''Control lbl_success.
@@ -140,112 +50,157 @@ Partial Public Class MasterPage
     Protected WithEvents lbl_success As Global.System.Web.UI.HtmlControls.HtmlGenericControl
     
     '''<summary>
-    '''Control Menu.
+    '''Control lblPanelModUser.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents Menu As Global.System.Web.UI.WebControls.Menu
+    Protected WithEvents lblPanelModUser As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''Control ContentPlaceHolder1.
+    '''Control lblapellido.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents ContentPlaceHolder1 As Global.System.Web.UI.WebControls.ContentPlaceHolder
+    Protected WithEvents lblapellido As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''Control lblcopyright.
+    '''Control txtapellido.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblcopyright As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents txtapellido As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
-    '''Control txtUser.
+    '''Control RequiredFieldValidator2.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtUser As Global.System.Web.UI.HtmlControls.HtmlInputText
+    Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
     
     '''<summary>
-    '''Control txtPassword.
+    '''Control lblnombre.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtPassword As Global.System.Web.UI.HtmlControls.HtmlInputPassword
+    Protected WithEvents lblnombre As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''Control btnLogin.
+    '''Control txtnombre.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents btnLogin As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents txtnombre As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
-    '''Control btnolvidepass.
+    '''Control RequiredFieldValidator1.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents btnolvidepass As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
     
     '''<summary>
-    '''Control txtUserreg.
+    '''Control lblpass.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtUserreg As Global.System.Web.UI.HtmlControls.HtmlInputText
+    Protected WithEvents lblpass As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''Control txtnombrereg.
+    '''Control txtpass.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtnombrereg As Global.System.Web.UI.HtmlControls.HtmlInputGenericControl
+    Protected WithEvents txtpass As Global.System.Web.UI.HtmlControls.HtmlInputPassword
     
     '''<summary>
-    '''Control txtapereg.
+    '''Control Label1.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtapereg As Global.System.Web.UI.HtmlControls.HtmlInputGenericControl
+    Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''Control txtdni.
+    '''Control newpass1.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtdni As Global.System.Web.UI.HtmlControls.HtmlInputText
+    Protected WithEvents newpass1 As Global.System.Web.UI.HtmlControls.HtmlInputPassword
     
     '''<summary>
-    '''Control txtPasswordreg.
+    '''Control Label2.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtPasswordreg As Global.System.Web.UI.HtmlControls.HtmlInputPassword
+    Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Control newpass2.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents newpass2 As Global.System.Web.UI.HtmlControls.HtmlInputPassword
+    
+    '''<summary>
+    '''Control LblDNI.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents LblDNI As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Control TxtDNI.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents TxtDNI As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Control RequiredFieldValidator4.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator4 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    
+    '''<summary>
+    '''Control Lblmail.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Lblmail As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
     '''Control txtmail.
@@ -254,23 +209,32 @@ Partial Public Class MasterPage
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtmail As Global.System.Web.UI.HtmlControls.HtmlInputGenericControl
+    Protected WithEvents txtmail As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
-    '''Control chk_terminos.
+    '''Control RequiredFieldValidator5.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents chk_terminos As Global.System.Web.UI.HtmlControls.HtmlInputCheckBox
+    Protected WithEvents RequiredFieldValidator5 As Global.System.Web.UI.WebControls.RequiredFieldValidator
     
     '''<summary>
-    '''Control btnregistracion.
+    '''Control btnModificar.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents btnregistracion As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnModificar As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''Control id_usuario.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents id_usuario As Global.System.Web.UI.WebControls.HiddenField
 End Class

@@ -181,7 +181,28 @@ Public Class UsuarioMPP
 
 
 
+    Public Function ModificarUsuarioLogueado(ByRef Usuario As UsuarioEntidad) As Boolean
 
+        Try
+            Dim Command As SqlCommand = Acceso.MiComando("update UsuarioEntidad set Password=@Password, Salt=@Salt, Nombre=@Nombre, Apellido=@Apellido, DNI=@DNI, Mail=@Mail where ID_Usuario=@ID_Usuario")
+            With Command.Parameters
+                .Add(New SqlParameter("@ID_Usuario", Usuario.ID_Usuario))
+                .Add(New SqlParameter("@Password", Usuario.Password))
+                .Add(New SqlParameter("@Salt", Usuario.Salt))
+                .Add(New SqlParameter("@Nombre", Usuario.Nombre))
+                .Add(New SqlParameter("@Apellido", Usuario.Apellido))
+                .Add(New SqlParameter("@DNI", Usuario.DNI))
+                .Add(New SqlParameter("@Mail", Usuario.Mail))
+            End With
+            Acceso.Escritura(Command)
+            Command.Dispose()
+            Return True
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+
+    End Function
 
 
 
@@ -407,7 +428,7 @@ Public Class UsuarioMPP
 
     Public Sub SumarIntentos(ByVal Usuario As Entidades.UsuarioEntidad)
         Try
-            Dim Consulta As String = "update UsuarioEntidad set Intentos = @Intentos, where NombreUsuario=@NombreUsuario and BL = 0"
+            Dim Consulta As String = "update UsuarioEntidad set Intentos = @Intentos where NombreUsuario=@NombreUsuario and BL = 0"
             Dim Command = Acceso.MiComando(Consulta)
             
             With Command.Parameters

@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -48,6 +49,10 @@
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -142,6 +147,7 @@
     <Content Include="AgregarPerfil.aspx" />
     <Content Include="GestionarSolucionesLED.aspx" />
     <Content Include="Catalogo.aspx" />
+    <Content Include="cambiarpassword.aspx" />
     <Content Include="Global.asax" />
     <Content Include="IMAGENES\Arrow.png" />
     <Content Include="IMAGENES\banner1.jpg" />
@@ -167,6 +173,7 @@
     <Content Include="IMAGENES\PorqueUtilizarLed.jpg" />
     <Content Include="IMAGENES\red.png" />
     <Content Include="IMAGENES\SegmentosdeIluminacion.jpg" />
+    <Content Include="IMAGENES\settings.jpeg" />
     <Content Include="IMAGENES\Test.jpg" />
     <Content Include="IMAGENES\twitter.png" />
     <Content Include="Institucional.aspx" />
@@ -333,6 +340,13 @@
     </Compile>
     <Compile Include="Catalogo.aspx.vb">
       <DependentUpon>Catalogo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cambiarpassword.aspx.designer.vb">
+      <DependentUpon>cambiarpassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cambiarpassword.aspx.vb">
+      <DependentUpon>cambiarpassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Global.asax.vb">
