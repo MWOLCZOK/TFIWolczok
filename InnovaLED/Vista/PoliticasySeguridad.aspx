@@ -17,6 +17,8 @@
 <br />
 <br />
 
+<div class="panel-body">
+
      <div class="row text-center col-md-12">
          <br />
          <div class="p-heading-03 panel-heading-light">
@@ -90,6 +92,7 @@
         </div>
 
        <br />
+</div>
 </div>
 </div>
 

@@ -90,7 +90,7 @@
     <Compile Include="Palabras.vb" />
     <Compile Include="PermisoBaseEntidad.vb" />
     <Compile Include="Pregunta.vb" />
-    <Compile Include="Producto.vb" />
+    <Compile Include="ProductoEntidad.vb" />
     <Compile Include="Respuesta.vb" />
     <Compile Include="RolEntidad.vb" />
     <Compile Include="Tipo_Bitacora.vb" />

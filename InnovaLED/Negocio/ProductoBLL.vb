@@ -11,7 +11,7 @@ Public Class ProductoBLL
     End Sub
 
 
-    Public Function TraerProductosCatalogo(ByVal paginacion As Integer) As List(Of Entidades.Producto)
+    Public Function TraerProductosCatalogo(ByVal paginacion As Integer) As List(Of Entidades.ProductoEntidad)
         Return productoMPP.TraerProductosCatalogo(paginacion)
 
     End Function

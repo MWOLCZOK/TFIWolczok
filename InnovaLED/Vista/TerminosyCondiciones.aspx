@@ -22,6 +22,8 @@
 
 <br />
 <br />
+
+<div class="panel-body">
     
 <div class="row text-left">
    <div class="p-heading-03 panel-heading-light">
@@ -100,7 +102,7 @@ Cuando se registre, debe elegir un identificador o nombre de usuario único y un
     
     
 </div>
-    
+</div>  
                                  
 
    

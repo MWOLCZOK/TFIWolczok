@@ -15,7 +15,7 @@
 <br />
 
 
-    <div class="row Blanco">
+    <div class="row">
           <div id="alertvalid" runat="server" name="alertvalid" class="alert alert-danger  text-center" visible="false">
             <label runat="server" id="lbl_textovalid" class="text-danger"></label>
         </div>
@@ -34,7 +34,7 @@
         </div>
 
    
-        <div class="row Blanco">
+        <div class="row">
             <br />
         <asp:Label ID="Lblpermisosactuales" Class="  col-md-offset-1 col-md-3" font-weight="lighter" font-size="24px" runat="server" Text="Label"></asp:Label>
 
