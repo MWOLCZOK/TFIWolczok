@@ -25,6 +25,11 @@
 <br />                                 
 </div>
 <br />
+
+<asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager> 
+<asp:UpdatePanel ID="UpdatePanel1" runat="server">
+<ContentTemplate>
+
     
 
 <div class="panel-group col-md-5">
@@ -132,17 +137,42 @@
 <br/>
 
 <div class="row">
+     <asp:Label ID="Lbl_imagen" runat="server" Text="Imagen:" CssClass="col-sm-4 control-label labelform"></asp:Label>
+          <div class="col-md-6">
+               <div class="input-group">
+                   <asp:FileUpload ID="FileUpload1"  class="btn btn-default btn-file" runat="server"  />
+               <%--<span class="input-group-addon" id="basic-addon2"><span class="	glyphicon glyphicon-list-alt" aria-hidden="true"></span></span>--%>
+               </div>
+         </div>
+</div>
+<br/>
+
+<div class="row">
             
-<asp:button ID="btn_agregar" runat="server" text="Agregar" type="button" class="btn btn-primary btn-md col-md-2"></asp:button>
+<asp:button ID="btn_agregar" runat="server" text="Agregar" type="button" class="btn btn-success btn-md col-md-2"></asp:button>
 <asp:button ID="btn_modificar" runat="server" text="Modificar" type="button" class="btn btn-info btn-md col-md-2 col-md-offset-1"></asp:button>
-<asp:button ID="btn_eliminar" runat="server" text="Eliminar" type="button" class="btn btn-danger btn-md col-md-2 col-md-offset-1"></asp:button>         
-&nbsp;<asp:FileUpload ID="FileUpload1" runat="server" Width="273px" />
+<asp:button ID="btn_eliminar" runat="server" text="Eliminar" type="button" class="btn btn-danger btn-md col-md-2 col-md-offset-1"></asp:button>
+<asp:button ID="btn_nuevo" runat="server" text="Nuevo" type="button" class="btn btn-primary btn-md col-md-2 col-md-offset-1"></asp:button>       
+&nbsp;
 </div>   
             
- <%-- Sección GRID --%>  
+
+      
+                   
+</div> 
+
+   
             
+   
+            
+            
+         
+</div>
+</div > 
+
+  <%-- Sección GRID --%>  
   <div class="col-md-5 col-md-offset-1">
-                                        <asp:GridView CssClass="table table-hover table-bordered table-responsive table-success " ID="gv_Productos" runat="server" AutoGenerateColumns="False" HorizontalAlign="Center" AllowPaging="true" PageSize="5" OnPageIndexChanging="gv_Productos_PageIndexChanging" RowStyle-Height="40px">
+                                        <asp:GridView CssClass="table table-hover table-bordered table-responsive table-active " ID="gv_Productos" runat="server" AutoGenerateColumns="False" HorizontalAlign="Center" AllowPaging="true" PageSize="5" OnPageIndexChanging="gv_Productos_PageIndexChanging" RowStyle-Height="40px">
                                             <HeaderStyle CssClass="thead-dark" />
                                             <PagerTemplate>
                                                 <div class="col-md-4 text-left">
@@ -174,11 +204,11 @@
                                                 <asp:BoundField DataField="LineaProducto" HeaderText="Linea" />
                                                 <asp:BoundField DataField="CategoriaProducto" HeaderText="Categoria Producto" />
                                                 
-                                                <asp:TemplateField HeaderText="Acciones" HeaderStyle-Width="100px">
+                                                <asp:TemplateField HeaderText="Acción" HeaderStyle-Width="100px">
                                                     <ItemTemplate>
                                                         <div>
-                                                            <asp:ImageButton ID="btn_Bloquear" runat="server" CommandName="B" ImageUrl="~/Imagenes/padlock-close.png" Height="18px" />
-                                                            <asp:ImageButton ID="btn_desbloqueo" runat="server" CommandName="U" ImageUrl="~/Imagenes/padlock-open.png" Height="18px" />
+                                                         <%--   <asp:ImageButton ID="btn_Bloquear" runat="server" CommandName="B" ImageUrl="~/Imagenes/padlock-close.png" Height="18px" />
+                                                            <asp:ImageButton ID="btn_desbloqueo" runat="server" CommandName="U" ImageUrl="~/Imagenes/padlock-open.png" Height="18px" />--%>
                                                             <asp:ImageButton ID="btn_editar" runat="server" CommandName="E" ImageUrl="~/Imagenes/edit.png" Height="18px" />
                                                         </div>
                                                     </ItemTemplate>
@@ -186,18 +216,14 @@
                                                 </asp:TemplateField>
                                             </Columns>
                                         </asp:GridView>
-                                        </div>      
-            
-            
-            
-                   
-</div>   
-</div>
-</div > 
+                                        </div>   
 </div > 
    
 <br />
 <br /> 
 
     <asp:HiddenField ID="id_producto" runat="server" />
+
+     </ContentTemplate>
+        </asp:UpdatePanel>
 </asp:Content>

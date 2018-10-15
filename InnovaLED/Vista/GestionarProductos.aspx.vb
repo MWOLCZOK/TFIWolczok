@@ -7,9 +7,11 @@ Public Class GestionarProductos
     Inherits System.Web.UI.Page
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+
         If Not IsPostBack Then
             Try
-                'Ocultamiento(False)
+                Ocultamiento()
                 CargarProductos()
                 CargarCategoria()
                 CargarLinea()
@@ -18,6 +20,8 @@ Public Class GestionarProductos
             Catch ex As Exception
 
             End Try
+        Else
+            Ocultamiento3()
 
         End If
     End Sub
@@ -58,7 +62,27 @@ Public Class GestionarProductos
         DropDowncat.DataBind()
     End Sub
 
+    Private Sub Ocultamiento()
+        Me.btn_nuevo.Visible = True
+        Me.btn_modificar.Visible = False
+        Me.btn_eliminar.Visible = False
+        Me.btn_agregar.Visible = False
+    End Sub
 
+    Private Sub Ocultamiento2()
+        Me.btn_nuevo.Visible = True
+        Me.btn_modificar.Visible = True
+        Me.btn_eliminar.Visible = True
+        Me.btn_agregar.Visible = False
+    End Sub
+
+    Private Sub Ocultamiento3()
+        Me.btn_agregar.Visible = True
+        Me.btn_modificar.Visible = False
+        Me.btn_eliminar.Visible = False
+        Me.btn_nuevo.Visible = False
+
+    End Sub
 
 
 
@@ -147,7 +171,7 @@ Public Class GestionarProductos
     Private Sub gv_Productos_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles gv_Productos.RowCommand
         'Funcion para que luego de clickear en el Grid lo pase a los textbox
         Try
-            'Ocultamiento(False)
+            Ocultamiento2()
             Dim Gestor As New GestorProductoBLL
             Dim producto As ProductoEntidad = TryCast(Session("producto"), List(Of ProductoEntidad))(e.CommandArgument + (gv_Productos.PageIndex * gv_Productos.PageSize))
             Me.id_producto.Value = e.CommandArgument
@@ -222,6 +246,22 @@ Public Class GestionarProductos
         Catch ex As Exception
 
         End Try
+    End Sub
+
+    Protected Sub btn_Nuevo_Click(sender As Object, e As EventArgs) Handles btn_nuevo.Click
+
+        If Page.IsValid = True Then
+            txtmarca.Text = Nothing
+            txtmodelo.Text = Nothing
+            txtprecio.Text = Nothing
+            txtwatt.Text = Nothing
+            DropDownLinea.ClearSelection()
+            DropDowncat.ClearSelection()
+            Ocultamiento3()
+
+        End If
+
+
     End Sub
 
     Protected Sub gv_Productos_PageIndexChanging(sender As Object, e As GridViewPageEventArgs)

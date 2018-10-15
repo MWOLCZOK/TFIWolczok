@@ -50,6 +50,24 @@ Partial Public Class GestionarProductos
     Protected WithEvents Lbl_GestionarProd As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
+    '''Control ScriptManager1.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
+    
+    '''<summary>
+    '''Control UpdatePanel1.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents UpdatePanel1 As Global.System.Web.UI.UpdatePanel
+    
+    '''<summary>
     '''Control Lbl_marca.
     '''</summary>
     '''<remarks>
@@ -221,6 +239,24 @@ Partial Public Class GestionarProductos
     Protected WithEvents DropDowncat As Global.System.Web.UI.WebControls.DropDownList
     
     '''<summary>
+    '''Control Lbl_imagen.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Lbl_imagen As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Control FileUpload1.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents FileUpload1 As Global.System.Web.UI.WebControls.FileUpload
+    
+    '''<summary>
     '''Control btn_agregar.
     '''</summary>
     '''<remarks>
@@ -248,13 +284,13 @@ Partial Public Class GestionarProductos
     Protected WithEvents btn_eliminar As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
-    '''Control FileUpload1.
+    '''Control btn_nuevo.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents FileUpload1 As Global.System.Web.UI.WebControls.FileUpload
+    Protected WithEvents btn_nuevo As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
     '''Control gv_Productos.
