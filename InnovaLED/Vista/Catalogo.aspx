@@ -28,7 +28,109 @@
             </div>
          <%-- Content Media - Catalogo --%>
 
-<div class="col-md-4"></div>
+<div class="col-md-4">
+
+<div class="panel-group">
+<div class="panel-default">
+<div class="panel-heading ">Búsqueda</div>
+        <div class="panel-body">
+ 
+<div class="row">
+   <asp:Label ID="Lbl_marca" runat="server" Text="Marca:" CssClass="col-sm-4 control-label labelform"></asp:Label>
+      <div class="col-md-8">         
+             <asp:TextBox ID="txtmarca" runat="server" CssClass="form-control"></asp:TextBox>           
+         </div>
+    </div>
+<br/>                 
+
+<div class="row">
+   <asp:Label ID="Lbl_modelo" runat="server" Text="Modelo:" CssClass="col-sm-4 control-label labelform"></asp:Label>
+      <div class="col-md-8">
+         <asp:TextBox ID="txtmodelo" runat="server" CssClass="form-control"></asp:TextBox>                 
+        </div>
+   </div>
+<br/>
+
+
+<div class="row">
+   <asp:Label ID="Lbl_peso" runat="server" Text="Peso:" CssClass="col-sm-4 control-label labelform"></asp:Label>
+      <div class="col-md-4">         
+             <asp:TextBox ID="txtpesodesde" placeholder="Desde" runat="server" CssClass="form-control"></asp:TextBox>
+      </div>
+      <div class="col-md-4">
+             <asp:TextBox ID="txtpesohasta" placeholder="Hasta" runat="server" CssClass="form-control"></asp:TextBox>           
+     </div>
+</div>
+<br/>
+
+<div class="row">
+   <asp:Label ID="Lbl_precio" runat="server" Text="Precio:" CssClass="col-sm-4 control-label labelform"></asp:Label>
+      <div class="col-md-4">         
+             <asp:TextBox ID="txtpreciodesde" runat="server" placeholder="Desde" CssClass="form-control"></asp:TextBox>
+      </div>
+      <div class="col-md-4"> 
+             <asp:TextBox ID="txtpreciohasta" runat="server" placeholder="Hasta" CssClass="form-control"></asp:TextBox>            
+      </div>
+</div>
+<br/>
+
+
+<div class="row">
+   <asp:Label ID="Lbl_watt" runat="server" Text="Watt:" CssClass="col-sm-4 control-label labelform"></asp:Label>
+      <div class="col-md-4">
+                 <asp:TextBox ID="txtwattdesde" runat="server" placeholder="Desde" CssClass="form-control"></asp:TextBox>
+       </div>
+          <div class="col-md-4">
+              <asp:TextBox ID="txtwatthasta" runat="server" placeholder="Hasta" CssClass="form-control"></asp:TextBox>
+       </div>
+</div>
+<br/>
+
+<div class="row">
+     <asp:Label ID="Lbl_linea" runat="server" Text="Línea del Producto:" CssClass="col-sm-4 control-label labelform"></asp:Label>
+          <div class="col-md-8">
+
+                 <asp:DropDownList ID="DropDownLinea" runat="server" CssClass="form-control" AutoPostBack="true" DataValueField="ID_Linea" DataTextField="Nombre"></asp:DropDownList>
+               </div>
+       
+</div>
+<br/>
+
+<div class="row">
+     <asp:Label ID="Lbl_cat" runat="server" Text="Categoria Producto:" CssClass="col-sm-4 control-label labelform"></asp:Label>
+          <div class="col-md-8">
+              
+                 <asp:DropDownList ID="DropDowncat" runat="server" CssClass="form-control" AutoPostBack="true" DataValueField="ID_CategoriaProducto" DataTextField="Nombre"></asp:DropDownList>
+          
+         </div>
+</div>
+<br/>
+
+
+
+<div class="row">
+            
+<asp:button ID="btn_filtrar" runat="server" text="Filtrar" type="button" class="btn btn-success btn-lg col-md-12"></asp:button>
+  
+&nbsp;
+</div>   
+            
+
+      
+                   
+</div> 
+
+   
+            
+   
+            
+            
+         
+</div>
+</div >
+
+
+</div>
 
         <div id="ID_Catalogo" runat="server" class="col-md-8">
       

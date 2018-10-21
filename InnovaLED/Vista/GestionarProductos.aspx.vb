@@ -337,7 +337,7 @@ Public Class GestionarProductos
                 prod.Precio = txtprecio.Text
                 prod.Watt = txtwatt.Text
                 prod.Imagen = FileUpload1.FileBytes
-                GestorProducto.ActualizaImagen(prod.Imagen, prod.ID_Producto)
+                'GestorProducto.ActualizaImagen(prod.Imagen, prod.ID_Producto)
 
                 prod.LineaProducto = New LineaProducto With {.ID_Linea = DropDownLinea.SelectedValue}
                 prod.CategoriaProducto = New CategoriaProducto With {.ID_Categoria = DropDowncat.SelectedValue}

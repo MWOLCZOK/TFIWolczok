@@ -9,18 +9,49 @@ Public Class Catalogo
     Inherits System.Web.UI.Page
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Dim Gestorproducto As New ProductoBLL
-        Dim listaproductos As List(Of ProductoEntidad)
+        If Not IsPostBack Then
+            If IsNumeric(Request.QueryString("pagid")) Then
 
+                TraerProductosBusqueda(Session("Modelo"), Session("Marca"), Session("PesoDesde"), Session("PesoHasta"), Session("WattDesde"), Session("WattHasta"), Session("PrecioDesde"), Session("PrecioHasta"), Session("LineaProducto"), Session("CategoriaProducto"))
+            Else
+                TraerProductosBusqueda(,,,,,,,, New LineaProducto With {.ID_Linea = 0}, New CategoriaProducto With {.ID_Categoria = 0})
+            End If
 
-        If IsNumeric(Request.QueryString("pagid")) Then
-            listaproductos = Gestorproducto.TraerProductosCatalogo(Request.QueryString("pagid"))
-            Session("Paginacion") = Request.QueryString("pagid")
+            CargarCategoria()
+            CargarLinea()
         Else
-            listaproductos = Gestorproducto.TraerProductosCatalogo(1)
-            Session("Paginacion") = 1
+            GenerarDiseño(Session("Listaproductos"), Session("CantListaproductos"))
+
         End If
 
+
+    End Sub
+
+    Private Sub TraerProductosBusqueda(Optional ByVal Modelo As String = Nothing, Optional ByVal Marca As String = Nothing, Optional ByVal PrecioHasta As Integer = Nothing, Optional ByVal PrecioDesde As Integer = Nothing, Optional ByVal PesoHasta As Integer = Nothing, Optional ByVal PesoDesde As Integer = Nothing, Optional ByVal WattHasta As Integer = Nothing, Optional ByVal WattDesde As Integer = Nothing, Optional ByVal LineaProducto As LineaProducto = Nothing, Optional ByVal CategoriaProducto As CategoriaProducto = Nothing)
+        Dim Listaproductos As New List(Of ProductoEntidad)
+        Dim GestorProducto As New GestorProductoBLL
+        Dim CantProd As Integer
+
+        If IsNumeric(Request.QueryString("pagid")) Then
+            Listaproductos = GestorProducto.TraerProductosCatalogo(Request.QueryString("pagid"), Modelo, Marca, PrecioHasta, PrecioDesde, PesoHasta, PesoDesde, WattHasta, WattDesde, LineaProducto, CategoriaProducto)
+            Session("Paginacion") = Request.QueryString("pagid")
+            Session("Listaproductos") = Listaproductos
+            CantProd = GestorProducto.TraerCantProductosCatalogo(Request.QueryString("pagid"), Modelo, Marca, PrecioHasta, PrecioDesde, PesoHasta, PesoDesde, WattHasta, WattDesde, LineaProducto, CategoriaProducto)
+            Session("CantListaproductos") = CantProd
+
+        Else
+            Listaproductos = GestorProducto.TraerProductosCatalogo(1, Modelo, Marca, PrecioHasta, PrecioDesde, PesoHasta, PesoDesde, WattHasta, WattDesde, LineaProducto, CategoriaProducto)
+            Session("Paginacion") = 1
+            Session("Listaproductos") = Listaproductos
+            CantProd = GestorProducto.TraerCantProductosCatalogo(1, Modelo, Marca, PrecioHasta, PrecioDesde, PesoHasta, PesoDesde, WattHasta, WattDesde, LineaProducto, CategoriaProducto)
+            Session("CantListaproductos") = CantProd
+        End If
+
+        GenerarDiseño(Listaproductos, CantProd)
+
+    End Sub
+
+    Private Sub GenerarDiseño(ByVal listaproductos As List(Of ProductoEntidad), ByVal cant As Integer)
         ID_Catalogo.Controls.Clear()
 
 
@@ -98,9 +129,10 @@ Public Class Catalogo
 
         Dim var As Integer = 2
 
-        For index = 1 To listaproductos.Count
+        'Paginacion
+        For index = 1 To cant
             index += 5
-            If index > listaproductos.Count Then
+            If cant >= index Then
 
 
                 Dim li3 As HtmlGenericControl = New HtmlGenericControl("li")
@@ -135,25 +167,125 @@ Public Class Catalogo
         ul.Controls.Add(li4)
         nav.Controls.Add(ul)
         ID_Catalogo.Controls.Add(nav)
+    End Sub
 
 
+    Private Sub CargarLinea()
+        Dim lista As List(Of LineaProducto)
+        Dim Gestor As New GestorLineaProdBLL
+        lista = Gestor.TraerTodasLineasProd
+        lista.Add(New LineaProducto With {.ID_Linea = 0, .Descripcion = "Todos"})
+        DropDownLinea.DataSource = lista
+        DropDownLinea.DataTextField = "Descripcion"
+        DropDownLinea.DataValueField = "ID_Linea"
+        DropDownLinea.DataBind()
+    End Sub
 
+    Private Sub CargarCategoria()
+        Dim lista As List(Of CategoriaProducto)
+        Dim Gestor As New GestorCategoriaProdBLL
+        lista = Gestor.TraerTodasCatProd
+        lista.Add(New CategoriaProducto With {.ID_Categoria = 0, .Descripcion = "Todos"})
+        DropDowncat.DataSource = lista
+        DropDowncat.DataTextField = "Descripcion"
+        DropDowncat.DataValueField = "ID_Categoria"
+        DropDowncat.DataBind()
+    End Sub
+
+    Private Sub Filtrar()
+
+
+        Dim Marca As String
+        Dim Modelo As String
+        Dim PesoDesde As Integer
+        Dim PesoHasta As Integer
+        Dim WattDesde As Integer
+        Dim WattHasta As Integer
+        Dim PrecioDesde As Integer
+        Dim PrecioHasta As Integer
+        Dim LineaProducto As LineaProducto
+        Dim CategoriaProducto As CategoriaProducto
+
+
+        If txtmarca.Text = "" Then
+            Marca = Nothing
+        Else
+            Marca = txtmarca.Text
+        End If
+
+        If txtmodelo.Text = "" Then
+            Modelo = Nothing
+        Else
+            Modelo = txtmodelo.Text
+        End If
+
+        If txtpesodesde.Text = "" Then
+            PesoDesde = Nothing
+        Else
+            PesoDesde = CInt(txtpesodesde.Text)
+        End If
+
+        If txtpesohasta.Text = "" Then
+            PesoHasta = Nothing
+        Else
+
+            PesoHasta = CInt(txtpesohasta.Text)
+        End If
+
+        If txtwattdesde.Text = "" Then
+            WattDesde = Nothing
+        Else
+
+            WattDesde = CInt(txtwattdesde.Text)
+        End If
+
+        If txtwatthasta.Text = "" Then
+            WattHasta = Nothing
+        Else
+
+            WattHasta = CInt(txtwatthasta.Text)
+        End If
+
+        If txtpreciodesde.Text = "" Then
+            PrecioDesde = Nothing
+        Else
+
+            PrecioDesde = CInt(txtpreciodesde.Text)
+        End If
+
+        If txtpreciohasta.Text = "" Then
+            PrecioHasta = Nothing
+        Else
+
+            PrecioHasta = CInt(txtpreciohasta.Text)
+        End If
+
+
+        LineaProducto = New LineaProducto With {.ID_Linea = DropDownLinea.SelectedValue}
+        CategoriaProducto = New CategoriaProducto With {.ID_Categoria = DropDowncat.SelectedValue}
+
+        Session("Marca") = Marca
+        Session("Modelo") = Modelo
+        Session("PesoDesde") = PesoDesde
+        Session("PesoHasta") = PesoHasta
+        Session("WattDesde") = WattDesde
+        Session("WattHasta") = WattHasta
+        Session("PrecioDesde") = PrecioDesde
+        Session("PrecioHasta") = PrecioHasta
+        Session("LineaProducto") = New LineaProducto With {.ID_Linea = DropDownLinea.SelectedValue}
+        Session("CategoriaProducto") = New CategoriaProducto With {.ID_Categoria = DropDowncat.SelectedValue}
+
+        Session("Paginacion") = 1
+
+        TraerProductosBusqueda(Modelo, Marca, PrecioHasta, PrecioDesde, PesoHasta, PesoDesde, WattHasta, WattDesde, LineaProducto, CategoriaProducto)
+
+    End Sub
+
+    Protected Sub btn_filtrar_Click(sender As Object, e As EventArgs) Handles btn_filtrar.Click
+
+        Filtrar()
 
 
 
     End Sub
-
-
-
-    'esto nos va a servir para el ABM de productos (Uploads)
-
-    'Dim producto As New Producto
-    'Dim productoBLL As New ProductoBLL
-    '    producto.ID_Producto = 11
-    '    producto.Imagen = FileUpload1.FileBytes
-    '    productoBLL.ActualizaImagen(producto.Imagen, producto.ID_Producto)
-
-
-
-
 End Class

@@ -26,9 +26,9 @@
 </div>
 <br />
 
-<asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager> 
+<%--<asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager> 
 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-<ContentTemplate>
+<ContentTemplate>--%>
 
     
 
@@ -224,6 +224,6 @@
 
     <asp:HiddenField ID="id_producto" runat="server" />
 
-     </ContentTemplate>
-        </asp:UpdatePanel>
+<%--     </ContentTemplate>
+        </asp:UpdatePanel>--%>
 </asp:Content>

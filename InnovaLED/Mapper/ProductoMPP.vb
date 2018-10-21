@@ -21,14 +21,68 @@ Public Class ProductoMPP
         End Try
     End Function
 
-    Public Function TraerProductosCatalogo(ByVal paginacion As Integer) As List(Of ProductoEntidad)
+    Public Function TraerProductosCatalogo(ByVal paginacion As Integer, Optional ByVal Modelo As String = Nothing, Optional ByVal Marca As String = Nothing, Optional ByVal PrecioHasta As Integer = Nothing, Optional ByVal PrecioDesde As Integer = Nothing, Optional ByVal PesoHasta As Integer = Nothing, Optional ByVal PesoDesde As Integer = Nothing, Optional ByVal WattHasta As Integer = Nothing, Optional ByVal WattDesde As Integer = Nothing, Optional ByVal LineaProducto As LineaProducto = Nothing, Optional ByVal CategoriaProducto As CategoriaProducto = Nothing) As List(Of ProductoEntidad)
 
         Try
-            Dim consulta As String = "select * from ProductoEntidad order by id_producto offset (@count) rows FETCH NEXT (@cant) ROWS ONLY"
+            Dim consulta As String = "select * from ProductoEntidad where Peso between isnull(@PesoDesde,0) and isnull(@PesoHasta,999999999) and Watt between isnull(@WattDesde,0) and isnull(@WattHasta,999999999) and Precio between isnull(@PrecioDesde,0) and isnull(@PrecioHasta,999999999) and ID_Linea=isnull(@ID_Linea,ID_Linea) and ID_CategoriaProducto=isnull(@ID_CategoriaProducto,ID_CategoriaProducto) and Modelo like '%'+ isnull(@Modelo,Modelo) + '%' and Marca like '%'+ isnull(@Marca,Marca) + '%' AND BL=0 order by id_producto offset (@count) rows FETCH NEXT (@cant) ROWS ONLY"
             Dim Command As SqlCommand = Acceso.MiComando(consulta)
             With Command.Parameters
                 .Add(New SqlParameter("@count", (paginacion - 1) * 5))
                 .Add(New SqlParameter("@cant", 5))
+                'Los IF debajo nos sirve para hacer consultas sin llenar todos los campos, para los filtros de busqueda de productos.
+                If Not IsNothing(Modelo) Then
+                    .Add(New SqlParameter("@Modelo", Modelo))
+                Else
+                    .Add(New SqlParameter("@Modelo", DBNull.Value))
+                End If
+                If Not IsNothing(Marca) Then
+                    .Add(New SqlParameter("@Marca", Marca))
+                Else
+                    .Add(New SqlParameter("@Marca", DBNull.Value))
+                End If
+
+                .Add(New SqlParameter("@PrecioDesde", PrecioDesde))
+
+                If PrecioHasta > 0 Then
+                    .Add(New SqlParameter("@PrecioHasta", PrecioHasta))
+                Else
+                    .Add(New SqlParameter("@PrecioHasta", DBNull.Value))
+                End If
+                .Add(New SqlParameter("@PesoDesde", PesoDesde))
+
+                If PesoHasta > 0 Then
+                    .Add(New SqlParameter("@PesoHasta", PesoHasta))
+                Else
+                    .Add(New SqlParameter("@PesoHasta", DBNull.Value))
+                End If
+
+                .Add(New SqlParameter("@WattDesde", WattDesde))
+
+                If WattHasta > 0 Then
+                    .Add(New SqlParameter("@WattHasta", WattHasta))
+                Else
+                    .Add(New SqlParameter("@WattHasta", DBNull.Value))
+                End If
+                If Not IsNothing(LineaProducto) Then
+                    If LineaProducto.ID_Linea > 0 Then
+                        .Add(New SqlParameter("@ID_Linea", LineaProducto.ID_Linea))
+                    Else
+                        .Add(New SqlParameter("@ID_Linea", DBNull.Value))
+                    End If
+                Else
+                    .Add(New SqlParameter("@ID_Linea", DBNull.Value))
+                End If
+
+                If Not IsNothing(CategoriaProducto) Then
+                    If CategoriaProducto.ID_Categoria > 0 Then
+                        .Add(New SqlParameter("@ID_CategoriaProducto", CategoriaProducto.ID_Categoria))
+                    Else
+                        .Add(New SqlParameter("@ID_CategoriaProducto", DBNull.Value))
+                    End If
+                Else
+                    .Add(New SqlParameter("@ID_CategoriaProducto", DBNull.Value))
+                End If
+
             End With
 
             Dim dt As DataTable = Acceso.Lectura(Command)
@@ -39,6 +93,77 @@ Public Class ProductoMPP
                 Listaproducto.Add(Producto)
             Next
             Return Listaproducto
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+    End Function
+
+    Public Function TraerCantProductosCatalogo(ByVal paginacion As Integer, Optional ByVal Modelo As String = Nothing, Optional ByVal Marca As String = Nothing, Optional ByVal PrecioHasta As Integer = Nothing, Optional ByVal PrecioDesde As Integer = Nothing, Optional ByVal PesoHasta As Integer = Nothing, Optional ByVal PesoDesde As Integer = Nothing, Optional ByVal WattHasta As Integer = Nothing, Optional ByVal WattDesde As Integer = Nothing, Optional ByVal LineaProducto As LineaProducto = Nothing, Optional ByVal CategoriaProducto As CategoriaProducto = Nothing) As Integer
+
+        Try
+            Dim consulta As String = "select count(*) from ProductoEntidad where Peso between isnull(@PesoDesde,0) and isnull(@PesoHasta,999999999) and Watt between isnull(@WattDesde,0) and isnull(@WattHasta,999999999) and Precio between isnull(@PrecioDesde,0) and isnull(@PrecioHasta,999999999) and ID_Linea=isnull(@ID_Linea,ID_Linea) and ID_CategoriaProducto=isnull(@ID_CategoriaProducto,ID_CategoriaProducto) and Modelo like '%'+ isnull(@Modelo,Modelo) + '%' and Marca like '%'+ isnull(@Marca,Marca) + '%' AND BL=0"
+            Dim Command As SqlCommand = Acceso.MiComando(consulta)
+            With Command.Parameters
+
+                'Los IF debajo nos sirve para hacer consultas sin llenar todos los campos, para los filtros de busqueda de productos.
+                If Not IsNothing(Modelo) Then
+                    .Add(New SqlParameter("@Modelo", Modelo))
+                Else
+                    .Add(New SqlParameter("@Modelo", DBNull.Value))
+                End If
+                If Not IsNothing(Marca) Then
+                    .Add(New SqlParameter("@Marca", Marca))
+                Else
+                    .Add(New SqlParameter("@Marca", DBNull.Value))
+                End If
+
+                .Add(New SqlParameter("@PrecioDesde", PrecioDesde))
+
+                If PrecioHasta > 0 Then
+                    .Add(New SqlParameter("@PrecioHasta", PrecioHasta))
+                Else
+                    .Add(New SqlParameter("@PrecioHasta", DBNull.Value))
+                End If
+                .Add(New SqlParameter("@PesoDesde", PesoDesde))
+
+                If PesoHasta > 0 Then
+                    .Add(New SqlParameter("@PesoHasta", PesoHasta))
+                Else
+                    .Add(New SqlParameter("@PesoHasta", DBNull.Value))
+                End If
+
+                .Add(New SqlParameter("@WattDesde", WattDesde))
+
+                If WattHasta > 0 Then
+                    .Add(New SqlParameter("@WattHasta", WattHasta))
+                Else
+                    .Add(New SqlParameter("@WattHasta", DBNull.Value))
+                End If
+                If Not IsNothing(LineaProducto) Then
+                    If LineaProducto.ID_Linea > 0 Then
+                        .Add(New SqlParameter("@ID_Linea", LineaProducto.ID_Linea))
+                    Else
+                        .Add(New SqlParameter("@ID_Linea", DBNull.Value))
+                    End If
+                Else
+                    .Add(New SqlParameter("@ID_Linea", DBNull.Value))
+                End If
+
+                If Not IsNothing(CategoriaProducto) Then
+                    If CategoriaProducto.ID_Categoria > 0 Then
+                        .Add(New SqlParameter("@ID_CategoriaProducto", CategoriaProducto.ID_Categoria))
+                    Else
+                        .Add(New SqlParameter("@ID_CategoriaProducto", DBNull.Value))
+                    End If
+                Else
+                    .Add(New SqlParameter("@ID_CategoriaProducto", DBNull.Value))
+                End If
+
+            End With
+
+            Dim dt As DataTable = Acceso.Lectura(Command)
+            Return dt.Rows(0)(0) ' fila 0 , columna 0
         Catch ex As Exception
             Throw ex
         End Try
@@ -169,19 +294,19 @@ Public Class ProductoMPP
         End Try
     End Function
 
-    Public Function ExisteModelo(ByVal Producto As ProductoEntidad) As ProductoEntidad
+    Public Function ExisteModelo(ByVal Producto As ProductoEntidad) As Boolean
         Try
-            Dim consulta As String = "Select * from ProductoEntidad  where Modelo= @Modelo And BL = 0 "
+            Dim consulta As String = "Select * from ProductoEntidad  where Modelo= @Modelo and Marca=@Marca And BL = 0 "
             Dim Command As SqlCommand = Acceso.MiComando(consulta)
             With Command.Parameters
                 .Add(New SqlParameter("@Modelo", Producto.Modelo))
+                .Add(New SqlParameter("@Marca", Producto.Marca))
             End With
             Dim dt As DataTable = Acceso.Lectura(Command)
             If dt.Rows.Count > 0 Then
-                FormatearProducto(Producto, dt.Rows(0))
-                Return Producto
+                Return True
             Else
-                Return Nothing
+                Return False
             End If
         Catch ex As Exception
             Throw ex

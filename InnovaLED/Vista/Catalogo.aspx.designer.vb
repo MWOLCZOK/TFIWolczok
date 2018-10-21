@@ -50,6 +50,168 @@ Partial Public Class Catalogo
     Protected WithEvents lblPanelModUser As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
+    '''Control Lbl_marca.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Lbl_marca As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Control txtmarca.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents txtmarca As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Control Lbl_modelo.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Lbl_modelo As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Control txtmodelo.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents txtmodelo As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Control Lbl_peso.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Lbl_peso As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Control txtpesodesde.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents txtpesodesde As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Control txtpesohasta.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents txtpesohasta As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Control Lbl_precio.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Lbl_precio As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Control txtpreciodesde.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents txtpreciodesde As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Control txtpreciohasta.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents txtpreciohasta As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Control Lbl_watt.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Lbl_watt As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Control txtwattdesde.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents txtwattdesde As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Control txtwatthasta.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents txtwatthasta As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Control Lbl_linea.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Lbl_linea As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Control DropDownLinea.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents DropDownLinea As Global.System.Web.UI.WebControls.DropDownList
+    
+    '''<summary>
+    '''Control Lbl_cat.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Lbl_cat As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Control DropDowncat.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents DropDowncat As Global.System.Web.UI.WebControls.DropDownList
+    
+    '''<summary>
+    '''Control btn_filtrar.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btn_filtrar As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
     '''Control ID_Catalogo.
     '''</summary>
     '''<remarks>

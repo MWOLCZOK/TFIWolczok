@@ -423,68 +423,74 @@ Public Class MasterPage
     End Sub
 
     Public Sub btnregistracion_Click(sender As Object, e As EventArgs) Handles btnregistracion.Click
-        Dim GestorCliente As New Negocio.UsuarioBLL
-        Dim usu As New Entidades.UsuarioEntidad
-        Dim IdiomaActual As Entidades.IdiomaEntidad
-        If IsNothing(Current.Session("Cliente")) Then
-            IdiomaActual = Application("Español")
-        Else
-            IdiomaActual = Application(TryCast(Current.Session("Cliente"), Entidades.UsuarioEntidad).Idioma.Nombre)
-        End If
-        Try
-
-            If Page.IsValid = True Then
-
-                If IsValidEmail(txtmail.Value) Then
-                    usu.Mail = txtmail.Value
-                Else
-                    Me.success.Visible = False
-                    Me.alertvalid.Visible = True
-                    Return
-                End If
-
-                If chk_terminos.Checked = False Then
-                    Me.success.Visible = False
-                    Me.alertvalid.Visible = True
-                    Return
-                End If
+        If chk_terminos.Checked = True Then
 
 
-                Dim PassSalt As List(Of String) = Negocio.EncriptarBLL.EncriptarPassword(txtPasswordreg.Value)
-                usu.Apellido = txtapereg.Value
-                usu.Nombre = txtnombrereg.Value
-                usu.NombreUsu = txtUserreg.Value
-                usu.DNI = txtdni.Value
-                usu.Salt = PassSalt.Item(0)
-                usu.Password = PassSalt.Item(1)
-                usu.Idioma = New Entidades.IdiomaEntidad With {.ID_Idioma = 1}
-                usu.Rol.Add(New RolEntidad With {.ID_Rol = 2})
-                usu.FechaAlta = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
-                usu.Empleado = False
-                usu.Bloqueo = True
-                If GestorCliente.Alta(usu) Then
-                    Dim Bitac As New Bitacora(usu, usu.NombreUsu, Tipo_Bitacora.Login, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)
-                    BitacoraBLL.CrearBitacora(Bitac)
-                    Me.success.Visible = True
-                    Me.alertvalid.Visible = False
-                    'Me.txtusuario.Text = ""
-                    EnviarMailRegistro(GestorCliente.GEtToken(usu.ID_Usuario))
-                End If
+            Dim GestorCliente As New Negocio.UsuarioBLL
+            Dim usu As New Entidades.UsuarioEntidad
+            Dim IdiomaActual As Entidades.IdiomaEntidad
+            If IsNothing(Current.Session("Cliente")) Then
+                IdiomaActual = Application("Español")
             Else
-                'Me.alertvalid.Visible = True
-                'Me.textovalid.InnerText = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "FieldValidator1").Traduccion
-                'Me.success.Visible = False
+                IdiomaActual = Application(TryCast(Current.Session("Cliente"), Entidades.UsuarioEntidad).Idioma.Nombre)
             End If
-        Catch nombreuso As Negocio.ExceptionNombreEnUso
-            'Me.alertvalid.Visible = True
-            'Me.textovalid.InnerText = nombreuso.Mensaje(IdiomaActual)
-            'Me.success.Visible = False
-        Catch ex As Exception
+            Try
+
+                If Page.IsValid = True Then
+
+                    If IsValidEmail(txtmail.Value) Then
+                        usu.Mail = txtmail.Value
+                    Else
+                        Me.success.Visible = False
+                        Me.alertvalid.Visible = True
+                        Return
+                    End If
+
+                    If chk_terminos.Checked = False Then
+                        Me.success.Visible = False
+                        Me.alertvalid.Visible = True
+                        Return
+                    End If
 
 
-        End Try
+                    Dim PassSalt As List(Of String) = Negocio.EncriptarBLL.EncriptarPassword(txtPasswordreg.Value)
+                    usu.Apellido = txtapereg.Value
+                    usu.Nombre = txtnombrereg.Value
+                    usu.NombreUsu = txtUserreg.Value
+                    usu.DNI = txtdni.Value
+                    usu.Salt = PassSalt.Item(0)
+                    usu.Password = PassSalt.Item(1)
+                    usu.Idioma = New Entidades.IdiomaEntidad With {.ID_Idioma = 1}
+                    usu.Rol.Add(New RolEntidad With {.ID_Rol = 2})
+                    usu.FechaAlta = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
+                    usu.Empleado = False
+                    usu.Bloqueo = True
+                    If GestorCliente.Alta(usu) Then
+                        Dim Bitac As New Bitacora(usu, usu.NombreUsu, Tipo_Bitacora.Login, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)
+                        BitacoraBLL.CrearBitacora(Bitac)
+                        Me.success.Visible = True
+                        Me.alertvalid.Visible = False
+                        'Me.txtusuario.Text = ""
+                        EnviarMailRegistro(GestorCliente.GEtToken(usu.ID_Usuario))
+                    End If
+                Else
+                    'Me.alertvalid.Visible = True
+                    'Me.textovalid.InnerText = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "FieldValidator1").Traduccion
+                    'Me.success.Visible = False
+                End If
+            Catch nombreuso As Negocio.ExceptionNombreEnUso
+                'Me.alertvalid.Visible = True
+                'Me.textovalid.InnerText = nombreuso.Mensaje(IdiomaActual)
+                'Me.success.Visible = False
+            Catch ex As Exception
 
 
+            End Try
+        Else
+            Me.alertvalid.Visible = True
+            Me.alertvalid.InnerText = "Debe completar todos los campos y aceptar los terminos y condiciones."
+
+        End If
 
     End Sub
 

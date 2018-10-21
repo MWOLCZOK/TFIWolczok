@@ -10,7 +10,7 @@ Public Class GestorProductoBLL
 
     Public Function Alta(ByVal Producto As ProductoEntidad) As Boolean
         Try
-            If Me.ValidarNombre(Producto) Then
+            If Not Me.ExisteModelo(Producto) Then
                 If ProductoMPP.Alta(Producto) Then
                     Return True
                 Else
@@ -88,21 +88,9 @@ Public Class GestorProductoBLL
     End Function
 
 
-    Public Function ValidarNombre(prod As ProductoEntidad) As Boolean
+    Public Function ExisteModelo(prod As ProductoEntidad) As Boolean
         Try
-            If IsNothing((New ProductoMPP).ExisteModelo(prod)) Then
-                Return True
-            Else
-                Return False
-            End If
-        Catch ExcepcionUsuario As ExceptionIntegridadUsuario
-            Throw ExcepcionUsuario
-        Catch ExcepcionBitacora As ExceptionIntegridadBitacora
-            Throw ExcepcionBitacora
-        Catch ExcepcionEvento As ExceptionIntegridadEvento
-            Throw ExcepcionEvento
-        Catch FalloConexion As InvalidOperationException
-            Throw FalloConexion
+            Return (New ProductoMPP).ExisteModelo(prod)
         Catch ex As Exception
             Throw ex
         End Try
@@ -113,8 +101,14 @@ Public Class GestorProductoBLL
     End Sub
 
 
-    Public Function TraerProductosCatalogo(ByVal paginacion As Integer) As List(Of Entidades.ProductoEntidad)
-        Return ProductoMPP.TraerProductosCatalogo(paginacion)
+    Public Function TraerProductosCatalogo(paginacion As Integer, Optional ByVal Modelo As String = Nothing, Optional ByVal Marca As String = Nothing, Optional ByVal PrecioHasta As Integer = Nothing, Optional ByVal PrecioDesde As Integer = Nothing, Optional ByVal PesoHasta As Integer = Nothing, Optional ByVal PesoDesde As Integer = Nothing, Optional ByVal WattHasta As Integer = Nothing, Optional ByVal WattDesde As Integer = Nothing, Optional ByVal LineaProducto As Entidades.LineaProducto = Nothing, Optional ByVal CategoriaProducto As Entidades.CategoriaProducto = Nothing) As List(Of Entidades.ProductoEntidad)
+        Return ProductoMPP.TraerProductosCatalogo(paginacion, Modelo, Marca, PrecioHasta, PrecioDesde, PesoHasta, PesoDesde, WattHasta, WattDesde, LineaProducto, CategoriaProducto)
+
+    End Function
+
+
+    Public Function TraerCantProductosCatalogo(paginacion As Integer, Optional ByVal Modelo As String = Nothing, Optional ByVal Marca As String = Nothing, Optional ByVal PrecioHasta As Integer = Nothing, Optional ByVal PrecioDesde As Integer = Nothing, Optional ByVal PesoHasta As Integer = Nothing, Optional ByVal PesoDesde As Integer = Nothing, Optional ByVal WattHasta As Integer = Nothing, Optional ByVal WattDesde As Integer = Nothing, Optional ByVal LineaProducto As Entidades.LineaProducto = Nothing, Optional ByVal CategoriaProducto As Entidades.CategoriaProducto = Nothing) As Integer
+        Return ProductoMPP.TraerCantProductosCatalogo(paginacion, Modelo, Marca, PrecioHasta, PrecioDesde, PesoHasta, PesoDesde, WattHasta, WattDesde, LineaProducto, CategoriaProducto)
 
     End Function
 
