@@ -26,6 +26,9 @@ Public Class GestionarProductos
         End If
     End Sub
 
+
+
+
     Private Sub CargarProductos()
         Dim lista As List(Of ProductoEntidad)
         Dim Gestor As New GestorProductoBLL
@@ -67,6 +70,15 @@ Public Class GestionarProductos
         Me.btn_modificar.Visible = False
         Me.btn_eliminar.Visible = False
         Me.btn_agregar.Visible = False
+        txtmarca.Enabled = False
+        txtmodelo.Enabled = False
+        txtdesc.Enabled = False
+        txtpeso.Enabled = False
+        txtwatt.Enabled = False
+        txtprecio.Enabled = False
+        DropDownLinea.Enabled = False
+        DropDowncat.Enabled = False
+        FileUpload1.Enabled = False
     End Sub
 
     Private Sub Ocultamiento2()
@@ -81,6 +93,15 @@ Public Class GestionarProductos
         Me.btn_modificar.Visible = False
         Me.btn_eliminar.Visible = False
         Me.btn_nuevo.Visible = False
+        txtmarca.Enabled = True
+        txtmodelo.Enabled = True
+        txtdesc.Enabled = True
+        txtpeso.Enabled = True
+        txtwatt.Enabled = True
+        txtprecio.Enabled = True
+        DropDownLinea.Enabled = True
+        DropDowncat.Enabled = True
+        FileUpload1.Enabled = True
 
     End Sub
 
@@ -188,6 +209,7 @@ Public Class GestionarProductos
 
                     txtmarca.Text = producto.Marca
                     txtmodelo.Text = producto.Modelo
+                    txtdesc.Text = producto.Descripcion
                     txtpeso.Text = producto.Peso
                     txtprecio.Text = producto.Precio
                     txtwatt.Text = producto.Watt
@@ -220,8 +242,9 @@ Public Class GestionarProductos
             End If
             If Page.IsValid = True Then
                 Producto.Marca = txtmarca.Text
-                Producto.Modelo = txtmodelo.Text
-                Producto.Precio = txtprecio.Text
+                producto.Modelo = txtmodelo.Text
+                producto.Descripcion = txtdesc.Text
+                producto.Precio = txtprecio.Text
                 Producto.Watt = txtwatt.Text
                 Producto.Imagen = Producto.Imagen
                 Producto.LineaProducto = Nothing
@@ -253,6 +276,9 @@ Public Class GestionarProductos
         If Page.IsValid = True Then
             txtmarca.Text = Nothing
             txtmodelo.Text = Nothing
+            txtdesc.Text = Nothing
+            txtpeso.Text = Nothing
+            txtprecio.Text = Nothing
             txtprecio.Text = Nothing
             txtwatt.Text = Nothing
             DropDownLinea.ClearSelection()
@@ -334,10 +360,11 @@ Public Class GestionarProductos
 
                 prod.Marca = txtmarca.Text
                 prod.Modelo = txtmodelo.Text
+                prod.Descripcion = txtdesc.Text
                 prod.Precio = txtprecio.Text
                 prod.Watt = txtwatt.Text
                 prod.Imagen = FileUpload1.FileBytes
-                'GestorProducto.ActualizaImagen(prod.Imagen, prod.ID_Producto)
+
 
                 prod.LineaProducto = New LineaProducto With {.ID_Linea = DropDownLinea.SelectedValue}
                 prod.CategoriaProducto = New CategoriaProducto With {.ID_Categoria = DropDowncat.SelectedValue}

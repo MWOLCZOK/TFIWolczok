@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MasterPage.Master" CodeBehind="GestionarProductos.aspx.vb" Inherits="Vista.GestionarProductos" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -67,6 +68,21 @@
 </div>
 <br/>
 
+<div class="row">
+   <asp:Label ID="Lbl_Descripcion" runat="server" Text="Descripcion:" CssClass="col-sm-4 control-label labelform"></asp:Label>
+      <div class="col-md-6">
+         <div class="input-group">
+             <asp:TextBox ID="txtdesc" runat="server" CssClass="form-control"></asp:TextBox>
+                 <span class="input-group-addon" id="basic-addon2"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></span>
+              </div>
+         </div>
+
+ <div class="col-md-1">
+    <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtdesc" ErrorMessage="*" EnableClientScript="false" Display="Dynamic" CssClass="textoValidacion"></asp:RequiredFieldValidator>
+ </div>
+</div>
+<br/>
+
 
 <div class="row">
    <asp:Label ID="Lbl_peso" runat="server" Text="Peso:" CssClass="col-sm-4 control-label labelform"></asp:Label>
@@ -88,7 +104,7 @@
       <div class="col-md-6">
          <div class="input-group">
              <asp:TextBox ID="txtprecio" runat="server" CssClass="form-control"></asp:TextBox>
-                 <span class="input-group-addon" id="basic-addon7"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></span>
+                 <span class="input-group-addon" id="basic-addon7"><span class="glyphicon glyphicon-usd" aria-hidden="true"></span></span>
               </div>
          </div>
 
@@ -148,8 +164,7 @@
 <br/>
 
 <div class="row">
-            
-<asp:button ID="btn_agregar" runat="server" text="Agregar" type="button" class="btn btn-success btn-md col-md-2"></asp:button>
+<asp:button ID="btn_agregar" runat="server" text="Agregar" type="button" class="btn btn-success btn-md col-md-2" ></asp:button>
 <asp:button ID="btn_modificar" runat="server" text="Modificar" type="button" class="btn btn-info btn-md col-md-2 col-md-offset-1"></asp:button>
 <asp:button ID="btn_eliminar" runat="server" text="Eliminar" type="button" class="btn btn-danger btn-md col-md-2 col-md-offset-1"></asp:button>
 <asp:button ID="btn_nuevo" runat="server" text="Nuevo" type="button" class="btn btn-primary btn-md col-md-2 col-md-offset-1"></asp:button>       
@@ -198,6 +213,7 @@
                                                 <asp:BoundField DataField="ID_Producto" HeaderText="ID" />
                                                 <asp:BoundField DataField="Marca" HeaderText="Marca" />
                                                 <asp:BoundField DataField="Modelo" HeaderText="Modelo" />
+                                                <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" />
                                                 <asp:BoundField DataField="Peso" HeaderText="Peso" />
                                                 <asp:BoundField DataField="Precio" HeaderText="Precio" />
                                                 <asp:BoundField DataField="Watt" HeaderText="Watt" />
@@ -224,6 +240,10 @@
 
     <asp:HiddenField ID="id_producto" runat="server" />
 
-<%--     </ContentTemplate>
-        </asp:UpdatePanel>--%>
+<%-- </ContentTemplate>
+
+<%--<Triggers>
+     <asp:PostBackTrigger ControlID="btn_agregar"  />         
+</Triggers>--%>
+<%--</asp:UpdatePanel>--%>
 </asp:Content>

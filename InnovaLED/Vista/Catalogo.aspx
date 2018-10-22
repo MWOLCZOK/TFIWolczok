@@ -26,6 +26,12 @@
            <br />
                                    
             </div>
+
+<asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager> 
+<asp:UpdatePanel ID="UpdatePanel1" runat="server">
+<ContentTemplate>
+
+
          <%-- Content Media - Catalogo --%>
 
 <div class="col-md-4">
@@ -140,5 +146,7 @@
 </div>
    
     <asp:HiddenField ID="id_usuario" runat="server" />
+</ContentTemplate>
+  </asp:UpdatePanel>
    
 </asp:Content>

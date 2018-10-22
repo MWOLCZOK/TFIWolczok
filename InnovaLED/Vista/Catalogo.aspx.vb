@@ -13,6 +13,7 @@ Public Class Catalogo
             If IsNumeric(Request.QueryString("pagid")) Then
 
                 TraerProductosBusqueda(Session("Modelo"), Session("Marca"), Session("PesoDesde"), Session("PesoHasta"), Session("WattDesde"), Session("WattHasta"), Session("PrecioDesde"), Session("PrecioHasta"), Session("LineaProducto"), Session("CategoriaProducto"))
+                'Completar con Método que pase txt=sesion("Marca"), etc
             Else
                 TraerProductosBusqueda(,,,,,,,, New LineaProducto With {.ID_Linea = 0}, New CategoriaProducto With {.ID_Categoria = 0})
             End If
@@ -280,6 +281,20 @@ Public Class Catalogo
         TraerProductosBusqueda(Modelo, Marca, PrecioHasta, PrecioDesde, PesoHasta, PesoDesde, WattHasta, WattDesde, LineaProducto, CategoriaProducto)
 
     End Sub
+
+    Private Sub Ocultamiento()
+        txtmarca.Enabled = False
+        txtmodelo.Enabled = False
+        txtpesodesde.Enabled = False
+        txtpesohasta.Enabled = False
+        txtwattdesde.Enabled = False
+        txtwatthasta.Enabled = False
+        txtpreciodesde.Enabled = False
+        txtpreciohasta.Enabled = False
+        DropDownLinea.Enabled = False
+        DropDowncat.Enabled = False
+    End Sub
+
 
     Protected Sub btn_filtrar_Click(sender As Object, e As EventArgs) Handles btn_filtrar.Click
 

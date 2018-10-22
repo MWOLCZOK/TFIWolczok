@@ -172,10 +172,11 @@ Public Class ProductoMPP
 
     Public Function Alta(ByRef Producto As ProductoEntidad) As Boolean
         Try
-            Dim Command As SqlCommand = Acceso.MiComando("insert into ProductoEntidad (Marca,Modelo,Precio,Peso,Watt,Imagen,ID_Linea,ID_CategoriaProducto,BL) values (@Marca, @Modelo,@Precio,@Peso,@Watt,@Imagen, @ID_Linea ,@ID_CategoriaProducto, @BL)")
+            Dim Command As SqlCommand = Acceso.MiComando("insert into ProductoEntidad (Marca,Modelo,Descripcion,Precio,Peso,Watt,Imagen,ID_Linea,ID_CategoriaProducto,BL) values (@Marca, @Modelo,@Precio,@Peso,@Watt,@Imagen, @ID_Linea ,@ID_CategoriaProducto, @BL)")
             With Command.Parameters
                 .Add(New SqlParameter("@Marca", Producto.Marca))
                 .Add(New SqlParameter("@Modelo", Producto.Modelo))
+                .Add(New SqlParameter("@Descripcion", Producto.Descripcion))
                 .Add(New SqlParameter("@Precio", Producto.Precio))
                 .Add(New SqlParameter("@Peso", Producto.Peso))
                 .Add(New SqlParameter("@Watt", Producto.Watt))
@@ -194,13 +195,14 @@ Public Class ProductoMPP
     Public Function Modificar(ByRef Producto As ProductoEntidad) As Boolean
 
         Try
-            Dim Command As SqlCommand = Acceso.MiComando("update ProductoEntidad set Marca=@Marca, Modelo=@Modelo, Precio=@Precio, Peso=@Peso, Watt=@Watt, Imagen=@Imagen, ID_Linea=@ID_Linea, ID_CategoriaProducto=ID_CategoriaProducto where ID_Producto=@ID_Producto and BL=@BL")
+            Dim Command As SqlCommand = Acceso.MiComando("update ProductoEntidad set Marca=@Marca, Modelo=@Modelo,Descripcion=@Descripcion, Precio=@Precio, Peso=@Peso, Watt=@Watt, Imagen=@Imagen, ID_Linea=@ID_Linea, ID_CategoriaProducto=ID_CategoriaProducto where ID_Producto=@ID_Producto and BL=@BL")
             Dim ListaParametros As New List(Of String)
 
             With Command.Parameters
                 .Add(New SqlParameter("@ID_Producto", Producto.ID_Producto))
                 .Add(New SqlParameter("@Marca", Producto.Marca))
                 .Add(New SqlParameter("@Modelo", Producto.Modelo))
+                .Add(New SqlParameter("@Descripcion", Producto.Descripcion))
                 .Add(New SqlParameter("@Precio", Producto.Precio))
                 .Add(New SqlParameter("@Peso", Producto.Peso))
                 .Add(New SqlParameter("@Watt", Producto.Watt))
@@ -325,6 +327,7 @@ Public Class ProductoMPP
 
             Producto.Marca = row("Marca")
             Producto.Modelo = row("Modelo")
+            Producto.Descripcion = row("Descripcion")
             Producto.Peso = row("Peso")
             Producto.Watt = row("Watt")
             Producto.Imagen = row("Imagen")
