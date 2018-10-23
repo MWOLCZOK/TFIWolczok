@@ -10,22 +10,19 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="contenedor">
+<div class="contenedor">
         <div class="fila">
-            <div class="col-md-12">
-                <div id="error" class="msj-error col-md-12" runat="server" visible="false">
-                    <asp:Label ID="lbl_TituloError" runat="server" CssClass="label"></asp:Label>
-                </div>
-            </div>
-        </div>
-        <div class="fila">
-            <div class="col-md-12">
-                <div id="correcto" class="msj-ok col-md-12" runat="server" visible="false">
-                    <asp:Label ID="lbl_AccionCorrecta" runat="server" CssClass="label"></asp:Label>
-                </div>
-            </div>
-        </div>
+           <div id="alertvalid" runat="server" name="alertvalid" class="alert alert-danger  text-center" visible="false">
+              <label runat="server" id="textovalid" class="text-danger"></label>
+           </div>
+          <div id="success" runat="server" name="success" class="alert alert-success  text-center" visible="false">
+            <label id="lblsuccessmodprod" class="text-success"></label>
+          </div>
+      </div>
+</div>
+       
         <br />
+
         <div class="fila">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-verde">

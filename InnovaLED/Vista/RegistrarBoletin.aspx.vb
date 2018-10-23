@@ -14,19 +14,17 @@ Public Class RegistrarBoletin
         Try
             Me.ddl_TipoBoletin.DataSource = System.Enum.GetValues(GetType(Entidades.TipoBoletin))
             Me.ddl_TipoBoletin.DataBind()
-        Catch ex As BLL.excepcionGenerica
-            Me.error.Visible = True
-            Me.lbl_TituloError.Text = ex.Mensaje
         Catch ex As Exception
-            Me.error.Visible = True
-            Me.lbl_TituloError.Text = ex.Message
+            Me.alertvalid.Visible = True
+            Me.textovalid.InnerText = "Se ha producido un error al realizar la acción, por favor reintente."
+            Me.success.Visible = False
         End Try
 
     End Sub
 
 
     Protected Sub btn_cancelar_Click(sender As Object, e As EventArgs) Handles btn_cancelar.Click
-        Response.Redirect("index.aspx")
+        Response.Redirect("Default.aspx")
     End Sub
 
 
