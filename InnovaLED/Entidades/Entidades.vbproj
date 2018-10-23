@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="BackupRestoreEntidad.vb" />
     <Compile Include="Bitacora.vb" />
+    <Compile Include="BoletinEntidad.vb" />
     <Compile Include="CategoriaProducto.vb" />
     <Compile Include="Cliente.vb" />
     <Compile Include="Encuesta.vb" />

@@ -1,10 +1,11 @@
 ﻿Imports System.IO
 Imports System.Net.Mail
+Imports Entidades
 
 
 
 
-Public Class MaillingBLL
+Public Class MailingBLL
 
     Public Shared Sub enviarMailRegistroUsuario(ByVal token As String, ByVal body As String, ByVal ruta As String, ByVal ubicacionserver As String)
         Try
@@ -58,7 +59,7 @@ Public Class MaillingBLL
         End Try
     End Sub
 
-    Public Shared Sub enviarMailNewsletter()
+    Public Shared Sub enviarMailNewsletter(ByVal _paramBoletin As Boletinentidad)
 
     End Sub
 

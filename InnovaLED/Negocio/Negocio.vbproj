@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="BackupRestoreBLL.vb" />
     <Compile Include="BitacoraBLL.vb" />
+    <Compile Include="BoletinBLL.vb" />
     <Compile Include="EncriptarBLL.vb" />
     <Compile Include="GestorCategoriaProdBLL.vb" />
     <Compile Include="GestorErroresBLL.vb" />
@@ -76,7 +77,7 @@
     <Compile Include="GestorPermisosBLL.vb" />
     <Compile Include="GestorProductoBLL.vb" />
     <Compile Include="IdiomaBLL.vb" />
-    <Compile Include="MaillingBLL.vb" />
+    <Compile Include="MailingBLL.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

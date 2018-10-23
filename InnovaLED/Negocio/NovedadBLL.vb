@@ -38,7 +38,7 @@ Public Class NovedadBLL
         Try
             Dim listaSuscriptores As List(Of String) = gestor_novedad.obtenerSuscriptores(paramNovedad)
             For Each mail As String In listaSuscriptores
-                MaillingBLL.enviarMailNewsletter()
+                MailingBLL.enviarMailNewsletter()
             Next
         Catch ex As Exception
 

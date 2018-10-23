@@ -91,6 +91,7 @@ Public Class MasterPage
         Me.Menu.Items.Item(6).ChildItems.Add(New MenuItem("Actualizar Stock", "ActualizarStock", Nothing, "/ActualizarStock.aspx"))
         Me.Menu.Items.Item(6).ChildItems.Add(New MenuItem("Gestionar Productos", "GestionarProductos", Nothing, "/GestionarProductos.aspx"))
         Me.Menu.Items.Item(6).ChildItems.Add(New MenuItem("Generar Envío", "GenerarEnvio", Nothing, "/GenerarEnvio.aspx"))
+        Me.Menu.Items.Item(6).ChildItems.Add(New MenuItem("Newslatter", "RegistrarBoletin", Nothing, "/RegistrarBoletin.aspx"))
 
         Me.Menu.Items.Add(New MenuItem("Seguridad", "Seguridad"))
 
@@ -506,7 +507,7 @@ Public Class MasterPage
         Dim body As String = System.IO.File.ReadAllText(HttpContext.Current.Server.MapPath("EmailTemplates/registracion.html"))
         Dim ruta As String = HttpContext.Current.Server.MapPath("Imagenes")
         Dim ur As Uri = Request.Url
-        Negocio.MaillingBLL.enviarMailRegistroUsuario(token, body, ruta, Replace(ur.AbsoluteUri, ur.AbsolutePath, ""))
+        Negocio.MailingBLL.enviarMailRegistroUsuario(token, body, ruta, Replace(ur.AbsoluteUri, ur.AbsolutePath, ""))
     End Sub
 
     Dim invalid As Boolean = False

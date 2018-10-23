@@ -199,6 +199,7 @@
     <Content Include="Proveedores.aspx" />
     <Content Include="RecuperarPassword.aspx" />
     <Content Include="Registracion.aspx" />
+    <Content Include="RegistrarBoletin.aspx" />
     <Content Include="ReporteStock.aspx" />
     <Content Include="Restore.aspx" />
     <Content Include="script.sql" />
@@ -467,6 +468,13 @@
     </Compile>
     <Compile Include="Registracion.aspx.vb">
       <DependentUpon>Registracion.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="RegistrarBoletin.aspx.designer.vb">
+      <DependentUpon>RegistrarBoletin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegistrarBoletin.aspx.vb">
+      <DependentUpon>RegistrarBoletin.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="ReporteStock.aspx.designer.vb">

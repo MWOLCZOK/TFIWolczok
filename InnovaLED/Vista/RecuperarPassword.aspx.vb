@@ -35,7 +35,7 @@ Public Class RecuperarPassword
         Dim body As String = System.IO.File.ReadAllText(HttpContext.Current.Server.MapPath("EmailTemplates/Recupero.html"))
         Dim ruta As String = HttpContext.Current.Server.MapPath("Imagenes")
         Dim ur As Uri = Request.Url
-        Negocio.MaillingBLL.enviarMailRecupero(token, body, ruta, Replace(ur.AbsoluteUri, ur.AbsolutePath, ""))
+        Negocio.MailingBLL.enviarMailRecupero(token, body, ruta, Replace(ur.AbsoluteUri, ur.AbsolutePath, ""))
 
     End Sub
 
