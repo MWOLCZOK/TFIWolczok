@@ -60,7 +60,30 @@ Public Class MailingBLL
     End Sub
 
     Public Shared Sub enviarMailNewsletter(ByVal _paramBoletin As Boletinentidad)
-
+        Try
+            Dim Correo As New System.Net.Mail.MailMessage()
+            Correo.IsBodyHtml = True
+            Correo.From = New System.Net.Mail.MailAddress("matias.wolczok@gmail.com", "Innova LED")
+            For Each mail As String In _paramBoletin.Suscriptores
+                Correo.To.Add(mail)
+            Next
+            Correo.Subject = _paramBoletin.Nombre
+            Correo.Body = "<html><head> </head><body><img src=""https://www.flaticon.com/free-icon/led-light_966993#term=led&page=1&position=56"" width=""50px"" height=""50px"" /><b> " &
+            " Newsletter</b><hr " &
+            " style=""border-style: 0; border-color: 0; border-width: 0px; padding: 0px; margin: 0px; height: 7px; background-color: #0759A7;"" /> " &
+            " <br /> <br /><span><b><strong>" & _paramBoletin.Nombre & " </strong><br/><br/> " & _paramBoletin.Cuerpo & " <br/><br/>Saluda Atte. <br/><br/> Innova LED <br/>  </span><p>  &nbsp;</p><p>   &nbsp;</p><hr " &
+            "style=""border-style: 0; border-color: 0; border-width: 0px; padding: 0px; margin: 0px; height: 7px; background-color: #0759A7;"" /> " &
+            " </body></html> "
+            Correo.Priority = System.Net.Mail.MailPriority.Normal
+            Dim smtp As New System.Net.Mail.SmtpClient
+            smtp.Host = "smtp.gmail.com"
+            smtp.Port = 587
+            smtp.Credentials = New System.Net.NetworkCredential("matias.wolczok@gmail.com", EncriptarBLL.Desencriptar("DE7F5F9AB2626DD9F622DDF9E9FA2EC5"))
+            smtp.EnableSsl = True
+            smtp.Send(Correo)
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 
 End Class

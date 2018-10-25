@@ -64,12 +64,12 @@
         End Set
     End Property
 
-    Private _fechaAlta As Date
-    Public Property FechaAlta() As Date
+    Private _fechaAlta As DateTime
+    Public Property FechaAlta() As DateTime
         Get
             Return _fechaAlta
         End Get
-        Set(ByVal value As Date)
+        Set(ByVal value As DateTime)
             _fechaAlta = value
         End Set
     End Property
@@ -84,12 +84,12 @@
         End Set
     End Property
 
-    Private _fechaFinVigencia As Date
-    Public Property FechaFinVigencia() As Date
+    Private _fechaFinVigencia As DateTime
+    Public Property FechaFinVigencia() As DateTime
         Get
             Return _fechaFinVigencia
         End Get
-        Set(ByVal value As Date)
+        Set(ByVal value As DateTime)
             _fechaFinVigencia = value
         End Set
     End Property
@@ -104,7 +104,19 @@
         End Set
     End Property
 
+    Private _pass As String
+    Public Property Pass() As String
+        Get
+            Return _pass
+        End Get
+        Set(ByVal value As String)
+            _pass = value
+        End Set
+    End Property
+
 End Class
+
+
 Public Enum TipoBoletin
     Noticias = 1
     Ofertas = 2

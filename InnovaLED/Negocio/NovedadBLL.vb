@@ -35,14 +35,14 @@ Public Class NovedadBLL
 
 
     Public Function enviarNewsletter(ByVal paramNovedad As Entidades.Novedad) As Boolean
-        Try
-            Dim listaSuscriptores As List(Of String) = gestor_novedad.obtenerSuscriptores(paramNovedad)
-            For Each mail As String In listaSuscriptores
-                MailingBLL.enviarMailNewsletter()
-            Next
-        Catch ex As Exception
+        'Try
+        '    Dim listaSuscriptores As List(Of String) = gestor_novedad.obtenerSuscriptores(paramNovedad)
+        '    For Each mail As String In listaSuscriptores
+        '        MailingBLL.enviarMailNewsletter()
+        '    Next
+        'Catch ex As Exception
 
-        End Try
+        'End Try
     End Function
 
     Public Function obtenerNovedades() As List(Of Entidades.Novedad)

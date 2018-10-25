@@ -41,13 +41,13 @@ Partial Public Class RegistrarBoletin
     Protected WithEvents success As Global.System.Web.UI.HtmlControls.HtmlGenericControl
     
     '''<summary>
-    '''Control cab_RegistrarBoletin.
+    '''Control Lbl_GestionarProd.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents cab_RegistrarBoletin As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents Lbl_GestionarProd As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
     '''Control lbl_Nombre.
@@ -201,6 +201,15 @@ Partial Public Class RegistrarBoletin
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents RegularExpressionValidator1 As Global.System.Web.UI.WebControls.RegularExpressionValidator
+    
+    '''<summary>
+    '''Control RegularExpressionValidator3.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents RegularExpressionValidator3 As Global.System.Web.UI.WebControls.RegularExpressionValidator
     
     '''<summary>
     '''Control RequiredFieldValidator2.

@@ -13,11 +13,8 @@ Public Class BoletinMPP
                 .Add(New SqlParameter("@Cuerpo", Boletin.Cuerpo))
                 .Add(New SqlParameter("@ID_Tipoboletin", Boletin.TipoBoletin))
                 .Add(New SqlParameter("@FechaHora", Now))
-                If Boletin.FechaFinVigencia <> "#12:00:00 AM#" Then
-                    .Add(New SqlParameter("@FechaFinVigencia", Boletin.FechaFinVigencia))
-                Else
-                    .Add(New SqlParameter("@FechaFinVigencia", DBNull.Value))
-                End If
+                .Add(New SqlParameter("@FechaFinVigencia", Boletin.FechaFinVigencia))
+                .Add(New SqlParameter("@Imagen", Boletin.Imagen))
                 .Add(New SqlParameter("@BL", False))
             End With
             Acceso.Escritura(Command)

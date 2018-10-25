@@ -1,12 +1,22 @@
 ﻿Imports System.IO
+Imports Negocio
+Imports Entidades
+
 
 Public Class RegistrarBoletin
 
     Inherits System.Web.UI.Page
 
+    Dim GestorboletinBLL As New BoletinBLL
+    Dim GestorEncripBLL As New EncriptarBLL
+
+
+
+
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not IsPostBack Then
             obtenerTipoBoletin()
+
         End If
     End Sub
 
@@ -39,7 +49,7 @@ Public Class RegistrarBoletin
 
     Protected Sub btn_agregar_Click(sender As Object, e As EventArgs) Handles btn_agregar.Click
         Try
-            validaciones.validarSubmit(Me, Me.error, Me.lbl_TituloError)
+
             Dim _boletin As New Entidades.BoletinEntidad
             _boletin.Nombre = txt_Nombre.Text
             _boletin.Descripcion = txt_Descripcion.Text
@@ -60,19 +70,20 @@ Public Class RegistrarBoletin
             Else
                 _boletin.Imagen = ""
             End If
-            _gestorBoletin.Alta(_boletin)
-            Me.correcto.Visible = True
-        Catch ex As BLL.CamposincompletosException
-            Me.error.Visible = True
-            Me.lbl_TituloError.Text = ex.Mensaje
-        Catch ex As BLL.excepcionGenerica
-            Me.error.Visible = True
-            Me.lbl_TituloError.Text = ex.Mensaje
+
+            GestorboletinBLL.Alta(_boletin)
+            Me.success.Visible = True
+            Me.success.InnerText = "Se ha dado de alta el boletín correctamente."
+            Me.alertvalid.Visible = False
         Catch ex As Exception
-            Me.error.Visible = True
-            Me.lbl_TituloError.Text = ex.Message
+            Me.alertvalid.Visible = True
+            Me.alertvalid.InnerText = "Se ha verificado un error, por favor reintente"
+            Me.success.Visible = False
         End Try
     End Sub
+
+
+
 
     Public Sub CrearDirectorio(ByVal paramPath As String)
         Try
@@ -80,12 +91,10 @@ Public Class RegistrarBoletin
             If Not MiDirectorio.Exists Then
                 MiDirectorio.Create()
             End If
-        Catch ex As BLL.excepcionGenerica
-            Me.error.Visible = True
-            Me.lbl_TituloError.Text = ex.Mensaje
         Catch ex As Exception
-            Me.error.Visible = True
-            Me.lbl_TituloError.Text = ex.Message
+            Me.alertvalid.Visible = True
+            Me.alertvalid.InnerText = "Se ha verificado un error, por favor reintente"
+            Me.success.Visible = False
         End Try
 
     End Sub
