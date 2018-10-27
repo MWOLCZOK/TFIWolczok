@@ -68,6 +68,7 @@
     <Compile Include="BoletinEntidad.vb" />
     <Compile Include="CategoriaProducto.vb" />
     <Compile Include="Cliente.vb" />
+    <Compile Include="CompraEntidad.vb" />
     <Compile Include="Encuesta.vb" />
     <Compile Include="IdiomaEntidad.vb" />
     <Compile Include="LineaProducto.vb" />

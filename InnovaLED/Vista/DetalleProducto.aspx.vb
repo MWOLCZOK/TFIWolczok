@@ -16,6 +16,7 @@ Public Class DetalleProducto
             Dim base64string As String = Convert.ToBase64String(prod.Imagen, 0, prod.Imagen.Length)
             ImgBut.ImageUrl = Convert.ToString("data:image/jpg;base64,") & base64string
             LlenarCampos(prod)
+            llenardrop()
 
         End If
     End Sub
@@ -40,6 +41,11 @@ Public Class DetalleProducto
         Lblcat_descr.Text = prod.CategoriaProducto.Descripcion
         Lblprecio_descr.Text = "AR$ " & prod.Precio
 
+    End Sub
+
+    Private Sub llenardrop()
+        Dropnumeric.DataSource = Enumerable.Range(1, 50)
+        Dropnumeric.DataBind()
     End Sub
 
 

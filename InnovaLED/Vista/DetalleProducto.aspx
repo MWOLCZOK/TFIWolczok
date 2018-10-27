@@ -66,20 +66,6 @@
 <br/>
 
 <div class="row">
-   <asp:Label ID="Lbl_Descripcion" runat="server" Text="Descripcion:" CssClass="col-sm-4 control-label labelform"></asp:Label>
-      <div class="col-md-6">
-         <div class="input-group">
-             <asp:Label ID="Lbldescrip_descrip" runat="server"></asp:Label>
-                 
-              </div>
-         </div>
-
- 
-</div>
-<br/>
-
-
-<div class="row">
    <asp:Label ID="Lbl_peso" runat="server" Text="Peso:" CssClass="col-sm-4 control-label labelform"></asp:Label>
       <div class="col-md-6">
          <div class="input-group">
@@ -123,6 +109,32 @@
 </div>
 <br/>
 
+<div class="row">
+   <asp:Label ID="Lbl_Descripcion" runat="server" Text="Descripcion:" CssClass="col-sm-4 control-label labelform"></asp:Label>
+      <div class="col-md-6">
+         <div class="input-group">
+             <asp:Label ID="Lbldescrip_descrip" runat="server"></asp:Label>
+                 
+              </div>
+         </div>
+
+ 
+</div>
+<br/>
+
+
+<div class="row">
+      <asp:label ID="Label3" text="Cantidad" runat="server" CssClass="col-sm-4 control-label labelform" ></asp:label>
+   <div class="col-md-6">
+        <div class="input-group">
+             <asp:dropdownlist ID="Dropnumeric" runat="server" class="btn btn-lg btn-default dropdown-toggle" data-toggle="dropdown" > </asp:dropdownlist>
+        </div>
+   </div> 
+</div>
+
+<br/>
+<br/>
+
 <div class="row"> 
   <h1> <asp:label ID="Lblprecio_descr" runat="server" ></asp:label></h1>
                  
@@ -134,12 +146,9 @@
 <asp:button ID="btn_comprar" runat="server" text="Comprar" type="button" class="btn btn-success btn-lg " ></asp:button>
 </div>
 
-<div class="row col-md-4 col-md-offset-1">
+<div class="row col-md-4 col-md-offset-3">
 <asp:button ID="btn_consultar" runat="server" text="Preguntar" type="button" class="btn btn-info btn-lg "></asp:button> 
-</div>   
-            
-
-      
+</div>       
                    
 </div>          
 </div>

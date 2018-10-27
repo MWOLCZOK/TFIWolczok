@@ -95,24 +95,6 @@ Partial Public Class DetalleProducto
     Protected WithEvents Lblmodelo_descr As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''Control Lbl_Descripcion.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents Lbl_Descripcion As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''Control Lbldescrip_descrip.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents Lbldescrip_descrip As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
     '''Control Lbl_peso.
     '''</summary>
     '''<remarks>
@@ -183,6 +165,42 @@ Partial Public Class DetalleProducto
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents Lblcat_descr As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Control Lbl_Descripcion.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Lbl_Descripcion As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Control Lbldescrip_descrip.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Lbldescrip_descrip As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Control Label3.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Label3 As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Control Dropnumeric.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Dropnumeric As Global.System.Web.UI.WebControls.DropDownList
     
     '''<summary>
     '''Control Lblprecio_descr.
