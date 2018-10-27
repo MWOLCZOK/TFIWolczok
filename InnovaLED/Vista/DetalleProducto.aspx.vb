@@ -13,6 +13,7 @@ Public Class DetalleProducto
             ID_Producto.Value = Request.QueryString("contid") ' aca le paso al ID producto hiden que generé en el aspx el id que viene de la página anterior.
             prod.ID_Producto = ID_Producto.Value ' aca le asigno al obj prod el id_prod.value
             GestorProd.TraerProducto(prod)
+            Session("producto") = prod
             Dim base64string As String = Convert.ToBase64String(prod.Imagen, 0, prod.Imagen.Length)
             ImgBut.ImageUrl = Convert.ToString("data:image/jpg;base64,") & base64string
             LlenarCampos(prod)
@@ -49,7 +50,29 @@ Public Class DetalleProducto
     End Sub
 
 
+    Protected Sub btn_comprar_Click(sender As Object, e As EventArgs) Handles btn_comprar.Click
 
+
+
+        Dim compra As New CompraEntidad
+        compra.Producto = Session("producto")
+        compra.Cantidad = Dropnumeric.SelectedValue
+
+        If IsNothing(Session("carrito")) Then
+            Dim listcompra As New List(Of CompraEntidad)
+            listcompra.Add(compra)
+            Session("carrito") = listcompra
+
+
+        Else
+            Dim listcompra As List(Of CompraEntidad) = Session("carrito")
+            listcompra.Add(compra)
+
+        End If
+
+        Response.Redirect("carritoCompras.aspx")
+
+    End Sub
 
 
 
