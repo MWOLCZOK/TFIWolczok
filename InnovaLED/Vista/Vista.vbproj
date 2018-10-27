@@ -111,6 +111,7 @@
     <Content Include="BitacoraAuditoria.aspx" />
     <Content Include="CambiarContraseña.aspx" />
     <Content Include="CargarVenta.aspx" />
+    <Content Include="carritoCompras.aspx" />
     <Content Include="ConfirmarRecupero.aspx" />
     <Content Include="ConfirmarRegistracion.aspx" />
     <Content Include="CrearNuevoCliente.aspx" />
@@ -250,6 +251,13 @@
     </Compile>
     <Compile Include="CargarVenta.aspx.vb">
       <DependentUpon>CargarVenta.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="carritoCompras.aspx.designer.vb">
+      <DependentUpon>carritoCompras.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="carritoCompras.aspx.vb">
+      <DependentUpon>carritoCompras.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="ConfirmarRecupero.aspx.designer.vb">
