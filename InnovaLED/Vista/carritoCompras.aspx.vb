@@ -14,9 +14,14 @@ Public Class carritoCompras
             Else
                 TraerProductosBusqueda(,,,,,,,, New LineaProducto With {.ID_Linea = 0}, New CategoriaProducto With {.ID_Categoria = 0})
             End If
-        Else
-            GenerarDiseño(Session("Listaproductos"), Session("CantListaproductos"))
 
+        Else
+
+            If IsNumeric(Request.QueryString("carrid")) Then
+                Dim list As List(Of ProductoEntidad) = Session("Listaproductos")
+                list.Remove(list.Find(Function(p) p.ID_Producto = Request.QueryString("carrid")))
+            End If
+            GenerarDiseño(Session("Listaproductos"), Session("CantListaproductos"))
         End If
 
     End Sub
@@ -61,7 +66,7 @@ Public Class carritoCompras
             Dim base64string As String = Convert.ToBase64String(prod.Imagen, 0, prod.Imagen.Length)
             ID_Catalogo.Controls.Add(New LiteralControl("<img src=" & Convert.ToString("data:image/jpg;base64,") & base64string & " alt=""..."" class=""img-responsive""/>"))
             ID_Catalogo.Controls.Add(New LiteralControl("</div>"))
-            ID_Catalogo.Controls.Add(New LiteralControl("<div class=""col-md-7 left"">"))
+            ID_Catalogo.Controls.Add(New LiteralControl("<div class=""col-md-5 left"">"))
             ID_Catalogo.Controls.Add(New LiteralControl("<h3>" & prod.Modelo & "</h3>"))
             ID_Catalogo.Controls.Add(New LiteralControl("<h4>" & prod.Descripcion & "</h4>"))
             ID_Catalogo.Controls.Add(New LiteralControl("</div>"))
@@ -71,6 +76,17 @@ Public Class carritoCompras
             ID_Catalogo.Controls.Add(New LiteralControl("<div class=""col-md-2"">"))
             ID_Catalogo.Controls.Add(New LiteralControl("<h3>" & "AR$ " & prod.Precio & "</h3>"))
             ID_Catalogo.Controls.Add(New LiteralControl("</div>"))
+
+            Dim div As HtmlGenericControl = New HtmlGenericControl("div")
+            div.Attributes.Add("class", "col-md-2")
+            Dim ImgBut As New ImageButton() ' Creamos una imagen que funciona como botón.
+
+            ImgBut.ImageUrl = "IMAGENES\cart.png"
+            ImgBut.Width = 50
+            ImgBut.CssClass = "media-object"
+            ImgBut.PostBackUrl = "/carritoCompras.aspx" & "?carrid=" & prod.ID_Producto ' le pasamos por query string el ID de producto a la página del detalleProducto.
+            div.Controls.Add(ImgBut)
+            ID_Catalogo.Controls.Add(div)
             ID_Catalogo.Controls.Add(New LiteralControl("</td>"))
             ID_Catalogo.Controls.Add(New LiteralControl("</tr>"))
             '    h3.Controls.Add(A)
