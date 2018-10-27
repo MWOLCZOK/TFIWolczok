@@ -47,7 +47,7 @@
 
 
                 <div id="YaLogueo" runat="server" cssclass="col-md-4 col-md-offset-8" visible="false">
-                    
+
                     <asp:Label ID="lbl_NombredeUsuarioLogueado" font="Bahnschrift" Font-Bold="True" Font-Size="18px" runat="server" class="col-md-offset-7 col-md-3 control-label labelform text-right" ForeColor="#368BE1"></asp:Label>
                     <asp:Button ID="btnsettings" runat="server" class="btn btn-info  col-md-1" Text="Opciones" />
 
@@ -64,159 +64,180 @@
 
 
             </div>
+        </div>
+
+        <div id="alert_login" runat="server" name="alertvalid" class="alert alert-danger  text-center" visible="false">
+            <label runat="server" id="label_alert_login" class="text-danger"></label>
+        </div>
+
+        <div id="alertvalid" runat="server" name="alertvalid" class="alert alert-danger  text-center" visible="false">
+            <label runat="server" id="lbl_textovalid" class="text-danger">Debe completar todos los datos para registrarse</label>
+        </div>
+
+        <div id="success" runat="server" name="success" class="alert alert-success  text-center" visible="false">
+            <label id="lbl_success" runat="server" class="text-success">Para finalizar la registración ingrese a la direccion provista en el correo que acaba de ser enviado a su cuenta.</label>
+        </div>
+
+
+        <div class="row fondoClaro Blanco bordeMenu">
+            <div class="col-md-12 MenuFrente">
+                <asp:Menu ID="Menu" runat="server" Orientation="Horizontal" Font-Size="16px" ForeColor="#FFFFFF" Height="30px">
+                    <StaticSelectedStyle BackColor="#FFFFFF" />
+
+                    <StaticMenuItemStyle HorizontalPadding="10px" VerticalPadding="7px" />
+                    <StaticHoverStyle BackColor="#bac4ce" ForeColor="#FDFEFE" />
+                    <%--Hover Backcolor Para cambiar el color de fondo de la barra de menú cuando selecciono.--%>
+                    <%--  Hover Fore cambia el color de la letra seleccionada de la barra menu--%>
+
+                    <DynamicHoverStyle BackColor="#FDFEFE" ForeColor="#368BE1" />
+                    <%--Dynamic Hover Style sirve para cambiar el color del sombreado de un submenú cuando pasas el mouse--%>
+
+                    <DynamicMenuStyle BackColor="#bac4ce" />
+                    <%--Dynamic Menu Style Define el color de los submenú cuando los desplegas--%>
+
+                    <DynamicSelectedStyle BackColor="#F7F9F9" />
+
+                    <DynamicMenuItemStyle HorizontalPadding="10px" VerticalPadding="7px" />
+                </asp:Menu>
             </div>
-            
-            <div id="alert_login" runat="server" name="alertvalid" class="alert alert-danger  text-center" visible="false">
-                <label runat="server" id="label_alert_login" class="text-danger"></label>
+        </div>
+        <br />
+
+        <div class="row">
+
+            <div id="miMenuVertical" runat="server" class="col-md-2">
+
+                <asp:Menu ID="menuVertical" runat="server" DynamicVerticalOffset="2" StaticMenuItemStyle-Width="180px" Height="40px">
+                    <StaticMenuItemStyle HorizontalPadding="10px" VerticalPadding="7px" />
+                    <StaticHoverStyle BackColor="#bac4ce" ForeColor="#FDFEFE" />
+                    <%--Hover Backcolor Para cambiar el color de fondo de la barra de menú cuando selecciono.--%>
+                    <%--  Hover Fore cambia el color de la letra seleccionada de la barra menu--%>
+
+                    <DynamicHoverStyle BackColor="#FDFEFE" ForeColor="#368BE1" />
+                    <%--Dynamic Hover Style sirve para cambiar el color del sombreado de un submenú cuando pasas el mouse--%>
+
+                    <DynamicMenuStyle BackColor="#bac4ce" />
+                    <%--Dynamic Menu Style Define el color de los submenú cuando los desplegas--%>
+
+                    <DynamicSelectedStyle BackColor="#F7F9F9" />
+
+                    <DynamicMenuItemStyle HorizontalPadding="10px" VerticalPadding="7px" />
+                </asp:Menu>
             </div>
-
-            <div id="alertvalid" runat="server" name="alertvalid" class="alert alert-danger  text-center" visible="false">
-                <label runat="server" id="lbl_textovalid" class="text-danger">Debe completar todos los datos para registrarse</label>
+            <div id="miContenidoPagina" runat="server" class="col-md-10">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
             </div>
-
-            <div id="success" runat="server" name="success" class="alert alert-success  text-center" visible="false">
-                <label id="lbl_success" runat="server" class="text-success">Para finalizar la registración ingrese a la direccion provista en el correo que acaba de ser enviado a su cuenta.</label>
-            </div>
-
-
-            <div class="row fondoClaro Blanco bordeMenu">
-                <div class="col-md-12 MenuFrente">
-                    <asp:Menu ID="Menu" runat="server" Orientation="Horizontal" Font-Size="16px" ForeColor="#FFFFFF" Height="30px">
-                        <StaticSelectedStyle BackColor="#FFFFFF" />
-
-                        <StaticMenuItemStyle HorizontalPadding="10px" VerticalPadding="7px" />
-                        <StaticHoverStyle BackColor="#bac4ce" ForeColor="#FDFEFE" />
-                        <%--Hover Backcolor Para cambiar el color de fondo de la barra de menú cuando selecciono.--%>
-                        <%--  Hover Fore cambia el color de la letra seleccionada de la barra menu--%>
-
-                        <DynamicHoverStyle BackColor="#FDFEFE" ForeColor="#368BE1" />
-                        <%--Dynamic Hover Style sirve para cambiar el color del sombreado de un submenú cuando pasas el mouse--%>
-
-                        <DynamicMenuStyle BackColor="#bac4ce" />
-                        <%--Dynamic Menu Style Define el color de los submenú cuando los desplegas--%>
-
-                        <DynamicSelectedStyle BackColor="#F7F9F9" />
-
-                        <DynamicMenuItemStyle HorizontalPadding="10px" VerticalPadding="7px" />
-                    </asp:Menu>
+        </div>
+        <div class="row Azul lineaCopyright"></div>
+        <div class="row Azul MenuFrente">
+            <br />
+            <div class="col-md-8 col-md-offset-2 text-center">
+                <div class="textoCopyright Blanco">
+                    <asp:Label ID="lblcopyright" runat="server" Text="Trabajo Final de Ingenieria - Wolczok - 2018"></asp:Label>
                 </div>
             </div>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
-            <div class="row Azul lineaCopyright"></div>
-            <div class="row Azul MenuFrente">
-                <br />
-                <div class="col-md-8 col-md-offset-2 text-center">
-                    <div class="textoCopyright Blanco">
-                        <asp:Label ID="lblcopyright" runat="server" Text="Trabajo Final de Ingenieria - Wolczok - 2018"></asp:Label>
+        </div>
+
+        <!-- Modal Login -->
+        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title Blanco" id="loginModalTitle">Login</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                </div>
-
-                <!-- Modal Login -->
-                <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title Blanco" id="loginModalTitle">Login</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
 
 
-                            <div class="modal-body Blanco">
-                                <div class="form-group">
-                                    <label for="txtUser">Usuario</label>
-                                    <input id="txtUser" runat="server" type="text" class="form-control" placeholder="Ingrese usuario" />
-                                </div>
-                                <div class="form-group">
-                                    <label for="txtPassword">Password</label>
-                                    <input id="txtPassword" runat="server" type="password" class="form-control" placeholder="Ingrese password" />
-                                </div>
-                                <div class="g-recaptcha" data-sitekey="6Lct_nQUAAAAACS8ephlxWO97EoWtyi2MdQPXPBJ"></div>
-                            </div>
-                            <div class="modal-footer">
-                                <asp:Button ID="btnLogin" runat="server" CssClass="btn btn-primary" OnClick="btnLogin_Click" Text="Login" />
-                                <button id="btncerrar" type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
-                                <asp:Button ID="btnolvidepass" runat="server" CssClass="btn btn-default " OnClick="btnolvidepass_Click" Text="Olvidé mi contraseña" />
-                            </div>
-
+                    <div class="modal-body Blanco">
+                        <div class="form-group">
+                            <label for="txtUser">Usuario</label>
+                            <input id="txtUser" runat="server" type="text" class="form-control" placeholder="Ingrese usuario" />
                         </div>
-                    </div>
-                </div>
-
-                <!-- Modal Registrarse -->
-                <div class="modal fade" id="ucModalNewMember" tabindex="-1" role="dialog" aria-labelledby="Registro" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <label class="modal-title Blanco" id="Registro">Registro</label>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-
-
-                            <div class="modal-body Blanco">
-
-
-                                <div class="form-group">
-                                    <label for="txtUserreg">Usuario</label>
-                                    <input id="txtUserreg" runat="server" type="text" class="form-control" placeholder="Ingrese usuario" />
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="txtnombrereg">Nombre</label>
-                                    <input id="txtnombrereg" runat="server" type="text " class="form-control" placeholder="Ingrese su nombre" />
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="txtapereg">Apellido</label>
-                                    <input id="txtapereg" runat="server" type="text " class="form-control" placeholder="Ingrese su Apellido" />
-                                </div>
-
-                                <div>
-                                    <label for="txtdni">DNI</label>
-                                    <input id="txtdni" runat="server" type="text" class="form-control" placeholder="Ingrese DNI" />
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="txtPasswordreg">Password</label>
-                                    <input id="txtPasswordreg" runat="server" type="password" class="form-control" placeholder="Ingrese password" />
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="txtmail">Correo Electronico</label>
-                                    <input id="txtmail" runat="server" type="password " class="form-control" placeholder="Ingrese su correo Electronico" />
-                                </div>
-
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" runat="server" id="chk_terminos" />
-                                        <a class="btn btn-default" href="TerminosyCondiciones.aspx" role="button">Acepto los terminos y condiciones</a>
-                                    </label>
-                                </div>
-
-                                <div class="modal-footer">
-                                    <asp:Button ID="btnregistracion" runat="server" CssClass="btn btn-primary" OnClick="btnregistracion_Click" Text="Aceptar" />
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
-                                </div>
-
-                            </div>
+                        <div class="form-group">
+                            <label for="txtPassword">Password</label>
+                            <input id="txtPassword" runat="server" type="password" class="form-control" placeholder="Ingrese password" />
                         </div>
+                        <div class="g-recaptcha" data-sitekey="6Lct_nQUAAAAACS8ephlxWO97EoWtyi2MdQPXPBJ"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <asp:Button ID="btnLogin" runat="server" CssClass="btn btn-primary" OnClick="btnLogin_Click" Text="Login" />
+                        <button id="btncerrar" type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                        <asp:Button ID="btnolvidepass" runat="server" CssClass="btn btn-default " OnClick="btnolvidepass_Click" Text="Olvidé mi contraseña" />
                     </div>
 
-                    
-                    <br />
-                    <br />
                 </div>
-
             </div>
-            
-            <footer>
-            </footer>
+        </div>
+
+        <!-- Modal Registrarse -->
+        <div class="modal fade" id="ucModalNewMember" tabindex="-1" role="dialog" aria-labelledby="Registro" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <label class="modal-title Blanco" id="Registro">Registro</label>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+
+                    <div class="modal-body Blanco">
+
+
+                        <div class="form-group">
+                            <label for="txtUserreg">Usuario</label>
+                            <input id="txtUserreg" runat="server" type="text" class="form-control" placeholder="Ingrese usuario" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="txtnombrereg">Nombre</label>
+                            <input id="txtnombrereg" runat="server" type="text " class="form-control" placeholder="Ingrese su nombre" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="txtapereg">Apellido</label>
+                            <input id="txtapereg" runat="server" type="text " class="form-control" placeholder="Ingrese su Apellido" />
+                        </div>
+
+                        <div>
+                            <label for="txtdni">DNI</label>
+                            <input id="txtdni" runat="server" type="text" class="form-control" placeholder="Ingrese DNI" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="txtPasswordreg">Password</label>
+                            <input id="txtPasswordreg" runat="server" type="password" class="form-control" placeholder="Ingrese password" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="txtmail">Correo Electronico</label>
+                            <input id="txtmail" runat="server" type="password " class="form-control" placeholder="Ingrese su correo Electronico" />
+                        </div>
+
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" runat="server" id="chk_terminos" />
+                                <a class="btn btn-default" href="TerminosyCondiciones.aspx" role="button">Acepto los terminos y condiciones</a>
+                            </label>
+                        </div>
+
+                        <div class="modal-footer">
+                            <asp:Button ID="btnregistracion" runat="server" CssClass="btn btn-primary" OnClick="btnregistracion_Click" Text="Aceptar" />
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <br />
+            <br />
+        </div>
     </form>
 </body>
 </html>

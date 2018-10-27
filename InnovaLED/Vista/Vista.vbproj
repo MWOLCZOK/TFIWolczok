@@ -134,6 +134,7 @@
     <Content Include="CSS\jquery.ui.timepicker.css" />
     <Content Include="CSS\MisEstilos.css" />
     <Content Include="Default.aspx" />
+    <Content Include="DetalleProducto.aspx" />
     <Content Include="EliminarIdioma.aspx" />
     <Content Include="EmailTemplates\Recupero.html" />
     <Content Include="EmailTemplates\Registracion.html" />
@@ -284,6 +285,13 @@
     </Compile>
     <Compile Include="Default.aspx.vb">
       <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="DetalleProducto.aspx.designer.vb">
+      <DependentUpon>DetalleProducto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DetalleProducto.aspx.vb">
+      <DependentUpon>DetalleProducto.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="EliminarIdioma.aspx.designer.vb">
