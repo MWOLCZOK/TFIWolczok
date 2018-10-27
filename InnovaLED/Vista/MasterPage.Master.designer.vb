@@ -149,6 +149,33 @@ Partial Public Class MasterPage
     Protected WithEvents Menu As Global.System.Web.UI.WebControls.Menu
     
     '''<summary>
+    '''Control miMenuVertical.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents miMenuVertical As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    
+    '''<summary>
+    '''Control menuVertical.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents menuVertical As Global.System.Web.UI.WebControls.Menu
+    
+    '''<summary>
+    '''Control miContenidoPagina.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents miContenidoPagina As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    
+    '''<summary>
     '''Control ContentPlaceHolder1.
     '''</summary>
     '''<remarks>
