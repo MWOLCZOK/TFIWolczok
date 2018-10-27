@@ -159,6 +159,7 @@
     <Content Include="IMAGENES\blue.png" />
     <Content Include="IMAGENES\bulb.png" />
     <Content Include="IMAGENES\CalculadoraDeAhorro.jpg" />
+    <Content Include="IMAGENES\cart.png" />
     <Content Include="IMAGENES\check.png" />
     <Content Include="IMAGENES\clear.png" />
     <Content Include="IMAGENES\Delete-32.png" />

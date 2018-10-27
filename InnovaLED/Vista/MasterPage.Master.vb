@@ -79,7 +79,7 @@ Public Class MasterPage
 
         Me.Menu.Items.Add(New MenuItem("Seleccionar Idioma", "SeleccionarIdioma", Nothing, "/SeleccionarIdioma.aspx"))
 
-
+        Me.menuVertical.Items.Clear()
         Me.menuVertical.Items.Add(New MenuItem("Inicio", "Inicio", Nothing, "/Default.aspx"))
         Me.menuVertical.Items.Add(New MenuItem("Empresa", "Empresa"))
         Me.menuVertical.Items.Item(1).ChildItems.Add(New MenuItem("¿Quienes Somos?", "Institucional", Nothing, "/Institucional.aspx"))
