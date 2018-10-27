@@ -26,12 +26,16 @@ Public Class MasterPage
             CargarSinPerfilIdioma(UsuarioInvitado)
             VisibilidadAcceso(False)
             TraducirPagina(UsuarioInvitado)
+            miMenuVertical.Attributes.Remove("class")
+            miContenidoPagina.Attributes.Add("class", "col-md-12")
         Else
             Try
                 Dim Usuario As Entidades.UsuarioEntidad = TryCast(Current.Session("cliente"), Entidades.UsuarioEntidad)
                 CargarPerfil(Usuario)
                 VisibilidadAcceso(True)
                 TraducirPagina(Usuario)
+                miContenidoPagina.Attributes.Add("class", "col-md-10")
+                miMenuVertical.Attributes.Add("class", "col-md-2")
             Catch ex As Exception
 
             End Try
@@ -57,55 +61,58 @@ Public Class MasterPage
     End Sub
 
     Private Sub ArmarMenuCompleto()
-        Me.Menu.Items.Add(New MenuItem("Inicio", "Inicio", Nothing, "/Default.aspx"))
+
+        Me.Menu.Items.Clear()
+        Me.Menu.Items.Add(New MenuItem("Home", "Home", Nothing, "/Default.aspx"))
 
         Me.Menu.Items.Add(New MenuItem("Empresa", "Empresa"))
         Me.Menu.Items.Item(1).ChildItems.Add(New MenuItem("¿Quienes Somos?", "Institucional", Nothing, "/Institucional.aspx"))
-        Me.Menu.Items.Item(1).ChildItems.Add(New MenuItem("Preguntas Frecuentes", "PreguntasFrecuentes", Nothing, "/Faqs.aspx"))
+        Me.Menu.Items.Item(1).ChildItems.Add(New MenuItem("Faqs", "Faqs", Nothing, "/Faqs.aspx"))
         Me.Menu.Items.Item(1).ChildItems.Add(New MenuItem("Politicas y Seguridad", "PoliticasySeguridad", Nothing, "/PoliticasySeguridad.aspx"))
         Me.Menu.Items.Item(1).ChildItems.Add(New MenuItem("Terminos y Condiciones", "TerminosyCondiciones", Nothing, "/TerminosyCondiciones.aspx"))
+
+
 
         Me.Menu.Items.Add(New MenuItem("Catalogo", "Catalogo"))
         Me.Menu.Items.Item(2).ChildItems.Add(New MenuItem("Nuestros Productos", "Catalogo", Nothing, "/Catalogo.aspx"))
         Me.Menu.Items.Item(2).ChildItems.Add(New MenuItem("Novedades", "Novedades", Nothing, "/Novedades.aspx"))
 
+        Me.Menu.Items.Add(New MenuItem("Seleccionar Idioma", "SeleccionarIdioma", Nothing, "/SeleccionarIdioma.aspx"))
 
 
-        Me.Menu.Items.Add(New MenuItem("Solución LED", "SolucionLED"))
-        Me.Menu.Items.Item(3).ChildItems.Add(New MenuItem("Soluciones LED", "SolucionesLED", Nothing, "/GestionarSolucionesLED.aspx"))
-        Me.Menu.Items.Item(3).ChildItems.Add(New MenuItem("Generar Presupuesto", "GenerarPresupuesto", Nothing, "/GenerarPresupuesto.aspx"))
-
-
-        Me.Menu.Items.Add(New MenuItem("Facturacion", "Facturacion"))
-        Me.Menu.Items.Item(4).ChildItems.Add(New MenuItem("Generar Documento", "GenerarDocumento", Nothing, "/GenerarDocumento.aspx"))
-        Me.Menu.Items.Item(4).ChildItems.Add(New MenuItem("Pago a Proveedores", "PagoaProveedores", Nothing, "/PagoaProveedores.aspx"))
-
-
-        Me.Menu.Items.Add(New MenuItem("Compras", "Compras"))
-        Me.Menu.Items.Item(5).ChildItems.Add(New MenuItem("Proveedores", "Proveedores", Nothing, "/Proveedores.aspx"))
-        Me.Menu.Items.Item(5).ChildItems.Add(New MenuItem("Solicitud Pedido", "SolicitudPedido", Nothing, "/SolicitudPedido.aspx"))
-        Me.Menu.Items.Item(5).ChildItems.Add(New MenuItem("Reporte Stock", "ReporteStock", Nothing, "/ReporteStock.aspx"))
-
-
-        Me.Menu.Items.Add(New MenuItem("Almacenes y Logística", "AlmyLog"))
-        Me.Menu.Items.Item(6).ChildItems.Add(New MenuItem("Actualizar Stock", "ActualizarStock", Nothing, "/ActualizarStock.aspx"))
-        Me.Menu.Items.Item(6).ChildItems.Add(New MenuItem("Gestionar Productos", "GestionarProductos", Nothing, "/GestionarProductos.aspx"))
-        Me.Menu.Items.Item(6).ChildItems.Add(New MenuItem("Generar Envío", "GenerarEnvio", Nothing, "/GenerarEnvio.aspx"))
-        Me.Menu.Items.Item(6).ChildItems.Add(New MenuItem("Newslatter", "RegistrarBoletin", Nothing, "/RegistrarBoletin.aspx"))
-
-        Me.Menu.Items.Add(New MenuItem("Seguridad", "Seguridad"))
-
-
-        Me.Menu.Items.Item(7).ChildItems.Add(New MenuItem("Gestionar Usuarios", "GestionarUsuarios", Nothing, "/GestionarUsuarios.aspx"))
-        Me.Menu.Items.Item(7).ChildItems.Add(New MenuItem("Gestion Idioma", "CrearIdioma", Nothing, "/AgregarIdioma.aspx"))
-        Me.Menu.Items.Item(7).ChildItems.Add(New MenuItem("Modificar Idioma", "ModificarIdioma", Nothing, "/ModificarIdioma.aspx"))
-        Me.Menu.Items.Item(7).ChildItems.Add(New MenuItem("Eliminar Idioma", "EliminarIdioma", Nothing, "/EliminarIdioma.aspx"))
-        Me.Menu.Items.Item(7).ChildItems.Add(New MenuItem("Gestión de Bitácora", "GestiondeBitacora", Nothing, "/BitacoraAuditoria.aspx"))
-        Me.Menu.Items.Item(7).ChildItems.Add(New MenuItem("Gestionar Roles", "AgregarPerfil", Nothing, "/AgregarPerfil.aspx"))
-        Me.Menu.Items.Item(7).ChildItems.Add(New MenuItem("Backup & Restore", "Backup&Restore", Nothing, "/Restore.aspx"))
-
-        Me.Menu.Items.Add(New MenuItem("Cambiar Idioma", "SeleccionarIdioma", Nothing, "/SeleccionarIdioma.aspx"))
-
+        Me.menuVertical.Items.Add(New MenuItem("Inicio", "Inicio", Nothing, "/Default.aspx"))
+        Me.menuVertical.Items.Add(New MenuItem("Empresa", "Empresa"))
+        Me.menuVertical.Items.Item(1).ChildItems.Add(New MenuItem("¿Quienes Somos?", "Institucional", Nothing, "/Institucional.aspx"))
+        Me.menuVertical.Items.Item(1).ChildItems.Add(New MenuItem("Preguntas Frecuentes", "PreguntasFrecuentes", Nothing, "/Faqs.aspx"))
+        Me.menuVertical.Items.Item(1).ChildItems.Add(New MenuItem("Politicas y Seguridad", "PoliticasySeguridad", Nothing, "/PoliticasySeguridad.aspx"))
+        Me.menuVertical.Items.Item(1).ChildItems.Add(New MenuItem("Terminos y Condiciones", "TerminosyCondiciones", Nothing, "/TerminosyCondiciones.aspx"))
+        Me.menuVertical.Items.Add(New MenuItem("Catalogo", "Catalogo"))
+        Me.menuVertical.Items.Item(2).ChildItems.Add(New MenuItem("Nuestros Productos", "Catalogo", Nothing, "/Catalogo.aspx"))
+        Me.menuVertical.Items.Item(2).ChildItems.Add(New MenuItem("Novedades", "Novedades", Nothing, "/Novedades.aspx"))
+        Me.menuVertical.Items.Add(New MenuItem("Solución LED", "SolucionLED"))
+        Me.menuVertical.Items.Item(3).ChildItems.Add(New MenuItem("Soluciones LED", "SolucionesLED", Nothing, "/GestionarSolucionesLED.aspx"))
+        Me.menuVertical.Items.Item(3).ChildItems.Add(New MenuItem("Generar Presupuesto", "GenerarPresupuesto", Nothing, "/GenerarPresupuesto.aspx"))
+        Me.menuVertical.Items.Add(New MenuItem("Facturacion", "Facturacion"))
+        Me.menuVertical.Items.Item(4).ChildItems.Add(New MenuItem("Generar Documento", "GenerarDocumento", Nothing, "/GenerarDocumento.aspx"))
+        Me.menuVertical.Items.Item(4).ChildItems.Add(New MenuItem("Pago a Proveedores", "PagoaProveedores", Nothing, "/PagoaProveedores.aspx"))
+        Me.menuVertical.Items.Add(New MenuItem("Compras", "Compras"))
+        Me.menuVertical.Items.Item(5).ChildItems.Add(New MenuItem("Proveedores", "Proveedores", Nothing, "/Proveedores.aspx"))
+        Me.menuVertical.Items.Item(5).ChildItems.Add(New MenuItem("Solicitud Pedido", "SolicitudPedido", Nothing, "/SolicitudPedido.aspx"))
+        Me.menuVertical.Items.Item(5).ChildItems.Add(New MenuItem("Reporte Stock", "ReporteStock", Nothing, "/ReporteStock.aspx"))
+        Me.menuVertical.Items.Add(New MenuItem("Almacenes y Logística", "AlmyLog"))
+        Me.menuVertical.Items.Item(6).ChildItems.Add(New MenuItem("Actualizar Stock", "ActualizarStock", Nothing, "/ActualizarStock.aspx"))
+        Me.menuVertical.Items.Item(6).ChildItems.Add(New MenuItem("Gestionar Productos", "GestionarProductos", Nothing, "/GestionarProductos.aspx"))
+        Me.menuVertical.Items.Item(6).ChildItems.Add(New MenuItem("Generar Envío", "GenerarEnvio", Nothing, "/GenerarEnvio.aspx"))
+        Me.menuVertical.Items.Item(6).ChildItems.Add(New MenuItem("Newslatter", "RegistrarBoletin", Nothing, "/RegistrarBoletin.aspx"))
+        Me.menuVertical.Items.Add(New MenuItem("Seguridad", "Seguridad"))
+        Me.menuVertical.Items.Item(7).ChildItems.Add(New MenuItem("Gestionar Usuarios", "GestionarUsuarios", Nothing, "/GestionarUsuarios.aspx"))
+        Me.menuVertical.Items.Item(7).ChildItems.Add(New MenuItem("Gestion Idioma", "CrearIdioma", Nothing, "/AgregarIdioma.aspx"))
+        Me.menuVertical.Items.Item(7).ChildItems.Add(New MenuItem("Modificar Idioma", "ModificarIdioma", Nothing, "/ModificarIdioma.aspx"))
+        Me.menuVertical.Items.Item(7).ChildItems.Add(New MenuItem("Eliminar Idioma", "EliminarIdioma", Nothing, "/EliminarIdioma.aspx"))
+        Me.menuVertical.Items.Item(7).ChildItems.Add(New MenuItem("Gestión de Bitácora", "GestiondeBitacora", Nothing, "/BitacoraAuditoria.aspx"))
+        Me.menuVertical.Items.Item(7).ChildItems.Add(New MenuItem("Gestionar Roles", "AgregarPerfil", Nothing, "/AgregarPerfil.aspx"))
+        Me.menuVertical.Items.Item(7).ChildItems.Add(New MenuItem("Backup & Restore", "Backup&Restore", Nothing, "/Restore.aspx"))
+        Me.menuVertical.Items.Add(New MenuItem("Cambiar Idioma", "SeleccionarIdioma", Nothing, "/SeleccionarIdioma.aspx"))
     End Sub
 
     Private Sub CargarSinPerfilIdioma(ByRef UsuarioInvitado As Entidades.UsuarioEntidad)
@@ -363,7 +370,7 @@ Public Class MasterPage
 
     Public Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
         Try
-            '    If IsReCaptchaValid() = True Then
+            ' If IsReCaptchaValid() = True Then
             Dim Cliente As New Entidades.UsuarioEntidad
                 Dim IdiomaActual As Entidades.IdiomaEntidad
                 Dim clienteLogeado As New Entidades.UsuarioEntidad
@@ -387,11 +394,11 @@ Public Class MasterPage
                     'Response.Redirect(Default., False)
                     Response.Redirect(Request.Url.ToString, False)
                 End If
-            ' Else
-            ' Me.label_alert_login.InnerText = "Debe completar el captcha"
-            '  Me.success.Visible = False
-            '  Me.alert_login.Visible = True
-            '  End If
+            '    Else
+            '   Me.label_alert_login.InnerText = "Debe completar el captcha"
+            '    Me.success.Visible = False
+            '    Me.alert_login.Visible = True
+            '     End If
         Catch ex As Exception
             VisibilidadAcceso(False)
             Me.label_alert_login.InnerText = "Usuario o Contraseña invalidos"
