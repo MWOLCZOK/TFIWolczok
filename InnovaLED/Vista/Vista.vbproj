@@ -135,6 +135,7 @@
     <Content Include="CSS\jquery.ui.timepicker.css" />
     <Content Include="CSS\MisEstilos.css" />
     <Content Include="Default.aspx" />
+    <Content Include="DetalleProducto.aspx" />
     <Content Include="EliminarIdioma.aspx" />
     <Content Include="EmailTemplates\Recupero.html" />
     <Content Include="EmailTemplates\Registracion.html" />
@@ -161,11 +162,13 @@
     <Content Include="IMAGENES\check.png" />
     <Content Include="IMAGENES\clear.png" />
     <Content Include="IMAGENES\Delete-32.png" />
+    <Content Include="IMAGENES\cuarto.png" />
     <Content Include="IMAGENES\edificio.jpg" />
     <Content Include="IMAGENES\Edit-32.png" />
     <Content Include="IMAGENES\edit.png" />
     <Content Include="IMAGENES\facebook.png" />
     <Content Include="IMAGENES\faro.png" />
+    <Content Include="IMAGENES\first.png" />
     <Content Include="IMAGENES\idea.png" />
     <Content Include="IMAGENES\luz-led.png" />
     <Content Include="IMAGENES\NewEdificio.jpg" />
@@ -174,9 +177,11 @@
     <Content Include="IMAGENES\Plafon.jpg" />
     <Content Include="IMAGENES\PorqueUtilizarLed.jpg" />
     <Content Include="IMAGENES\red.png" />
+    <Content Include="IMAGENES\second-prize.png" />
     <Content Include="IMAGENES\SegmentosdeIluminacion.jpg" />
     <Content Include="IMAGENES\settings.jpeg" />
     <Content Include="IMAGENES\Test.jpg" />
+    <Content Include="IMAGENES\third.png" />
     <Content Include="IMAGENES\twitter.png" />
     <Content Include="Institucional.aspx" />
     <Content Include="JS\bootstrap.js" />
@@ -195,6 +200,7 @@
     <Content Include="Newsletter1.aspx" />
     <Content Include="Novedades.aspx" />
     <Content Include="Orders.aspx" />
+    <Content Include="ComparacionProducto.aspx" />
     <Content Include="PaginaGenerica.aspx" />
     <Content Include="PagoaProveedores.aspx" />
     <Content Include="PoliticasySeguridad.aspx" />
@@ -287,6 +293,13 @@
     </Compile>
     <Compile Include="Default.aspx.vb">
       <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="DetalleProducto.aspx.designer.vb">
+      <DependentUpon>DetalleProducto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DetalleProducto.aspx.vb">
+      <DependentUpon>DetalleProducto.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="EliminarIdioma.aspx.designer.vb">
@@ -442,6 +455,13 @@
     </Compile>
     <Compile Include="Orders.aspx.vb">
       <DependentUpon>Orders.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="ComparacionProducto.aspx.designer.vb">
+      <DependentUpon>ComparacionProducto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ComparacionProducto.aspx.vb">
+      <DependentUpon>ComparacionProducto.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="PaginaGenerica.aspx.designer.vb">

@@ -148,6 +148,9 @@ Public Class MasterPage
         Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/Default.aspx"})
         Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/SeleccionarIdioma.aspx"})
         Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/TerminosyCondiciones.aspx"})
+        Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/DetalleProducto.aspx"})
+        Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/ComparacionProducto.aspx"})
+
         UsuarioInvitado.Rol.Add(Rol)
 
 
@@ -369,28 +372,28 @@ Public Class MasterPage
         Try
             ' If IsReCaptchaValid() = True Then
             Dim Cliente As New Entidades.UsuarioEntidad
-                Dim IdiomaActual As Entidades.IdiomaEntidad
-                Dim clienteLogeado As New Entidades.UsuarioEntidad
-                If IsNothing(Current.Session("Cliente")) Then
-                    IdiomaActual = Application("Español")
-                Else
-                    IdiomaActual = Application(TryCast(Current.Session("Cliente"), Entidades.UsuarioEntidad).Idioma.Nombre)
-                End If
-                If Page.IsValid = True Then
-                    Cliente.NombreUsu = txtUser.Value
-                    Cliente.Password = txtPassword.Value
-                    clienteLogeado = GestorUsu.ExisteUsuario(Cliente)
-                    Dim Bitac As New Bitacora(clienteLogeado, "El usuario " & clienteLogeado.NombreUsu & " Se logueo correctamente", Tipo_Bitacora.Login, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)
-                    BitacoraBLL.CrearBitacora(Bitac)
-                    Session("cliente") = clienteLogeado
-                    Usuario = DirectCast(Session("cliente"), Entidades.UsuarioEntidad)
-                    Me.success.Visible = True
-                    Me.lbl_success.InnerText = "Se ha logueado correctamente"
-                    Me.alertvalid.Visible = False
-                    VisibilidadAcceso(True)
-                    'Response.Redirect(Default., False)
-                    Response.Redirect(Request.Url.ToString, False)
-                End If
+            Dim IdiomaActual As Entidades.IdiomaEntidad
+            Dim clienteLogeado As New Entidades.UsuarioEntidad
+            If IsNothing(Current.Session("Cliente")) Then
+                IdiomaActual = Application("Español")
+            Else
+                IdiomaActual = Application(TryCast(Current.Session("Cliente"), Entidades.UsuarioEntidad).Idioma.Nombre)
+            End If
+            If Page.IsValid = True Then
+                Cliente.NombreUsu = txtUser.Value
+                Cliente.Password = txtPassword.Value
+                clienteLogeado = GestorUsu.ExisteUsuario(Cliente)
+                Dim Bitac As New Bitacora(clienteLogeado, "El usuario " & clienteLogeado.NombreUsu & " Se logueo correctamente", Tipo_Bitacora.Login, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)
+                BitacoraBLL.CrearBitacora(Bitac)
+                Session("cliente") = clienteLogeado
+                Usuario = DirectCast(Session("cliente"), Entidades.UsuarioEntidad)
+                Me.success.Visible = True
+                Me.lbl_success.InnerText = "Se ha logueado correctamente"
+                Me.alertvalid.Visible = False
+                VisibilidadAcceso(True)
+                'Response.Redirect(Default., False)
+                Response.Redirect(Request.Url.ToString, False)
+            End If
             '    Else
             '   Me.label_alert_login.InnerText = "Debe completar el captcha"
             '    Me.success.Visible = False
