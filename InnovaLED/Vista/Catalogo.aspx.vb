@@ -11,7 +11,6 @@ Public Class Catalogo
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If Not IsPostBack Then
             If IsNumeric(Request.QueryString("pagid")) Then
-
                 TraerProductosBusqueda(Session("Modelo"), Session("Marca"), Session("PesoDesde"), Session("PesoHasta"), Session("WattDesde"), Session("WattHasta"), Session("PrecioDesde"), Session("PrecioHasta"), Session("LineaProducto"), Session("CategoriaProducto"))
                 'Completar con Método que pase txt=sesion("Marca"), etc
             Else
@@ -84,9 +83,14 @@ Public Class Catalogo
             h4.InnerText = "AR$ " & prod.Precio
             Dim p As HtmlGenericControl = New HtmlGenericControl("p")
             p.InnerText = prod.Watt ' aca tiene que ir prod.detalle, agregar a la clase y a la BD
+            Dim check As New CheckBox
+
+            check.Text = "  Comparar" 'Traducir
+            check.ID = "chk" & prod.ID_Producto
             divmediabody.Controls.Add(h3)
             divmediabody.Controls.Add(h4)
             divmediabody.Controls.Add(p)
+            divmediabody.Controls.Add(check)
             divmedia.Controls.Add(divmediabody)
             ID_Catalogo.Controls.Add(divmedia)
             Dim hr As HtmlGenericControl = New HtmlGenericControl("hr")
@@ -297,10 +301,35 @@ Public Class Catalogo
 
 
     Protected Sub btn_filtrar_Click(sender As Object, e As EventArgs) Handles btn_filtrar.Click
-
         Filtrar()
+    End Sub
 
-
+    Protected Sub btn_comparar_Click(sender As Object, e As EventArgs) Handles btn_comparar.Click
+        Session("ProductosComparar") = New List(Of ProductoEntidad)
+        For Each control In Me.ID_Catalogo.Controls
+            If TypeOf control Is HtmlGenericControl Then
+                For Each controles In control.Controls
+                    For Each controles2 In controles.Controls
+                        If TypeOf controles2 Is CheckBox Then
+                            If DirectCast(controles2, CheckBox).Checked = True Then
+                                Dim var As String = DirectCast(controles2, CheckBox).ID
+                                Dim ProdComparar As New ProductoEntidad
+                                ProdComparar.ID_Producto = Integer.Parse(var.Replace("chk", ""))
+                                Dim ListaProd As List(Of ProductoEntidad) = Session("ProductosComparar")
+                                ListaProd.Add(ProdComparar)
+                            End If
+                        End If
+                    Next
+                Next
+            End If
+        Next
+        If DirectCast(Session("ProductosComparar"), List(Of ProductoEntidad)).Count > 1 And DirectCast(Session("ProductosComparar"), List(Of ProductoEntidad)).Count < 5 Then
+            Response.Redirect("ComparacionProducto.aspx", False)
+        Else
+            alertvalid.InnerText = "Debe Seleccionar entre 2 y 4 productos para comparar."
+            alertvalid.Visible = True
+            success.Visible = False
+        End If
 
     End Sub
 End Class
