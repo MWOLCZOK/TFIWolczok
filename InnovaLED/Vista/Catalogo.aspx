@@ -28,7 +28,7 @@
             </div>
 
 <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager> 
-<asp:UpdatePanel ID="UpdatePanel1" runat="server">
+ <%--<asp:UpdatePanel ID="UpdatePanel1" runat="server">--%>
 <ContentTemplate>
 
 
@@ -49,7 +49,7 @@
     </div>
 <br/>                 
 
-<div class="row">
+<div class="row" i>
    <asp:Label ID="Lbl_modelo" runat="server" Text="Modelo:" CssClass="col-sm-4 control-label labelform"></asp:Label>
       <div class="col-md-8">
          <asp:TextBox ID="txtmodelo" runat="server" CssClass="form-control"></asp:TextBox>                 
@@ -120,7 +120,12 @@
   
 &nbsp;
 </div>   
+        <div class="row">
             
+<asp:button ID="btn_comparar" runat="server" text="Comparar" type="button" class="btn btn-warning btn-lg col-md-12"></asp:button>
+  
+&nbsp;
+</div>       
 
       
                    
@@ -147,6 +152,6 @@
    
     <asp:HiddenField ID="id_usuario" runat="server" />
 </ContentTemplate>
-  </asp:UpdatePanel>
+  <%-- </asp:UpdatePanel> --%>
    
 </asp:Content>
