@@ -361,35 +361,35 @@ Public Class MasterPage
 
     Public Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
         Try
-            ' If IsReCaptchaValid() = True Then
-            Dim Cliente As New Entidades.UsuarioEntidad
-            Dim IdiomaActual As Entidades.IdiomaEntidad
-            Dim clienteLogeado As New Entidades.UsuarioEntidad
-            If IsNothing(Current.Session("Cliente")) Then
-                IdiomaActual = Application("Español")
+            If IsReCaptchaValid() = True Then
+                Dim Cliente As New Entidades.UsuarioEntidad
+                Dim IdiomaActual As Entidades.IdiomaEntidad
+                Dim clienteLogeado As New Entidades.UsuarioEntidad
+                If IsNothing(Current.Session("Cliente")) Then
+                    IdiomaActual = Application("Español")
+                Else
+                    IdiomaActual = Application(TryCast(Current.Session("Cliente"), Entidades.UsuarioEntidad).Idioma.Nombre)
+                End If
+                If Page.IsValid = True Then
+                    Cliente.NombreUsu = txtUser.Value
+                    Cliente.Password = txtPassword.Value
+                    clienteLogeado = GestorUsu.ExisteUsuario(Cliente)
+                    Dim Bitac As New Bitacora(clienteLogeado, "El usuario " & clienteLogeado.NombreUsu & " Se logueo correctamente", Tipo_Bitacora.Login, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)
+                    BitacoraBLL.CrearBitacora(Bitac)
+                    Session("cliente") = clienteLogeado
+                    Usuario = DirectCast(Session("cliente"), Entidades.UsuarioEntidad)
+                    Me.success.Visible = True
+                    Me.lbl_success.InnerText = "Se ha logueado correctamente"
+                    Me.alertvalid.Visible = False
+                    VisibilidadAcceso(True)
+                    'Response.Redirect(Default., False)
+                    Response.Redirect(Request.Url.ToString, False)
+                End If
             Else
-                IdiomaActual = Application(TryCast(Current.Session("Cliente"), Entidades.UsuarioEntidad).Idioma.Nombre)
+                Me.label_alert_login.InnerText = "Debe completar el captcha"
+                Me.success.Visible = False
+                Me.alert_login.Visible = True
             End If
-            If Page.IsValid = True Then
-                Cliente.NombreUsu = txtUser.Value
-                Cliente.Password = txtPassword.Value
-                clienteLogeado = GestorUsu.ExisteUsuario(Cliente)
-                Dim Bitac As New Bitacora(clienteLogeado, "El usuario " & clienteLogeado.NombreUsu & " Se logueo correctamente", Tipo_Bitacora.Login, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)
-                BitacoraBLL.CrearBitacora(Bitac)
-                Session("cliente") = clienteLogeado
-                Usuario = DirectCast(Session("cliente"), Entidades.UsuarioEntidad)
-                Me.success.Visible = True
-                Me.lbl_success.InnerText = "Se ha logueado correctamente"
-                Me.alertvalid.Visible = False
-                VisibilidadAcceso(True)
-                'Response.Redirect(Default., False)
-                Response.Redirect(Request.Url.ToString, False)
-            End If
-            '    Else
-            '   Me.label_alert_login.InnerText = "Debe completar el captcha"
-            '    Me.success.Visible = False
-            '    Me.alert_login.Visible = True
-            '     End If
         Catch ex As Exception
             VisibilidadAcceso(False)
             Me.label_alert_login.InnerText = "Usuario o Contraseña invalidos"
@@ -414,9 +414,8 @@ Public Class MasterPage
             '    Me.textovalid.InnerText = Password.Mensaje(IdiomaActual)
             '    Me.success.Visible = False
 
-            'Catch ex As Exception
-            '    Dim Bitac As New Entidades.Bitacora(Cliente, ex.Message, Entidades.Tipo_Bitacora.Errores, Now, Request.UserAgent, Request.UserHostAddress, ex.StackTrace, ex.GetType().ToString, Request.Url.ToString)
-            '    Negocio.BitacoraBLL.CrearBitacora(Bitac)
+
+
         End Try
     End Sub
 

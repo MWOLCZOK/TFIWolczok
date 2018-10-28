@@ -160,7 +160,7 @@
                             <label for="txtPassword">Password</label>
                             <input id="txtPassword" runat="server" type="password" class="form-control" placeholder="Ingrese password" />
                         </div>
-                        <div class="g-recaptcha" data-sitekey="6Lct_nQUAAAAACS8ephlxWO97EoWtyi2MdQPXPBJ"></div>
+                        <div class="g-recaptcha" data-sitekey="6LfxTncUAAAAANmf7xKj5fJLhzTppc9ZuXeyWb6c"></div>
                     </div>
                     <div class="modal-footer">
                         <asp:Button ID="btnLogin" runat="server" CssClass="btn btn-primary" OnClick="btnLogin_Click" Text="Login" />

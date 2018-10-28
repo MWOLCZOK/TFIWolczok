@@ -96,14 +96,14 @@
         End Set
     End Property
 
-    Private _lista_suscriptores As List(Of Entidades.Cliente)
-    Public Property lista_subscriptores() As List(Of Entidades.Cliente)
-        Get
-            Return _lista_suscriptores
-        End Get
-        Set(ByVal value As List(Of Entidades.Cliente))
-            _lista_suscriptores = value
-        End Set
-    End Property
+    'Private _lista_suscriptores As List(Of Entidades.Cliente)
+    'Public Property lista_subscriptores() As List(Of Entidades.Cliente)
+    '    Get
+    '        Return _lista_suscriptores
+    '    End Get
+    '    Set(ByVal value As List(Of Entidades.Cliente))
+    '        _lista_suscriptores = value
+    '    End Set
+    'End Property
 
 End Class

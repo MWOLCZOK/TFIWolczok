@@ -152,6 +152,7 @@
     <Content Include="Catalogo.aspx" />
     <Content Include="cambiarpassword.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="IMAGENES\amex.png" />
     <Content Include="IMAGENES\Arrow.png" />
     <Content Include="IMAGENES\banner1.jpg" />
     <Content Include="IMAGENES\bannermail.jpg" />
@@ -172,6 +173,7 @@
     <Content Include="IMAGENES\first.png" />
     <Content Include="IMAGENES\idea.png" />
     <Content Include="IMAGENES\luz-led.png" />
+    <Content Include="IMAGENES\mastercard.png" />
     <Content Include="IMAGENES\NewEdificio.jpg" />
     <Content Include="IMAGENES\padlock-close.png" />
     <Content Include="IMAGENES\padlock-open.png" />
@@ -184,6 +186,7 @@
     <Content Include="IMAGENES\Test.jpg" />
     <Content Include="IMAGENES\third.png" />
     <Content Include="IMAGENES\twitter.png" />
+    <Content Include="IMAGENES\visa.png" />
     <Content Include="Institucional.aspx" />
     <Content Include="JS\bootstrap.js" />
     <Content Include="JS\bootstrap.min.js" />

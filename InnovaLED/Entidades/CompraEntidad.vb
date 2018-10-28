@@ -1,5 +1,7 @@
 ﻿Public Class CompraEntidad
 
+    'este es mi detalle factura
+
     Private _id As Integer
     Public Property ID() As Integer
         Get
@@ -30,5 +32,18 @@
             _cantidad = value
         End Set
     End Property
+
+    Private _subtotal As Double
+    Public Property Subtotal() As Double
+        Get
+            Return String.Format("{0:C}", _subtotal)
+        End Get
+        Set(ByVal value As Double)
+            _subtotal = value
+        End Set
+    End Property
+
+
+
 
 End Class

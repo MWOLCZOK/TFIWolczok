@@ -1,5 +1,8 @@
 ﻿Imports Entidades
 Imports Negocio
+Imports System.Web.HttpContext
+
+
 
 
 Public Class DetalleProducto
@@ -52,26 +55,29 @@ Public Class DetalleProducto
 
     Protected Sub btn_comprar_Click(sender As Object, e As EventArgs) Handles btn_comprar.Click
 
-
-
-        Dim compra As New CompraEntidad
-        compra.Producto = Session("producto")
-        compra.Cantidad = Dropnumeric.SelectedValue
-
-        If IsNothing(Session("carrito")) Then
-            Dim listcompra As New List(Of CompraEntidad)
-            listcompra.Add(compra)
-            Session("carrito") = listcompra
-
-
+        If IsNothing(Current.Session("cliente")) Or IsDBNull(Current.Session("Cliente")) Then
+            Me.alertvalid.Visible = True
+            Me.alertvalid.InnerText = "Debe loguearse para continuar con la compra"
         Else
-            Dim listcompra As List(Of CompraEntidad) = Session("carrito")
-            listcompra.Add(compra)
 
+            Dim compra As New CompraEntidad
+            compra.Producto = Session("producto")
+            compra.Cantidad = Dropnumeric.SelectedValue
+
+            If IsNothing(Session("carrito")) Then
+                Dim listcompra As New List(Of CompraEntidad)
+                listcompra.Add(compra)
+                Session("carrito") = listcompra
+
+
+            Else
+                Dim listcompra As List(Of CompraEntidad) = Session("carrito")
+                listcompra.Add(compra)
+
+            End If
+
+            Response.Redirect("carritoCompras.aspx")
         End If
-
-        Response.Redirect("carritoCompras.aspx")
-
     End Sub
 
 

@@ -14,13 +14,13 @@ Option Explicit On
 Partial Public Class carritoCompras
     
     '''<summary>
-    '''Control lblPanelModUser.
+    '''Control Lblpanelcarrito.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblPanelModUser As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents Lblpanelcarrito As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
     '''Control ID_Catalogo.
@@ -32,22 +32,22 @@ Partial Public Class carritoCompras
     Protected WithEvents ID_Catalogo As Global.System.Web.UI.HtmlControls.HtmlGenericControl
     
     '''<summary>
-    '''Control lblidiomaname.
+    '''Control Lblformapago.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblidiomaname As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents Lblformapago As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''Control lstFormaPAgo.
+    '''Control ddl_FormaPago.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lstFormaPAgo As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents ddl_FormaPago As Global.System.Web.UI.WebControls.DropDownList
     
     '''<summary>
     '''Control tarjetaCredito.
@@ -59,13 +59,76 @@ Partial Public Class carritoCompras
     Protected WithEvents tarjetaCredito As Global.System.Web.UI.HtmlControls.HtmlGenericControl
     
     '''<summary>
-    '''Control credit.
+    '''Control Lbltarjetacred.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents credit As Global.System.Web.UI.WebControls.Image
+    Protected WithEvents Lbltarjetacred As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Control lsttipotarj.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lsttipotarj As Global.System.Web.UI.WebControls.DropDownList
+    
+    '''<summary>
+    '''Control divvisa.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents divvisa As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    
+    '''<summary>
+    '''Control imgvisa.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents imgvisa As Global.System.Web.UI.WebControls.Image
+    
+    '''<summary>
+    '''Control divmaster.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents divmaster As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    
+    '''<summary>
+    '''Control imgmastercard.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents imgmastercard As Global.System.Web.UI.WebControls.Image
+    
+    '''<summary>
+    '''Control divamex.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents divamex As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    
+    '''<summary>
+    '''Control imgamex.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents imgamex As Global.System.Web.UI.WebControls.Image
     
     '''<summary>
     '''Control Label1.
@@ -138,4 +201,40 @@ Partial Public Class carritoCompras
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents TextBox1 As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Control btn_aceptar.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btn_aceptar As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''Control btn_cancelar.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btn_cancelar As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''Control lblSponsors.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lblSponsors As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Control gv_sponsors.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents gv_sponsors As Global.System.Web.UI.WebControls.GridView
 End Class
