@@ -21,6 +21,7 @@ Public Class carritoCompras
                 lsttipotarj.SelectedValue = 1
                 lsttipotarj_SelectedIndexChanged(Nothing, Nothing)
                 CargarNC()
+                SumarTotalaPagar()
 
             Else
                 If IsNumeric(Request.QueryString("carrid")) Then
@@ -61,6 +62,7 @@ Public Class carritoCompras
             ID_Catalogo.Controls.Add(New LiteralControl("<div class=""col-md-2"">"))
             ID_Catalogo.Controls.Add(New LiteralControl("<h3>" & "AR$ " & prod.Producto.Precio & "</h3>"))
             ID_Catalogo.Controls.Add(New LiteralControl("</div>"))
+
 
             Dim div As HtmlGenericControl = New HtmlGenericControl("div")
             div.Attributes.Add("class", "col-md-2")
@@ -104,7 +106,7 @@ Public Class carritoCompras
             Me.divmaster.Visible = False
             Me.divamex.Visible = False
             Me.div_tjVisa.Visible = True
-            Me.div_tjMaster.Visible = False
+            Me.div_tjMaster1.Visible = False
             Me.div_tjAmex.Visible = False
 
 
@@ -114,7 +116,7 @@ Public Class carritoCompras
             Me.divamex.Visible = False
 
             Me.div_tjVisa.Visible = False
-            Me.div_tjMaster.Visible = True
+            Me.div_tjMaster1.Visible = True
             Me.div_tjAmex.Visible = False
         Else
             Me.lsttipotarj.SelectedValue = 3
@@ -123,7 +125,7 @@ Public Class carritoCompras
             Me.divmaster.Visible = False
 
             Me.div_tjVisa.Visible = False
-            Me.div_tjMaster.Visible = False
+            Me.div_tjMaster1.Visible = False
             Me.div_tjAmex.Visible = True
 
         End If
@@ -160,6 +162,15 @@ Public Class carritoCompras
         '    Response.Redirect("compraRealizada.aspx")
         'Catch ex As Exception
         'End Try
+
+
+
+
+
+
+
+
+
     End Sub
 
 
@@ -186,6 +197,7 @@ Public Class carritoCompras
                         imagen3.ImageUrl = "~/Imagenes/clear.png"
                     End If
                     SumarNotasCseleccionadas()
+                    GenerarPago()
 
             End Select
         Catch ex As Exception
@@ -308,6 +320,7 @@ Public Class carritoCompras
         For Each nc In lstnc
             sum = sum + nc.Monto
             lbltotalnotasC.Text = "AR$ " & sum
+            Session("notaTotal") = sum
         Next
         Return sum
 
@@ -320,13 +333,56 @@ Public Class carritoCompras
         For Each nc In lstnc
             sum = sum + nc.Monto
             lbltotalnotaselec.Text = "AR$ " & sum
+            Session("notasSeleccionadasTotal") = sum
+
+            Dim varActualizacionNota As Single
+            Dim notaTotal As Single
+            notaTotal = Session("notaTotal")
+            varActualizacionNota = notaTotal - sum
+            lbltotalnotasC.Text = "AR$ " & varActualizacionNota
+
+
+
         Next
         Return sum
 
     End Function
 
 
+    Public Function SumarTotalaPagar()
+        Dim sum As Single
+        Dim lstsum As List(Of CompraEntidad)
+        lstsum = Session("carrito")
+        For Each compra In lstsum
+            sum = sum + compra.Producto.Precio
+            LbltotalApagar.Text = "AR$ " & sum
+            lblTotalPendientePago.Text = "AR$ " & sum
+            Session("totalApagar") = sum
+        Next
+        Return sum
+    End Function
 
+
+    Public Function GenerarPago()
+        Dim tot As Single
+        Dim varTotal As Single
+        Dim varTotalnotas As Single
+        varTotal = Session("totalApagar")
+        Dim varNotaSeleccionadas As Single
+        varNotaSeleccionadas = Session("notasSeleccionadasTotal")
+        tot = varTotal - varNotaSeleccionadas
+        lblTotalPendientePago.Text = "AR$ " & tot
+
+        Return tot
+
+    End Function
+
+
+    Protected Sub btn_seguircontj_Click(sender As Object, e As EventArgs) Handles btn_seguircontj.Click
+        Me.tarjetaCredito.Visible = True
+        Me.gv_div.Visible = True
+        Me.ddl_FormaPago.SelectedValue = 1
+    End Sub
 
 
 

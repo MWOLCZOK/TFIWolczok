@@ -1,12 +1,22 @@
 ﻿
 Public Class FacturaEntidad
 
-    Private _cliente As ClienteEntidad
-    Public Property Cliente() As ClienteEntidad
+    Private _id As Integer
+    Public Property ID() As Integer
+        Get
+            Return _id
+        End Get
+        Set(ByVal value As Integer)
+            _id = value
+        End Set
+    End Property
+
+    Private _cliente As UsuarioEntidad
+    Public Property Cliente() As UsuarioEntidad
         Get
             Return _cliente
         End Get
-        Set(ByVal value As ClienteEntidad)
+        Set(ByVal value As UsuarioEntidad)
             _cliente = value
         End Set
     End Property

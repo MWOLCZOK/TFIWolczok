@@ -20,24 +20,55 @@
 <ContentTemplate>--%>
 
 
-        <div class="row">
-            <div id="ID_Catalogo" runat="server" class="col-md-12">
-            </div>
+<div class="row">
+     <div id="ID_Catalogo" runat="server" class="col-md-12">
 
-        </div>
+     </div>
+
+</div>
         <br />
+<div class="panel-group">
+<div class="panel panel-primary col-md-5 col-md-offset-7">
+    <div class="panel-heading"><h3>Resumen de Saldo</h3></div>
+    <div class="panel-body">
+<div class="row">
+    <div class="row col-md-4 text-justify">
+      <h3> <asp:Label ID="LbltotalApagarTit" runat="server" Text="Total a pagar:" CssClass="control-label labelform"></asp:Label></h3>
+    </div>
+    <div class="row col-md-3 text-right">
+      <h3> <asp:Label ID="LbltotalApagar" runat="server" CssClass="control-label labelform"></asp:Label></h3>
+    </div>
+</div>
+<div class="row">
+     <div class="row col-md-4 text-justify">
+           <h3><asp:Label ID="lblTotalPendientePagoTit" runat="server" Text="Total Pendiente de Pago: " CssClass="control-label labelform"></asp:Label></h3>
+     </div>
+     <div class="row col-md-3 text-right">
+         <h3><asp:Label ID="lblTotalPendientePago" runat="server" Text="AR$ 0" CssClass="control-label labelform"></asp:Label></h3>
+        </div>
+    </div>
+ </div>
+</div>
+</div>
+         
+</div> 
+
+
         <div class="row">
-            <div class="col-md-5">
+            <div class=" col-md-5">
                 
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
+                                                         
+                                <br />
+                                <br />
+                                
                                 <h3> <asp:Label ID="LblmediopagoTit" runat="server" Text="Medios de Pago Disponibles:" CssClass="control-label labelform"></asp:Label></h3>
                                 <br />
                                 <asp:Label ID="Lblformapago" runat="server" Text="FORMA DE PAGO:" CssClass="control-label labelform"></asp:Label>
                                 <div class="input-group col-md-12">
                                     <asp:DropDownList ID="ddl_FormaPago" runat="server" CssClass="form-control" AutoPostBack="true">
-                                       <%-- <asp:ListItem Text="Efectivo" Value="1"></asp:ListItem>--%>
                                         <asp:ListItem Text="Tarjeta de Crédito" Value="1"></asp:ListItem>
                                         <asp:ListItem Text="Nota de Crédito" Value="2"></asp:ListItem>
                                     </asp:DropDownList>
@@ -86,7 +117,7 @@
                             </div>
                         </div>
 
-                         <div class="row" runat="server" id="div_tjMaster" visible="false"5>
+                         <div class="row" runat="server" id="div_tjMaster1" visible="false">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <asp:Label ID="Label1" runat="server" Text="NUMERO TARJETA:" CssClass="control-label labelform"></asp:Label>
@@ -159,14 +190,14 @@
                         </div>
            
             </div>
-          <%--  <div class="col-md-3 col-md-offset-1">
-         <div class="form-group">
-                                <asp:Label ID="lblnotaCdisponible" runat="server" Text="Notas de Crédito Disponible:" CssClass=" col-sm-4 control-label labelform"></asp:Label>
-                                <br />
-                                <br />
-                                <div class="col-md-12">--%>
 
-                                    <div class="col-md-5 col-md-offset-1" id="gv_div" runat="server" visible="false">
+           <%-- ACA ARRANCA LA GRILLA DE NOTAS DE CREDITO--%>
+
+    
+
+                                    <div class=" col-md-5 col-md-offset-1" id="gv_div" runat="server" visible="false">
+                                         <br />
+                                         <br />
                                        <h3> <asp:Label ID="lblNotasDispTit" runat="server" Text="Notas de Crédito Disponible:" CssClass="control-label labelform "></asp:Label></h3>
                                         <br />
                                         
@@ -214,28 +245,32 @@
                                         <h3><asp:Label ID="lbltotalnotasC" runat="server" CssClass="control-label labelform"></asp:Label></h3>
                                         </div>
                                         </div>
-
                                         <div class="row">
-                                        <div class="row col-md-4">
-                                         <h3><asp:Label ID="lbltotalnotaselectTit" runat="server" Text="Total Notas Cred Seleccionadas: " CssClass="control-label labelform"></asp:Label></h3>
+                                         <div class="row col-md-4">
+                                          <h3><asp:Label ID="lbltotalnotaselectTit" runat="server" Text="Total Notas Cred Seleccionadas: " CssClass="control-label labelform"></asp:Label></h3>
                                         </div>
-                                        <div class="row col-md-3 col-md-offset-1">
-                                        <h3><asp:Label ID="lbltotalnotaselec" runat="server" Text="AR$ 0" CssClass="control-label labelform"></asp:Label></h3>
+                                         <div class="row col-md-3 col-md-offset-1">
+                                         <h3><asp:Label ID="lbltotalnotaselec" runat="server" Text="AR$ 0" CssClass="control-label labelform"></asp:Label></h3>
                                         </div>
+                                        </div>                            
+                                                                            
+                                        
+                                        <div class="row col-md-5">
+                                            <asp:button ID="btn_seguircontj" runat="server" Text="Continuar el Pago con Tarjeta" class="btn btn-warning btn-lg"></asp:button>
                                         </div>
+                                        <br />
+                                        <br />
+                                        <br />
                                 </div>            
                             </div>
             
-            </div>
+            <%--</div>--%>
 
 
-<%--        </div>--%>
+
     <br />
     <br />
-
-
-  <%--  </div>--%>
-
+    
   <%--  </ContentTemplate>
    </asp:UpdatePanel> --%>
 </asp:Content>
