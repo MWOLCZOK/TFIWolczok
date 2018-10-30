@@ -123,13 +123,15 @@
                         </div>
            
             </div>
-            <div class="col-md-5 col-md-offset-1">
+          <%--  <div class="col-md-3 col-md-offset-1">
          <div class="form-group">
-                                <asp:Label ID="lblSponsors" runat="server" Text="Sponsors:" CssClass=" col-sm-4 control-label labelform"></asp:Label>
+                                <asp:Label ID="lblnotaCdisponible" runat="server" Text="Notas de Crédito Disponible:" CssClass=" col-sm-4 control-label labelform"></asp:Label>
                                 <br />
                                 <br />
-                                <div class="col-md-12">
-                                    <asp:GridView CssClass="table table-hover table-bordered table-responsive table-success " ID="gv_sponsors" runat="server" AutoGenerateColumns="False" HorizontalAlign="Center" AllowPaging="true" PageSize="5" OnPageIndexChanging="gv_sponsors_PageIndexChanging" RowStyle-Height="40px">
+                                <div class="col-md-12">--%>
+
+                                    <div class="col-md-5 col-md-offset-1">
+                                    <asp:GridView CssClass="table table-hover table-bordered table-responsive table-success " ID="gv_notacredito" runat="server" AutoGenerateColumns="False" HorizontalAlign="Center" AllowPaging="true" PageSize="5" OnPageIndexChanging="gv_notacredito_PageIndexChanging" RowStyle-Height="40px" Visible="false">
                                         <HeaderStyle CssClass="thead-dark" />
                                         <PagerTemplate>
                                             <div class="col-md-4 text-left">
@@ -152,9 +154,9 @@
                                             </div>
                                         </PagerTemplate>
                                         <Columns>
-                                            <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
-                                            <asp:BoundField DataField="CUIL" HeaderText="CUIL" />
-                                            <asp:BoundField DataField="Correo" HeaderText="Correo" />
+                                            <asp:BoundField DataField="ID" HeaderText="Nro Nota" />
+                                            <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" />
+                                            <asp:BoundField DataField="Monto" HeaderText="Monto" />
                                             <asp:TemplateField HeaderText="Acciones" HeaderStyle-Width="100px">
                                                 <ItemTemplate>
                                                     <div>
@@ -165,18 +167,26 @@
                                             </asp:TemplateField>
                                         </Columns>
                                     </asp:GridView>
-                                </div>
+                                        <div class="row">
+                                        <div class="row">
+                                         <h3><asp:Label ID="lbltotalnotascTit" runat="server" Text="Total Notas Cred: " CssClass="control-label labelform" Visible="false"></asp:Label></h3>
+                                        </div>
+                                        <div class="row col-md-offset-1">
+                                        <h3><asp:Label ID="lbltotalnotasC" runat="server" CssClass="control-label labelform" Visible="false"></asp:Label></h3>
+                                        </div>
+                                        </div>
+                                </div>            
                             </div>
             
             </div>
 
 
-        </div>
+<%--        </div>--%>
     <br />
     <br />
 
 
-    </div>
+  <%--  </div>--%>
 
   <%--  </ContentTemplate>
    </asp:UpdatePanel> --%>

@@ -627,30 +627,4 @@ Public Class UsuarioMPP
     End Function
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 End Class

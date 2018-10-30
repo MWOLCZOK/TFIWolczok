@@ -8,24 +8,29 @@ Public Class carritoCompras
     Inherits System.Web.UI.Page
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        If Not IsPostBack Then
-            If IsNothing(Session("Carrito")) Then
-                'carrito vacio
+        Try
+            If Not IsPostBack Then
+                Session("notaSeleccionadas") = New List(Of Entidades.DocumentoFinancieroEntidad)
+                If IsNothing(Session("Carrito")) Then
+                    'carrito vacio
+                Else
+                    GenerarDiseño(Session("carrito"))
+                End If
+                ddl_FormaPago.SelectedValue = 1
+                ddl_FormaPago_SelectedIndexChanged(Nothing, Nothing)
+                lsttipotarj.SelectedValue = 1
+                lsttipotarj_SelectedIndexChanged(Nothing, Nothing)
+                CargarNC()
             Else
+                If IsNumeric(Request.QueryString("carrid")) Then
+                    Dim list As List(Of CompraEntidad) = Session("carrito")
+                    list.Remove(list.Find(Function(p) p.Producto.ID_Producto = Request.QueryString("carrid")))
+                End If
                 GenerarDiseño(Session("carrito"))
-            End If
-            ddl_FormaPago.SelectedValue = 1
-            ddl_FormaPago_SelectedIndexChanged(Nothing, Nothing)
-            lsttipotarj.SelectedValue = 1
-            lsttipotarj_SelectedIndexChanged(Nothing, Nothing)
-        Else
-            If IsNumeric(Request.QueryString("carrid")) Then
-                Dim list As List(Of CompraEntidad) = Session("carrito")
-                list.Remove(list.Find(Function(p) p.Producto.ID_Producto = Request.QueryString("carrid")))
-            End If
-            GenerarDiseño(Session("carrito"))
 
-        End If
+            End If
+        Catch ex As Exception
+        End Try
 
     End Sub
 
@@ -82,8 +87,15 @@ Public Class carritoCompras
             Me.tarjetaCredito.Visible = True
             Me.btn_aceptar.Visible = True
             Me.btn_cancelar.Visible = True
+            Me.gv_notacredito.Visible = False
+            Me.lbltotalnotasC.Visible = False
+            Me.lbltotalnotascTit.Visible = False
         Else
             Me.tarjetaCredito.Visible = False
+            Me.gv_notacredito.Visible = True
+            Me.lbltotalnotasC.Visible = True
+            Me.lbltotalnotascTit.Visible = True
+            SumarNotasC()
 
         End If
     End Sub
@@ -93,6 +105,7 @@ Public Class carritoCompras
             Me.divvisa.Visible = True
             Me.divmaster.Visible = False
             Me.divamex.Visible = False
+
 
         ElseIf Me.lsttipotarj.SelectedValue = 2 Then
             Me.divmaster.Visible = True
@@ -141,7 +154,7 @@ Public Class carritoCompras
     End Sub
 
 
-    Private Sub gv_sponsors_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles gv_sponsors.RowCommand
+    Private Sub gv_notacredito_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles gv_notacredito.RowCommand
         Try
             Dim IdiomaActual As Entidades.IdiomaEntidad
             If IsNothing(Current.Session("Cliente")) Then
@@ -149,18 +162,18 @@ Public Class carritoCompras
             Else
                 IdiomaActual = Application(TryCast(Current.Session("Cliente"), Entidades.UsuarioEntidad).Idioma.Nombre)
             End If
-            Dim nc As DocumentoFinanciero = TryCast(Session("notacredito"), List(Of DocumentoFinanciero))(e.CommandArgument + (gv_sponsors.PageIndex * gv_sponsors.PageSize))
+            Dim nc As DocumentoFinancieroEntidad = TryCast(Session("nota"), List(Of DocumentoFinancieroEntidad))(e.CommandArgument + (gv_notacredito.PageIndex * gv_notacredito.PageSize))
             Select Case e.CommandName.ToString
                 Case "S"
-                    If TryCast(Session("ncseleccionada"), List(Of DocumentoFinanciero)).Any(Function(p) p.ID = nc.ID) Then
-                        gv_sponsors.Rows.Item(e.CommandArgument).BackColor = Drawing.Color.FromName("#c3e6cb")
-                        TryCast(Session("ncseleccionada"), List(Of DocumentoFinanciero)).Remove(nc)
-                        Dim imagen3 As System.Web.UI.WebControls.ImageButton = DirectCast(gv_sponsors.Rows.Item(e.CommandArgument).FindControl("btn_seleccionar"), System.Web.UI.WebControls.ImageButton)
+                    If TryCast(Session("notaSeleccionadas"), List(Of DocumentoFinancieroEntidad)).Any(Function(p) p.ID = nc.ID) Then
+                        gv_notacredito.Rows.Item(e.CommandArgument).BackColor = Drawing.Color.FromName("#c3e6cb")
+                        TryCast(Session("notaSeleccionadas"), List(Of DocumentoFinancieroEntidad)).Remove(nc)
+                        Dim imagen3 As System.Web.UI.WebControls.ImageButton = DirectCast(gv_notacredito.Rows.Item(e.CommandArgument).FindControl("btn_seleccionar"), System.Web.UI.WebControls.ImageButton)
                         imagen3.ImageUrl = "~/Imagenes/check.png"
                     Else
-                        gv_sponsors.Rows.Item(e.CommandArgument).BackColor = Drawing.Color.Cyan
-                        TryCast(Session("ncseleccionada"), List(Of DocumentoFinanciero)).Add(nc)
-                        Dim imagen3 As System.Web.UI.WebControls.ImageButton = DirectCast(gv_sponsors.Rows.Item(e.CommandArgument).FindControl("btn_seleccionar"), System.Web.UI.WebControls.ImageButton)
+                        gv_notacredito.Rows.Item(e.CommandArgument).BackColor = Drawing.Color.Cyan
+                        TryCast(Session("notaSeleccionadas"), List(Of DocumentoFinancieroEntidad)).Add(nc)
+                        Dim imagen3 As System.Web.UI.WebControls.ImageButton = DirectCast(gv_notacredito.Rows.Item(e.CommandArgument).FindControl("btn_seleccionar"), System.Web.UI.WebControls.ImageButton)
                         imagen3.ImageUrl = "~/Imagenes/clear.png"
                     End If
 
@@ -174,27 +187,27 @@ Public Class carritoCompras
     End Sub
 
 
-    Private Sub gv_Sponsors_DataBound(sender As Object, e As EventArgs) Handles gv_sponsors.DataBound
+    Private Sub gv_notacredito_DataBound(sender As Object, e As EventArgs) Handles gv_notacredito.DataBound
         Try
             Try
-                Dim ddl2 As DropDownList = CType(gv_sponsors.BottomPagerRow.Cells(0).FindControl("ddlPaging"), DropDownList)
+                Dim ddl2 As DropDownList = CType(gv_notacredito.BottomPagerRow.Cells(0).FindControl("ddlPaging"), DropDownList)
             Catch ex As Exception
                 Return
             End Try
 
-            Dim ddl As DropDownList = CType(gv_sponsors.BottomPagerRow.Cells(0).FindControl("ddlPaging"), DropDownList)
-            Dim ddlpage As DropDownList = CType(gv_sponsors.BottomPagerRow.Cells(0).FindControl("ddlPageSize"), DropDownList)
-            Dim txttotal As Label = CType(gv_sponsors.BottomPagerRow.Cells(0).FindControl("lbltotalpages"), Label)
+            Dim ddl As DropDownList = CType(gv_notacredito.BottomPagerRow.Cells(0).FindControl("ddlPaging"), DropDownList)
+            Dim ddlpage As DropDownList = CType(gv_notacredito.BottomPagerRow.Cells(0).FindControl("ddlPageSize"), DropDownList)
+            Dim txttotal As Label = CType(gv_notacredito.BottomPagerRow.Cells(0).FindControl("lbltotalpages"), Label)
 
             ddlpage.ClearSelection()
-            ddlpage.Items.FindByValue(gv_sponsors.PageSize).Selected = True
+            ddlpage.Items.FindByValue(gv_notacredito.PageSize).Selected = True
 
-            txttotal.Text = gv_sponsors.PageCount
+            txttotal.Text = gv_notacredito.PageCount
 
-            For cnt As Integer = 0 To gv_sponsors.PageCount - 1
+            For cnt As Integer = 0 To gv_notacredito.PageCount - 1
                 Dim curr As Integer = cnt + 1
                 Dim item As New ListItem(curr.ToString())
-                If cnt = gv_sponsors.PageIndex Then
+                If cnt = gv_notacredito.PageIndex Then
                     item.Selected = True
                 End If
 
@@ -208,20 +221,20 @@ Public Class carritoCompras
             Else
                 IdiomaActual = Application(TryCast(Current.Session("Cliente"), Entidades.UsuarioEntidad).Idioma.Nombre)
             End If
-            For Each row As GridViewRow In gv_sponsors.Rows
+            For Each row As GridViewRow In gv_notacredito.Rows
                 Dim imagen3 As System.Web.UI.WebControls.ImageButton = DirectCast(row.FindControl("btn_seleccionar"), System.Web.UI.WebControls.ImageButton)
                 imagen3.CommandArgument = row.RowIndex
             Next
 
-            'With gv_sponsors.HeaderRow
+            'With gv_notacredito.HeaderRow
             '    .Cells(0).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "HeaderNombre").Traduccion
             '    .Cells(1).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "HeaderCUIL").Traduccion
             '    .Cells(2).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "HeaderCorreo").Traduccion
             '    .Cells(3).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "HeaderAcciones").Traduccion
             'End With
 
-            gv_sponsors.BottomPagerRow.Visible = True
-            gv_sponsors.BottomPagerRow.CssClass = "table-bottom-dark"
+            gv_notacredito.BottomPagerRow.Visible = True
+            gv_notacredito.BottomPagerRow.CssClass = "table-bottom-dark"
         Catch ex As Exception
             'Dim clienteLogeado As Entidades.UsuarioEntidad = Current.Session("cliente")
             'Dim Bitac As New Entidades.BitacoraErrores(clienteLogeado, ex.Message, Entidades.Tipo_Bitacora.Errores, Now, Request.UserAgent, Request.UserHostAddress, ex.StackTrace, ex.GetType().ToString, Request.Url.ToString)
@@ -230,11 +243,11 @@ Public Class carritoCompras
 
     End Sub
 
-    Protected Sub gv_sponsors_PageIndexChanging(sender As Object, e As GridViewPageEventArgs)
+    Protected Sub gv_notacredito_PageIndexChanging(sender As Object, e As GridViewPageEventArgs)
         Try
-            'CargarSponsors()
-            gv_sponsors.PageIndex = e.NewPageIndex
-            gv_sponsors.DataBind()
+            CargarNC()
+            gv_notacredito.PageIndex = e.NewPageIndex
+            gv_notacredito.DataBind()
         Catch ex As Exception
 
         End Try
@@ -242,21 +255,54 @@ Public Class carritoCompras
     End Sub
     Protected Sub ddlPaging_SelectedIndexChanged(sender As Object, e As EventArgs)
         Try
-            Dim ddl As DropDownList = CType(gv_sponsors.BottomPagerRow.Cells(0).FindControl("ddlPaging"), DropDownList)
-            gv_sponsors.SetPageIndex(ddl.SelectedIndex)
+            Dim ddl As DropDownList = CType(gv_notacredito.BottomPagerRow.Cells(0).FindControl("ddlPaging"), DropDownList)
+            gv_notacredito.SetPageIndex(ddl.SelectedIndex)
         Catch ex As Exception
 
         End Try
     End Sub
     Protected Sub ddlPageSize_SelectedPageSizeChanged(sender As Object, e As EventArgs)
         Try
-            Dim ddl As DropDownList = CType(gv_sponsors.BottomPagerRow.Cells(0).FindControl("ddlPageSize"), DropDownList)
-            gv_sponsors.PageSize = ddl.SelectedValue
-            'CargarSponsors()
+            Dim ddl As DropDownList = CType(gv_notacredito.BottomPagerRow.Cells(0).FindControl("ddlPageSize"), DropDownList)
+            gv_notacredito.PageSize = ddl.SelectedValue
+            CargarNC()
+
         Catch ex As Exception
 
         End Try
     End Sub
+
+    Private Sub CargarNC()
+
+        Dim usu As New UsuarioEntidad
+        'Session("cliente") = usu
+        usu = Session("cliente")
+        Dim listaNC As List(Of DocumentoFinancieroEntidad)
+
+        Dim GestorNC As New GestorDocumentoBLL
+        listaNC = GestorNC.TraerDocumentoF(usu)
+        If listaNC.Count > 0 Then
+            Session("nota") = listaNC
+            Me.gv_notacredito.DataSource = listaNC
+            Me.gv_notacredito.DataBind()
+            ' para llenar la grilla, el ID de la grilla tiene que ser el mismo que la Clase!!!!!
+
+        End If
+
+
+    End Sub
+
+    Public Function SumarNotasC()
+        Dim sum As Single
+        Dim lstnc As List(Of DocumentoFinancieroEntidad)
+        lstnc = Session("nota")
+        For Each nc In lstnc
+            sum = sum + nc.Monto
+            lbltotalnotasC.Text = "AR$ " & sum
+        Next
+        Return sum
+
+    End Function
 
 
 

@@ -67,8 +67,10 @@
     <Compile Include="BitacoraMPP.vb" />
     <Compile Include="BoletinMPP.vb" />
     <Compile Include="CategoriaProductoMPP.vb" />
+    <Compile Include="ClienteMPP.vb" />
     <Compile Include="ComprobanteMPP.vb" />
     <Compile Include="EncriptarMPP.vb" />
+    <Compile Include="GestorDocumentoMPP.vb" />
     <Compile Include="GestorPermisosMPP.vb" />
     <Compile Include="IdiomaMPP.vb" />
     <Compile Include="LineaProductoMPP.vb" />

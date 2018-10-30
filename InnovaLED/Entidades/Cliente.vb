@@ -1,7 +1,7 @@
 ﻿Public Class ClienteEntidad
 
     Private _id As Integer
-    Public Property ID() As Integer
+    Public Property ID_Cliente() As Integer
         Get
             Return _id
         End Get

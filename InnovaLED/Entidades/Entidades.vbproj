@@ -69,9 +69,10 @@
     <Compile Include="CategoriaProducto.vb" />
     <Compile Include="Cliente.vb" />
     <Compile Include="CompraEntidad.vb" />
-    <Compile Include="DocumentoFinanciero.vb" />
+    <Compile Include="DocumentoFinancieroEntidad.vb" />
     <Compile Include="Encuesta.vb" />
     <Compile Include="EstadoCompraEntidad.vb" />
+    <Compile Include="EstadoEntidad.vb" />
     <Compile Include="FacturaEntidad.vb" />
     <Compile Include="IdiomaEntidad.vb" />
     <Compile Include="LineaProducto.vb" />

@@ -221,20 +221,29 @@ Partial Public Class carritoCompras
     Protected WithEvents btn_cancelar As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
-    '''Control lblSponsors.
+    '''Control gv_notacredito.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblSponsors As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents gv_notacredito As Global.System.Web.UI.WebControls.GridView
     
     '''<summary>
-    '''Control gv_sponsors.
+    '''Control lbltotalnotascTit.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents gv_sponsors As Global.System.Web.UI.WebControls.GridView
+    Protected WithEvents lbltotalnotascTit As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Control lbltotalnotasC.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lbltotalnotasC As Global.System.Web.UI.WebControls.Label
 End Class

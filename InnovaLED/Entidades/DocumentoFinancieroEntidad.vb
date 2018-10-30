@@ -1,4 +1,4 @@
-﻿Public Class DocumentoFinanciero
+﻿Public Class DocumentoFinancieroEntidad
 
     Private _id As Integer
     Public Property ID() As Integer
@@ -41,21 +41,17 @@
         End Set
     End Property
 
-    Private _nro As Integer
-    Public Property Nro_nota() As Integer
+
+    Private _cliente As UsuarioEntidad
+    Public Property Usuario() As UsuarioEntidad
         Get
-            Return _nro
+            Return _cliente
         End Get
-        Set(ByVal value As Integer)
-            _nro = value
+        Set(ByVal value As UsuarioEntidad)
+            _cliente = value
         End Set
     End Property
 
 
-    Public Enum TipoDocumento
-        Positivo = 1 ' Credito
-        Negativo = 2 ' Debito
-
-    End Enum
 
 End Class
