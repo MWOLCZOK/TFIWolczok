@@ -21,6 +21,7 @@ Public Class carritoCompras
                 lsttipotarj.SelectedValue = 1
                 lsttipotarj_SelectedIndexChanged(Nothing, Nothing)
                 CargarNC()
+
             Else
                 If IsNumeric(Request.QueryString("carrid")) Then
                     Dim list As List(Of CompraEntidad) = Session("carrito")
@@ -87,14 +88,11 @@ Public Class carritoCompras
             Me.tarjetaCredito.Visible = True
             Me.btn_aceptar.Visible = True
             Me.btn_cancelar.Visible = True
-            Me.gv_notacredito.Visible = False
-            Me.lbltotalnotasC.Visible = False
-            Me.lbltotalnotascTit.Visible = False
+            Me.gv_div.Visible = False
+
         Else
             Me.tarjetaCredito.Visible = False
-            Me.gv_notacredito.Visible = True
-            Me.lbltotalnotasC.Visible = True
-            Me.lbltotalnotascTit.Visible = True
+            Me.gv_div.Visible = True
             SumarNotasC()
 
         End If
@@ -105,17 +103,28 @@ Public Class carritoCompras
             Me.divvisa.Visible = True
             Me.divmaster.Visible = False
             Me.divamex.Visible = False
+            Me.div_tjVisa.Visible = True
+            Me.div_tjMaster.Visible = False
+            Me.div_tjAmex.Visible = False
 
 
         ElseIf Me.lsttipotarj.SelectedValue = 2 Then
             Me.divmaster.Visible = True
             Me.divvisa.Visible = False
             Me.divamex.Visible = False
+
+            Me.div_tjVisa.Visible = False
+            Me.div_tjMaster.Visible = True
+            Me.div_tjAmex.Visible = False
         Else
             Me.lsttipotarj.SelectedValue = 3
             Me.divamex.Visible = True
             Me.divvisa.Visible = False
             Me.divmaster.Visible = False
+
+            Me.div_tjVisa.Visible = False
+            Me.div_tjMaster.Visible = False
+            Me.div_tjAmex.Visible = True
 
         End If
 
@@ -166,17 +175,17 @@ Public Class carritoCompras
             Select Case e.CommandName.ToString
                 Case "S"
                     If TryCast(Session("notaSeleccionadas"), List(Of DocumentoFinancieroEntidad)).Any(Function(p) p.ID = nc.ID) Then
-                        gv_notacredito.Rows.Item(e.CommandArgument).BackColor = Drawing.Color.FromName("#c3e6cb")
+                        gv_notacredito.Rows.Item(e.CommandArgument).BackColor = Drawing.Color.FromName("#ffffff")
                         TryCast(Session("notaSeleccionadas"), List(Of DocumentoFinancieroEntidad)).Remove(nc)
                         Dim imagen3 As System.Web.UI.WebControls.ImageButton = DirectCast(gv_notacredito.Rows.Item(e.CommandArgument).FindControl("btn_seleccionar"), System.Web.UI.WebControls.ImageButton)
                         imagen3.ImageUrl = "~/Imagenes/check.png"
                     Else
-                        gv_notacredito.Rows.Item(e.CommandArgument).BackColor = Drawing.Color.Cyan
+                        gv_notacredito.Rows.Item(e.CommandArgument).BackColor = Drawing.Color.SkyBlue
                         TryCast(Session("notaSeleccionadas"), List(Of DocumentoFinancieroEntidad)).Add(nc)
                         Dim imagen3 As System.Web.UI.WebControls.ImageButton = DirectCast(gv_notacredito.Rows.Item(e.CommandArgument).FindControl("btn_seleccionar"), System.Web.UI.WebControls.ImageButton)
                         imagen3.ImageUrl = "~/Imagenes/clear.png"
                     End If
-
+                    SumarNotasCseleccionadas()
 
             End Select
         Catch ex As Exception
@@ -299,6 +308,18 @@ Public Class carritoCompras
         For Each nc In lstnc
             sum = sum + nc.Monto
             lbltotalnotasC.Text = "AR$ " & sum
+        Next
+        Return sum
+
+    End Function
+
+    Public Function SumarNotasCseleccionadas()
+        Dim sum As Single
+        Dim lstnc As List(Of DocumentoFinancieroEntidad)
+        lstnc = Session("notaSeleccionadas")
+        For Each nc In lstnc
+            sum = sum + nc.Monto
+            lbltotalnotaselec.Text = "AR$ " & sum
         Next
         Return sum
 

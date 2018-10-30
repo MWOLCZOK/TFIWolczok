@@ -32,6 +32,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
+                                <h3> <asp:Label ID="LblmediopagoTit" runat="server" Text="Medios de Pago Disponibles:" CssClass="control-label labelform"></asp:Label></h3>
+                                <br />
                                 <asp:Label ID="Lblformapago" runat="server" Text="FORMA DE PAGO:" CssClass="control-label labelform"></asp:Label>
                                 <div class="input-group col-md-12">
                                     <asp:DropDownList ID="ddl_FormaPago" runat="server" CssClass="form-control" AutoPostBack="true">
@@ -70,23 +72,56 @@
                             </div> 
                         </div>
 
-                        <div class="row">
+                        <div class="row" runat="server" id="div_tjVisa">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <asp:Label ID="Label1" runat="server" Text="NUMERO TARJETA:" CssClass="control-label labelform"></asp:Label>
+                                    <asp:Label ID="LblNumTarj" runat="server" Text="NUMERO TARJETA:" CssClass="control-label labelform"></asp:Label>
                                     <div class="input-group">
-                                        <asp:TextBox ID="txtnrotarjeta" runat="server" placeholder="N° de Tarjeta" CssClass="form-control"></asp:TextBox>
+                                        <asp:TextBox ID="txtnrotarjetaVisa" runat="server" placeholder="N° de Tarjeta" CssClass="form-control"></asp:TextBox>
                                         <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                                  <asp:RegularExpressionValidator ID="RE_Visa" runat="server" ErrorMessage="Nro invalido para Visa" ControlToValidate="txtnrotarjetaVisa"
+                                                ValidationExpression="^4\d{3}-?\d{4}-?\d{4}-?\d{4}$" ForeColor="Red" Font-Bold="true" ></asp:RegularExpressionValidator>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+                         <div class="row" runat="server" id="div_tjMaster" visible="false"5>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <asp:Label ID="Label1" runat="server" Text="NUMERO TARJETA:" CssClass="control-label labelform"></asp:Label>
+                                    <div class="input-group">
+                                        <asp:TextBox ID="txtnrotarjetaMaster" runat="server" placeholder="N° de Tarjeta" CssClass="form-control"></asp:TextBox>
+                                        <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>                                                                          
+
+                                        <asp:RegularExpressionValidator ID="RE_Master" runat="server" ErrorMessage="Nro invalido para Master" ControlToValidate="txtnrotarjetaMaster"
+                                                ValidationExpression="^5[1-5]\d{2}-?\d{4}-?\d{4}-?\d{4}$" ForeColor="Red" Font-Bold="true"></asp:RegularExpressionValidator>
+                                      </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row" runat="server" id="div_tjAmex" visible="false">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <asp:Label ID="Label2" runat="server" Text="NUMERO TARJETA:" CssClass="control-label labelform"></asp:Label>
+                                    <div class="input-group">
+                                        <asp:TextBox ID="txtnrotarjetaAmex" runat="server" placeholder="N° de Tarjeta" CssClass="form-control"></asp:TextBox>
+                                        <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                                         <asp:RegularExpressionValidator ID="RE_American" runat="server" ErrorMessage="Nro invalido para American" ControlToValidate="txtnrotarjetaAmex"
+                                                ValidationExpression="^3[47][0-9]{13}$" ForeColor="Red" Font-Bold="true"></asp:RegularExpressionValidator>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <asp:Label ID="Label4" runat="server" Text="NOMBRE Y APELLIDO:" CssClass="control-label labelform"></asp:Label>
+                                    <asp:Label ID="LblNomyApe" runat="server" Text="NOMBRE Y APELLIDO:" CssClass="control-label labelform"></asp:Label>
                                     <div class="input-group">
-                                        <asp:TextBox ID="TextBox2" runat="server" placeholder="Apellido y Nombre" CssClass="form-control"></asp:TextBox>
+                                        <asp:TextBox ID="txtnomyape" runat="server" placeholder="Apellido y Nombre" CssClass="form-control"></asp:TextBox>
                                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                     </div>
                                 </div>
@@ -95,7 +130,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <asp:Label ID="Label2" runat="server" Text="FECHA EXPIRACIÓN:" CssClass="control-label labelform"></asp:Label>
+                                    <asp:Label ID="LblFechaExpiracion" runat="server" Text="FECHA EXPIRACIÓN:" CssClass="control-label labelform"></asp:Label>
                                     <div class="input-group">
                                         <asp:TextBox ID="txtexpiracion" runat="server" placeholder="MM/AAAA" CssClass="form-control"></asp:TextBox>
                                     </div>
@@ -103,9 +138,10 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group  pull-right">
-                                    <asp:Label ID="Label3" runat="server" Text="CÓDIGO DE SEGURIDAD:" CssClass="control-label labelform"></asp:Label>
+                                    <asp:Label ID="LblCodSeg" runat="server" Text="CÓDIGO DE SEGURIDAD:" CssClass="control-label labelform"></asp:Label>
                                     <div class="input-group">
-                                        <asp:TextBox ID="TextBox1" runat="server" placeholder="CVC" CssClass="form-control"></asp:TextBox>
+                                        <asp:TextBox ID="txtCodSeg" runat="server" placeholder="CVC" CssClass="form-control"></asp:TextBox>                                     
+
                                     </div>
                                 </div>
                             </div>
@@ -130,8 +166,11 @@
                                 <br />
                                 <div class="col-md-12">--%>
 
-                                    <div class="col-md-5 col-md-offset-1">
-                                    <asp:GridView CssClass="table table-hover table-bordered table-responsive table-success " ID="gv_notacredito" runat="server" AutoGenerateColumns="False" HorizontalAlign="Center" AllowPaging="true" PageSize="5" OnPageIndexChanging="gv_notacredito_PageIndexChanging" RowStyle-Height="40px" Visible="false">
+                                    <div class="col-md-5 col-md-offset-1" id="gv_div" runat="server" visible="false">
+                                       <h3> <asp:Label ID="lblNotasDispTit" runat="server" Text="Notas de Crédito Disponible:" CssClass="control-label labelform "></asp:Label></h3>
+                                        <br />
+                                        
+                                    <asp:GridView CssClass="table table-hover table-bordered table-responsive table-default " ID="gv_notacredito" runat="server" AutoGenerateColumns="False" HorizontalAlign="Center" AllowPaging="true" PageSize="5" OnPageIndexChanging="gv_notacredito_PageIndexChanging" RowStyle-Height="40px">
                                         <HeaderStyle CssClass="thead-dark" />
                                         <PagerTemplate>
                                             <div class="col-md-4 text-left">
@@ -153,12 +192,12 @@
                                                 <asp:Label ID="lblRegistrosPag" runat="server" Text="Registros por Pagina"></asp:Label>
                                             </div>
                                         </PagerTemplate>
-                                        <Columns>
+                                        <Columns>                                           
                                             <asp:BoundField DataField="ID" HeaderText="Nro Nota" />
                                             <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" />
                                             <asp:BoundField DataField="Monto" HeaderText="Monto" />
-                                            <asp:TemplateField HeaderText="Acciones" HeaderStyle-Width="100px">
-                                                <ItemTemplate>
+                                            <asp:TemplateField HeaderText="Seleccionar" HeaderStyle-Width="100px">
+                                            <ItemTemplate>
                                                     <div>
                                                         <asp:ImageButton ID="btn_Seleccionar" runat="server" CommandName="S" ImageUrl="~/Imagenes/check.png" Height="18px" />
                                                     </div>
@@ -168,11 +207,20 @@
                                         </Columns>
                                     </asp:GridView>
                                         <div class="row">
-                                        <div class="row">
-                                         <h3><asp:Label ID="lbltotalnotascTit" runat="server" Text="Total Notas Cred: " CssClass="control-label labelform" Visible="false"></asp:Label></h3>
+                                        <div class="row col-md-4">
+                                         <h3><asp:Label ID="lbltotalnotascTit" runat="server" Text="Total Notas Cred: " CssClass="control-label labelform"></asp:Label></h3>
                                         </div>
-                                        <div class="row col-md-offset-1">
-                                        <h3><asp:Label ID="lbltotalnotasC" runat="server" CssClass="control-label labelform" Visible="false"></asp:Label></h3>
+                                        <div class="row col-md-3 col-md-offset-1">
+                                        <h3><asp:Label ID="lbltotalnotasC" runat="server" CssClass="control-label labelform"></asp:Label></h3>
+                                        </div>
+                                        </div>
+
+                                        <div class="row">
+                                        <div class="row col-md-4">
+                                         <h3><asp:Label ID="lbltotalnotaselectTit" runat="server" Text="Total Notas Cred Seleccionadas: " CssClass="control-label labelform"></asp:Label></h3>
+                                        </div>
+                                        <div class="row col-md-3 col-md-offset-1">
+                                        <h3><asp:Label ID="lbltotalnotaselec" runat="server" Text="AR$ 0" CssClass="control-label labelform"></asp:Label></h3>
                                         </div>
                                         </div>
                                 </div>            

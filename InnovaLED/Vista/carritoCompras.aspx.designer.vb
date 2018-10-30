@@ -32,6 +32,15 @@ Partial Public Class carritoCompras
     Protected WithEvents ID_Catalogo As Global.System.Web.UI.HtmlControls.HtmlGenericControl
     
     '''<summary>
+    '''Control LblmediopagoTit.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents LblmediopagoTit As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
     '''Control Lblformapago.
     '''</summary>
     '''<remarks>
@@ -131,6 +140,42 @@ Partial Public Class carritoCompras
     Protected WithEvents imgamex As Global.System.Web.UI.WebControls.Image
     
     '''<summary>
+    '''Control div_tjVisa.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents div_tjVisa As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    
+    '''<summary>
+    '''Control LblNumTarj.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents LblNumTarj As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Control txtnrotarjetaVisa.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents txtnrotarjetaVisa As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Control RE_Visa.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents RE_Visa As Global.System.Web.UI.WebControls.RegularExpressionValidator
+    
+    '''<summary>
     '''Control Label1.
     '''</summary>
     '''<remarks>
@@ -140,31 +185,31 @@ Partial Public Class carritoCompras
     Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''Control txtnrotarjeta.
+    '''Control txtnrotarjetaMaster.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents txtnrotarjeta As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtnrotarjetaMaster As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
-    '''Control Label4.
+    '''Control RE_Master.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents Label4 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents RE_Master As Global.System.Web.UI.WebControls.RegularExpressionValidator
     
     '''<summary>
-    '''Control TextBox2.
+    '''Control div_tjAmex.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents TextBox2 As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents div_tjAmex As Global.System.Web.UI.HtmlControls.HtmlGenericControl
     
     '''<summary>
     '''Control Label2.
@@ -176,6 +221,51 @@ Partial Public Class carritoCompras
     Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
+    '''Control txtnrotarjetaAmex.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents txtnrotarjetaAmex As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Control RE_American.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents RE_American As Global.System.Web.UI.WebControls.RegularExpressionValidator
+    
+    '''<summary>
+    '''Control LblNomyApe.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents LblNomyApe As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Control txtnomyape.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents txtnomyape As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Control LblFechaExpiracion.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents LblFechaExpiracion As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
     '''Control txtexpiracion.
     '''</summary>
     '''<remarks>
@@ -185,22 +275,22 @@ Partial Public Class carritoCompras
     Protected WithEvents txtexpiracion As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
-    '''Control Label3.
+    '''Control LblCodSeg.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents Label3 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents LblCodSeg As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''Control TextBox1.
+    '''Control txtCodSeg.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents TextBox1 As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtCodSeg As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
     '''Control btn_aceptar.
@@ -219,6 +309,24 @@ Partial Public Class carritoCompras
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents btn_cancelar As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''Control gv_div.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents gv_div As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    
+    '''<summary>
+    '''Control lblNotasDispTit.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lblNotasDispTit As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
     '''Control gv_notacredito.
@@ -246,4 +354,22 @@ Partial Public Class carritoCompras
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents lbltotalnotasC As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Control lbltotalnotaselectTit.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lbltotalnotaselectTit As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Control lbltotalnotaselec.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lbltotalnotaselec As Global.System.Web.UI.WebControls.Label
 End Class
