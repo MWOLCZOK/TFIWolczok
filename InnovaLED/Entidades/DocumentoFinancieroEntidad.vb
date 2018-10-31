@@ -52,6 +52,16 @@
         End Set
     End Property
 
+    Private _bl As Boolean
+    Public Property BL() As Boolean
+        Get
+            Return _bl
+        End Get
+        Set(ByVal value As Boolean)
+            _bl = value
+        End Set
+    End Property
+
 
 
 End Class

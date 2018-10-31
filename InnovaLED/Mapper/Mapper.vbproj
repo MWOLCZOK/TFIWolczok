@@ -71,7 +71,7 @@
     <Compile Include="ComprobanteMPP.vb" />
     <Compile Include="EncriptarMPP.vb" />
     <Compile Include="FacturaMPP.vb" />
-    <Compile Include="GestorDocumentoMPP.vb" />
+    <Compile Include="DocumentoFinancieroMPP.vb" />
     <Compile Include="GestorPermisosMPP.vb" />
     <Compile Include="IdiomaMPP.vb" />
     <Compile Include="LineaProductoMPP.vb" />
@@ -91,6 +91,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="NovedadMPP.vb" />
+    <Compile Include="PagoMPP.vb" />
     <Compile Include="ProductoMPP.vb" />
     <Compile Include="UsuarioMPP.vb" />
   </ItemGroup>

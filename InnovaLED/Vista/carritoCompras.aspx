@@ -171,7 +171,9 @@
                                 <div class="form-group  pull-right">
                                     <asp:Label ID="LblCodSeg" runat="server" Text="CÓDIGO DE SEGURIDAD:" CssClass="control-label labelform"></asp:Label>
                                     <div class="input-group">
-                                        <asp:TextBox ID="txtCodSeg" runat="server" placeholder="CVC" CssClass="form-control"></asp:TextBox>                                     
+                                        <asp:TextBox ID="txtCodSeg" runat="server" placeholder="CVC" CssClass="form-control"></asp:TextBox>
+                                        <asp:RegularExpressionValidator ID="RE_TJ_CVV" runat="server" ErrorMessage="Codigo Incorrecto" ControlToValidate="txtCodSeg"
+                                                ValidationExpression="/^[0-9]{3,4}$/" ForeColor="Red" Font-Bold="true" ></asp:RegularExpressionValidator>                                     
 
                                     </div>
                                 </div>

@@ -3,16 +3,15 @@ Imports Entidades
 Imports DAL
 
 
-Public Class GestorDocumentoMPP
+Public Class DocumentoFinancieroMPP
 
     Public Function TraerDocumentoF(ByVal usu As UsuarioEntidad) As List(Of DocumentoFinancieroEntidad)
         Try
 
-            Dim consulta As String = "Select * from DocFinancieroEntidad where ID_Usuario=@ID_Usuario "
+            Dim consulta As String = "Select * from DocFinancieroEntidad where ID_Usuario=@ID_Usuario and BL=0"
             Dim Command As SqlCommand = Acceso.MiComando(consulta)
             With Command.Parameters
                 .Add(New SqlParameter("@ID_Usuario", usu.ID_Usuario))
-                '.Add(New SqlParameter("@ID_Doc", nc.ID))
             End With
             Dim dt As DataTable = Acceso.Lectura(Command)
             Dim ListaNC As List(Of DocumentoFinancieroEntidad) = New List(Of DocumentoFinancieroEntidad)
@@ -41,6 +40,26 @@ Public Class GestorDocumentoMPP
             Throw ex
         End Try
     End Sub
+
+
+    Public Function Eliminar(ByRef nc As DocumentoFinancieroEntidad) As Boolean
+        Try
+            Dim Command As SqlCommand = Acceso.MiComando("Update DocFinancieroEntidad Set BL=@BL where ID_Usuario= @ID_Usuario")
+            Dim ListaParametros As New List(Of String)
+
+            With Command.Parameters
+                .Add(New SqlParameter("@BL", True))
+                .Add(New SqlParameter("@ID_Usuario", nc.Usuario.ID_Usuario))
+
+            End With
+            Acceso.Escritura(Command)
+            Command.Dispose()
+
+            Return True
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 
 
 

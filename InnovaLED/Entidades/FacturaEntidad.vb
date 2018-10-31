@@ -73,6 +73,26 @@ Public Class FacturaEntidad
         End Set
     End Property
 
+    Private _renglon As List(Of Factura_RenglonEntidad)
+    Public Property Factura_Renglon() As List(Of Factura_RenglonEntidad)
+        Get
+            Return _renglon
+        End Get
+        Set(ByVal value As List(Of Factura_RenglonEntidad))
+            _renglon = value
+        End Set
+    End Property
+
+    Private _notas As List(Of DocumentoFinancieroEntidad)
+    Public Property Notas() As List(Of DocumentoFinancieroEntidad)
+        Get
+            Return _notas
+        End Get
+        Set(ByVal value As List(Of DocumentoFinancieroEntidad))
+            _notas = value
+        End Set
+    End Property
+
 
 
 End Class

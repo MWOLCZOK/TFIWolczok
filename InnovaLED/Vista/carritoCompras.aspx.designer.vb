@@ -338,6 +338,15 @@ Partial Public Class carritoCompras
     Protected WithEvents txtCodSeg As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
+    '''Control RE_TJ_CVV.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents RE_TJ_CVV As Global.System.Web.UI.WebControls.RegularExpressionValidator
+    
+    '''<summary>
     '''Control btn_aceptar.
     '''</summary>
     '''<remarks>
