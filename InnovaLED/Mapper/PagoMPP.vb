@@ -6,15 +6,15 @@ Imports System.Data.SqlClient
 Public Class PagoMPP
 
 
-    Public Function Alta(ByVal DetalleCompra As CompraEntidad, ByVal Fact As FacturaEntidad) As Boolean
+    Public Function Alta(ByVal pago As PagoEntidad) As Boolean
         Try
-            Dim Command As SqlCommand = Acceso.MiComando("insert into Pago (ID_Fact,ID_Prod,Cantidad,PrecioUnitario,Subtotal) values (@ID_Fact,@ID_Prod,@Cantidad,@PrecioUnitario,@Subtotal)")
+            Dim Command As SqlCommand = Acceso.MiComando("insert into Pago (ID_Fact,TipoPago,Fecha,Monto,BL) values (@ID_Fact,@TipoPago,@Fecha,@Monto,@BL)")
             With Command.Parameters
-                .Add(New SqlParameter("@ID_Fact", Fact.ID))
-                .Add(New SqlParameter("@ID_Prod", DetalleCompra.Producto.ID_Producto))
-                .Add(New SqlParameter("@Cantidad", DetalleCompra.Cantidad))
-                .Add(New SqlParameter("@PrecioUnitario", DetalleCompra.Producto.Precio))
-                .Add(New SqlParameter("@Subtotal", DetalleCompra.Subtotal))
+                .Add(New SqlParameter("@ID_Fact", pago.Factura.ID))
+                .Add(New SqlParameter("TipoPago", pago.TipoPago))
+                .Add(New SqlParameter("TipoPago", pago.Fecha))
+                .Add(New SqlParameter("Monto", pago.Monto))
+                .Add(New SqlParameter("BL", False))
             End With
             Acceso.Escritura(Command)
             Return True
@@ -23,6 +23,20 @@ Public Class PagoMPP
         End Try
 
     End Function
+
+    Public Sub FormatearPago(ByVal Pago As PagoEntidad, ByVal row As DataRow)
+        Try
+            Pago.ID_Pago = row("ID_Pago")
+            Pago.Factura = (New FacturaMPP).BuscarFacturaID(New FacturaEntidad With {.ID = row("ID_Fact")})
+            Pago.TipoPago = row("TipoPago")
+            Pago.Fecha = row("Fecha")
+            Pago.Monto = row("Monto")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+
 
 
 

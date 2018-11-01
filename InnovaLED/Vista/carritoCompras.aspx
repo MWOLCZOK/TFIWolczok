@@ -3,7 +3,15 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container-fluid">
+    <div class="container-fluid fondoGris">
+
+        <div id="alertvalid" runat="server" name="alertvalid" class="alert alert-danger  text-center" visible="false">
+            <label runat="server" id="textovalid" class="text-danger"></label>
+        </div>
+        <div id="success" runat="server" name="success" class="alert alert-success  text-center" visible="false">
+            <label id="lblsuccessCompra" class="text-success"></label>
+        </div>
+
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-primary class">
@@ -164,6 +172,8 @@
                                     <asp:Label ID="LblFechaExpiracion" runat="server" Text="FECHA EXPIRACIÓN:" CssClass="control-label labelform"></asp:Label>
                                     <div class="input-group">
                                         <asp:TextBox ID="txtexpiracion" runat="server" placeholder="MM/AAAA" CssClass="form-control"></asp:TextBox>
+                                         <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Fechas Incorrectas" ControlToValidate="txtexpiracion"
+                                                ValidationExpression="^((0[1-9])|(1[0-2]))\/(\d{4})$" ForeColor="Red" Font-Bold="true" ></asp:RegularExpressionValidator>
                                     </div>
                                 </div>
                             </div>
@@ -172,8 +182,8 @@
                                     <asp:Label ID="LblCodSeg" runat="server" Text="CÓDIGO DE SEGURIDAD:" CssClass="control-label labelform"></asp:Label>
                                     <div class="input-group">
                                         <asp:TextBox ID="txtCodSeg" runat="server" placeholder="CVC" CssClass="form-control"></asp:TextBox>
-                                        <asp:RegularExpressionValidator ID="RE_TJ_CVV" runat="server" ErrorMessage="Codigo Incorrecto" ControlToValidate="txtCodSeg"
-                                                ValidationExpression="/^[0-9]{3,4}$/" ForeColor="Red" Font-Bold="true" ></asp:RegularExpressionValidator>                                     
+                                    <%--    <asp:RegularExpressionValidator ID="RE_TJ_CVV" runat="server" ErrorMessage="Codigo Incorrecto" ControlToValidate="txtCodSeg"
+                                                ValidationExpression="/^[0-9]{3,4}$/" ForeColor="Red" Font-Bold="true" ></asp:RegularExpressionValidator>    --%>                                 
 
                                     </div>
                                 </div>
@@ -181,17 +191,25 @@
                         </div>
 
                     </div>
-                        <div class="row">
-                             <div class="row col-md-3 col-md-offset-1">
-                               <asp:button ID="btn_aceptar" runat="server" Text="Confirmar" class="btn btn-success btn-lg" visible="false"></asp:button>
-                              </div>
-                              <div class="row col-md-3 col-md-offset-3">
-                               <asp:button ID="btn_cancelar" runat="server" Text="Cancelar" class="btn btn-warning btn-lg" visible="false"></asp:button>
-                             </div>
+                             <br />
+                             <br />
+                             <br />
+                             <br />
 
-                        </div>
-           
+                            <div class="row">
+                             <div class="row col-md-3">
+                               <asp:button ID="btn_aceptar" runat="server" Text="Confirmar Pago" class="btn btn-success btn-lg" visible="false"></asp:button>
+                              </div>
+                              <div class="row col-md-3 col-md-offset-2">
+                               <asp:button ID="btn_cancelar" runat="server" Text="Cancelar Pago" class="btn btn-warning btn-lg" visible="false"></asp:button>
+                              </div>
+                              </div>
+                             <br />
+                             <br />
+             
             </div>
+             
+                           
 
            <%-- ACA ARRANCA LA GRILLA DE NOTAS DE CREDITO--%>
 
@@ -256,16 +274,25 @@
                                         </div>
                                         </div>                            
                                                                             
-                                        
+                                     
                                         <div class="row col-md-5">
                                             <asp:button ID="btn_seguircontj" runat="server" Text="Continuar el Pago con Tarjeta" class="btn btn-warning btn-lg"></asp:button>
                                         </div>
                                         <br />
                                         <br />
+                                        <div class="row col-md-5">
+                                          <asp:TextBox ID="txtdescripnota" runat="server" placeholder="Descripcion Nota Credito" CssClass="form-control" Visible="false"></asp:TextBox>
+                                        </div>
+                                        
                                         <br />
-                                </div>            
-                            </div>
+                                        <br />
+                                        <br />
+                                </div>
             
+                          
+                                    
+                            </div>
+                           
             <%--</div>--%>
 
 

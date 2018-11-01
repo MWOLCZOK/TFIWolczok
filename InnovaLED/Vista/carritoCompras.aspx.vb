@@ -138,38 +138,36 @@ Public Class carritoCompras
 
 
     Protected Sub btn_aceptar_Click(sender As Object, e As EventArgs) Handles btn_aceptar.Click
-        'Try
-        '    Dim formaPago As Integer = CInt(Me.ddl_FormaPago.SelectedValue)
-        '    'Dim _listaNota As New List(Of Entidades.Nota)
-        '    If Me.ddl_FormaPago.SelectedValue = 1 Then
-        '        formaPago = 1
-        '    End If
-        '    If Me.ddl_FormaPago.SelectedValue = 2 Then
-        '        formaPago = 2
-        '        'validaciones.validarSubmit(Me, Me.Error, Me.lbl_TituloError)
-        '    End If
-        '    If Me.ddl_FormaPago.SelectedValue = 3 Then
-        '        If Me.ddl_FormaPago2.Visible = True Then
-        '            formaPago = CInt(Me.ddl_FormaPago2.SelectedValue)
-        '        Else
-        '            formaPago = 3
-        '        End If
-        '        _listaNota = DirectCast(Session("listaCredito"), List(Of Entidades.Nota))
-        '        'validaciones.validarSubmit(Me, Me.Error, Me.lbl_TituloError)
-        '    End If
-        '    Dim _nroFactura As Integer = _gestorCarrera.adquirirCarrera(validaciones.obtenerAlumno(), obtenerCarreraSeleccionada(), formaPago, _listaNota)
-        '    Session("nroFactura") = _nroFactura
-        '    Response.Redirect("compraRealizada.aspx")
-        'Catch ex As Exception
-        'End Try
+        Try
+            Dim listnota As List(Of DocumentoFinancieroEntidad) = TryCast(Session("notaSeleccionadas"), List(Of DocumentoFinancieroEntidad))
+            Dim cli As UsuarioEntidad = TryCast(Session("cliente"), UsuarioEntidad)
+            Dim compra As CompraEntidad = TryCast(Session("carrito"), CompraEntidad)
+            Dim EstadoCompra As EstadoCompraEntidad = EstadoCompraEntidad.Aprobado
+
+
+            Dim listcompra As List(Of CompraEntidad) = TryCast(Session("carrito"), List(Of CompraEntidad))
+
+            Dim factura As New FacturaEntidad(cli, listcompra, listnota, Now, 1)
+            Dim GestorFacturaBLL As New GestorFacturaBLL
+            If ValidarCampos() = True And validarFecha() = True then
+                GestorFacturaBLL.GenerarFactura(factura)
+            End If
+
+            'If ValidarCampos() = True And listnota.Count > 0 Then
+            '    'la parte del tipo de pago
+
+            'End If
 
 
 
+            'Dim pago As New PagoEntidad
+            'Dim GestorPagoBLL As New GestorPagoBLL
+            'GestorPagoBLL.Alta(pago)
 
 
+        Catch ex As Exception
 
-
-
+        End Try
 
     End Sub
 
@@ -198,7 +196,7 @@ Public Class carritoCompras
                     End If
                     SumarNotasCseleccionadas()
                     GenerarPago()
-
+                    ValidarDiferenciaNotaC()
             End Select
         Catch ex As Exception
             'Dim clienteLogeado As Entidades.UsuarioEntidad = Current.Session("cliente")
@@ -300,7 +298,7 @@ Public Class carritoCompras
         usu = Session("cliente")
         Dim listaNC As List(Of DocumentoFinancieroEntidad)
 
-        Dim GestorNC As New GestorDocumentoBLL
+        Dim GestorNC As New GestorDocFinancieroBLL
         listaNC = GestorNC.TraerDocumentoF(usu)
         If listaNC.Count > 0 Then
             Session("nota") = listaNC
@@ -383,6 +381,86 @@ Public Class carritoCompras
         Me.gv_div.Visible = True
         Me.ddl_FormaPago.SelectedValue = 1
     End Sub
+
+
+
+    Public Function ValidarCampos() As Boolean
+        If Me.lsttipotarj.SelectedValue = 1 Then
+            ValidarCamposVisa()
+            Return True
+        ElseIf lsttipotarj.SelectedValue = 2 Then
+            ValidarCamposMaster()
+            Return True
+        Else
+            ValidarCamposAmex()
+            Return True
+        End If
+        Return False
+
+    End Function
+
+
+    Public Function ValidarCamposVisa() As Boolean
+        If txtnrotarjetaVisa.Text <> "" And txtexpiracion.Text <> "" And txtCodSeg.Text <> "" Then
+            Return True
+        Else
+            Me.alertvalid.Visible = True
+            Me.success.Visible = False
+            Me.alertvalid.InnerText = "Debe completar todos los campos de la tarjeta para finalizar la compra."
+        End If
+        Return False
+    End Function
+
+    Public Function ValidarCamposMaster() As Boolean
+        If txtnrotarjetaMaster.Text <> "" And txtexpiracion.Text <> "" And txtCodSeg.Text <> "" Then
+            Return True
+        Else
+            Me.alertvalid.Visible = True
+            Me.success.Visible = False
+            Me.alertvalid.InnerText = "Debe completar todos los campos de la tarjeta para finalizar la compra."
+        End If
+        Return False
+    End Function
+
+    Public Function ValidarCamposAmex() As Boolean
+        If txtnrotarjetaAmex.Text <> "" And txtexpiracion.Text <> "" And txtCodSeg.Text <> "" Then
+            Return True
+        Else
+            Me.alertvalid.Visible = True
+            Me.success.Visible = False
+            Me.alertvalid.InnerText = "Debe completar todos los campos de la tarjeta para finalizar la compra."
+        End If
+        Return False
+    End Function
+
+    Private Function validarFecha() As Boolean
+        Dim mes As Integer = CInt(Left(Me.txtexpiracion.Text, 2))
+        Dim ano As Integer = CInt(Right(Me.txtexpiracion.Text, 4))
+        If mes > 12 Then
+            Return False
+        End If
+        If ano > Today.Year Then
+            Return True
+        End If
+        Return True
+    End Function
+
+
+    Public Function ValidarDiferenciaNotaC()
+        Dim varTotal As Single
+        varTotal = Session("totalApagar")
+        Dim varNotasSeleccionadas As Single
+        varNotasSeleccionadas = Session("notasSeleccionadasTotal")
+        If varTotal < varNotasSeleccionadas Then
+            txtdescripnota.Visible = True
+        Else
+            txtdescripnota.Visible = False
+        End If
+
+        Return True
+
+    End Function
+
 
 
 

@@ -33,15 +33,30 @@
         End Set
     End Property
 
-    Private _subtotal As Double
-    Public Property Subtotal() As Double
+    Private _Subtotal As Double
+    Public ReadOnly Property Subtotal() As Double
         Get
-            Return String.Format("{0:C}", _subtotal)
+            Return Me.Cantidad * Me.Producto.Precio
         End Get
-        Set(ByVal value As Double)
-            _subtotal = value
-        End Set
+
     End Property
+
+
+
+
+
+
+    'Private _montototal As Single
+    'Public ReadOnly Property MontoTotal() As Single
+    '    Get
+    '        Dim sum As Single
+    '        For Each _subt In Me.DetalleFactura
+    '            sum += _subt.Subtotal
+    '        Next
+    '        Return sum
+    '    End Get
+
+    'End Property
 
 
 

@@ -73,7 +73,7 @@
     <Compile Include="CompranteBLL.vb" />
     <Compile Include="EncriptarBLL.vb" />
     <Compile Include="GestorCategoriaProdBLL.vb" />
-    <Compile Include="GestorDocumentoBLL.vb" />
+    <Compile Include="GestorDocFinancieroBLL.vb" />
     <Compile Include="GestorErroresBLL.vb" />
     <Compile Include="GestorFacturaBLL.vb" />
     <Compile Include="GestorLineaProdBLL.vb" />

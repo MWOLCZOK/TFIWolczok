@@ -67,7 +67,6 @@
     <Compile Include="Bitacora.vb" />
     <Compile Include="BoletinEntidad.vb" />
     <Compile Include="CategoriaProducto.vb" />
-    <Compile Include="Cliente.vb" />
     <Compile Include="CompraEntidad.vb" />
     <Compile Include="DocumentoFinancieroEntidad.vb" />
     <Compile Include="Encuesta.vb" />
@@ -94,6 +93,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Novedad.vb" />
+    <Compile Include="PagoEntidad.vb" />
     <Compile Include="Palabras.vb" />
     <Compile Include="PermisoBaseEntidad.vb" />
     <Compile Include="Pregunta.vb" />

@@ -5,6 +5,26 @@ Imports DAL
 
 Public Class DocumentoFinancieroMPP
 
+    Public Function Alta(ByVal nota As DocumentoFinancieroEntidad) As Boolean
+        Try
+            Dim Command As SqlCommand = Acceso.MiComando("insert into DocFinancieroEntidad (Descripcion,Monto,Tipo,ID_Usuario,BL) values (@Descripcion,@Monto,@Tipo,@ID_Usuario,@BL)")
+            With Command.Parameters
+                .Add(New SqlParameter("@Descripcion", nota.Descripcion))
+                .Add(New SqlParameter("@Monto", nota.Monto))
+                .Add(New SqlParameter("@Tipo", nota.Tipo_Documento))
+                .Add(New SqlParameter("@ID_Usuario", nota.Usuario.ID_Usuario))
+                .Add(New SqlParameter("@BL", False))
+            End With
+            Acceso.Escritura(Command)
+            Return True
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+    End Function
+
+
+
     Public Function TraerDocumentoF(ByVal usu As UsuarioEntidad) As List(Of DocumentoFinancieroEntidad)
         Try
 

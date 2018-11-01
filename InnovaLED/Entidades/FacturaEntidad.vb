@@ -31,17 +31,39 @@ Public Class FacturaEntidad
         End Set
     End Property
 
-    Private _montototal As Single
-    Public ReadOnly Property MontoTotal() As Single
-        Get
-            Dim sum As Single
-            For Each _subt In Me.DetalleFactura
-                sum += _subt.Subtotal
-            Next
-            Return sum
-        End Get
+    'Private _montototal As Single
+    'Public ReadOnly Property MontoTotal() As Single
+    '    Get
+    '        Dim sum As Single
+    '        For Each _subt In Me.DetalleFactura
+    '            sum += _subt.Subtotal
+    '        Next
+    '        Return sum
+    '    End Get
 
+    'End Property
+
+    Private Function Total() As Double
+        Dim retorno As Double
+        For Each deta As CompraEntidad In Me.DetalleFactura
+            retorno = retorno + deta.Producto.Precio
+        Next
+        Return retorno
+    End Function
+
+
+    Private _monto_total As Double
+    Public Property MontoTotal() As Double
+        Get
+            Return _monto_total
+        End Get
+        Set(ByVal value As Double)
+            _monto_total = value
+        End Set
     End Property
+
+
+
 
     Private _fecha As DateTime
     Public Property Fecha() As DateTime
@@ -50,16 +72,6 @@ Public Class FacturaEntidad
         End Get
         Set(ByVal value As DateTime)
             _fecha = value
-        End Set
-    End Property
-
-    Private _tipo_pago As Tipo_PagoEntidad
-    Public Property Tipo_Pago() As Tipo_PagoEntidad
-        Get
-            Return _tipo_pago
-        End Get
-        Set(ByVal value As Tipo_PagoEntidad)
-            _tipo_pago = value
         End Set
     End Property
 
@@ -83,7 +95,7 @@ Public Class FacturaEntidad
         End Set
     End Property
 
-    Private _notas As List(Of DocumentoFinancieroEntidad)
+    Private _notas As New List(Of DocumentoFinancieroEntidad)
     Public Property Notas() As List(Of DocumentoFinancieroEntidad)
         Get
             Return _notas
@@ -92,6 +104,20 @@ Public Class FacturaEntidad
             _notas = value
         End Set
     End Property
+
+
+    Sub New(ByRef clie As UsuarioEntidad, ByRef Detalle As List(Of CompraEntidad), ByRef notas As List(Of DocumentoFinancieroEntidad), ByRef fec As DateTime, ByRef EstadoCompra As EstadoCompraEntidad)
+        Me.Cliente = clie
+        Me.DetalleFactura = Detalle
+        Me.Notas = notas
+        Me.MontoTotal = Total()
+        Me.Fecha = Now
+        Me.Estado = EstadoCompra
+    End Sub
+
+    Sub New()
+
+    End Sub
 
 
 

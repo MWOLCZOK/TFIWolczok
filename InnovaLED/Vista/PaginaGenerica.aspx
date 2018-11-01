@@ -13,7 +13,7 @@
             <label runat="server" id="textovalid" class="text-danger"></label>
         </div>
         <div id="success" runat="server" name="success" class="alert alert-success  text-center" visible="false">
-            <label id="lblsuccessmodUser" class="text-success">El Usuario se creó correctamente.</label>
+            <label id="lblsuccessmodUser" class="text-success"></label>
         </div>
 
 <div class="row">
