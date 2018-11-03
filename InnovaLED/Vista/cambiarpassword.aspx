@@ -12,7 +12,7 @@
             </div>
 
             <div id="div_success" runat="server" name="success" class="alert alert-success  text-center" visible="false">
-                <label id="lbl_success" runat="server" class="text-success">Se ha modificado el usuario correctamente.</label>
+                <label id="lbl_success" runat="server" class="text-success"></label>
             </div>
         </div>
 

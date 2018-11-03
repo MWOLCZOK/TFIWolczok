@@ -137,6 +137,8 @@
     <Content Include="Default.aspx" />
     <Content Include="DetalleProducto.aspx" />
     <Content Include="EliminarIdioma.aspx" />
+    <Content Include="EmailTemplates\Newsletter.html" />
+    <Content Include="EmailTemplates\Cambio_Contraseña.html" />
     <Content Include="EmailTemplates\Recupero.html" />
     <Content Include="EmailTemplates\Registracion.html" />
     <Content Include="Faqs.aspx" />
@@ -146,7 +148,6 @@
     <Content Include="GenerarEnvio.aspx" />
     <Content Include="GenerarPresupuesto.aspx" />
     <Content Include="AgregarPerfil.aspx" />
-    <Content Include="GestionarBoletin.aspx" />
     <Content Include="GestionarProductos.aspx" />
     <Content Include="GestionarSolucionesLED.aspx" />
     <Content Include="Catalogo.aspx" />
@@ -172,6 +173,7 @@
     <Content Include="IMAGENES\faro.png" />
     <Content Include="IMAGENES\first.png" />
     <Content Include="IMAGENES\idea.png" />
+    <Content Include="IMAGENES\Lock.png" />
     <Content Include="IMAGENES\luz-led.png" />
     <Content Include="IMAGENES\mastercard.png" />
     <Content Include="IMAGENES\NewEdificio.jpg" />
@@ -201,7 +203,6 @@
     <Content Include="ModificarIdioma.aspx" />
     <Content Include="GestionarUsuarios.aspx" />
     <Content Include="MyOrders.aspx" />
-    <Content Include="Newsletter1.aspx" />
     <Content Include="Novedades.aspx" />
     <Content Include="Orders.aspx" />
     <Content Include="ComparacionProducto.aspx" />
@@ -348,13 +349,6 @@
       <DependentUpon>AgregarPerfil.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="GestionarBoletin.aspx.designer.vb">
-      <DependentUpon>GestionarBoletin.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="GestionarBoletin.aspx.vb">
-      <DependentUpon>GestionarBoletin.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
     <Compile Include="GestionarProductos.aspx.designer.vb">
       <DependentUpon>GestionarProductos.aspx</DependentUpon>
     </Compile>
@@ -438,13 +432,6 @@
     </Compile>
     <Compile Include="MyOrders.aspx.vb">
       <DependentUpon>MyOrders.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="Newsletter1.aspx.designer.vb">
-      <DependentUpon>Newsletter1.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Newsletter1.aspx.vb">
-      <DependentUpon>Newsletter1.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Novedades.aspx.designer.vb">

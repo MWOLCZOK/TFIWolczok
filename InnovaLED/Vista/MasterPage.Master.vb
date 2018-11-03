@@ -517,6 +517,12 @@ Public Class MasterPage
         Negocio.MailingBLL.enviarMailRegistroUsuario(token, body, ruta, Replace(ur.AbsoluteUri, ur.AbsolutePath, ""))
     End Sub
 
+
+
+
+
+
+
     Dim invalid As Boolean = False
 
     Public Function IsValidEmail(strIn As String) As Boolean

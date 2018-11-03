@@ -1,9 +1,11 @@
 ﻿Imports Mapper
 Imports Entidades
+Imports System.Web
 
 Public Class BoletinBLL
 
     Dim boletinMPP As New BoletinMPP
+    Dim usu As UsuarioEntidad
 
     Public Sub Alta(ByVal boletin As BoletinEntidad)
         Try
@@ -27,7 +29,8 @@ Public Class BoletinBLL
     Public Sub EnviarMail(ByVal boletin As BoletinEntidad)
         Try
             boletin.Suscriptores = obtenerSuscriptores(boletin.TipoBoletin)
-            MailingBLL.enviarMailNewsletter(boletin) ' terminar de armar la funcion enviarMailNewsletter
+            Dim ruta As String = HttpContext.Current.Server.MapPath("Imagenes")
+            MailingBLL.enviarMailNewsletter(boletin, ruta) ' terminar de armar la funcion enviarMailNewsletter
         Catch ex As Exception
 
         End Try
@@ -80,6 +83,12 @@ Public Class BoletinBLL
             Return True
         End Try
     End Function
+
+
+
+
+
+
 
 
 

@@ -53,7 +53,6 @@
     End Property
 
 
-
     Private _tipoBoletin As TipoBoletin
     Public Property TipoBoletin() As TipoBoletin
         Get

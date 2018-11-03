@@ -79,17 +79,23 @@ Public Class Catalogo
             A.Attributes.Add("href", "/DetalleProducto.aspx" & "?contid=" & prod.ID_Producto)
             A.InnerText = prod.Modelo
             h3.Controls.Add(A)
+            Dim h2 As HtmlGenericControl = New HtmlGenericControl("h2")
+            h2.InnerText = prod.Marca
             Dim h4 As HtmlGenericControl = New HtmlGenericControl("h4")
             h4.InnerText = "AR$ " & prod.Precio
             Dim p As HtmlGenericControl = New HtmlGenericControl("p")
-            p.InnerText = prod.Watt ' aca tiene que ir prod.detalle, agregar a la clase y a la BD
+            p.InnerText = prod.Watt & " Watt"
+            Dim peso As HtmlGenericControl = New HtmlGenericControl("p")
+            peso.InnerText = "Peso " & prod.Peso & "Kg"
             Dim check As New CheckBox
 
             check.Text = "  Comparar" 'Traducir
             check.ID = "chk" & prod.ID_Producto
             divmediabody.Controls.Add(h3)
+            divmediabody.Controls.Add(h2)
             divmediabody.Controls.Add(h4)
             divmediabody.Controls.Add(p)
+            divmediabody.Controls.Add(peso)
             divmediabody.Controls.Add(check)
             divmedia.Controls.Add(divmediabody)
             ID_Catalogo.Controls.Add(divmedia)
