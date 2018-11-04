@@ -67,20 +67,21 @@ Public Class UsuarioMPP
     End Function
 
 
-
     Public Function CrearToken(usu As UsuarioEntidad, ByVal registro As Boolean) As String
 
         If usu.ID_Usuario = 0 Then
-            Dim Command As SqlCommand = Acceso.MiComando("Select top 1 ID_Usuario from UsuarioEntidad where NombreUsuario=@NombreUsuario")
+            Dim Command As SqlCommand = Acceso.MiComando("Select * from UsuarioEntidad where NombreUsuario=@NombreUsuario")
             With Command.Parameters
                 .Add(New SqlParameter("@NombreUsuario", usu.NombreUsu))
             End With
             Dim dt As DataTable = Acceso.Lectura(Command)
             If dt.Rows.Count > 0 Then
                 usu.ID_Usuario = dt.Rows(0)("ID_Usuario")
+                usu.Mail = dt.Rows(0)("Mail") ' aca le asignó el mail
             End If
             Command.Dispose()
         End If
+
 
         Dim Command3 As SqlCommand = Acceso.MiComando("insert into Token_Usuario (ID_Token,ID_Usuario,Fecha_Expiro,Registro) values (@Token,@Usuario,@Fecha,@Registro)")
         Dim r As New Random

@@ -23,6 +23,7 @@ Public Class cambiarPassword
     End Sub
 
 
+
     Private Sub CargarUsuario()
         Dim oUsuario As New Entidades.UsuarioEntidad
         oUsuario = DirectCast(Session("cliente"), UsuarioEntidad)

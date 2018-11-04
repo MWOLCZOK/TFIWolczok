@@ -432,8 +432,6 @@ Public Class MasterPage
 
     Public Sub btnregistracion_Click(sender As Object, e As EventArgs) Handles btnregistracion.Click
         If chk_terminos.Checked = True Then
-
-
             Dim GestorCliente As New Negocio.UsuarioBLL
             Dim usu As New Entidades.UsuarioEntidad
             Dim IdiomaActual As Entidades.IdiomaEntidad
@@ -479,7 +477,7 @@ Public Class MasterPage
                         Me.success.Visible = True
                         Me.alertvalid.Visible = False
                         'Me.txtusuario.Text = ""
-                        EnviarMailRegistro(GestorCliente.GEtToken(usu.ID_Usuario))
+                        EnviarMailRegistro(GestorCliente.GEtToken(usu.ID_Usuario), usu)
                     End If
                 Else
                     'Me.alertvalid.Visible = True
@@ -510,11 +508,11 @@ Public Class MasterPage
 
 
 
-    Private Sub EnviarMailRegistro(ByVal token As String)
+    Private Sub EnviarMailRegistro(ByVal token As String, ByVal usu As UsuarioEntidad)
         Dim body As String = System.IO.File.ReadAllText(HttpContext.Current.Server.MapPath("EmailTemplates/registracion.html"))
         Dim ruta As String = HttpContext.Current.Server.MapPath("Imagenes")
         Dim ur As Uri = Request.Url
-        Negocio.MailingBLL.enviarMailRegistroUsuario(token, body, ruta, Replace(ur.AbsoluteUri, ur.AbsolutePath, ""))
+        Negocio.MailingBLL.enviarMailRegistroUsuario(token, body, ruta, Replace(ur.AbsoluteUri, ur.AbsolutePath, ""), usu)
     End Sub
 
 

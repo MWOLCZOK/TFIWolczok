@@ -169,6 +169,8 @@
     <Content Include="IMAGENES\edificio.jpg" />
     <Content Include="IMAGENES\Edit-32.png" />
     <Content Include="IMAGENES\edit.png" />
+    <Content Include="IMAGENES\Email_Lock.png" />
+    <Content Include="IMAGENES\Email_Lock_Recupero.png" />
     <Content Include="IMAGENES\facebook.png" />
     <Content Include="IMAGENES\faro.png" />
     <Content Include="IMAGENES\first.png" />

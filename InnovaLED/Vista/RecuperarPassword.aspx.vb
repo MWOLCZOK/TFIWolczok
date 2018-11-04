@@ -1,6 +1,7 @@
 ﻿Imports System.Security.Cryptography
 Imports System.Web.HttpContext
 Imports Negocio
+Imports Entidades
 
 Public Class RecuperarPassword
     Inherits System.Web.UI.Page
@@ -18,7 +19,7 @@ Public Class RecuperarPassword
             If Page.IsValid = True Then
                 Dim GestorCliente As New Negocio.UsuarioBLL
                 Dim usu As New Entidades.UsuarioEntidad With {.NombreUsu = txtUsuario.Text}
-                EnviarMail(GestorCliente.CreateToken(usu))
+                EnviarMail(GestorCliente.CreateToken(usu),usu)
                 Me.success.Visible = True
                 Me.alertvalid.Visible = False
             Else
@@ -31,11 +32,11 @@ Public Class RecuperarPassword
         End Try
 
     End Sub
-    Private Sub EnviarMail(ByRef token As String)
+    Private Sub EnviarMail(ByRef token As String, usu As usuarioEntidad)
         Dim body As String = System.IO.File.ReadAllText(HttpContext.Current.Server.MapPath("EmailTemplates/Recupero.html"))
         Dim ruta As String = HttpContext.Current.Server.MapPath("Imagenes")
         Dim ur As Uri = Request.Url
-        Negocio.MailingBLL.enviarMailRecupero(token, body, ruta, Replace(ur.AbsoluteUri, ur.AbsolutePath, ""))
+        Negocio.MailingBLL.enviarMailRecupero(token, body, ruta, Replace(ur.AbsoluteUri, ur.AbsolutePath, ""), usu)
 
     End Sub
 
