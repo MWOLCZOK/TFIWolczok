@@ -67,6 +67,7 @@
     <Compile Include="Bitacora.vb" />
     <Compile Include="BoletinEntidad.vb" />
     <Compile Include="CategoriaProducto.vb" />
+    <Compile Include="ComentarioEntidad.vb" />
     <Compile Include="CompraEntidad.vb" />
     <Compile Include="DocumentoFinancieroEntidad.vb" />
     <Compile Include="Encuesta.vb" />

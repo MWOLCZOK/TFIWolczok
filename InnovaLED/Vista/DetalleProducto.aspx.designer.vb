@@ -221,6 +221,15 @@ Partial Public Class DetalleProducto
     Protected WithEvents btn_comprar As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
+    '''Control txt_consulta.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents txt_consulta As Global.System.Web.UI.HtmlControls.HtmlTextArea
+    
+    '''<summary>
     '''Control btn_consultar.
     '''</summary>
     '''<remarks>
@@ -228,6 +237,15 @@ Partial Public Class DetalleProducto
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents btn_consultar As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''Control Comentarios.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Comentarios As Global.System.Web.UI.HtmlControls.HtmlGenericControl
     
     '''<summary>
     '''Control ID_Producto.

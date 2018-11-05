@@ -76,6 +76,7 @@
     <Compile Include="GestorCategoriaProdBLL.vb" />
     <Compile Include="GestorDocFinancieroBLL.vb" />
     <Compile Include="GestorErroresBLL.vb" />
+    <Compile Include="GestorComentarioBLL.vb" />
     <Compile Include="GestorFacturaBLL.vb" />
     <Compile Include="GestorLineaProdBLL.vb" />
     <Compile Include="GestorPagoBLL.vb" />

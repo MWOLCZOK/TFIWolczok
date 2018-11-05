@@ -59,6 +59,15 @@ Partial Public Class MasterPage
     Protected WithEvents lbl_NombredeUsuarioLogueado As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
+    '''Control btn_carrito.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btn_carrito As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
     '''Control btnsettings.
     '''</summary>
     '''<remarks>

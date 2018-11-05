@@ -20,9 +20,22 @@ Public Class Catalogo
             CargarCategoria()
             CargarLinea()
         Else
+            If IsNumeric(Request.QueryString("contid")) Then
+                If IsNothing(Session("Carrito")) Then
+                    Dim listaprod As List(Of ProductoEntidad) = Session("Listaproductos")
+                    Dim carrito As New List(Of CompraEntidad)
+                    carrito.Add(New CompraEntidad With {.Cantidad = 1, .Producto = listaprod.Find(Function(p) p.ID_Producto = CInt(Request.QueryString("contid")))})
+                    Session("Carrito") = carrito
+
+                Else
+                    Dim listaprod As List(Of ProductoEntidad) = Session("Listaproductos")
+                    Dim carrito As List(Of CompraEntidad) = Session("Carrito")
+                    carrito.Add(New CompraEntidad With {.Cantidad = 1, .Producto = listaprod.Find(Function(p) p.ID_Producto = CInt(Request.QueryString("contid")))})
+                End If
+            End If
             GenerarDiseño(Session("Listaproductos"), Session("CantListaproductos"))
 
-        End If
+            End If
 
 
     End Sub
@@ -91,12 +104,22 @@ Public Class Catalogo
 
             check.Text = "  Comparar" 'Traducir
             check.ID = "chk" & prod.ID_Producto
+            check.CssClass = "col-md-offset-2"
+
+            Dim btn As New Button
+
+            btn.Text = "Comprar" 'Traducir
+            btn.ID = "btn" & prod.ID_Producto
+            btn.CssClass = "btn btn-success col-md-2 col-lg"
+            btn.PostBackUrl = "/Catalogo.aspx" & "?contid=" & prod.ID_Producto
+
             divmediabody.Controls.Add(h3)
             divmediabody.Controls.Add(h2)
             divmediabody.Controls.Add(h4)
             divmediabody.Controls.Add(p)
             divmediabody.Controls.Add(peso)
             divmediabody.Controls.Add(check)
+            divmediabody.Controls.Add(btn)
             divmedia.Controls.Add(divmediabody)
             ID_Catalogo.Controls.Add(divmedia)
             Dim hr As HtmlGenericControl = New HtmlGenericControl("hr")

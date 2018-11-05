@@ -51,13 +51,17 @@ Public Class MasterPage
 
         Me.lbl_NombredeUsuarioLogueado.Visible = B
         If B = True Then
+
             Me.lbl_NombredeUsuarioLogueado.Text = DirectCast(Session("cliente"), UsuarioEntidad).Apellido & ", " & DirectCast(Session("cliente"), UsuarioEntidad).Nombre
             YaLogueo.Visible = True
             NoLogueo.Visible = False
+            If DirectCast(Session("cliente"), UsuarioEntidad).Empleado = 0 Then
+                btn_carrito.Visible = True
+            End If
         Else
             YaLogueo.Visible = False
             NoLogueo.Visible = True
-
+            btn_carrito.Visible = False
         End If
 
     End Sub
@@ -577,5 +581,9 @@ Public Class MasterPage
 
     Private Sub btnsettings_Click(sender As Object, e As EventArgs) Handles btnsettings.Click
         Response.Redirect("cambiarpassword.aspx", False)
+    End Sub
+
+    Private Sub btn_carrito_Click(sender As Object, e As ImageClickEventArgs) Handles btn_carrito.Click
+        Response.Redirect("carritoCompras.aspx", False)
     End Sub
 End Class

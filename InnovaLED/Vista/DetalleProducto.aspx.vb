@@ -21,7 +21,11 @@ Public Class DetalleProducto
             ImgBut.ImageUrl = Convert.ToString("data:image/jpg;base64,") & base64string
             LlenarCampos(prod)
             llenardrop()
+            Dim Listacomentarios As New List(Of ComentarioEntidad)
+            Dim gestorcomentarios As New GestorComentarioBLL
 
+            Listacomentarios = gestorcomentarios.BuscarComentariosProd(prod)
+            GenerarDiseño(Listacomentarios)
         End If
     End Sub
 
@@ -80,6 +84,38 @@ Public Class DetalleProducto
         End If
     End Sub
 
+    Protected Sub btn_consultar_Click(sender As Object, e As EventArgs) Handles btn_consultar.Click
+        Dim Comentario As New ComentarioEntidad
+        Comentario.Usuario = Session("cliente")
+        Comentario.Texto = txt_consulta.InnerText
+        Comentario.Producto = Session("producto")
+        Dim gestorComentario As New GestorComentarioBLL
+        If gestorComentario.GenerarComentario(Comentario) Then
+            'cartelito feliz
+        Else
+            'Cartelito enojado
+        End If
+    End Sub
+    Private Sub GenerarDiseño(ByVal listacomentarios As List(Of ComentarioEntidad))
+        Comentarios.Controls.Clear()
+        Comentarios.Controls.Add(New LiteralControl("<table id=""cart"" class=""table table-hover table-condensed"">"))
+        Comentarios.Controls.Add(New LiteralControl("<tbody>"))
 
+        For Each com In listacomentarios
+            Comentarios.Controls.Add(New LiteralControl("<tr>"))
+            Comentarios.Controls.Add(New LiteralControl("<td data-th=""Product"">"))
+            Comentarios.Controls.Add(New LiteralControl("<div class=""row"">"))
+            Comentarios.Controls.Add(New LiteralControl("<div Class=""col-md-12"">"))
+            Comentarios.Controls.Add(New LiteralControl("<p>" & com.Texto & "</p>"))
 
+            Comentarios.Controls.Add(New LiteralControl("</div>"))
+            Comentarios.Controls.Add(New LiteralControl("</td>"))
+            Comentarios.Controls.Add(New LiteralControl("</tr>"))
+
+        Next
+
+        Comentarios.Controls.Add(New LiteralControl("</tbody>"))
+        Comentarios.Controls.Add(New LiteralControl("</table>"))
+
+    End Sub
 End Class
