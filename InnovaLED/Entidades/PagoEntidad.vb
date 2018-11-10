@@ -30,15 +30,15 @@
         End Set
     End Property
 
-    Private _monto As Single
-    Public Property Monto() As Single
-        Get
-            Return _monto
-        End Get
-        Set(ByVal value As Single)
-            _monto = value
-        End Set
-    End Property
+    'Private _monto As Single
+    'Public Property Monto() As Single
+    '    Get
+    '        Return _monto
+    '    End Get
+    '    Set(ByVal value As Single)
+    '        _monto = value
+    '    End Set
+    'End Property
 
     Private _tipoPago As Tipo_PagoEntidad
     Public Property TipoPago() As Tipo_PagoEntidad
@@ -49,6 +49,18 @@
             _tipoPago = value
         End Set
     End Property
+
+    Sub New(ByRef fact As FacturaEntidad, ByRef FechaPago As DateTime, ByRef tipoPago As Tipo_PagoEntidad)
+        Me.Factura = fact
+        Me.Fecha = Now
+        Me.TipoPago = tipoPago
+    End Sub
+
+    Sub New()
+
+    End Sub
+
+
 
 
 

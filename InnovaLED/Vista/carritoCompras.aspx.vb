@@ -27,6 +27,7 @@ Public Class carritoCompras
                 If IsNumeric(Request.QueryString("carrid")) Then
                     Dim list As List(Of CompraEntidad) = Session("carrito")
                     list.Remove(list.Find(Function(p) p.Producto.ID_Producto = Request.QueryString("carrid")))
+                    SumarTotalaPagar()
                 End If
                 GenerarDiseño(Session("carrito"))
 
@@ -81,6 +82,9 @@ Public Class carritoCompras
 
         ID_Catalogo.Controls.Add(New LiteralControl("</tbody>"))
         ID_Catalogo.Controls.Add(New LiteralControl("</table>"))
+        'Session.RemoveAll()
+        'Session.Abandon()
+        'Response.Redirect("Catalogo.aspx")
 
     End Sub
 
@@ -141,33 +145,50 @@ Public Class carritoCompras
         Try
             Dim listnota As List(Of DocumentoFinancieroEntidad) = TryCast(Session("notaSeleccionadas"), List(Of DocumentoFinancieroEntidad))
             Dim cli As UsuarioEntidad = TryCast(Session("cliente"), UsuarioEntidad)
-            Dim compra As CompraEntidad = TryCast(Session("carrito"), CompraEntidad)
             Dim EstadoCompra As EstadoCompraEntidad = EstadoCompraEntidad.Aprobado
-
-
             Dim listcompra As List(Of CompraEntidad) = TryCast(Session("carrito"), List(Of CompraEntidad))
 
             Dim factura As New FacturaEntidad(cli, listcompra, listnota, Now, 1)
             Dim GestorFacturaBLL As New GestorFacturaBLL
-            If ValidarCampos() = True And validarFecha() = True then
-                GestorFacturaBLL.GenerarFactura(factura)
+
+            If listnota.Count > 0 Then
+                If Session("totalApagar") <= Session("notasSeleccionadasTotal") Then
+                    'paga con nota credito
+                    GestorFacturaBLL.GenerarFactura(factura)
+                    Dim pago As New PagoEntidad(factura, Now, Tipo_PagoEntidad.Nota_Credito)
+                    Dim GestorPagoBLL As New GestorPagoBLL
+                    GestorPagoBLL.Alta(pago, listnota)
+
+                Else
+                    'paga mixto
+                    If ValidarCampos() = True And validarFecha() = True Then
+                        GestorFacturaBLL.GenerarFactura(factura)
+                        Dim pago As New PagoEntidad(factura, Now, Tipo_PagoEntidad.Mixto)
+                        Dim GestorPagoBLL As New GestorPagoBLL
+                        GestorPagoBLL.Alta(pago, listnota)
+                    End If
+                End If
+            Else
+                'paga con tarjeta de crédito
+                If ValidarCampos() = True And validarFecha() = True Then
+                    GestorFacturaBLL.GenerarFactura(factura)
+                    Dim pago As New PagoEntidad(factura, Now, Tipo_PagoEntidad.Tarjeta_Credito)
+                    pago.TipoPago = Tipo_PagoEntidad.Tarjeta_Credito
+                    Dim GestorPagoBLL As New GestorPagoBLL
+                    GestorPagoBLL.Alta(pago)
+                End If
             End If
 
-            'If ValidarCampos() = True And listnota.Count > 0 Then
-            '    'la parte del tipo de pago
 
-            'End If
-
-
-
-            'Dim pago As New PagoEntidad
-            'Dim GestorPagoBLL As New GestorPagoBLL
-            'GestorPagoBLL.Alta(pago)
 
 
         Catch ex As Exception
 
         End Try
+
+        Me.success.Visible = True
+        Me.success.InnerText = "¡ Su compra ha sido procesada exitosamente !"
+
 
     End Sub
 
@@ -195,8 +216,8 @@ Public Class carritoCompras
                         imagen3.ImageUrl = "~/Imagenes/clear.png"
                     End If
                     SumarNotasCseleccionadas()
-                    GenerarPago()
-                    ValidarDiferenciaNotaC()
+                    ActualizarPendientePago()
+                    'ValidarDiferenciaNotaC()
             End Select
         Catch ex As Exception
             'Dim clienteLogeado As Entidades.UsuarioEntidad = Current.Session("cliente")
@@ -351,6 +372,11 @@ Public Class carritoCompras
         Dim sum As Single
         Dim lstsum As List(Of CompraEntidad)
         lstsum = Session("carrito")
+        If lstsum.Count = 0 Then
+            LbltotalApagar.Text = "AR$ " & sum
+            lblTotalPendientePago.Text = "AR$ " & sum
+            Session("totalApagar") = sum
+        End If
         For Each compra In lstsum
             sum = sum + compra.Producto.Precio
             LbltotalApagar.Text = "AR$ " & sum
@@ -361,7 +387,7 @@ Public Class carritoCompras
     End Function
 
 
-    Public Function GenerarPago()
+    Public Function ActualizarPendientePago()
         Dim tot As Single
         Dim varTotal As Single
         Dim varTotalnotas As Single
@@ -370,6 +396,12 @@ Public Class carritoCompras
         varNotaSeleccionadas = Session("notasSeleccionadasTotal")
         tot = varTotal - varNotaSeleccionadas
         lblTotalPendientePago.Text = "AR$ " & tot
+
+        If tot < 0 Then
+            btn_seguircontj.Visible = False
+        Else
+            btn_seguircontj.Visible = True
+        End If
 
         Return tot
 
@@ -386,16 +418,15 @@ Public Class carritoCompras
 
     Public Function ValidarCampos() As Boolean
         If Me.lsttipotarj.SelectedValue = 1 Then
-            ValidarCamposVisa()
-            Return True
+
+            Return ValidarCamposVisa()
         ElseIf lsttipotarj.SelectedValue = 2 Then
-            ValidarCamposMaster()
-            Return True
+
+            Return ValidarCamposMaster()
         Else
-            ValidarCamposAmex()
-            Return True
+
+            Return ValidarCamposAmex()
         End If
-        Return False
 
     End Function
 
@@ -407,8 +438,10 @@ Public Class carritoCompras
             Me.alertvalid.Visible = True
             Me.success.Visible = False
             Me.alertvalid.InnerText = "Debe completar todos los campos de la tarjeta para finalizar la compra."
+
+            Return False
         End If
-        Return False
+
     End Function
 
     Public Function ValidarCamposMaster() As Boolean
@@ -446,20 +479,22 @@ Public Class carritoCompras
     End Function
 
 
-    Public Function ValidarDiferenciaNotaC()
-        Dim varTotal As Single
-        varTotal = Session("totalApagar")
-        Dim varNotasSeleccionadas As Single
-        varNotasSeleccionadas = Session("notasSeleccionadasTotal")
-        If varTotal < varNotasSeleccionadas Then
-            txtdescripnota.Visible = True
-        Else
-            txtdescripnota.Visible = False
-        End If
+    'Borrar!
 
-        Return True
+    'Public Function ValidarDiferenciaNotaC()
+    '    Dim varTotal As Single
+    '    varTotal = Session("totalApagar")
+    '    Dim varNotasSeleccionadas As Single
+    '    varNotasSeleccionadas = Session("notasSeleccionadasTotal")
+    '    If varTotal < varNotasSeleccionadas Then
+    '        txtdescripnota.Visible = True
+    '    Else
+    '        txtdescripnota.Visible = False
+    '    End If
 
-    End Function
+    '    Return True
+
+    'End Function
 
 
 

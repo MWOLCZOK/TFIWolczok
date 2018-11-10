@@ -277,13 +277,7 @@
                                      
                                         <div class="row col-md-5">
                                             <asp:button ID="btn_seguircontj" runat="server" Text="Continuar el Pago con Tarjeta" class="btn btn-warning btn-lg"></asp:button>
-                                        </div>
-                                        <br />
-                                        <br />
-                                        <div class="row col-md-5">
-                                          <asp:TextBox ID="txtdescripnota" runat="server" placeholder="Descripcion Nota Credito" CssClass="form-control" Visible="false"></asp:TextBox>
-                                        </div>
-                                        
+                                        </div>                                                                                                                     
                                         <br />
                                         <br />
                                         <br />

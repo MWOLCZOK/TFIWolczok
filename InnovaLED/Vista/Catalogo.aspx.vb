@@ -240,7 +240,7 @@ Public Class Catalogo
             PesoHasta = Nothing
         Else
 
-            PesoHasta = CInt(txtpesohasta.Text) + 1
+            PesoHasta = CInt(txtpesohasta.Text)
         End If
 
         If txtwattdesde.Text = "" Then

@@ -37,16 +37,6 @@ Public Class FacturaMPP
 
                 'Región Notas de crédito dentro de Factura // Si utilizo Nota de crédito la inserto en la tabla Factura_DocFinanciero.
 
-                For Each _nota As DocumentoFinancieroEntidad In Fact.Notas
-                    Dim Command3 As SqlCommand = Acceso.MiComando("insert into Factura_DocFinanciero (ID_Fact,ID_DocFinanciero,Monto,Fecha) values (@ID_Fact,@ID_DocFinanciero,@Monto,@Fecha)")
-                    With Command3.Parameters
-                        .Add(New SqlParameter("@ID_Fact", Fact.ID))
-                        .Add(New SqlParameter("@ID_DocFinanciero", _nota.ID))
-                        .Add(New SqlParameter("@Monto", _nota.Monto))
-                        .Add(New SqlParameter("@Fecha", Now))
-                    End With
-                    Acceso.Escritura(Command3)
-                Next
             Next
             Return True
         Catch ex As Exception

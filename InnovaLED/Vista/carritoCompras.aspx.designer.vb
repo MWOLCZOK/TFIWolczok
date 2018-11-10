@@ -462,13 +462,4 @@ Partial Public Class carritoCompras
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents btn_seguircontj As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''Control txtdescripnota.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents txtdescripnota As Global.System.Web.UI.WebControls.TextBox
 End Class
