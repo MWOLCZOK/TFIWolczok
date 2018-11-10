@@ -38,7 +38,15 @@
             _pregunta = value
         End Set
     End Property
-
+    Private _fecha As DateTime
+    Public Property Fecha() As DateTime
+        Get
+            Return _fecha
+        End Get
+        Set(ByVal value As DateTime)
+            _fecha = value
+        End Set
+    End Property
     Private _texto As String
     Public Property Texto() As String
         Get

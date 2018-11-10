@@ -32,7 +32,7 @@ Public Class ComentarioMPP
 
     Public Function BuscarComentariosProd(ByVal Prod As ProductoEntidad) As List(Of ComentarioEntidad)
         Try
-            Dim consulta As String = "Select * from Comentario_Producto where ID_Producto=@ID_Producto"
+            Dim consulta As String = "Select * from Comentario_Producto as cp1 left join Comentario_Producto as cp2 on cp1.ID_Comentario_Pregunta=cp2.ID_Comentario where cp1.ID_Producto=@ID_Producto order by case isnull(cp1.ID_comentario_pregunta,0) when 0 then cp1.fecha else cp2.Fecha end"
             Dim Command As SqlCommand = Acceso.MiComando(consulta)
             With Command.Parameters
                 .Add(New SqlParameter("@ID_Producto", Prod.ID_Producto))
@@ -79,6 +79,7 @@ Public Class ComentarioMPP
             com.Usuario = (New UsuarioMPP).BuscarUsuarioID(New UsuarioEntidad With {.ID_Usuario = row("ID_Usuario")})
             com.Producto = (New ProductoMPP).TraerProducto(New ProductoEntidad With {.ID_Producto = row("ID_Producto")})
             com.Texto = row("Texto")
+            com.Fecha = row("Fecha")
             If Not IsDBNull(row("ID_Comentario_Pregunta")) Then
                 com.Pregunta = Me.BuscarComentariosid(row("ID_Comentario_Pregunta"))
             End If
