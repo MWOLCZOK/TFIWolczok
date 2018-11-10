@@ -30,9 +30,12 @@ Public Class Catalogo
                 Else
                     Dim listaprod As List(Of ProductoEntidad) = Session("Listaproductos")
                     Dim carrito As List(Of CompraEntidad) = Session("Carrito")
-                    carrito.Add(New CompraEntidad With {.Cantidad = 1, .Producto = listaprod.Find(Function(p) p.ID_Producto = CInt(Request.QueryString("contid")))})
+                    If Not carrito.Any(Function(p) p.Producto.ID_Producto = Request.QueryString("contid")) Then
+                        carrito.Add(New CompraEntidad With {.Cantidad = 1, .Producto = listaprod.Find(Function(p) p.ID_Producto = CInt(Request.QueryString("contid")))})
+                    End If
+
                 End If
-            End If
+                End If
             GenerarDiseño(Session("Listaproductos"), Session("CantListaproductos"))
 
             End If

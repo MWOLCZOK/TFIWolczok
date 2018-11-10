@@ -162,7 +162,7 @@
       </div>--%>
                 </div>
 
-                <div class="row col-md-12">
+                <div id="pregunta" runat="server" class="row col-md-12">
                     <br />
                     <br />
                     <div class="col-md-6">

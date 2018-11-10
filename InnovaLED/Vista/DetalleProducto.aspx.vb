@@ -21,14 +21,22 @@ Public Class DetalleProducto
             ImgBut.ImageUrl = Convert.ToString("data:image/jpg;base64,") & base64string
             LlenarCampos(prod)
             llenardrop()
-            Dim Listacomentarios As New List(Of ComentarioEntidad)
-            Dim gestorcomentarios As New GestorComentarioBLL
+            If IsNothing(Session("cliente")) Then
+                pregunta.Visible = False
+            Else
+                pregunta.Visible = True
 
-            Listacomentarios = gestorcomentarios.BuscarComentariosProd(prod)
-            GenerarDiseño(Listacomentarios)
+            End If
+            CargarPreguntas(prod)
         End If
     End Sub
+    Private Sub CargarPreguntas(ByRef prod As ProductoEntidad)
+        Dim Listacomentarios As New List(Of ComentarioEntidad)
+        Dim gestorcomentarios As New GestorComentarioBLL
 
+        Listacomentarios = gestorcomentarios.BuscarComentariosProd(prod)
+        GenerarDiseño(Listacomentarios)
+    End Sub
 
     Private Sub GenerarDiseño()
         Dim prod As New ProductoEntidad
@@ -76,7 +84,10 @@ Public Class DetalleProducto
 
             Else
                 Dim listcompra As List(Of CompraEntidad) = Session("carrito")
-                listcompra.Add(compra)
+                If Not listcompra.Any(Function(p) p.Producto.ID_Producto = compra.Producto.ID_Producto) Then
+                    listcompra.Add(compra)
+                End If
+
 
             End If
 
@@ -92,6 +103,7 @@ Public Class DetalleProducto
         Dim gestorComentario As New GestorComentarioBLL
         If gestorComentario.GenerarComentario(Comentario) Then
             'cartelito feliz
+            CargarPreguntas(Comentario.Producto)
         Else
             'Cartelito enojado
         End If
@@ -102,12 +114,23 @@ Public Class DetalleProducto
         Comentarios.Controls.Add(New LiteralControl("<tbody>"))
 
         For Each com In listacomentarios
-            Comentarios.Controls.Add(New LiteralControl("<tr>"))
+            If IsNothing(com.Pregunta) Then
+                Comentarios.Controls.Add(New LiteralControl("<tr  bgcolor=""#e0ffff""> "))
+            Else
+                Comentarios.Controls.Add(New LiteralControl("<tr  bgcolor=""#ffffe0""> "))
+            End If
+
+
             Comentarios.Controls.Add(New LiteralControl("<td data-th=""Product"">"))
             Comentarios.Controls.Add(New LiteralControl("<div class=""row"">"))
-            Comentarios.Controls.Add(New LiteralControl("<div Class=""col-md-12"">"))
-            Comentarios.Controls.Add(New LiteralControl("<p>" & com.Texto & "</p>"))
-
+            Comentarios.Controls.Add(New LiteralControl("<div Class=""col-md-12 text-left"">"))
+            Comentarios.Controls.Add(New LiteralControl("<p>" & com.Usuario.NombreUsu & " - " & com.Fecha & "</p>"))
+            Comentarios.Controls.Add(New LiteralControl("</div>"))
+            Comentarios.Controls.Add(New LiteralControl("</div>"))
+            Comentarios.Controls.Add(New LiteralControl("<div class=""row"">"))
+            Comentarios.Controls.Add(New LiteralControl("<div Class=""col-md-12 text-left"">"))
+            Comentarios.Controls.Add(New LiteralControl("<p><h4>" & com.Texto & "<h4/></p>"))
+            Comentarios.Controls.Add(New LiteralControl("</div>"))
             Comentarios.Controls.Add(New LiteralControl("</div>"))
             Comentarios.Controls.Add(New LiteralControl("</td>"))
             Comentarios.Controls.Add(New LiteralControl("</tr>"))

@@ -22,8 +22,8 @@ Public Class carritoCompras
                 lsttipotarj_SelectedIndexChanged(Nothing, Nothing)
                 CargarNC()
                 SumarTotalaPagar()
-
             Else
+
                 If IsNumeric(Request.QueryString("carrid")) Then
                     Dim list As List(Of CompraEntidad) = Session("carrito")
                     list.Remove(list.Find(Function(p) p.Producto.ID_Producto = Request.QueryString("carrid")))
@@ -58,7 +58,18 @@ Public Class carritoCompras
             ID_Catalogo.Controls.Add(New LiteralControl("<h4>" & prod.Producto.Descripcion & "</h4>"))
             ID_Catalogo.Controls.Add(New LiteralControl("</div>"))
             ID_Catalogo.Controls.Add(New LiteralControl("<div class=""col-md-2"">"))
-            ID_Catalogo.Controls.Add(New LiteralControl("<h3>" & prod.Cantidad & "</h3>"))
+
+            Dim Dropnumeric As New DropDownList
+            Dropnumeric.DataSource = Enumerable.Range(1, 50)
+            Dropnumeric.DataBind()
+            Dropnumeric.SelectedIndex = prod.Cantidad - 1
+            Dropnumeric.AutoPostBack = True
+            Dropnumeric.ID = "dp" & prod.Producto.ID_Producto
+            Dropnumeric.CssClass = "btn btn-lg btn-default dropdown-toggle"
+            AddHandler Dropnumeric.SelectedIndexChanged, AddressOf CambioCantidad
+
+            ID_Catalogo.Controls.Add(Dropnumeric)
+
             ID_Catalogo.Controls.Add(New LiteralControl("</div>"))
             ID_Catalogo.Controls.Add(New LiteralControl("<div class=""col-md-2"">"))
             ID_Catalogo.Controls.Add(New LiteralControl("<h3>" & "AR$ " & prod.Producto.Precio & "</h3>"))
@@ -88,6 +99,14 @@ Public Class carritoCompras
 
     End Sub
 
+    Private Sub CambioCantidad(sender As Object, e As EventArgs)
+        Dim Dropdownlist = TryCast(sender, DropDownList)
+        Dim list As List(Of CompraEntidad) = Session("carrito")
+        Dim Producto As CompraEntidad = list.Find(Function(p) p.Producto.ID_Producto = Replace(Dropdownlist.ID, "dp", ""))
+        Producto.Cantidad = Dropdownlist.SelectedValue
+        SumarTotalaPagar()
+
+    End Sub
 
     Protected Sub ddl_FormaPago_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_FormaPago.SelectedIndexChanged
         If Me.ddl_FormaPago.SelectedValue = 1 Then
@@ -378,7 +397,7 @@ Public Class carritoCompras
             Session("totalApagar") = sum
         End If
         For Each compra In lstsum
-            sum = sum + compra.Producto.Precio
+            sum = sum + (compra.Producto.Precio * compra.Cantidad)
             LbltotalApagar.Text = "AR$ " & sum
             lblTotalPendientePago.Text = "AR$ " & sum
             Session("totalApagar") = sum
