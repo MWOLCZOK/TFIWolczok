@@ -185,6 +185,7 @@ Public Class carritoCompras
         Catch ex As Exception
 
         End Try
+        Response.Redirect("Encuesta.aspx")
 
         Me.success.Visible = True
         Me.success.InnerText = "¡ Su compra ha sido procesada exitosamente !"
