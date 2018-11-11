@@ -71,10 +71,10 @@
     <Compile Include="CompraEntidad.vb" />
     <Compile Include="DocumentoFinancieroEntidad.vb" />
     <Compile Include="Encuesta.vb" />
+    <Compile Include="EstadoEnvio.vb" />
     <Compile Include="EstadoCompraEntidad.vb" />
     <Compile Include="EstadoEntidad.vb" />
     <Compile Include="FacturaEntidad.vb" />
-    <Compile Include="Factura_RenglonEntidad.vb" />
     <Compile Include="IdiomaEntidad.vb" />
     <Compile Include="LineaProducto.vb" />
     <Compile Include="Mensaje.vb" />

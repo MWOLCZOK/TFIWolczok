@@ -30,6 +30,24 @@ Public Class ComentarioMPP
         End Try
     End Function
 
+
+    Public Function BuscarComentariosSinRespuesta() As List(Of ComentarioEntidad)
+        Try
+            Dim consulta As String = "Select * from Comentario_Producto as cp1  left join Comentario_Producto as cp2 on cp1.ID_Comentario=cp2.ID_Comentario_Pregunta where cp1.ID_Comentario_Pregunta is null and cp2.ID_Comentario is null"
+            Dim Command As SqlCommand = Acceso.MiComando(consulta)
+            Dim dt As DataTable = Acceso.Lectura(Command)
+            Dim listacomentario As New List(Of ComentarioEntidad)
+            For Each _dr As DataRow In dt.Rows
+                Dim _comentario As New ComentarioEntidad
+                FormatearComentario(_comentario, _dr)
+                listacomentario.Add(_comentario)
+            Next
+            Return listacomentario
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Public Function BuscarComentariosProd(ByVal Prod As ProductoEntidad) As List(Of ComentarioEntidad)
         Try
             Dim consulta As String = "Select * from Comentario_Producto as cp1 left join Comentario_Producto as cp2 on cp1.ID_Comentario_Pregunta=cp2.ID_Comentario where cp1.ID_Producto=@ID_Producto order by case isnull(cp1.ID_comentario_pregunta,0) when 0 then cp1.fecha else cp2.Fecha end"

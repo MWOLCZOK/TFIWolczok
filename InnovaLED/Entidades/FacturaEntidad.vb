@@ -21,7 +21,7 @@ Public Class FacturaEntidad
         End Set
     End Property
 
-    Private _detalleFactura As List(Of CompraEntidad)
+    Private _detalleFactura As New List(Of CompraEntidad)
     Public Property DetalleFactura() As List(Of CompraEntidad)
         Get
             Return _detalleFactura
@@ -75,23 +75,23 @@ Public Class FacturaEntidad
         End Set
     End Property
 
-    Private _estado As EstadoCompraEntidad
-    Public Property Estado() As EstadoCompraEntidad
+    Private _estadocompra As EstadoCompraEntidad
+    Public Property EstadoCompra() As EstadoCompraEntidad
         Get
-            Return _estado
+            Return _estadocompra
         End Get
         Set(ByVal value As EstadoCompraEntidad)
-            _estado = value
+            _estadocompra = value
         End Set
     End Property
 
-    Private _renglon As List(Of Factura_RenglonEntidad)
-    Public Property Factura_Renglon() As List(Of Factura_RenglonEntidad)
+    Private _estadoenvio As EstadoEnvio
+    Public Property EstadoEnvio() As EstadoEnvio
         Get
-            Return _renglon
+            Return _estadoenvio
         End Get
-        Set(ByVal value As List(Of Factura_RenglonEntidad))
-            _renglon = value
+        Set(ByVal value As EstadoEnvio)
+            _estadoenvio = value
         End Set
     End Property
 
@@ -112,7 +112,8 @@ Public Class FacturaEntidad
         Me.Notas = notas
         Me.MontoTotal = Total()
         Me.Fecha = Now
-        Me.Estado = EstadoCompra
+        Me.EstadoCompra = EstadoCompra
+        Me.EstadoEnvio = 0
     End Sub
 
     Sub New()

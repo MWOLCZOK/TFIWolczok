@@ -149,9 +149,11 @@
     <Content Include="GenerarPresupuesto.aspx" />
     <Content Include="AgregarPerfil.aspx" />
     <Content Include="GestionarProductos.aspx" />
+    <Content Include="GestionarFacturas.aspx" />
     <Content Include="GestionarSolucionesLED.aspx" />
     <Content Include="Catalogo.aspx" />
     <Content Include="cambiarpassword.aspx" />
+    <Content Include="GestionarRespuestas.aspx" />
     <Content Include="Global.asax" />
     <Content Include="IMAGENES\amex.png" />
     <Content Include="IMAGENES\Arrow.png" />
@@ -359,6 +361,13 @@
       <DependentUpon>GestionarProductos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="GestionarFacturas.aspx.designer.vb">
+      <DependentUpon>GestionarFacturas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionarFacturas.aspx.vb">
+      <DependentUpon>GestionarFacturas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="GestionarSolucionesLED.aspx.designer.vb">
       <DependentUpon>GestionarSolucionesLED.aspx</DependentUpon>
     </Compile>
@@ -378,6 +387,13 @@
     </Compile>
     <Compile Include="cambiarpassword.aspx.vb">
       <DependentUpon>cambiarpassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionarRespuestas.aspx.designer.vb">
+      <DependentUpon>GestionarRespuestas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionarRespuestas.aspx.vb">
+      <DependentUpon>GestionarRespuestas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Global.asax.vb">

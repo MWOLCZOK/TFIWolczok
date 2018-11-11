@@ -355,11 +355,14 @@ Public Class carritoCompras
         Dim sum As Single
         Dim lstnc As List(Of DocumentoFinancieroEntidad)
         lstnc = Session("nota")
-        For Each nc In lstnc
-            sum = sum + nc.Monto
-            lbltotalnotasC.Text = "AR$ " & sum
-            Session("notaTotal") = sum
-        Next
+        If not IsNothing(lstnc) Then
+            For Each nc In lstnc
+                sum = sum + nc.Monto
+                lbltotalnotasC.Text = "AR$ " & sum
+                Session("notaTotal") = sum
+            Next
+        End If
+
         Return sum
 
     End Function
