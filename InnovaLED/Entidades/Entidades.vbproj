@@ -98,6 +98,7 @@
     <Compile Include="Palabras.vb" />
     <Compile Include="PermisoBaseEntidad.vb" />
     <Compile Include="Pregunta.vb" />
+    <Compile Include="PreguntaOpinionEntidad.vb" />
     <Compile Include="ProductoEntidad.vb" />
     <Compile Include="Respuesta.vb" />
     <Compile Include="RolEntidad.vb" />

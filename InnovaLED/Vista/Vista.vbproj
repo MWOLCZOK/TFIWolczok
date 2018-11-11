@@ -141,6 +141,7 @@
     <Content Include="EmailTemplates\Cambio_Contraseña.html" />
     <Content Include="EmailTemplates\Recupero.html" />
     <Content Include="EmailTemplates\Registracion.html" />
+    <Content Include="Encuesta.aspx" />
     <Content Include="Faqs.aspx" />
     <Content Include="Fonts\fontawesome-webfont.svg" />
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
@@ -318,6 +319,13 @@
     <Compile Include="EliminarIdioma.aspx.vb">
       <DependentUpon>EliminarIdioma.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Encuesta.aspx.designer.vb">
+      <DependentUpon>Encuesta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Encuesta.aspx.vb">
+      <DependentUpon>Encuesta.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Faqs.aspx.designer.vb">
       <DependentUpon>Faqs.aspx</DependentUpon>
