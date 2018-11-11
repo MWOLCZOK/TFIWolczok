@@ -97,10 +97,9 @@
     <Compile Include="PagoEntidad.vb" />
     <Compile Include="Palabras.vb" />
     <Compile Include="PermisoBaseEntidad.vb" />
-    <Compile Include="Pregunta.vb" />
     <Compile Include="PreguntaOpinionEntidad.vb" />
     <Compile Include="ProductoEntidad.vb" />
-    <Compile Include="Respuesta.vb" />
+    <Compile Include="RespuestaEntidad.vb" />
     <Compile Include="RolEntidad.vb" />
     <Compile Include="Tipo_Bitacora.vb" />
     <Compile Include="Tipo_PagoEntidad.vb" />

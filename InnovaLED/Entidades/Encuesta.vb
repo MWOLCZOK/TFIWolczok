@@ -4,12 +4,12 @@
         Encuesta = 2
     End Enum
 
-    Private _lista_preguntas As New List(Of Pregunta)
-    Public Property listaPreguntas() As List(Of Pregunta)
+    Private _lista_preguntas As New List(Of PreguntaOpinionEntidad)
+    Public Property listaPreguntas() As List(Of PreguntaOpinionEntidad)
         Get
             Return _lista_preguntas
         End Get
-        Set(ByVal value As List(Of Pregunta))
+        Set(ByVal value As List(Of PreguntaOpinionEntidad))
             _lista_preguntas = value
         End Set
     End Property

@@ -323,8 +323,6 @@ Public Class ProductoMPP
         Try
 
             Producto.ID_Producto = row("ID_Producto")
-            'If row("marca") Is DBNull.Value Then Producto.Marca = "" Else Producto.Marca = row("Marca")
-
             Producto.Marca = row("Marca")
             Producto.Modelo = row("Modelo")
             Producto.Descripcion = row("Descripcion")

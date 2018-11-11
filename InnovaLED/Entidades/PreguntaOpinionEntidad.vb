@@ -5,36 +5,8 @@
             Encuesta = 2
         End Enum
 
-        Enum etipoRespuesta
-            Excelente = 0
-            Bueno = 1
-            Regular = 2
-            Malo = 3
-            Pesimo = 4
-        End Enum
 
-        Private _respuesta As etipoRespuesta
-        Public Property Respuesta() As etipoRespuesta
-            Get
-                Return _respuesta
-            End Get
-            Set(ByVal value As etipoRespuesta)
-                _respuesta = value
-            End Set
-        End Property
-
-        Private _listaRespuestas As List(Of etipoRespuesta)
-        Public Property listaRespuestas() As List(Of etipoRespuesta)
-            Get
-                Return _listaRespuestas
-            End Get
-            Set(ByVal value As List(Of etipoRespuesta))
-                _listaRespuestas = value
-            End Set
-        End Property
-
-
-        Private _IDPregunta As Integer
+    Private _IDPregunta As Integer
         Public Property ID() As Integer
             Get
                 Return _IDPregunta
