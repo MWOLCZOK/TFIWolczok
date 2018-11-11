@@ -15,4 +15,9 @@ Public Class GestorComentarioBLL
         Return ComentarioMPP.BuscarComentariosProd(prod)
 
     End Function
+
+    Public Function BuscarComentariosSinRespuesta() As List(Of ComentarioEntidad)
+        Return ComentarioMPP.BuscarComentariosSinRespuesta()
+    End Function
+
 End Class

@@ -12,4 +12,11 @@ Public Class GestorFacturaBLL
 
     End Function
 
+    Public Function TraerFacturasGestion() As List(Of FacturaEntidad)
+        Return facturaMPP.TraerFacturasGestion()
+    End Function
+
+    Public Function ModificarFactura(facturaEntidad As FacturaEntidad) As Boolean
+        Return facturaMPP.ModificarFactura(facturaEntidad)
+    End Function
 End Class
