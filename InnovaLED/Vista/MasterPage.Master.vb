@@ -80,6 +80,7 @@ Public Class MasterPage
         Me.Menu.Items.Item(2).ChildItems.Add(New MenuItem("Nuestros Productos", "Catalogo", Nothing, "/Catalogo.aspx"))
         Me.Menu.Items.Item(2).ChildItems.Add(New MenuItem("Novedades", "Novedades", Nothing, "/Novedades.aspx"))
         Me.Menu.Items.Add(New MenuItem("Seleccionar Idioma", "SeleccionarIdioma", Nothing, "/SeleccionarIdioma.aspx"))
+        Me.Menu.Items.Add(New MenuItem("¡Nos interesa tu Opinion!", "NosInteresaTuOpinion", Nothing, "/EncuestaGlobal.aspx"))
 
         Me.menuVertical.Items.Clear()
         'Me.menuVertical.Items.Add(New MenuItem("Solución LED", "SolucionLED"))
@@ -107,7 +108,8 @@ Public Class MasterPage
         Me.menuVertical.Items.Item(3).ChildItems.Add(New MenuItem("Gestión de Bitácora", "GestiondeBitacora", Nothing, "/BitacoraAuditoria.aspx"))
         Me.menuVertical.Items.Item(3).ChildItems.Add(New MenuItem("Gestionar Roles", "AgregarPerfil", Nothing, "/AgregarPerfil.aspx"))
         Me.menuVertical.Items.Item(3).ChildItems.Add(New MenuItem("Backup & Restore", "Backup&Restore", Nothing, "/Restore.aspx"))
-        'Me.menuVertical.Items.Add(New MenuItem("Cambiar Idioma", "SeleccionarIdioma", Nothing, "/SeleccionarIdioma.aspx"))
+
+
     End Sub
 
     Private Sub CargarSinPerfilIdioma(ByRef UsuarioInvitado As Entidades.UsuarioEntidad)
@@ -128,6 +130,8 @@ Public Class MasterPage
 
         Me.Menu.Items.Add(New MenuItem("Seleccionar Idioma", "SeleccionarIdioma", Nothing, "/SeleccionarIdioma.aspx"))
 
+        Me.Menu.Items.Add(New MenuItem("¡Nos interesa tu Opinion!", "NosInteresaTuOpinion", Nothing, "/EncuestaGlobal.aspx"))
+
         Dim Rol As New Entidades.RolEntidad
         Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/Empresa.aspx"})
         Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/Institucional.aspx"})
@@ -145,6 +149,7 @@ Public Class MasterPage
         Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/TerminosyCondiciones.aspx"})
         Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/DetalleProducto.aspx"})
         Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/ComparacionProducto.aspx"})
+        Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/EncuestaGlobal.aspx"})
 
         UsuarioInvitado.Rol.Add(Rol)
 

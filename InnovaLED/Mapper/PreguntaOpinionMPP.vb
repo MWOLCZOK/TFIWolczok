@@ -99,7 +99,6 @@ Public Class PreguntaOpinionMPP
             End With
             Acceso.Escritura(Command)
             Return True
-
         Catch ex As Exception
             Throw ex
         End Try

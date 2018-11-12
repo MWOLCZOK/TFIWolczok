@@ -142,6 +142,7 @@
     <Content Include="EmailTemplates\Recupero.html" />
     <Content Include="EmailTemplates\Registracion.html" />
     <Content Include="Encuesta.aspx" />
+    <Content Include="EncuestaGlobal.aspx" />
     <Content Include="Faqs.aspx" />
     <Content Include="Fonts\fontawesome-webfont.svg" />
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
@@ -325,6 +326,13 @@
     </Compile>
     <Compile Include="Encuesta.aspx.vb">
       <DependentUpon>Encuesta.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="EncuestaGlobal.aspx.designer.vb">
+      <DependentUpon>EncuestaGlobal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EncuestaGlobal.aspx.vb">
+      <DependentUpon>EncuestaGlobal.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Faqs.aspx.designer.vb">
