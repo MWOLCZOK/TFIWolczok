@@ -4,6 +4,17 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+
+    <script type="text/javascript">
+        function resizeText(multiplier) {
+            if (document.body.style.fontSize == "") {
+                document.body.style.fontSize = "1.4em";
+            }           
+            document.body.style.fontSize = parseFloat(document.body.style.fontSize) + (multiplier * 0.4) + "em";
+        }
+    </script>
+
+
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>InnovaLED</title>
 
@@ -31,18 +42,26 @@
 </head>
 <body>
     <form id="Master" runat="server">
+      <%--  <ul>
 
-        <div class="container-fluid FondoPagina">
+        <li><a href="#" onclick="resizeText(1)"><label style="font-size:large;">A+</label></a></li>
+        <li><a href="#" onclick="resizeText(-1)"><label style="font-size:smaller;">A-</label></a></li>
+        
+        </ul>--%>            
 
 
-            <div class="row fondoGris Blanco bordeImagen">
+<div class="container-fluid FondoPagina">
+              <%--<asp:Label ID="Label3"  style="font-size:large;" onclick="resizeText(1)" runat="server" Text="A+"></asp:Label>
+            <asp:Label ID="Label4" style="font-size:smaller;" onclick="resizeText(-1)" runat="server" Text="A-"></asp:Label>--%>
 
+  
 
-
-                <div id="NoLogueo" runat="server" name="NoLogueado" class="row col-md-4 col-md-offset-8">
+   <div class="row fondoGris Blanco bordeImagen">          
+                     
+      <div id="NoLogueo" runat="server" name="NoLogueado" class="row col-md-4 col-md-offset-8">
                     <button type="button" class="btn btn-primary col-md-offset-7 col-md-2" data-toggle="modal" data-target="#loginModal">Login</button>
                     <button type="button" class="btn btn-default col-md-offset-0 col-md-3" data-toggle="modal" data-target="#ucModalNewMember">Registrarse</button>
-                </div>
+       </div>
 
 
 
@@ -51,22 +70,11 @@
                     <asp:Label ID="lbl_NombredeUsuarioLogueado" font="Bahnschrift" Font-Bold="True" Font-Size="18px" runat="server" class="col-md-offset-6 col-md-3 control-label labelform text-right" ForeColor="#368BE1"></asp:Label>
                     <div class="col-md-1">
                         <asp:ImageButton ID="btn_carrito" CssClass="col-md-8" runat="server" ImageUrl="IMAGENES/shopping-cart.png" Height="30" Visible="false" />
-
                     </div>
 
                     <asp:Button ID="btnsettings" runat="server" class="btn btn-info  col-md-1" Text="Opciones" />
-
                     <asp:Button ID="btnlogout" runat="server" class="btn btn-primary col-md-1" Text="Logout" />
-
-
                 </div>
-
-
-
-
-
-
-
                 <asp:Image ID="LogoMenu" runat="server" ImageUrl="Imagenes/banner1.jpg" CssClass="img-responsive" />
 
 
@@ -110,7 +118,7 @@
         </div>
         <br />
 
-        <div class="row">
+        <div class="row ">
 
             <div id="miMenuVertical" runat="server" class="col-md-2">
 
@@ -143,6 +151,9 @@
             <div class="col-md-8 col-md-offset-2 text-center">
                 <div class="textoCopyright Blanco">
                     <asp:Label ID="lblcopyright" runat="server" Text="Trabajo Final de Ingenieria - Wolczok - 2018"></asp:Label>
+                    <asp:AdRotator AdvertisementFile="~/AdRotator/AdRtotatorFiles.xml"  runat="server" CssClass="publicidad">
+                    </asp:AdRotator>
+
                 </div>
             </div>
         </div>

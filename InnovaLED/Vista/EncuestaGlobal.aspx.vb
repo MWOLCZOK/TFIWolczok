@@ -1,5 +1,7 @@
 ﻿Imports Entidades
 Imports Negocio
+Imports System.Web.HttpContext
+
 
 
 
@@ -67,27 +69,34 @@ Public Class EncuestaGlobal
 
     Protected Sub btn_enviar_Click(sender As Object, e As EventArgs) Handles btn_enviar.Click
         Try
-            Dim _listaRespuesta As New List(Of RespuestaEntidad)
-            If validarCuestionario() = True Then
-                For i = 1 To 3
-                    Dim _resp As New RespuestaEntidad
-                    _resp.Pregunta = New PreguntaOpinionEntidad With {.ID = DirectCast(Me.panelPreguntas.FindControl("id_" & i), Label).Text}  ' aca lo lleno con una instanacia de preguntaENtidad
-                    _resp.Valor_Respuesta = [Enum].Parse(GetType(RespuestaEntidad.TipoRespuestasCalidad), DirectCast(Me.panelPreguntas.FindControl("rb_pregunta" & i), RadioButtonList).SelectedValue) ' Para obtener el valor doe RBList necesito el Enum,parse porque sino toma el valor texto
-
-                    _resp.Usuario = Session("cliente")
-                    _listaRespuesta.Add(_resp)
-                Next
-
-                For Each _resp As RespuestaEntidad In _listaRespuesta
-                    GestorPreguntaOpinion.InsertarRespuesta(_resp)
-                Next
-
-                Me.success.Visible = True
-                Me.success.InnerText = "¡Gracias por haber respondido ésta encuesta!"
-            Else
-                Me.alertvalid.InnerText = "Debe completar todos los campos"
+            If IsNothing(Current.Session("cliente")) Or IsDBNull(Current.Session("Cliente")) Then
                 Me.alertvalid.Visible = True
+                Me.alertvalid.InnerText = "Debe loguearse para continuar con la encuesta"
+            Else
+
+                Dim _listaRespuesta As New List(Of RespuestaEntidad)
+                If validarCuestionario() = True Then
+                    For i = 1 To 3
+                        Dim _resp As New RespuestaEntidad
+                        _resp.Pregunta = New PreguntaOpinionEntidad With {.ID = DirectCast(Me.panelPreguntas.FindControl("id_" & i), Label).Text}  ' aca lo lleno con una instanacia de preguntaENtidad
+                        _resp.Valor_Respuesta = [Enum].Parse(GetType(RespuestaEntidad.TipoRespuestasCalidad), DirectCast(Me.panelPreguntas.FindControl("rb_pregunta" & i), RadioButtonList).SelectedValue) ' Para obtener el valor doe RBList necesito el Enum,parse porque sino toma el valor texto
+
+                        _resp.Usuario = Session("cliente")
+                        _listaRespuesta.Add(_resp)
+                    Next
+
+                    For Each _resp As RespuestaEntidad In _listaRespuesta
+                        GestorPreguntaOpinion.InsertarRespuesta(_resp)
+                    Next
+
+                    Me.success.Visible = True
+                    Me.success.InnerText = "¡Gracias por haber respondido ésta encuesta!"
+                Else
+                    Me.alertvalid.InnerText = "Debe completar todos los campos"
+                    Me.alertvalid.Visible = True
+                End If
             End If
+
 
         Catch ex As Exception
             Throw ex

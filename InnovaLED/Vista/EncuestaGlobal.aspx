@@ -18,12 +18,13 @@
         </div>
 
 <div class="row"> 
-     <hr />
+ 
      <div class="row text-center">
      <hr />
     <h3>Nos interesa tu opinión, es por ello que te invitamos a responder estas breves preguntas acerca de nuestro sitio .. </h3> 
      <hr />
     </div> 
+  
     <br />
     <br />
 

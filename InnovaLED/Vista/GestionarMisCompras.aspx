@@ -1,35 +1,35 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MasterPage.Master" CodeBehind="GestionarFacturas.aspx.vb" Inherits="Vista.GestionarFacturas" MaintainScrollPositionOnPostback="true" %>
-
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/MasterPage.Master" CodeBehind="GestionarMisCompras.aspx.vb" Inherits="Vista.GestionMisCompras" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <!-- <script type="text/javascript" src="JS/ClienteValid.js"></script>-->
 </asp:Content>
+
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container-fluid">
+    <div class="container-fluid fondoGris" >
         <br />
         <div id="alertvalid" runat="server" name="alertvalid" class="alert alert-danger  text-center" visible="false">
             <label runat="server" id="textovalid" class="text-danger"></label>
         </div>
         <div id="success" runat="server" name="success" class="alert alert-success  text-center" visible="false">
-            <label id="lblsuccessmodUser" class="text-success">La Factura se actualizó correctamente.</label>
+            <label id="lblsuccessmodUser" class="text-success"></label>
         </div>
 
-        <div class="row">
+<div class="row">
+  <div class="col-md-12">
+     <div class="panel panel-primary class">
+       <div class="panel-heading text-center">
+         <asp:Label ID="lblGestionMisCompras" runat="server" Text="Gestión Mis Compras" font-size="24px" CssClass="TituloPanel"></asp:Label>
+       </div>
+     </div>
+ </div>
+<br />
+<br />    
+         
+                                   
+</div>
+
+       <%-- Sección GRID--%>
+
             <div class="col-md-12">
-                <div class="panel panel-primary class">
-                    <div class="panel-heading text-center">
-                        <asp:Label ID="lblGestionFacturas" runat="server" Text="Gestión de Facturas" Font-Size="24px" CssClass="TituloPanel"></asp:Label>
-                    </div>
-                </div>
-            </div>
-
-            <br />
-            <br />
-            <div class="form-horizontal has-success col-md-12">
-                <div class="form-group">
-
-                    <%-- Sección Grid  --%>
-
-                    <div class="col-md-12">
                         <asp:GridView CssClass="table table-hover table-bordered table-responsive table-success " ID="gv_facturas" runat="server" AutoGenerateColumns="False" HorizontalAlign="Center" AllowPaging="true" PageSize="5" OnPageIndexChanging="gv_facturas_PageIndexChanging" RowStyle-Height="40px">
                             <HeaderStyle CssClass="thead-dark" />
                             <PagerTemplate>
@@ -53,7 +53,7 @@
                                 </div>
                             </PagerTemplate>
                             <Columns>
-                                <asp:BoundField DataField="ID" HeaderText="Numero" />
+                                <asp:BoundField DataField="ID" HeaderText="Numero Factura" />
                                 <asp:BoundField DataField="Cliente.NombreUsu" HeaderText="Cliente" />
                                 <asp:BoundField DataField="Fecha" HeaderText="Fecha" />
                                 <asp:BoundField DataField="MontoTotal" HeaderText="Monto" />
@@ -71,44 +71,15 @@
                         </asp:GridView>
                     </div>
 
-                    <%-- Sección Tabla Estado Compra  --%>
 
-                    <div id="respuesta" runat="server" class="form-horizontal has-success col-md-12 ">
-                        <div class="form-group">
-                            <asp:Label ID="lblestadocompra" runat="server" Text="Estado Compra:" CssClass="col-sm-3 control-label labelform"></asp:Label>
-                            <div class="col-md-7">
-                                <div class="input-group">
-                                    <asp:DropDownList ID="lstestadocompra" runat="server" CssClass="form-control" AutoPostBack="true" DataValueField="EstadoCompraEntidad" DataTextField="EstadoCompraEntidad"></asp:DropDownList>
-                                    <span class="input-group-addon" id="basic-addon10"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span></span>
-                                </div>
-
-                            </div>
-                        </div>
-                            <div id="envio" runat="server" class="form-group">
-                            <asp:Label ID="lblestadoenvio" runat="server" Text="Estado Envio:" CssClass="col-sm-3 control-label labelform"></asp:Label>
-                            <div class="col-md-7">
-                                <div class="input-group">
-                                    <asp:DropDownList ID="lstestadoenvio" runat="server" CssClass="form-control" AutoPostBack="true" DataValueField="EstadoEnvio" DataTextField="EstadoEnvio"></asp:DropDownList>
-                                    <span class="input-group-addon" id="basic-addon11"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span></span>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-4 col-md-offset-4">
-                                <asp:Button ClientIDMode="Static" ID="btnmodificar" name="btnmodificar" runat="server" Text="Modificar" CssClass="btn btn-lg btn-block btn-warning" />
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <br />
-        </div>
-    </div>
+    
 
 
-
-    <asp:HiddenField ID="id_usuario" runat="server" />
-
+      
+</div>
+   
+  
+   
 </asp:Content>
+
+

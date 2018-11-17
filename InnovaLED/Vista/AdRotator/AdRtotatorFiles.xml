@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Advertisements>
+  <Ad>
+    <ImageUrl>Imagenes/banner_auto.PNG</ImageUrl>
+    <NavigateUrl>http://www.simone.com.ar/</NavigateUrl>
+    <AlternateText>Guillermo Simone S.A</AlternateText>
+  </Ad>
+  <Ad>
+    <ImageUrl>Imagenes/banner_camion.PNG</ImageUrl>
+    <NavigateUrl>http://gps.uss.com.ar/</NavigateUrl>
+    <AlternateText>USS</AlternateText>
+  </Ad>
+  <Ad>
+    <ImageUrl>Imagenes/banner_despegar.PNG</ImageUrl>
+    <NavigateUrl>http://despegar.com</NavigateUrl>
+    <AlternateText>Despegar.Com</AlternateText>
+  </Ad>
+  <Ad>
+    <ImageUrl>Imagenes/banner_macro.PNG</ImageUrl>
+    <NavigateUrl>https://www.macro.com.ar/</NavigateUrl>
+    <AlternateText>Banco Macro</AlternateText>
+  </Ad>
+</Advertisements>
+
+

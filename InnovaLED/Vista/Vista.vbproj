@@ -107,6 +107,11 @@
   <ItemGroup>
     <Content Include="AccesoRestringido.aspx" />
     <Content Include="ActualizarStock.aspx" />
+    <Content Include="AdRotator\Imagenes\banner_auto.png" />
+    <Content Include="AdRotator\Imagenes\banner_camion.png" />
+    <Content Include="AdRotator\Imagenes\banner_despegar.png" />
+    <Content Include="AdRotator\Imagenes\banner_macro.png" />
+    <Content Include="AdRotator\AdRtotatorFiles.xml" />
     <Content Include="AgregarIdioma.aspx" />
     <Content Include="BitacoraAuditoria.aspx" />
     <Content Include="CambiarContraseña.aspx" />
@@ -156,6 +161,7 @@
     <Content Include="Catalogo.aspx" />
     <Content Include="cambiarpassword.aspx" />
     <Content Include="GestionarRespuestas.aspx" />
+    <Content Include="GestionarMisCompras.aspx" />
     <Content Include="Global.asax" />
     <Content Include="IMAGENES\amex.png" />
     <Content Include="IMAGENES\Arrow.png" />
@@ -179,6 +185,7 @@
     <Content Include="IMAGENES\faro.png" />
     <Content Include="IMAGENES\first.png" />
     <Content Include="IMAGENES\idea.png" />
+    <Content Include="IMAGENES\images.jpg" />
     <Content Include="IMAGENES\Lock.png" />
     <Content Include="IMAGENES\luz-led.png" />
     <Content Include="IMAGENES\mastercard.png" />
@@ -411,6 +418,13 @@
     <Compile Include="GestionarRespuestas.aspx.vb">
       <DependentUpon>GestionarRespuestas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionarMisCompras.aspx.designer.vb">
+      <DependentUpon>GestionarMisCompras.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionarMisCompras.aspx.vb">
+      <DependentUpon>GestionarMisCompras.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>

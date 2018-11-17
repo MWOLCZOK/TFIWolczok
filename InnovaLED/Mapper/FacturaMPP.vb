@@ -117,6 +117,29 @@ Public Class FacturaMPP
 
     End Function
 
+
+    Public Function TraerFacturasGestionPorUsuario(ByVal usu As UsuarioEntidad) As List(Of FacturaEntidad)
+        Try
+            Dim consulta As String = "Select * from Factura where  ID_Cliente=@ID_Cliente and BL=0"
+            Dim Command As SqlCommand = Acceso.MiComando(consulta)
+            With Command.Parameters
+                .Add(New SqlParameter("@ID_Cliente", usu.ID_Usuario))
+            End With
+            Dim dt As DataTable = Acceso.Lectura(Command)
+            Dim lista As New List(Of FacturaEntidad)
+            For Each _dr As DataRow In dt.Rows
+                Dim _factura As New FacturaEntidad
+                FormatearFactura(_factura, _dr)
+                lista.Add(_factura)
+            Next
+            Return lista
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+
+
     Private Sub FormatearCompraEntidad(facturadet As CompraEntidad, Row As DataRow)
         Try
             facturadet.ID = Row("ID_Fact_renglones")
