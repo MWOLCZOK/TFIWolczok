@@ -52,6 +52,16 @@
         End Set
     End Property
 
+    Private _fecha As DateTime
+    Public Property Fecha_Emision() As DateTime
+        Get
+            Return _fecha
+        End Get
+        Set(ByVal value As DateTime)
+            _fecha = value
+        End Set
+    End Property
+
     Private _bl As Boolean
     Public Property BL() As Boolean
         Get

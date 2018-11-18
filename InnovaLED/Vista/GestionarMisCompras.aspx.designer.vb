@@ -57,4 +57,31 @@ Partial Public Class GestionMisCompras
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents gv_facturas As Global.System.Web.UI.WebControls.GridView
+    
+    '''<summary>
+    '''Control gv_notas.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents gv_notas As Global.System.Web.UI.WebControls.GridView
+    
+    '''<summary>
+    '''Control lbltotalnotasCTitulo.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lbltotalnotasCTitulo As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Control lbltotalnotasC.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lbltotalnotasC As Global.System.Web.UI.WebControls.Label
 End Class

@@ -108,8 +108,8 @@ Public Class MasterPage
         Me.menuVertical.Items.Item(3).ChildItems.Add(New MenuItem("Gestión de Bitácora", "GestiondeBitacora", Nothing, "/BitacoraAuditoria.aspx"))
         Me.menuVertical.Items.Item(3).ChildItems.Add(New MenuItem("Gestionar Roles", "AgregarPerfil", Nothing, "/AgregarPerfil.aspx"))
         Me.menuVertical.Items.Item(3).ChildItems.Add(New MenuItem("Backup & Restore", "Backup&Restore", Nothing, "/Restore.aspx"))
-        Me.menuVertical.Items.Add(New MenuItem("Gestionar Mis Compras", "GestionarMisCompras"))
-        Me.menuVertical.Items.Item(4).ChildItems.Add(New MenuItem("Mis Compras", "GestionarMisCompras", Nothing, "/GestionarMisCompras.aspx"))
+        Me.menuVertical.Items.Add(New MenuItem("Mi Cuenta Corriente ", "MiCuentaCorriente"))
+        Me.menuVertical.Items.Item(4).ChildItems.Add(New MenuItem("Mi Cuenta Corriente", "MiCuentaCorriente", Nothing, "/GestionarMisCompras.aspx"))
 
 
     End Sub

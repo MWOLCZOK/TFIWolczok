@@ -7,12 +7,13 @@ Public Class DocumentoFinancieroMPP
 
     Public Function Alta(ByVal nota As DocumentoFinancieroEntidad) As Boolean
         Try
-            Dim Command As SqlCommand = Acceso.MiComando("insert into DocFinancieroEntidad (Descripcion,Monto,Tipo,ID_Usuario,BL) values (@Descripcion,@Monto,@Tipo,@ID_Usuario,@BL)")
+            Dim Command As SqlCommand = Acceso.MiComando("insert into DocFinancieroEntidad (Descripcion,Monto,Tipo,ID_Usuario,Fecha_Emision,BL) values (@Descripcion,@Monto,@Tipo,@ID_Usuario,@Fecha_Emision,@BL)")
             With Command.Parameters
                 .Add(New SqlParameter("@Descripcion", nota.Descripcion))
                 .Add(New SqlParameter("@Monto", nota.Monto))
                 .Add(New SqlParameter("@Tipo", nota.Tipo_Documento))
                 .Add(New SqlParameter("@ID_Usuario", nota.Usuario.ID_Usuario))
+                .Add(New SqlParameter("@Fecha_Emision", nota.Fecha_Emision))
                 .Add(New SqlParameter("@BL", False))
             End With
             Acceso.Escritura(Command)
@@ -55,6 +56,7 @@ Public Class DocumentoFinancieroMPP
             nc.Descripcion = row("Descripcion")
             nc.Monto = row("Monto")
             nc.Tipo_Documento = row("Tipo")
+            nc.Fecha_Emision = row("Fecha_Emision")
             nc.Usuario = (New Mapper.UsuarioMPP).BuscarUsuarioID(New Entidades.UsuarioEntidad With {.ID_Usuario = row("ID_Usuario")})
         Catch ex As Exception
             Throw ex
