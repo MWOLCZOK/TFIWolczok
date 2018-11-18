@@ -171,6 +171,7 @@ Public Class GestionarFacturas
 
     Protected Sub btnmodificar_Click(sender As Object, e As EventArgs) Handles btnmodificar.Click
         Dim Gestor As New Negocio.GestorFacturaBLL
+        Dim GestorNota As New GestorDocFinancieroBLL
         Try
 
             Dim IdiomaActual As Entidades.IdiomaEntidad
@@ -184,9 +185,15 @@ Public Class GestionarFacturas
                  fact.EstadoCompra = Me.lstestadocompra.SelectedValue
                 If Me.lstestadocompra.SelectedValue = 2 Then
                     fact.EstadoEnvio = 4
+                    Dim usuNota As UsuarioEntidad = fact.Cliente
+
+                    Dim nota As New DocumentoFinancieroEntidad("Nota Generada por Cancelación de factura", fact.MontoTotal, TipoDocumento.Positivo, usuNota, Now)
+                    GestorNota.Alta(nota)
                 Else
                     fact.EstadoEnvio = Me.lstestadoenvio.SelectedValue
                 End If
+
+
 
 
 

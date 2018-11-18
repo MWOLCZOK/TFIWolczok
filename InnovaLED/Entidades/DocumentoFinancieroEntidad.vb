@@ -73,5 +73,24 @@
     End Property
 
 
+    Sub New(ByRef descr As String, ByRef monto As Single, ByRef tipo As TipoDocumento, ByRef clie As UsuarioEntidad, ByRef fec As DateTime)
+        Me.Descripcion = descr
+        Me.Monto = monto
+        Me.Tipo_Documento = tipo
+        Me.Usuario = clie
+        Me.Fecha_Emision = Now
+
+    End Sub
+
+
+
+    Sub New()
+
+    End Sub
+
+
+
+
+
 
 End Class

@@ -5,14 +5,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 
-    <script type="text/javascript">
-        function resizeText(multiplier) {
-            if (document.body.style.fontSize == "") {
-                document.body.style.fontSize = "1.4em";
-            }           
-            document.body.style.fontSize = parseFloat(document.body.style.fontSize) + (multiplier * 0.4) + "em";
+   
+
+     <script type="text/javascript">
+        var zoom = 0;
+        function incFontSize() {
+            if (zoom < 4) {
+                zoom++;
+                console.log('incFontSize');
+                $('#container *').each(function () {
+                    var k = parseInt($(this).css('font-size'));
+                    var redSize = k + 1; //((k * 105) / 100);
+                    $(this).css('font-size', redSize);
+
+                });
+            }
         }
+        function decFontSize() {
+            if (zoom > 0) {
+                zoom--;
+                $('#container *').each(function () {
+                    var k = parseInt($(this).css('font-size'));
+                    var redSize = k - 1; //((k * 95) / 100);
+                    $(this).css('font-size', redSize);
+
+                });
+            }
+        }
+
     </script>
+
 
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -39,23 +61,37 @@
 
 
 
+
 </head>
 <body>
+
+
+     <script type="text/javascript">
+        function resizeText(multiplier) {
+            if (document.body.style.fontSize == "") {
+                document.body.style.fontSize = "1.4em";
+            }           
+            document.body.style.fontSize = parseFloat(document.body.style.fontSize) + (multiplier * 0.4) + "em";
+        }
+    </script>
+
+
+    <asp:Label ID="Label3" onclick="resizeText(1)" runat="server" Text="A+"></asp:Label>
+                 <asp:Label ID="Label4"  onclick="resizeText(-1)" runat="server" Text="A-"></asp:Label>
+
+
+
     <form id="Master" runat="server">
-      <%--  <ul>
 
-        <li><a href="#" onclick="resizeText(1)"><label style="font-size:large;">A+</label></a></li>
-        <li><a href="#" onclick="resizeText(-1)"><label style="font-size:smaller;">A-</label></a></li>
-        
-        </ul>--%>            
+       
 
 
-<div class="container-fluid FondoPagina">
-              <%--<asp:Label ID="Label3"  style="font-size:large;" onclick="resizeText(1)" runat="server" Text="A+"></asp:Label>
-            <asp:Label ID="Label4" style="font-size:smaller;" onclick="resizeText(-1)" runat="server" Text="A-"></asp:Label>--%>
+<div class="container-fluid FondoPagina">   
+     <div class="row">
+                
+        </div>
 
   
-
    <div class="row fondoGris Blanco bordeImagen">          
                      
       <div id="NoLogueo" runat="server" name="NoLogueado" class="row col-md-4 col-md-offset-8">
@@ -77,6 +113,7 @@
                 </div>
                 <asp:Image ID="LogoMenu" runat="server" ImageUrl="Imagenes/banner1.jpg" CssClass="img-responsive" />
 
+                
 
             </div>
         </div>
@@ -96,6 +133,8 @@
 
         <div class="row fondoClaro Blanco bordeMenu">
             <div class="col-md-12 MenuFrente">
+            
+
                 <asp:Menu ID="Menu" runat="server" Orientation="Horizontal" Font-Size="16px" ForeColor="#FFFFFF" Height="30px">
                     <StaticSelectedStyle BackColor="#FFFFFF" />
 
@@ -113,6 +152,10 @@
                     <DynamicSelectedStyle BackColor="#F7F9F9" />
 
                     <DynamicMenuItemStyle HorizontalPadding="10px" VerticalPadding="7px" />
+
+                   
+
+
                 </asp:Menu>
             </div>
         </div>
@@ -153,6 +196,8 @@
                     <asp:Label ID="lblcopyright" runat="server" Text="Trabajo Final de Ingenieria - Wolczok - 2018"></asp:Label>
                     <asp:AdRotator AdvertisementFile="~/AdRotator/AdRtotatorFiles.xml"  runat="server" CssClass="publicidad">
                     </asp:AdRotator>
+
+                   
 
                 </div>
             </div>
