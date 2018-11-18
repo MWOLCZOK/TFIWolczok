@@ -64,23 +64,25 @@ Public Class DocumentoFinancieroMPP
     End Sub
 
 
-    Public Function Eliminar(ByRef nc As DocumentoFinancieroEntidad) As Boolean
+    Public Function Eliminar(ByRef notas As List(Of DocumentoFinancieroEntidad)) As Boolean
         Try
-            Dim Command As SqlCommand = Acceso.MiComando("Update DocFinancieroEntidad Set BL=@BL where ID_Usuario= @ID_Usuario")
-            Dim ListaParametros As New List(Of String)
+            For Each _nota As DocumentoFinancieroEntidad In notas
 
-            With Command.Parameters
-                .Add(New SqlParameter("@BL", True))
-                .Add(New SqlParameter("@ID_Usuario", nc.Usuario.ID_Usuario))
+                Dim Command As SqlCommand = Acceso.MiComando("Update DocFinancieroEntidad Set BL=@BL where ID_Doc= @ID_Doc")
+                Dim ListaParametros As New List(Of String)
 
-            End With
-            Acceso.Escritura(Command)
-            Command.Dispose()
+                With Command.Parameters
+                    .Add(New SqlParameter("@BL", True))
+                    .Add(New SqlParameter("@ID_Doc", _nota.ID))
 
+                End With
+                Acceso.Escritura(Command)
+                Command.Dispose()
+            Next
             Return True
         Catch ex As Exception
             Throw ex
-        End Try
+            End Try
     End Function
 
 

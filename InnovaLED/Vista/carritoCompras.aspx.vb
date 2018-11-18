@@ -169,15 +169,39 @@ Public Class carritoCompras
 
             Dim factura As New FacturaEntidad(cli, listcompra, listnota, Now, 1)
             Dim GestorFacturaBLL As New GestorFacturaBLL
+            Dim GestorNotaCred As New GestorDocFinancieroBLL
+
 
             If listnota.Count > 0 Then
                 If Session("totalApagar") <= Session("notasSeleccionadasTotal") Then
                     'paga con nota credito
-                    GestorFacturaBLL.GenerarFactura(factura)
+
+                    Dim Tot As Single = 0
+                    Dim notasSelec As Single = 0
+                    Dim Res As Single = 0
+
+                    Tot = Session("totalApagar")
+                    notasSelec = Session("notasSeleccionadasTotal")
+                    Res = Tot - notasSelec
+                    Res = Res * (-1)
+                    If Res > 0 Then
+
+
+                        Dim notaCred As New DocumentoFinancieroEntidad("Nota de Credito generada en la compra por diferencia a favor", Res, TipoDocumento.Positivo, cli, Now)
+
+                        GestorNotaCred.Alta(notaCred)
+
+                    Else
+
+                        GestorNotaCred.Eliminar(listnota)
+
+
+                        GestorFacturaBLL.GenerarFactura(factura)
                     Dim pago As New PagoEntidad(factura, Now, Tipo_PagoEntidad.Nota_Credito)
                     Dim GestorPagoBLL As New GestorPagoBLL
                     GestorPagoBLL.Alta(pago, listnota)
 
+                    End If
                 Else
                     'paga mixto
                     If ValidarCampos() = True And validarFecha() = True Then

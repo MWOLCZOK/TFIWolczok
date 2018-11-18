@@ -17,6 +17,10 @@ Public Class GestorDocFinancieroBLL
         Return documentoMPP.Alta(nota)
     End Function
 
+    Public Function Eliminar(ByVal nota As List(Of DocumentoFinancieroEntidad)) As Boolean
+        Return documentoMPP.Eliminar(nota)
+    End Function
+
 
 
 
