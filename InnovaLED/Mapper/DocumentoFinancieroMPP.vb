@@ -1,13 +1,15 @@
 ﻿Imports System.Data.SqlClient
 Imports Entidades
 Imports DAL
-
+Imports System.IO
+Imports System.Web.HttpContext
+Imports System.Web
 
 Public Class DocumentoFinancieroMPP
 
     Public Function Alta(ByVal nota As DocumentoFinancieroEntidad) As Boolean
         Try
-            Dim Command As SqlCommand = Acceso.MiComando("insert into DocFinancieroEntidad (Descripcion,Monto,Tipo,ID_Usuario,Fecha_Emision,BL) values (@Descripcion,@Monto,@Tipo,@ID_Usuario,@Fecha_Emision,@BL)")
+            Dim Command As SqlCommand = Acceso.MiComando("insert into DocFinancieroEntidad (Descripcion,Monto,Tipo,ID_Usuario,Fecha_Emision,BL) OUTPUT INSERTED.ID_Doc values (@Descripcion,@Monto,@Tipo,@ID_Usuario,@Fecha_Emision,@BL)")
             With Command.Parameters
                 .Add(New SqlParameter("@Descripcion", nota.Descripcion))
                 .Add(New SqlParameter("@Monto", nota.Monto))
@@ -16,7 +18,10 @@ Public Class DocumentoFinancieroMPP
                 .Add(New SqlParameter("@Fecha_Emision", nota.Fecha_Emision))
                 .Add(New SqlParameter("@BL", False))
             End With
-            Acceso.Escritura(Command)
+            nota.ID = Acceso.Scalar(Command)
+            generarComprobanteNotaCredito("Factura-NC", nota, Now)
+
+            'Acceso.Escritura(Command)
             Return True
         Catch ex As Exception
             Throw ex
@@ -82,8 +87,43 @@ Public Class DocumentoFinancieroMPP
             Return True
         Catch ex As Exception
             Throw ex
-            End Try
+        End Try
     End Function
+
+
+    Public Shared Sub generarComprobanteNotaCredito(ByRef comprobante As String, ByRef nota As DocumentoFinancieroEntidad, fecha As DateTime)
+        Dim Renderer = New IronPdf.HtmlToPdf()
+        Dim FilePath As String = HttpContext.Current.Server.MapPath("~") & "FacturTem\NotaCredito.html"
+        Dim str = New StreamReader(FilePath)
+        Dim body = str.ReadToEnd()
+
+        body = body.Replace("{notaID}", nota.ID)
+        body = body.Replace("{comprobante}", comprobante)
+        body = body.Replace("{fecha}", fecha)
+        body = body.Replace("{cliente}", nota.Usuario.Nombre)
+        body = body.Replace("{Apellido}", " " & nota.Usuario.Apellido)
+
+
+        body = body.Replace("{NotaCreditoDescripcion}", nota.Descripcion)
+
+        body = body.Replace("{subtotal}", nota.Monto)
+
+
+        body = body.Replace("{totalnota}", nota.Monto)
+
+        Dim name_comprobante = comprobante & "_" & Right("0000" & nota.ID, 4)
+        Dim name = "Facturas\" & name_comprobante & ".pdf"
+
+        Dim PDF = Renderer.RenderHtmlAsPdf(body)
+        Dim OutputPath = HttpContext.Current.Server.MapPath("~") & name
+        PDF.SaveAs(OutputPath)
+
+        ' SendMail(BLL.Usuario.current.email, name_comprobante, body)
+
+
+    End Sub
+
+
 
 
 

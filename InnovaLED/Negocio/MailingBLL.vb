@@ -87,7 +87,6 @@ Public Class MailingBLL
             Next
             Correo.Subject = _paramBoletin.Nombre
             Correo.Body = System.IO.File.ReadAllText(HttpContext.Current.Server.MapPath("EmailTemplates/Cambio_Contraseña.html"))
-            'Correo.Body.Replace("{game-console}", _paramBoletin.Imagen)
             Correo.Priority = System.Net.Mail.MailPriority.Normal
             Dim smtp As New System.Net.Mail.SmtpClient
             smtp.Host = "smtp.gmail.com"
@@ -115,6 +114,7 @@ Public Class MailingBLL
             'Correo.From = New System.Net.Mail.MailAddress("innovaled.company@gmail.com", "Innova LED") esta línea la comentamos porque ya la toma desde el WEBCONFIG
 
             Correo.To.Add(usu.Mail)
+
             Correo.Subject = "Cambio de Contraseña - Innova LED"
             Correo.Body = System.IO.File.ReadAllText(HttpContext.Current.Server.MapPath("EmailTemplates/Cambio_Contraseña.html"))
             Correo.Priority = System.Net.Mail.MailPriority.Normal

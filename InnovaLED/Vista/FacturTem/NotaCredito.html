@@ -92,16 +92,12 @@
                                             Razón Social: Innova LED<br />
                                             <br />
 
-                                            <label>Número de Factura: {FactID}</label>
+                                            <label>Número de Nota Credito: {notaID}</label>
                                             <br />
                                             <br />
                                             Fecha de emisión: {fecha} 
                                         <br />
-                                        <br />
-                                        Método de Pago: {metodoPago} 
-                                        <br />
-                                        <br />
-                                        {NCid}                               
+                                        <br />                                                                 
                                     </h4>
                                 </td>
                             </tr>
@@ -121,15 +117,15 @@
                 </tr>
                 <tr class="top">
                     <!--<td class="auto-style7">{cantidad}</td>-->
-                    <td class="auto-style6">{producto}</td>
+                    <td class="auto-style6">{NotaCreditoDescripcion}</td>
                    
-                    <td class="auto-style7">{subtotal}</td>
+                    <td class="auto-style7">AR$ {subtotal}</td>
 
                    
                 </tr>
                 <tr class="top">
                     <td class="auto-style8">Importe total:</td>
-                    <td class="auto-style9">AR$ {totalfac}</td>
+                    <td class="auto-style9">AR$ {totalnota}</td>
                 </tr>
             </table>
 

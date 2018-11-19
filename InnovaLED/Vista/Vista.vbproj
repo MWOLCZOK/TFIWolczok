@@ -153,6 +153,7 @@
     <Content Include="Encuesta.aspx" />
     <Content Include="EncuestaGlobal.aspx" />
     <Content Include="FacturTem\Factura.html" />
+    <Content Include="FacturTem\NotaCredito.html" />
     <Content Include="Faqs.aspx" />
     <Content Include="Fonts\fontawesome-webfont.svg" />
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />

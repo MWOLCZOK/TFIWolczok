@@ -192,7 +192,6 @@ Public Class carritoCompras
                         Dim notaCred As New DocumentoFinancieroEntidad("Nota de Credito generada en la compra por diferencia a favor", Res, TipoDocumento.Positivo, cli, Now)
 
                         GestorNotaCred.Alta(notaCred)
-
                     Else
                         'sino sigo y elimino la nota de credito usada
                         GestorNotaCred.Eliminar(listnota)
@@ -546,7 +545,7 @@ Public Class carritoCompras
         If nc = "nada" Then
             body = body.Replace("{NCid}", " ")
         Else
-            body = body.Replace("{NCid}", "N.C N°" & nc)
+            body = body.Replace("{NCid}", "Nota de Crédito N°" & nc)
 
         End If
 
@@ -590,7 +589,6 @@ Public Class carritoCompras
         ' SendMail(BLL.Usuario.current.email, name_comprobante, body)
 
     End Sub
-
 
 
 
