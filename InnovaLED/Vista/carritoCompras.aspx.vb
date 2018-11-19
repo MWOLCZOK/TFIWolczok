@@ -1,6 +1,8 @@
 ﻿Imports Entidades
 Imports Negocio
 Imports System.Web.HttpContext
+Imports System.IO
+
 
 
 
@@ -185,14 +187,14 @@ Public Class carritoCompras
                     Res = Tot - notasSelec
                     Res = Res * (-1)
                     If Res > 0 Then
-
+                        'Si hay diferente con la nota de credito que pago, creo una nueva por el monto sobrante
 
                         Dim notaCred As New DocumentoFinancieroEntidad("Nota de Credito generada en la compra por diferencia a favor", Res, TipoDocumento.Positivo, cli, Now)
 
                         GestorNotaCred.Alta(notaCred)
 
                     Else
-
+                        'sino sigo y elimino la nota de credito usada
                         GestorNotaCred.Eliminar(listnota)
 
 
@@ -219,6 +221,7 @@ Public Class carritoCompras
                     pago.TipoPago = Tipo_PagoEntidad.Tarjeta_Credito
                     Dim GestorPagoBLL As New GestorPagoBLL
                     GestorPagoBLL.Alta(pago)
+                    generarComprobante("Factura", factura, cli, Now, listcompra)
                 End If
             End If
 
@@ -229,10 +232,6 @@ Public Class carritoCompras
 
         End Try
         Response.Redirect("Encuesta.aspx")
-
-        Me.success.Visible = True
-        Me.success.InnerText = "¡ Su compra ha sido procesada exitosamente !"
-
 
     End Sub
 
@@ -526,22 +525,60 @@ Public Class carritoCompras
     End Function
 
 
-    'Borrar!
 
-    'Public Function ValidarDiferenciaNotaC()
-    '    Dim varTotal As Single
-    '    varTotal = Session("totalApagar")
-    '    Dim varNotasSeleccionadas As Single
-    '    varNotasSeleccionadas = Session("notasSeleccionadasTotal")
-    '    If varTotal < varNotasSeleccionadas Then
-    '        txtdescripnota.Visible = True
-    '    Else
-    '        txtdescripnota.Visible = False
-    '    End If
+    Public Shared Sub generarComprobante(ByRef comprobante As String, ByRef fact As FacturaEntidad, ByRef clie As UsuarioEntidad, fecha As DateTime, detFac As List(Of CompraEntidad), Optional nc As String = "nada")
+        Dim Renderer = New IronPdf.HtmlToPdf()
+        Dim FilePath As String = HttpContext.Current.Server.MapPath("~") & "FacturTem\factura.html"
+        Dim str = New StreamReader(FilePath)
+        Dim body = str.ReadToEnd()
 
-    '    Return True
+        'If nc = "nada" Then
+        '    body = body.Replace("{NCs}", "No se utilizaron NC")
+        'Else
+        '    body = body.Replace("{NCs}", "N.C N°" & nc)
 
-    'End Function
+        'End If
+
+        Dim total As String
+
+        total = fact.MontoTotal
+
+
+        body = body.Replace("{NCs}", fact.ID)
+        body = body.Replace("{comprobante}", comprobante)
+        body = body.Replace("{fecha}", fecha)
+        body = body.Replace("{cliente}", clie.Nombre)
+        body = body.Replace("{Apellido}", " " & clie.Apellido)
+
+
+
+        Dim prodyscants As String
+        Dim montos As String
+        For Each itemDetfac As CompraEntidad In detFac
+            prodyscants += itemDetfac.Producto.Marca + " " + itemDetfac.Producto.Modelo + "     Cant: " + itemDetfac.Cantidad.ToString + "<br />"
+            montos += "AR$ " & itemDetfac.Subtotal.ToString + "<br />"
+        Next
+
+
+        body = body.Replace("{producto}", prodyscants)
+
+
+
+        body = body.Replace("{subtotal}", montos)
+
+
+        body = body.Replace("{totalfac}", total)
+
+        Dim name_comprobante = comprobante & "_" & Right("0000" & fact.ID, 4)
+        Dim name = "Facturas\" & name_comprobante & ".pdf"
+
+        Dim PDF = Renderer.RenderHtmlAsPdf(body)
+        Dim OutputPath = HttpContext.Current.Server.MapPath("~") & name
+        PDF.SaveAs(OutputPath)
+
+        ' SendMail(BLL.Usuario.current.email, name_comprobante, body)
+
+    End Sub
 
 
 
