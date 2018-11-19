@@ -201,7 +201,13 @@ Public Class carritoCompras
                         GestorFacturaBLL.GenerarFactura(factura)
                     Dim pago As New PagoEntidad(factura, Now, Tipo_PagoEntidad.Nota_Credito)
                     Dim GestorPagoBLL As New GestorPagoBLL
-                    GestorPagoBLL.Alta(pago, listnota)
+                        GestorPagoBLL.Alta(pago, listnota)
+
+                        Dim LongString As String
+                        For Each _nota As DocumentoFinancieroEntidad In listnota
+                            LongString += _nota.ID & ","
+                        Next
+                        generarComprobante("Factura", factura, cli, Now, listcompra, "Nota de Crédito", LongString)
 
                     End If
                 Else
@@ -211,6 +217,11 @@ Public Class carritoCompras
                         Dim pago As New PagoEntidad(factura, Now, Tipo_PagoEntidad.Mixto)
                         Dim GestorPagoBLL As New GestorPagoBLL
                         GestorPagoBLL.Alta(pago, listnota)
+                        Dim LongString As String
+                        For Each _nota As DocumentoFinancieroEntidad In listnota
+                            LongString += _nota.ID & ","
+                        Next
+                        generarComprobante("Factura", factura, cli, Now, listcompra, "Tarjeta de crédito y Nota de Crédito", LongString)
                     End If
                 End If
             Else
@@ -221,7 +232,7 @@ Public Class carritoCompras
                     pago.TipoPago = Tipo_PagoEntidad.Tarjeta_Credito
                     Dim GestorPagoBLL As New GestorPagoBLL
                     GestorPagoBLL.Alta(pago)
-                    generarComprobante("Factura", factura, cli, Now, listcompra)
+                    generarComprobante("Factura", factura, cli, Now, listcompra, "Tarjeta de crédito")
                 End If
             End If
 
@@ -526,25 +537,25 @@ Public Class carritoCompras
 
 
 
-    Public Shared Sub generarComprobante(ByRef comprobante As String, ByRef fact As FacturaEntidad, ByRef clie As UsuarioEntidad, fecha As DateTime, detFac As List(Of CompraEntidad), Optional nc As String = "nada")
+    Public Shared Sub generarComprobante(ByRef comprobante As String, ByRef fact As FacturaEntidad, ByRef clie As UsuarioEntidad, fecha As DateTime, detFac As List(Of CompraEntidad), ByRef tipoPago As String, Optional nc As String = "nada")
         Dim Renderer = New IronPdf.HtmlToPdf()
         Dim FilePath As String = HttpContext.Current.Server.MapPath("~") & "FacturTem\factura.html"
         Dim str = New StreamReader(FilePath)
         Dim body = str.ReadToEnd()
 
-        'If nc = "nada" Then
-        '    body = body.Replace("{NCs}", "No se utilizaron NC")
-        'Else
-        '    body = body.Replace("{NCs}", "N.C N°" & nc)
+        If nc = "nada" Then
+            body = body.Replace("{NCid}", " ")
+        Else
+            body = body.Replace("{NCid}", "N.C N°" & nc)
 
-        'End If
+        End If
 
         Dim total As String
 
         total = fact.MontoTotal
 
-
-        body = body.Replace("{NCs}", fact.ID)
+        body = body.Replace("{metodoPago}", tipoPago)
+        body = body.Replace("{FactID}", fact.ID)
         body = body.Replace("{comprobante}", comprobante)
         body = body.Replace("{fecha}", fecha)
         body = body.Replace("{cliente}", clie.Nombre)
