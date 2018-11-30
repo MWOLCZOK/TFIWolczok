@@ -162,36 +162,63 @@
       </div>--%>
                 </div>
 
-                <div id="pregunta" runat="server" class="row col-md-12">
+                <div id="pregunta" runat="server" class="col-md-6">
                     <br />
                     <br />
-                    <div class="col-md-6">
-                        <textarea class="form-control" rows="5" id="txt_consulta" runat="server"></textarea>
-
+                    <div class="col-md-9">
+                        <textarea class="form-control" rows="8" id="txt_consulta" runat="server"></textarea>
                     </div>
                     <div class="col-md-2">
                         <asp:Button ID="btn_consultar" runat="server" Text="Preguntar" type="button" class="btn btn-info btn-lg "></asp:Button>
                     </div>
 
-                </div>
+
                     <div class="row col-md-12">
                         <br />
-                    <br />
-                    <br />
+                        <br />
+                        <br />
                     </div>
-                <div class="row col-md-6">
                     <div id="Comentarios" runat="server">
-
                     </div>
                     <br />
                     <br />
                     <br />
                     <br />
                 </div>
+                <div id="valoracion" runat="server" class=" col-md-6">
+                    <br />
+                    <h3>Valoración</h3>
+                    <div id="valorarocultado" runat="server">
+                        <asp:ImageButton runat="server" ID="star1" ImageUrl="IMAGENES/1starblack.png" Height="55" />
+                        <asp:ImageButton runat="server" ID="star2" ImageUrl="IMAGENES/2starblack.png" Height="55" />
+                        <asp:ImageButton runat="server" ID="star3" ImageUrl="IMAGENES/3starblack.png" Height="55" />
+                        <asp:ImageButton runat="server" ID="star4" ImageUrl="IMAGENES/4starblack.png" Height="55" />
+                        <asp:ImageButton runat="server" ID="star5" ImageUrl="IMAGENES/5starblack.png" Height="55" />
+                        <div class="col-md-12 row">
+                            <textarea class="form-control" rows="5" id="txt_valoracion" runat="server"></textarea>
+                        </div>
 
+                        <div class="col-md-2 row">
+                            <br />
+                            <asp:Button ID="btn_valoracion" runat="server" Text="Valorar" type="button" class="btn btn-info btn-lg "></asp:Button>
+                        </div>
+
+                        <div class="row col-md-12">
+                            <br />
+                            <br />
+                            <br />
+                        </div>
+                    </div>
+                    <div id="valoraciones" runat="server">
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                </div>
             </div>
-</div>
+        </div>
 
 
-            <asp:HiddenField ID="ID_Producto" runat="server" />
+        <asp:HiddenField ID="ID_Producto" runat="server" />
 </asp:Content>

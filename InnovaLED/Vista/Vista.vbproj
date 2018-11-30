@@ -169,6 +169,16 @@
     <Content Include="GestionarRespuestas.aspx" />
     <Content Include="GestionarMisCompras.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="IMAGENES\1starblack.png" />
+    <Content Include="IMAGENES\1stargold.png" />
+    <Content Include="IMAGENES\2starblack.png" />
+    <Content Include="IMAGENES\2stargold.png" />
+    <Content Include="IMAGENES\3starblack.png" />
+    <Content Include="IMAGENES\3stargold.png" />
+    <Content Include="IMAGENES\4starblack.png" />
+    <Content Include="IMAGENES\4stargold.png" />
+    <Content Include="IMAGENES\5starblack.png" />
+    <Content Include="IMAGENES\5stargold.png" />
     <Content Include="IMAGENES\amex.png" />
     <Content Include="IMAGENES\Arrow.png" />
     <Content Include="IMAGENES\banner1.jpg" />
