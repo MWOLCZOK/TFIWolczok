@@ -42,23 +42,4 @@
     End Property
 
 
-
-
-
-
-    'Private _montototal As Single
-    'Public ReadOnly Property MontoTotal() As Single
-    '    Get
-    '        Dim sum As Single
-    '        For Each _subt In Me.DetalleFactura
-    '            sum += _subt.Subtotal
-    '        Next
-    '        Return sum
-    '    End Get
-
-    'End Property
-
-
-
-
 End Class

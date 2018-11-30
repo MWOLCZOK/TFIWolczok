@@ -536,7 +536,7 @@ Public Class carritoCompras
 
 
 
-    Public Shared Sub generarComprobante(ByRef comprobante As String, ByRef fact As FacturaEntidad, ByRef clie As UsuarioEntidad, fecha As DateTime, detFac As List(Of CompraEntidad), ByRef tipoPago As String, Optional nc As String = "nada")
+    Private Sub generarComprobante(ByRef comprobante As String, ByRef fact As FacturaEntidad, ByRef clie As UsuarioEntidad, fecha As DateTime, detFac As List(Of CompraEntidad), ByRef tipoPago As String, Optional nc As String = "nada")
         Dim Renderer = New IronPdf.HtmlToPdf()
         Dim FilePath As String = HttpContext.Current.Server.MapPath("~") & "FacturTem\factura.html"
         Dim str = New StreamReader(FilePath)
@@ -586,10 +586,19 @@ Public Class carritoCompras
         Dim OutputPath = HttpContext.Current.Server.MapPath("~") & name
         PDF.SaveAs(OutputPath)
 
+        EnviarMail(clie, OutputPath)
+
+
         ' SendMail(BLL.Usuario.current.email, name_comprobante, body)
 
     End Sub
+    Private Sub EnviarMail(usu As UsuarioEntidad, PDF As String)
+        Dim body As String = System.IO.File.ReadAllText(HttpContext.Current.Server.MapPath("EmailTemplates/Cambio_Contraseña.html"))
+        Dim ruta As String = HttpContext.Current.Server.MapPath("Imagenes")
+        Dim ur As Uri = Request.Url
+        Negocio.MailingBLL.enviarMailFactura(body, ruta, usu, PDF)
 
+    End Sub
 
 
 

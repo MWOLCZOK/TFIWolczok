@@ -52,7 +52,7 @@
 
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <asp:Label ID="lblusuario" runat="server" Text="Usuario:" CssClass="control-label labelform"></asp:Label>
                                 <div class="input-group">
                                     <asp:DropDownList ID="lstusuarios" runat="server" CssClass="form-control" AutoPostBack="true" DataValueField="ID_Usuario" DataTextField="NombreUsu"></asp:DropDownList>

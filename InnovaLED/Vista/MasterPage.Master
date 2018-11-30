@@ -184,10 +184,12 @@
 
 
             </div>
+
             <div id="miContenidoPagina" runat="server" class="col-md-10">
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
             </div>
         </div>
+
         <div class="row Azul lineaCopyright"></div>
         <div class="row Azul MenuFrente">
             <br />

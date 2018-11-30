@@ -193,10 +193,6 @@ Public Class GestionarFacturas
                     fact.EstadoEnvio = Me.lstestadoenvio.SelectedValue
                 End If
 
-
-
-
-
                 If Gestor.ModificarFactura(fact) Then
                     '    Dim clienteLogeado As Entidades.UsuarioEntidad = Current.Session("cliente")
                     '    Dim Bitac As New Bitacora(Usuario, "El usuario " & Usuario.NombreUsu & " Se modificó correctamente", Tipo_Bitacora.Modificacion, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)

@@ -129,6 +129,35 @@ Public Class MailingBLL
         End Try
     End Sub
 
+    Public Shared Sub enviarMailFactura(ByVal body As String, ByVal ruta As String, usu As UsuarioEntidad, ByVal PDF As String)
+        Try
+            Dim Correo As New System.Net.Mail.MailMessage()
+            Correo.Attachments.Add(New Attachment(ruta & "\twitter.png") With {.ContentId = "twitter"})
+            Correo.Attachments.Add(New Attachment(ruta & "\bulb.png") With {.ContentId = "logo"})
+            Correo.Attachments.Add(New Attachment(ruta & "\Email_Lock_Recupero.png") With {.ContentId = "game-console"})
+            Correo.Attachments.Add(New Attachment(ruta & "\facebook.png") With {.ContentId = "facebook"})
+            Correo.Attachments.Add(New Attachment(ruta & "\blue.png") With {.ContentId = "lkdn"})
+            Correo.Attachments.Add(New Attachment(ruta & "\red.png") With {.ContentId = "pint"})
+
+            Correo.Attachments.Add(New Attachment(ruta & "\bannermail.jpg") With {.ContentId = "banner"})
+            Correo.Attachments.Add(New Attachment(PDF))
+            Correo.IsBodyHtml = True
+            Correo.To.Add(usu.Mail)
+            Correo.Subject = "Recupero de contraseña de Usuario - InnovaLED"
+            Correo.Body = body
+            Correo.Priority = System.Net.Mail.MailPriority.Normal
+            Dim smtp As New System.Net.Mail.SmtpClient
+            smtp.Port = 587
+            smtp.Credentials = New System.Net.NetworkCredential("innovaled.company@gmail.com", EncriptarBLL.Desencriptar("DE7F5F9AB2626DD9F622DDF9E9FA2EC5"))
+            smtp.EnableSsl = True
+            smtp.Send(Correo)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+
+
 
 
 

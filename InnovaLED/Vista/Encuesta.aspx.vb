@@ -80,11 +80,16 @@ Public Class Encuesta
                     GestorPreguntaOpinion.InsertarRespuesta(_resp)
                 Next
 
-                Response.Redirect("Default.aspx", False)
+                Me.success.InnerText = "Muchas gracias por realizar la encuesta. Será redireccionado al Home."
+                'Response.Redirect("Default.aspx", False)
+                Response.AddHeader("REFRESH", "5;URL=Default.aspx")
+
             Else
                 Me.alertvalid.InnerText = "Debe completar todos los campos"
                 Me.alertvalid.Visible = True
             End If
+
+            Session("carrito") = Nothing
 
         Catch ex As Exception
             Throw ex

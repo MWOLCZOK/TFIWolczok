@@ -12,6 +12,7 @@ Public Class GestionMisCompras
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not IsPostBack Then
             Try
+                Session("FactCanceladaSeleccionada") = New List(Of FacturaEntidad)
                 CargarFacturas()
                 CargarNotasCredito()
                 SumarNotasC()
@@ -21,6 +22,8 @@ Public Class GestionMisCompras
 
         End If
     End Sub
+
+    Dim FacturaBLL As New GestorFacturaBLL
 
 
     Private Sub CargarFacturas()
@@ -71,6 +74,12 @@ Public Class GestionMisCompras
                 IdiomaActual = Application(TryCast(Current.Session("Cliente"), Entidades.UsuarioEntidad).Idioma.Nombre)
             End If
             For Each row As GridViewRow In gv_facturas.Rows
+                If row.Cells(4).Text = "Rechazado" Then
+                    row.Cells(6).Visible = False
+                ElseIf row.Cells(5).Text = "PendienteCancelacion" Then
+                    row.Cells(6).Visible = False
+                End If
+
                 Dim imagen1 As System.Web.UI.WebControls.ImageButton = DirectCast(row.FindControl("btn_Seleccionar"), System.Web.UI.WebControls.ImageButton)
 
                 imagen1.CommandArgument = row.RowIndex
@@ -86,12 +95,49 @@ Public Class GestionMisCompras
                 '.Cells(6).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "HeaderAcciones").Traduccion
             End With
 
+
             gv_facturas.BottomPagerRow.Visible = True
             gv_facturas.BottomPagerRow.CssClass = "table-bottom-dark"
         Catch ex As Exception
 
         End Try
 
+    End Sub
+
+    Private Sub gv_facturas_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles gv_facturas.RowCommand
+
+        Try
+            Dim IdiomaActual As Entidades.IdiomaEntidad
+            If IsNothing(Current.Session("Cliente")) Then
+                IdiomaActual = Application("Español")
+            Else
+                IdiomaActual = Application(TryCast(Current.Session("Cliente"), Entidades.UsuarioEntidad).Idioma.Nombre)
+            End If
+
+            Select Case e.CommandName.ToString
+                Case "S"
+                    Dim fact As FacturaEntidad = TryCast(Session("FacturasUsuario"), List(Of FacturaEntidad))(e.CommandArgument + (gv_facturas.PageIndex * gv_facturas.PageSize))
+                    If TryCast(Session("FactCanceladaSeleccionada"), List(Of FacturaEntidad)).Any(Function(p) p.ID = fact.ID) Then
+                        TryCast(Session("FactCanceladaSeleccionada"), List(Of FacturaEntidad)).Remove(fact)
+                        Dim imagen1 As System.Web.UI.WebControls.ImageButton = DirectCast(gv_facturas.Rows.Item(e.CommandArgument).FindControl("btn_seleccionar"), System.Web.UI.WebControls.ImageButton) ' aca hace referencia al boton de la grilla.
+                        imagen1.ImageUrl = "~/Imagenes/check.png"
+                        gv_facturas.Rows.Item(e.CommandArgument).BackColor = Drawing.Color.FromName("#c3e6cb")
+                    Else
+                        TryCast(Session("FactCanceladaSeleccionada"), List(Of FacturaEntidad)).Add(fact)
+                        gv_facturas.Rows.Item(e.CommandArgument).BackColor = Drawing.Color.SkyBlue
+                        Dim imagen1 As System.Web.UI.WebControls.ImageButton = DirectCast(gv_facturas.Rows.Item(e.CommandArgument).FindControl("btn_seleccionar"), System.Web.UI.WebControls.ImageButton)
+                        imagen1.ImageUrl = "~/Imagenes/clear.png"
+                    End If
+                    If TryCast(Session("FactCanceladaSeleccionada"), List(Of FacturaEntidad)).Count > 0 Then
+                        btn_cancelacion.Visible = True
+                    Else
+                        btn_cancelacion.Visible = False
+                    End If
+
+            End Select
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Protected Sub gv_facturas_PageIndexChanging(sender As Object, e As GridViewPageEventArgs)
@@ -240,18 +286,17 @@ Public Class GestionMisCompras
 
     End Function
 
+    Protected Sub btn_cancelacion_Click(sender As Object, e As EventArgs) Handles btn_cancelacion.Click
 
+        Dim factlist As List(Of FacturaEntidad)
+        factlist = Session("FactCanceladaSeleccionada")
 
+        For Each _fact As FacturaEntidad In factlist
+            _fact.EstadoEnvio = 5
+            FacturaBLL.ModificarFactura(_fact)
 
-
-
-
-
-
-
-
-
-
-
-
+        Next
+        Me.success.Visible = True
+        Me.success.InnerText = "Su solicitud de cancelación se ha procesado exitosamente."
+    End Sub
 End Class

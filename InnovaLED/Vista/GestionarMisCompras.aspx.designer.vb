@@ -59,6 +59,15 @@ Partial Public Class GestionMisCompras
     Protected WithEvents gv_facturas As Global.System.Web.UI.WebControls.GridView
     
     '''<summary>
+    '''Control btn_cancelacion.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btn_cancelacion As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
     '''Control gv_notas.
     '''</summary>
     '''<remarks>

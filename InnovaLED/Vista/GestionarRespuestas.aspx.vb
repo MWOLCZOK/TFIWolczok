@@ -121,7 +121,7 @@ Public Class GestionarRespuestas
                 Case "S"
                     Dim comentario As ComentarioEntidad = TryCast(Session("Comentarios"), List(Of ComentarioEntidad))(e.CommandArgument + (gv_comentarios.PageIndex * gv_comentarios.PageSize))
                     If TryCast(Session("comentariosseleccionados"), List(Of ComentarioEntidad)).Any(Function(p) p.ID = comentario.ID) Then
-                        TryCast(Session("comentariosseleccionados"), List(Of ComentarioEntidad)).Remove(comentario)
+                        TryCast(Session("comentariosseleccionados"), List(Of ComentarioEntidad)).Remove(comentario) ' para deseleccionar
                         Dim imagen1 As System.Web.UI.WebControls.ImageButton = DirectCast(gv_comentarios.Rows.Item(e.CommandArgument).FindControl("btn_seleccionar"), System.Web.UI.WebControls.ImageButton)
                         imagen1.ImageUrl = "~/Imagenes/check.png"
                         gv_comentarios.Rows.Item(e.CommandArgument).BackColor = Drawing.Color.FromName("#c3e6cb")

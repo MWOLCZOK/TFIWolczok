@@ -83,7 +83,7 @@
                </div>
              </div>
           </div>
-
+        <asp:Button ID="btn_cancelacion" runat="server" Text="Solicitar Cancelación" Visible="false" class="btn btn-warning btn-lg" />
 
 
          <%-- Sección GRID NOTAS CREDITO--%>

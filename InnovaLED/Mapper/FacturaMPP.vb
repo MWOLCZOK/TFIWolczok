@@ -61,6 +61,7 @@ Public Class FacturaMPP
         End Try
     End Function
 
+
     Public Function TraerFacturasGestion() As List(Of FacturaEntidad)
         Try
             Dim consulta As String = "Select * from Factura where  estadoenvio not in( 3,4)"
