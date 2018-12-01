@@ -146,6 +146,7 @@
     <Content Include="Default.aspx" />
     <Content Include="DetalleProducto.aspx" />
     <Content Include="EliminarIdioma.aspx" />
+    <Content Include="EmailTemplates\EnvioFactura.html" />
     <Content Include="EmailTemplates\Newsletter.html" />
     <Content Include="EmailTemplates\Cambio_Contraseña.html" />
     <Content Include="EmailTemplates\Recupero.html" />
@@ -213,6 +214,7 @@
     <Content Include="IMAGENES\red.png" />
     <Content Include="IMAGENES\second-prize.png" />
     <Content Include="IMAGENES\SegmentosdeIluminacion.jpg" />
+    <Content Include="IMAGENES\seo.png" />
     <Content Include="IMAGENES\settings.jpeg" />
     <Content Include="IMAGENES\shopping-cart.png" />
     <Content Include="IMAGENES\Test.jpg" />

@@ -40,6 +40,8 @@ Public Class carritoCompras
     End Sub
 
 
+
+
     Private Sub GenerarDiseño(ByVal listaproductos As List(Of CompraEntidad))
         ID_Catalogo.Controls.Clear()
         ID_Catalogo.Controls.Add(New LiteralControl("<table id=""cart"" class=""table table-hover table-condensed"">"))
@@ -585,15 +587,15 @@ Public Class carritoCompras
         Dim PDF = Renderer.RenderHtmlAsPdf(body)
         Dim OutputPath = HttpContext.Current.Server.MapPath("~") & name
         PDF.SaveAs(OutputPath)
+        fact.PDF = PDF.Stream.ToArray()
+        Dim facturaBLL As New GestorFacturaBLL
 
+        facturaBLL.ModificarFacturaPDF(fact)
         EnviarMail(clie, OutputPath)
-
-
-        ' SendMail(BLL.Usuario.current.email, name_comprobante, body)
 
     End Sub
     Private Sub EnviarMail(usu As UsuarioEntidad, PDF As String)
-        Dim body As String = System.IO.File.ReadAllText(HttpContext.Current.Server.MapPath("EmailTemplates/Cambio_Contraseña.html"))
+        Dim body As String = System.IO.File.ReadAllText(HttpContext.Current.Server.MapPath("EmailTemplates/EnvioFactura.html"))
         Dim ruta As String = HttpContext.Current.Server.MapPath("Imagenes")
         Dim ur As Uri = Request.Url
         Negocio.MailingBLL.enviarMailFactura(body, ruta, usu, PDF)

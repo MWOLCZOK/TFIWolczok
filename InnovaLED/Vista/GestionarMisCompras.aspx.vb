@@ -83,6 +83,10 @@ Public Class GestionMisCompras
                 Dim imagen1 As System.Web.UI.WebControls.ImageButton = DirectCast(row.FindControl("btn_Seleccionar"), System.Web.UI.WebControls.ImageButton)
 
                 imagen1.CommandArgument = row.RowIndex
+
+                Dim imagen2 As System.Web.UI.WebControls.ImageButton = DirectCast(row.FindControl("btn_descargar"), System.Web.UI.WebControls.ImageButton)
+
+                imagen2.CommandArgument = row.RowIndex
             Next
 
             With gv_facturas.HeaderRow
@@ -133,6 +137,18 @@ Public Class GestionMisCompras
                     Else
                         btn_cancelacion.Visible = False
                     End If
+
+                Case "D"
+                    Dim fact As FacturaEntidad = TryCast(Session("FacturasUsuario"), List(Of FacturaEntidad))(e.CommandArgument + (gv_facturas.PageIndex * gv_facturas.PageSize))
+
+                    Response.ContentType = "application/octet-stream"
+                    Response.AppendHeader("Content-Disposition", "attachment; filename=Factura_" & Right("0000" & fact.ID, 4) + ".pdf")
+                    Response.BinaryWrite(fact.PDF)
+                    Response.Flush()
+
+
+
+
 
             End Select
         Catch ex As Exception

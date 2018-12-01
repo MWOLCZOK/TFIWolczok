@@ -61,6 +61,22 @@ Public Class FacturaMPP
         End Try
     End Function
 
+    Public Function ModificarFacturaPDF(facturaEntidad As FacturaEntidad) As Boolean
+        Try
+
+            Dim Command As SqlCommand = Acceso.MiComando("Update Factura set PDF=@PDF where ID_Fact=@ID_Fact")
+            With Command.Parameters
+                .Add(New SqlParameter("@ID_Fact", facturaEntidad.ID))
+                .Add(New SqlParameter("@PDF", facturaEntidad.PDF))
+            End With
+
+            Acceso.Escritura(Command)
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+
 
     Public Function TraerFacturasGestion() As List(Of FacturaEntidad)
         Try
@@ -160,6 +176,7 @@ Public Class FacturaMPP
             Fact.Fecha = row("Fecha")
             Fact.EstadoCompra = row("EstadoCompra")
             Fact.EstadoEnvio = row("EstadoEnvio")
+            Fact.PDF = row("PDF")
         Catch ex As Exception
             Throw ex
         End Try

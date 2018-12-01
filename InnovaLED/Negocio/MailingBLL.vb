@@ -134,7 +134,7 @@ Public Class MailingBLL
             Dim Correo As New System.Net.Mail.MailMessage()
             Correo.Attachments.Add(New Attachment(ruta & "\twitter.png") With {.ContentId = "twitter"})
             Correo.Attachments.Add(New Attachment(ruta & "\bulb.png") With {.ContentId = "logo"})
-            Correo.Attachments.Add(New Attachment(ruta & "\Email_Lock_Recupero.png") With {.ContentId = "game-console"})
+            Correo.Attachments.Add(New Attachment(ruta & "\seo.png") With {.ContentId = "game-console"})
             Correo.Attachments.Add(New Attachment(ruta & "\facebook.png") With {.ContentId = "facebook"})
             Correo.Attachments.Add(New Attachment(ruta & "\blue.png") With {.ContentId = "lkdn"})
             Correo.Attachments.Add(New Attachment(ruta & "\red.png") With {.ContentId = "pint"})
@@ -143,7 +143,7 @@ Public Class MailingBLL
             Correo.Attachments.Add(New Attachment(PDF))
             Correo.IsBodyHtml = True
             Correo.To.Add(usu.Mail)
-            Correo.Subject = "Recupero de contraseña de Usuario - InnovaLED"
+            Correo.Subject = "Comprabante de Compra - InnovaLED"
             Correo.Body = body
             Correo.Priority = System.Net.Mail.MailPriority.Normal
             Dim smtp As New System.Net.Mail.SmtpClient

@@ -80,6 +80,7 @@ Public Class Encuesta
                     GestorPreguntaOpinion.InsertarRespuesta(_resp)
                 Next
 
+                Me.success.Visible = True
                 Me.success.InnerText = "Muchas gracias por realizar la encuesta. Será redireccionado al Home."
                 'Response.Redirect("Default.aspx", False)
                 Response.AddHeader("REFRESH", "5;URL=Default.aspx")

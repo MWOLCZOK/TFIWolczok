@@ -24,5 +24,9 @@ Public Class GestorFacturaBLL
         Return facturaMPP.TraerFacturasGestionPorUsuario(usu)
     End Function
 
+    Public Function ModificarFacturaPDF(ByVal fact As FacturaEntidad)
+        Return facturaMPP.ModificarFacturaPDF(fact)
+    End Function
+
 
 End Class
