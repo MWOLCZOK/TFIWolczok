@@ -1,15 +1,13 @@
 ﻿Imports System.Web.SessionState
-Imports System.Timers
 
 Public Class Global_asax
     Inherits System.Web.HttpApplication
+
     Sub Application_Start(ByVal sender As Object, ByVal e As EventArgs)
         Try
             Dim GestorIdioma As New Negocio.IdiomaBLL
             Dim IdiomaDefault As Entidades.IdiomaEntidad = GestorIdioma.ConsultarPorID(1)
             Application(IdiomaDefault.Nombre) = IdiomaDefault
-            Dim GestorChat As New Negocio.GestorChatBLL
-            Application("ChatGlobal") = GestorChat.TraerChats()
         Catch ex As Exception
         End Try
     End Sub
