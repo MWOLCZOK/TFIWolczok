@@ -169,6 +169,7 @@
     <Content Include="cambiarpassword.aspx" />
     <Content Include="GestionarRespuestas.aspx" />
     <Content Include="GestionarMisCompras.aspx" />
+    <Content Include="GestionarPublicidad.aspx" />
     <Content Include="Global.asax" />
     <Content Include="IMAGENES\1starblack.png" />
     <Content Include="IMAGENES\1stargold.png" />
@@ -242,6 +243,7 @@
     <Content Include="PagoaProveedores.aspx" />
     <Content Include="PoliticasySeguridad.aspx" />
     <Content Include="Proveedores.aspx" />
+    <Content Include="publicidad\AdRtotatorFiles.xml" />
     <Content Include="RecuperarPassword.aspx" />
     <Content Include="Registracion.aspx" />
     <Content Include="RegistrarBoletin.aspx" />
@@ -442,6 +444,13 @@
     </Compile>
     <Compile Include="GestionarMisCompras.aspx.vb">
       <DependentUpon>GestionarMisCompras.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="GestionarPublicidad.aspx.designer.vb">
+      <DependentUpon>GestionarPublicidad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionarPublicidad.aspx.vb">
+      <DependentUpon>GestionarPublicidad.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Global.asax.vb">
