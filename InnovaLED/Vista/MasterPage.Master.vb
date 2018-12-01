@@ -153,6 +153,7 @@ Public Class MasterPage
         Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/DetalleProducto.aspx"})
         Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/ComparacionProducto.aspx"})
         Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/EncuestaGlobal.aspx"})
+        Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/BusquedaGlobal.aspx"})
 
         UsuarioInvitado.Rol.Add(Rol)
 
@@ -596,4 +597,16 @@ Public Class MasterPage
     Private Sub btn_carrito_Click(sender As Object, e As ImageClickEventArgs) Handles btn_carrito.Click
         Response.Redirect("carritoCompras.aspx", False)
     End Sub
+
+    Protected Sub btn_busqueda_Click(sender As Object, e As EventArgs) Handles btn_busqueda.Click
+
+        Dim pal As String
+        pal = txt_busqueda.Text
+        Session("PalabraBusqueda") = pal
+        Response.Redirect("BusquedaGlobal.aspx")
+
+
+    End Sub
+
+
 End Class

@@ -118,6 +118,7 @@
     <Content Include="AdRotator\AdRtotatorFiles.xml" />
     <Content Include="AgregarIdioma.aspx" />
     <Content Include="BitacoraAuditoria.aspx" />
+    <Content Include="BusquedaGlobal.aspx" />
     <Content Include="CambiarContraseña.aspx" />
     <Content Include="CargarVenta.aspx" />
     <Content Include="carritoCompras.aspx" />
@@ -283,6 +284,13 @@
     <Compile Include="BitacoraAuditoria.aspx.vb">
       <DependentUpon>BitacoraAuditoria.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BusquedaGlobal.aspx.designer.vb">
+      <DependentUpon>BusquedaGlobal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BusquedaGlobal.aspx.vb">
+      <DependentUpon>BusquedaGlobal.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="CambiarContraseña.aspx.designer.vb">
       <DependentUpon>CambiarContraseña.aspx</DependentUpon>
