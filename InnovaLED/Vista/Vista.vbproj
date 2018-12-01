@@ -144,6 +144,7 @@
     <Content Include="CSS\jquery.ui.timepicker.css" />
     <Content Include="CSS\MisEstilos.css" />
     <Content Include="Default.aspx" />
+    <Content Include="Chat.aspx" />
     <Content Include="DetalleProducto.aspx" />
     <Content Include="EliminarIdioma.aspx" />
     <Content Include="EmailTemplates\EnvioFactura.html" />
@@ -330,6 +331,13 @@
     </Compile>
     <Compile Include="Default.aspx.vb">
       <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Chat.aspx.designer.vb">
+      <DependentUpon>Chat.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Chat.aspx.vb">
+      <DependentUpon>Chat.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="DetalleProducto.aspx.designer.vb">

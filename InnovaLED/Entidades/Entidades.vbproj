@@ -67,6 +67,8 @@
     <Compile Include="Bitacora.vb" />
     <Compile Include="BoletinEntidad.vb" />
     <Compile Include="CategoriaProducto.vb" />
+    <Compile Include="ChatEntidad.vb" />
+    <Compile Include="MensajeChatEntidad.vb" />
     <Compile Include="ValoracionEntidad.vb" />
     <Compile Include="ComentarioEntidad.vb" />
     <Compile Include="CompraEntidad.vb" />
@@ -78,7 +80,6 @@
     <Compile Include="FacturaEntidad.vb" />
     <Compile Include="IdiomaEntidad.vb" />
     <Compile Include="LineaProducto.vb" />
-    <Compile Include="Mensaje.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

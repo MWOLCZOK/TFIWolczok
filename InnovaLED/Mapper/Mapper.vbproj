@@ -73,6 +73,7 @@
     <Compile Include="BitacoraMPP.vb" />
     <Compile Include="BoletinMPP.vb" />
     <Compile Include="CategoriaProductoMPP.vb" />
+    <Compile Include="ChatMPP.vb" />
     <Compile Include="ValoracionMPP.vb" />
     <Compile Include="ComprobanteMPP.vb" />
     <Compile Include="EncriptarMPP.vb" />
