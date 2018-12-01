@@ -72,6 +72,7 @@
     <Compile Include="BackupRestoreMPP.vb" />
     <Compile Include="BitacoraMPP.vb" />
     <Compile Include="BoletinMPP.vb" />
+    <Compile Include="BusquedaMPP.vb" />
     <Compile Include="CategoriaProductoMPP.vb" />
     <Compile Include="ChatMPP.vb" />
     <Compile Include="ValoracionMPP.vb" />

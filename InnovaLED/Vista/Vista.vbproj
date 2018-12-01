@@ -118,6 +118,7 @@
     <Content Include="AdRotator\AdRtotatorFiles.xml" />
     <Content Include="AgregarIdioma.aspx" />
     <Content Include="BitacoraAuditoria.aspx" />
+    <Content Include="BusquedaGlobal.aspx" />
     <Content Include="CambiarContraseña.aspx" />
     <Content Include="CargarVenta.aspx" />
     <Content Include="carritoCompras.aspx" />
@@ -170,6 +171,7 @@
     <Content Include="cambiarpassword.aspx" />
     <Content Include="GestionarRespuestas.aspx" />
     <Content Include="GestionarMisCompras.aspx" />
+    <Content Include="GestionarPublicidad.aspx" />
     <Content Include="Global.asax" />
     <Content Include="IMAGENES\1starblack.png" />
     <Content Include="IMAGENES\1stargold.png" />
@@ -243,6 +245,7 @@
     <Content Include="PagoaProveedores.aspx" />
     <Content Include="PoliticasySeguridad.aspx" />
     <Content Include="Proveedores.aspx" />
+    <Content Include="publicidad\AdRtotatorFiles.xml" />
     <Content Include="RecuperarPassword.aspx" />
     <Content Include="Registracion.aspx" />
     <Content Include="RegistrarBoletin.aspx" />
@@ -282,6 +285,13 @@
     <Compile Include="BitacoraAuditoria.aspx.vb">
       <DependentUpon>BitacoraAuditoria.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BusquedaGlobal.aspx.designer.vb">
+      <DependentUpon>BusquedaGlobal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BusquedaGlobal.aspx.vb">
+      <DependentUpon>BusquedaGlobal.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="CambiarContraseña.aspx.designer.vb">
       <DependentUpon>CambiarContraseña.aspx</DependentUpon>
@@ -450,6 +460,13 @@
     </Compile>
     <Compile Include="GestionarMisCompras.aspx.vb">
       <DependentUpon>GestionarMisCompras.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="GestionarPublicidad.aspx.designer.vb">
+      <DependentUpon>GestionarPublicidad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionarPublicidad.aspx.vb">
+      <DependentUpon>GestionarPublicidad.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Global.asax.vb">

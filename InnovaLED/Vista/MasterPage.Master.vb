@@ -100,6 +100,7 @@ Public Class MasterPage
         Me.menuVertical.Items.Item(2).ChildItems.Add(New MenuItem("Gestionar Productos", "GestionarProductos", Nothing, "/GestionarProductos.aspx"))
         Me.menuVertical.Items.Item(2).ChildItems.Add(New MenuItem("Generar Envío", "GenerarEnvio", Nothing, "/GenerarEnvio.aspx"))
         Me.menuVertical.Items.Item(2).ChildItems.Add(New MenuItem("Newslatter", "RegistrarBoletin", Nothing, "/RegistrarBoletin.aspx"))
+        Me.menuVertical.Items.Item(2).ChildItems.Add(New MenuItem("Gestionar Publicidad", "GestionarPublicidad", Nothing, "/GestionarPublicidad.aspx"))
         Me.menuVertical.Items.Add(New MenuItem("Seguridad", "Seguridad"))
         Me.menuVertical.Items.Item(3).ChildItems.Add(New MenuItem("Gestionar Usuarios", "GestionarUsuarios", Nothing, "/GestionarUsuarios.aspx"))
         Me.menuVertical.Items.Item(3).ChildItems.Add(New MenuItem("Gestion Idioma", "CrearIdioma", Nothing, "/AgregarIdioma.aspx"))
@@ -152,6 +153,7 @@ Public Class MasterPage
         Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/DetalleProducto.aspx"})
         Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/ComparacionProducto.aspx"})
         Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/EncuestaGlobal.aspx"})
+        Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/BusquedaGlobal.aspx"})
 
         UsuarioInvitado.Rol.Add(Rol)
 
@@ -595,4 +597,16 @@ Public Class MasterPage
     Private Sub btn_carrito_Click(sender As Object, e As ImageClickEventArgs) Handles btn_carrito.Click
         Response.Redirect("carritoCompras.aspx", False)
     End Sub
+
+    Protected Sub btn_busqueda_Click(sender As Object, e As EventArgs) Handles btn_busqueda.Click
+
+        Dim pal As String
+        pal = txt_busqueda.Text
+        Session("PalabraBusqueda") = pal
+        Response.Redirect("BusquedaGlobal.aspx")
+
+
+    End Sub
+
+
 End Class
