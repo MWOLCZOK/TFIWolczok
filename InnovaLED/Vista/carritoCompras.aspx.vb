@@ -4,8 +4,6 @@ Imports System.Web.HttpContext
 Imports System.IO
 
 
-
-
 Public Class carritoCompras
     Inherits System.Web.UI.Page
 
@@ -540,7 +538,7 @@ Public Class carritoCompras
 
     Private Sub generarComprobante(ByRef comprobante As String, ByRef fact As FacturaEntidad, ByRef clie As UsuarioEntidad, fecha As DateTime, detFac As List(Of CompraEntidad), ByRef tipoPago As String, Optional nc As String = "nada")
         Dim Renderer = New IronPdf.HtmlToPdf()
-        Dim FilePath As String = HttpContext.Current.Server.MapPath("~") & "FacturTem\factura.html"
+        Dim FilePath As String = HttpContext.Current.Server.MapPath("~") & "FacturTem\Factura.html"
         Dim str = New StreamReader(FilePath)
         Dim body = str.ReadToEnd()
 
@@ -587,7 +585,7 @@ Public Class carritoCompras
         Dim PDF = Renderer.RenderHtmlAsPdf(body)
         Dim OutputPath = HttpContext.Current.Server.MapPath("~") & name
         PDF.SaveAs(OutputPath)
-        fact.PDF = PDF.Stream.ToArray()
+        fact.PDF = PDF.Stream.ToArray() ' lo convierto en un array para luego guardarlo en la base y poder descargarlo
         Dim facturaBLL As New GestorFacturaBLL
 
         facturaBLL.ModificarFacturaPDF(fact)
