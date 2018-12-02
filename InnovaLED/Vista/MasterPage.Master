@@ -112,10 +112,21 @@
                 </div>
                 <asp:Image ID="LogoMenu" runat="server" ImageUrl="Imagenes/banner1.jpg" CssClass="img-responsive" />
 
-                <asp:Button ID="btn_busqueda" runat="server" Text="Buscar" class="btn btn-warning" />
-                <asp:TextBox ID="txt_busqueda" runat="server" style="width: 200px; color:black" ></asp:TextBox>
-
-
+                <%-- Sección DIV Buscador y MultiIdioma --%>
+                <div class="row">
+                    <div class="row col-md-4">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <asp:Button ID="btn_busqueda" runat="server" Text="Buscar" class="btn btn-warning" />
+                        <asp:TextBox ID="txt_busqueda" runat="server" Style="width: 200px; color: black"></asp:TextBox>
+                    </div>
+                    <div class="row col-md-offset-4 col-md-2 text-right">
+                        <asp:Label ID="Lbl_Idioma" runat="server" Text="Selección de Idioma" Font-Size="18px" ForeColor="#368BE1"></asp:Label>
+                    </div>
+                    <div id="MultiIdioma" runat="server" class="row col-md-2">
+                        <asp:DropDownList ID="lstidioma" runat="server" CssClass="form-control" AutoPostBack="true" DataValueField="ID_Idioma" DataTextField="Nombre"></asp:DropDownList>
+                    </div>
+                </div>
+                <%-- Termina acá Sección DIV Buscador y MultiIdioma --%>
             </div>
         </div>
 

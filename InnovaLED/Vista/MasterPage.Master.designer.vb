@@ -131,6 +131,33 @@ Partial Public Class MasterPage
     Protected WithEvents txt_busqueda As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
+    '''Control Lbl_Idioma.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Lbl_Idioma As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Control MultiIdioma.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents MultiIdioma As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    
+    '''<summary>
+    '''Control lstidioma.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lstidioma As Global.System.Web.UI.WebControls.DropDownList
+    
+    '''<summary>
     '''Control alert_login.
     '''</summary>
     '''<remarks>
