@@ -18,7 +18,16 @@ Public Class MasterPage
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         Try
-            
+            'If Not IsPostBack Then
+            '    Try
+            '        CargarIdiomas()
+            '    Catch ex As Exception
+
+
+            '    End Try
+            'End If
+
+
             If IsNothing(Current.Session("cliente")) Or IsDBNull(Current.Session("Cliente")) Then
                 Dim UsuarioInvitado As New Entidades.UsuarioEntidad
                 CargarSinPerfilIdioma(UsuarioInvitado)
@@ -26,6 +35,8 @@ Public Class MasterPage
                 TraducirPagina(UsuarioInvitado)
                 miMenuVertical.Attributes.Remove("class")
                 miContenidoPagina.Attributes.Add("class", "col-md-12")
+                CargarIdiomas()
+
             Else
                 Try
                     Dim Usuario As Entidades.UsuarioEntidad = TryCast(Current.Session("cliente"), Entidades.UsuarioEntidad)
@@ -44,7 +55,6 @@ Public Class MasterPage
         End Try
 
     End Sub
-
 
 
     Private Sub VisibilidadAcceso(B As Boolean)
@@ -111,6 +121,9 @@ Public Class MasterPage
         Me.menuVertical.Items.Item(3).ChildItems.Add(New MenuItem("Backup & Restore", "Backup&Restore", Nothing, "/Restore.aspx"))
         Me.menuVertical.Items.Add(New MenuItem("Mi Cuenta Corriente ", "MiCuentaCorriente"))
         Me.menuVertical.Items.Item(4).ChildItems.Add(New MenuItem("Mi Cuenta Corriente", "MiCuentaCorriente", Nothing, "/GestionarMisCompras.aspx"))
+        Me.menuVertical.Items.Add(New MenuItem("Reportes", "Reportes"))
+        Me.menuVertical.Items.Item(5).ChildItems.Add(New MenuItem("Mis Reportes Ventas", "ReportesVentas", Nothing, "/ReportesVentas.aspx"))
+
 
 
     End Sub
@@ -441,9 +454,9 @@ Public Class MasterPage
         End Try
     End Sub
 
-    Public Sub img_opciones_Click(sender As Object, e As ImageClickEventArgs)
-        Response.Redirect("cambiarIdioma.aspx")
-    End Sub
+    'Public Sub img_opciones_Click(sender As Object, e As ImageClickEventArgs)
+    '    Response.Redirect("cambiarIdioma.aspx")
+    'End Sub
 
     Public Sub btnregistracion_Click(sender As Object, e As EventArgs) Handles btnregistracion.Click
         If chk_terminos.Checked = True Then
@@ -607,6 +620,39 @@ Public Class MasterPage
 
 
     End Sub
+
+
+    'Región Idioma
+
+    Private Sub CargarIdiomas()
+        Dim lista As List(Of Entidades.IdiomaEntidad)
+        Dim Gestor As New Negocio.IdiomaBLL
+        lista = Gestor.ConsultarIdiomas()
+        Me.lstidioma.DataSource = lista
+        Me.lstidioma.DataBind()
+    End Sub
+
+    Protected Sub Btn_Idioma_Click(sender As Object, e As EventArgs) Handles Btn_Idioma.Click
+        Dim GestorCliente As New Negocio.UsuarioBLL
+        Try
+            Dim clienteLogeado As Entidades.UsuarioEntidad = Current.Session("cliente")
+            Dim GestorIdioma As New Negocio.IdiomaBLL
+            If Not IsNothing(clienteLogeado) Then
+                clienteLogeado.Idioma = GestorIdioma.SeleccionarIdioma(clienteLogeado, CInt(lstidioma.SelectedValue))
+            Else
+                Current.Session("Idioma") = GestorIdioma.ConsultarPorID(CInt(lstidioma.SelectedValue))
+            End If
+            Me.success.Visible = True
+            Me.success.InnerText = "Se ha cambiado el idioma satisfactoriamente."
+            Me.alertvalid.Visible = False
+            'Response.Redirect("/SeleccionarIdioma.aspx", False)
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+
+
 
 
 End Class

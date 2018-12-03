@@ -63,6 +63,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web.DynamicData" />
@@ -215,6 +216,7 @@
     <Content Include="IMAGENES\Plafon.jpg" />
     <Content Include="IMAGENES\PorqueUtilizarLed.jpg" />
     <Content Include="IMAGENES\red.png" />
+    <Content Include="IMAGENES\search.png" />
     <Content Include="IMAGENES\second-prize.png" />
     <Content Include="IMAGENES\SegmentosdeIluminacion.jpg" />
     <Content Include="IMAGENES\seo.png" />
@@ -224,6 +226,8 @@
     <Content Include="IMAGENES\third.png" />
     <Content Include="IMAGENES\twitter.png" />
     <Content Include="IMAGENES\visa.png" />
+    <Content Include="IMAGENES\zoom-in.png" />
+    <Content Include="IMAGENES\zoom-out.png" />
     <Content Include="Institucional.aspx" />
     <Content Include="JS\bootstrap.js" />
     <Content Include="JS\bootstrap.min.js" />
@@ -250,6 +254,7 @@
     <Content Include="Registracion.aspx" />
     <Content Include="RegistrarBoletin.aspx" />
     <Content Include="ReporteStock.aspx" />
+    <Content Include="ReportesVentas.aspx" />
     <Content Include="Restore.aspx" />
     <Content Include="script.sql" />
     <Content Include="SeleccionarIdioma.aspx" />
@@ -601,6 +606,13 @@
     </Compile>
     <Compile Include="ReporteStock.aspx.vb">
       <DependentUpon>ReporteStock.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="ReportesVentas.aspx.designer.vb">
+      <DependentUpon>ReportesVentas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReportesVentas.aspx.vb">
+      <DependentUpon>ReportesVentas.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Restore.aspx.designer.vb">

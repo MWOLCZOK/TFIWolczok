@@ -50,7 +50,8 @@
         </div>
 
 
-        <asp:GridView ID="grd" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-hover table-sm" AllowPaging="True" Width="770px">
+        <asp:GridView ID="grd" runat="server" AutoGenerateColumns="False" CssClass="table table-hover table-bordered table-responsive table-active text-center" AllowPaging="True" Width="770px">
+            <HeaderStyle CssClass="thead-dark" />
             <Columns>
                 <asp:ButtonField CommandName="Select" ShowHeader="True" Text='<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>'>
                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="35px" />

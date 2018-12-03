@@ -23,24 +23,6 @@ Partial Public Class MasterPage
     Protected WithEvents head As Global.System.Web.UI.WebControls.ContentPlaceHolder
     
     '''<summary>
-    '''Control Label3.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents Label3 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''Control Label4.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents Label4 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
     '''Control Master.
     '''</summary>
     '''<remarks>
@@ -48,6 +30,24 @@ Partial Public Class MasterPage
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents Master As Global.System.Web.UI.HtmlControls.HtmlForm
+    
+    '''<summary>
+    '''Control Aumenta.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Aumenta As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''Control Disminuye.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Disminuye As Global.System.Web.UI.WebControls.ImageButton
     
     '''<summary>
     '''Control NoLogueo.
@@ -131,24 +131,6 @@ Partial Public Class MasterPage
     Protected WithEvents txt_busqueda As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
-    '''Control Lbl_Idioma.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents Lbl_Idioma As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''Control MultiIdioma.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents MultiIdioma As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
-    '''<summary>
     '''Control lstidioma.
     '''</summary>
     '''<remarks>
@@ -156,6 +138,15 @@ Partial Public Class MasterPage
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents lstidioma As Global.System.Web.UI.WebControls.DropDownList
+    
+    '''<summary>
+    '''Control Btn_Idioma.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Btn_Idioma As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
     '''Control alert_login.
