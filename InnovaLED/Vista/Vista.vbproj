@@ -111,7 +111,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AccesoRestringido.aspx" />
-    <Content Include="ActualizarStock.aspx" />
     <Content Include="AdRotator\Imagenes\banner_auto.png" />
     <Content Include="AdRotator\Imagenes\banner_camion.png" />
     <Content Include="AdRotator\Imagenes\banner_despegar.png" />
@@ -120,12 +119,9 @@
     <Content Include="AgregarIdioma.aspx" />
     <Content Include="BitacoraAuditoria.aspx" />
     <Content Include="BusquedaGlobal.aspx" />
-    <Content Include="CambiarContraseña.aspx" />
-    <Content Include="CargarVenta.aspx" />
     <Content Include="carritoCompras.aspx" />
     <Content Include="ConfirmarRecupero.aspx" />
     <Content Include="ConfirmarRegistracion.aspx" />
-    <Content Include="CrearNuevoCliente.aspx" />
     <Content Include="CSS\bootstrap-datepicker.css" />
     <Content Include="CSS\bootstrap-datetimepicker.min.css" />
     <Content Include="CSS\bootstrap-theme.css" />
@@ -162,12 +158,9 @@
     <Content Include="Fonts\fontawesome-webfont.svg" />
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="GenerarDocumento.aspx" />
-    <Content Include="GenerarEnvio.aspx" />
-    <Content Include="GenerarPresupuesto.aspx" />
     <Content Include="AgregarPerfil.aspx" />
     <Content Include="GestionarProductos.aspx" />
     <Content Include="GestionarFacturas.aspx" />
-    <Content Include="GestionarSolucionesLED.aspx" />
     <Content Include="Catalogo.aspx" />
     <Content Include="cambiarpassword.aspx" />
     <Content Include="GestionarRespuestas.aspx" />
@@ -241,24 +234,18 @@
     <Content Include="JS\npm.js" />
     <Content Include="ModificarIdioma.aspx" />
     <Content Include="GestionarUsuarios.aspx" />
-    <Content Include="MyOrders.aspx" />
     <Content Include="Novedades.aspx" />
     <Content Include="Orders.aspx" />
     <Content Include="ComparacionProducto.aspx" />
     <Content Include="PaginaGenerica.aspx" />
-    <Content Include="PagoaProveedores.aspx" />
     <Content Include="PoliticasySeguridad.aspx" />
-    <Content Include="Proveedores.aspx" />
     <Content Include="publicidad\AdRtotatorFiles.xml" />
     <Content Include="RecuperarPassword.aspx" />
-    <Content Include="Registracion.aspx" />
     <Content Include="RegistrarBoletin.aspx" />
-    <Content Include="ReporteStock.aspx" />
     <Content Include="ReportesVentas.aspx" />
     <Content Include="Restore.aspx" />
     <Content Include="script.sql" />
     <Content Include="SeleccionarIdioma.aspx" />
-    <Content Include="SolicitudPedido.aspx" />
     <Content Include="TerminosyCondiciones.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -269,13 +256,6 @@
     <Compile Include="AccesoRestringido.aspx.vb">
       <DependentUpon>AccesoRestringido.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ActualizarStock.aspx.designer.vb">
-      <DependentUpon>ActualizarStock.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ActualizarStock.aspx.vb">
-      <DependentUpon>ActualizarStock.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="AgregarIdioma.aspx.designer.vb">
       <DependentUpon>AgregarIdioma.aspx</DependentUpon>
@@ -296,20 +276,6 @@
     </Compile>
     <Compile Include="BusquedaGlobal.aspx.vb">
       <DependentUpon>BusquedaGlobal.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="CambiarContraseña.aspx.designer.vb">
-      <DependentUpon>CambiarContraseña.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CambiarContraseña.aspx.vb">
-      <DependentUpon>CambiarContraseña.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="CargarVenta.aspx.designer.vb">
-      <DependentUpon>CargarVenta.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CargarVenta.aspx.vb">
-      <DependentUpon>CargarVenta.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="carritoCompras.aspx.designer.vb">
@@ -334,13 +300,6 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ControladorPermisos.vb" />
-    <Compile Include="CrearNuevoCliente.aspx.designer.vb">
-      <DependentUpon>CrearNuevoCliente.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CrearNuevoCliente.aspx.vb">
-      <DependentUpon>CrearNuevoCliente.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
     <Compile Include="Default.aspx.designer.vb">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
@@ -397,20 +356,6 @@
       <DependentUpon>GenerarDocumento.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="GenerarEnvio.aspx.designer.vb">
-      <DependentUpon>GenerarEnvio.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="GenerarEnvio.aspx.vb">
-      <DependentUpon>GenerarEnvio.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="GenerarPresupuesto.aspx.designer.vb">
-      <DependentUpon>GenerarPresupuesto.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="GenerarPresupuesto.aspx.vb">
-      <DependentUpon>GenerarPresupuesto.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
     <Compile Include="AgregarPerfil.aspx.designer.vb">
       <DependentUpon>AgregarPerfil.aspx</DependentUpon>
     </Compile>
@@ -431,13 +376,6 @@
     <Compile Include="GestionarFacturas.aspx.vb">
       <DependentUpon>GestionarFacturas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="GestionarSolucionesLED.aspx.designer.vb">
-      <DependentUpon>GestionarSolucionesLED.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="GestionarSolucionesLED.aspx.vb">
-      <DependentUpon>GestionarSolucionesLED.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Catalogo.aspx.designer.vb">
       <DependentUpon>Catalogo.aspx</DependentUpon>
@@ -524,13 +462,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="MyOrders.aspx.designer.vb">
-      <DependentUpon>MyOrders.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="MyOrders.aspx.vb">
-      <DependentUpon>MyOrders.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
     <Compile Include="Novedades.aspx.designer.vb">
       <DependentUpon>Novedades.aspx</DependentUpon>
     </Compile>
@@ -559,25 +490,11 @@
       <DependentUpon>PaginaGenerica.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="PagoaProveedores.aspx.designer.vb">
-      <DependentUpon>PagoaProveedores.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="PagoaProveedores.aspx.vb">
-      <DependentUpon>PagoaProveedores.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
     <Compile Include="PoliticasySeguridad.aspx.designer.vb">
       <DependentUpon>PoliticasySeguridad.aspx</DependentUpon>
     </Compile>
     <Compile Include="PoliticasySeguridad.aspx.vb">
       <DependentUpon>PoliticasySeguridad.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="Proveedores.aspx.designer.vb">
-      <DependentUpon>Proveedores.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Proveedores.aspx.vb">
-      <DependentUpon>Proveedores.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="RecuperarPassword.aspx.designer.vb">
@@ -587,25 +504,11 @@
       <DependentUpon>RecuperarPassword.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="Registracion.aspx.designer.vb">
-      <DependentUpon>Registracion.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Registracion.aspx.vb">
-      <DependentUpon>Registracion.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
     <Compile Include="RegistrarBoletin.aspx.designer.vb">
       <DependentUpon>RegistrarBoletin.aspx</DependentUpon>
     </Compile>
     <Compile Include="RegistrarBoletin.aspx.vb">
       <DependentUpon>RegistrarBoletin.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="ReporteStock.aspx.designer.vb">
-      <DependentUpon>ReporteStock.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ReporteStock.aspx.vb">
-      <DependentUpon>ReporteStock.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="ReportesVentas.aspx.designer.vb">
@@ -628,13 +531,6 @@
     <Compile Include="SeleccionarIdioma.aspx.vb">
       <DependentUpon>SeleccionarIdioma.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SolicitudPedido.aspx.designer.vb">
-      <DependentUpon>SolicitudPedido.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SolicitudPedido.aspx.vb">
-      <DependentUpon>SolicitudPedido.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="TerminosyCondiciones.aspx.designer.vb">
       <DependentUpon>TerminosyCondiciones.aspx</DependentUpon>
