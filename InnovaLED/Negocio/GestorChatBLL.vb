@@ -22,4 +22,12 @@ Public Class GestorChatBLL
     Public Sub AsignarEmpleado(chat As ChatEntidad)
         ChatMPP.AsignarEmpleado(chat)
     End Sub
+
+    Public Function TraerMensajesChatParaReporte() As List(Of MensajeChatEntidad)
+        Return ChatMPP.TraerMensajesChatParaReporte()
+    End Function
+
+
+
+
 End Class

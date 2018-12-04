@@ -191,11 +191,11 @@
         </div>
         <br />
 
-        <div class="row ">
+        <div class="row">
 
             <div id="miMenuVertical" runat="server" class="col-md-2">
 
-                <asp:Menu ID="menuVertical" runat="server" DynamicVerticalOffset="2" StaticMenuItemStyle-Width="180px" Height="40px">
+                <asp:Menu ID="menuVertical" runat="server" DynamicVerticalOffset="2" StaticMenuItemStyle-Width="130px" Height="40px">
                     <StaticMenuItemStyle HorizontalPadding="10px" VerticalPadding="7px" />
                     <StaticHoverStyle BackColor="#bac4ce" ForeColor="#FDFEFE" />
                     <%--Hover Backcolor Para cambiar el color de fondo de la barra de menú cuando selecciono.--%>

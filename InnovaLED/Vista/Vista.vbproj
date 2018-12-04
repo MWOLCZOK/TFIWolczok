@@ -243,6 +243,7 @@
     <Content Include="RecuperarPassword.aspx" />
     <Content Include="RegistrarBoletin.aspx" />
     <Content Include="ReportesVentas.aspx" />
+    <Content Include="ReportesTRChat.aspx" />
     <Content Include="Restore.aspx" />
     <Content Include="script.sql" />
     <Content Include="SeleccionarIdioma.aspx" />
@@ -516,6 +517,13 @@
     </Compile>
     <Compile Include="ReportesVentas.aspx.vb">
       <DependentUpon>ReportesVentas.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="ReportesTRChat.aspx.designer.vb">
+      <DependentUpon>ReportesTRChat.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReportesTRChat.aspx.vb">
+      <DependentUpon>ReportesTRChat.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Restore.aspx.designer.vb">

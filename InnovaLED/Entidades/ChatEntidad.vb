@@ -38,4 +38,14 @@
         End Set
     End Property
 
+    Private _finalizado As Boolean
+    Public Property Finalizado() As Boolean
+        Get
+            Return _finalizado
+        End Get
+        Set(ByVal value As Boolean)
+            _finalizado = value
+        End Set
+    End Property
+
 End Class

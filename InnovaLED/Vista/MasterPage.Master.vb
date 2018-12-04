@@ -117,6 +117,7 @@ Public Class MasterPage
 
         Me.menuVertical.Items.Add(New MenuItem("Reportes", "Reportes"))
         Me.menuVertical.Items.Item(4).ChildItems.Add(New MenuItem("Mis Reportes Ventas", "ReportesVentas", Nothing, "/ReportesVentas.aspx"))
+        Me.menuVertical.Items.Item(4).ChildItems.Add(New MenuItem("Mis Tiempos de Rta", "ReportesTRChat", Nothing, "/ReportesTRChat.aspx"))
 
         Me.menuVertical.Items.Add(New MenuItem("Mis Chats", "MisChats"))
         Me.menuVertical.Items.Item(5).ChildItems.Add(New MenuItem("Ingresar al Chat", "IngresaralChat", Nothing, "/Chat.aspx"))

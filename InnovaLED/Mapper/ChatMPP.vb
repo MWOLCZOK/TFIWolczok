@@ -33,6 +33,9 @@ Public Class ChatMPP
         End Try
     End Function
 
+
+
+
     Public Sub AsignarEmpleado(chat As ChatEntidad)
         Try
 
@@ -95,6 +98,24 @@ Public Class ChatMPP
             For Each _dr As DataRow In dt.Rows
                 Dim _mensajeentidad As New MensajeChatEntidad
 
+                FormatearMensajeChat(_mensajeentidad, _dr)
+                listamensajeschat.Add(_mensajeentidad)
+            Next
+            Return listamensajeschat
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+
+    Public Function TraerMensajesChatParaReporte() As List(Of MensajeChatEntidad)
+        Try
+            Dim consulta As String = "Select * from Mensaje_Chat"
+            Dim Command As SqlCommand = Acceso.MiComando(consulta)
+            Dim dt As DataTable = Acceso.Lectura(Command)
+            Dim listamensajeschat As New List(Of MensajeChatEntidad)
+            For Each _dr As DataRow In dt.Rows
+                Dim _mensajeentidad As New MensajeChatEntidad
                 FormatearMensajeChat(_mensajeentidad, _dr)
                 listamensajeschat.Add(_mensajeentidad)
             Next
