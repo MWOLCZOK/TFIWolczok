@@ -2,7 +2,7 @@
 Imports Mapper
 
 
-Public Class PreguntaOpinionBLL
+Public Class GestorPreguntaOpinionBLL
 
     Dim preguntaMPP As New PreguntaOpinionMPP
 
@@ -54,6 +54,11 @@ Public Class PreguntaOpinionBLL
         Catch ex As Exception
             Throw ex
         End Try
+    End Function
+
+
+    Public Function TraerRespuestas(ByVal paramPregunta As PreguntaOpinionEntidad) As List(Of RespuestaEntidad)
+        Return preguntaMPP.TraerRespuestas(paramPregunta)
     End Function
 
 

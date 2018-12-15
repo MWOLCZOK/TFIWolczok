@@ -301,6 +301,46 @@ Public Class PreguntaOpinionMPP
     'End Function
 
 
+    Public Function TraerRespuestas(ByVal paramPregunta As PreguntaOpinionEntidad) As List(Of RespuestaEntidad)
+        Try
+            Dim consulta As String = "Select * from Respuesta_Opinion where ID_Pregunta=@ID_Pregunta"
+            Dim Command As SqlCommand = Acceso.MiComando(consulta)
+            With Command.Parameters
+                .Add(New SqlParameter("@ID_Pregunta", paramPregunta.ID))
+
+            End With
+            Dim dt As DataTable = Acceso.Lectura(Command)
+            Dim ListaRespuesta As List(Of RespuestaEntidad) = New List(Of RespuestaEntidad)
+            For Each row As DataRow In dt.Rows
+                Dim _resp As RespuestaEntidad = New RespuestaEntidad
+                FormatearRespuestaOpinion(_resp, row)
+                ListaRespuesta.Add(_resp)
+            Next
+            Return ListaRespuesta
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Private Sub FormatearRespuestaOpinion(ByVal paramRespuesta As RespuestaEntidad, ByVal row As DataRow)
+        Try
+            paramRespuesta.ID_Respuesta = row("ID_Respuesta")
+            paramRespuesta.Pregunta = New Entidades.PreguntaOpinionEntidad With {.ID = row("ID_Pregunta")}
+            paramRespuesta.Usuario = New Entidades.UsuarioEntidad With {.ID_Usuario = row("ID_Usuario")}
+            paramRespuesta.Valor_Respuesta = row("Valor_Respuesta")
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+    End Sub
+
+
+
+
+
+
+
+
 
 
 
