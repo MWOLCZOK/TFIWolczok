@@ -83,12 +83,12 @@
         End Set
     End Property
 
-    Private _fechaFinVigencia As DateTime
-    Public Property FechaFinVigencia() As DateTime
+    Private _fechaFinVigencia As Date
+    Public Property FechaFinVigencia() As Date
         Get
             Return _fechaFinVigencia
         End Get
-        Set(ByVal value As DateTime)
+        Set(ByVal value As Date)
             _fechaFinVigencia = value
         End Set
     End Property
@@ -113,7 +113,14 @@
         End Set
     End Property
 
+    Public Overrides Function ToString() As String
+        Return MyBase.ToString()
+    End Function
+
+
 End Class
+
+
 
 
 Public Enum TipoBoletin

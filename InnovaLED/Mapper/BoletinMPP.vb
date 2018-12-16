@@ -13,9 +13,14 @@ Public Class BoletinMPP
                 .Add(New SqlParameter("@Cuerpo", Boletin.Cuerpo))
                 .Add(New SqlParameter("@ID_Tipoboletin", Boletin.TipoBoletin))
                 .Add(New SqlParameter("@FechaHora", Now))
-                .Add(New SqlParameter("@FechaFinVigencia", Boletin.FechaFinVigencia))
                 .Add(New SqlParameter("@Imagen", Boletin.Imagen))
                 .Add(New SqlParameter("@BL", False))
+                If Boletin.FechaFinVigencia <> "#12:00:00 AM#" Then
+
+                    .Add(New SqlParameter("@FechaFinVigencia", Boletin.FechaFinVigencia))
+                Else
+                    .Add(New SqlParameter("@FechaFinVigencia", DBNull.Value))
+                End If
             End With
             Acceso.Escritura(Command)
             Return True
@@ -78,7 +83,7 @@ Public Class BoletinMPP
     Public Function obtenerBoletinNovedad() As List(Of BoletinEntidad)
         Try
             Dim _listaBoletin As New List(Of BoletinEntidad)
-            Dim Command As SqlCommand = Acceso.MiComando("select top 7 * from Boletin where ID_TipoBoletin=@ID_TipoBoletin and BL=@BL order by Fecha_Alta desc")
+            Dim Command As SqlCommand = Acceso.MiComando("select * from Boletin where ID_TipoBoletin=@ID_TipoBoletin and BL=@BL order by FechaHora desc")
             With Command.Parameters
                 '4 = Tipo novedad de boletin
                 .Add(New SqlParameter("@ID_TipoBoletin", 4))
@@ -164,10 +169,10 @@ Public Class BoletinMPP
             Boletin.Descripcion = row("Descripcion")
             Boletin.Cuerpo = row("Cuerpo")
             Boletin.TipoBoletin = row("ID_TipoBoletin")
-            Boletin.FechaAlta = row("Fecha_Alta")
+            Boletin.FechaAlta = row("FechaHora")
             Boletin.Imagen = row("Imagen")
             If Boletin.TipoBoletin = TipoBoletin.Novedad Then
-                Boletin.FechaFinVigencia = row("Fecha_Fin_Vigencia")
+                Boletin.FechaFinVigencia = row("FechaFinVigencia")
             End If
         Catch ex As Exception
             Throw ex

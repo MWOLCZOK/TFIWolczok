@@ -246,4 +246,22 @@ Partial Public Class RegistrarBoletin
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents btn_cancelar As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''Control gv_Newsletter.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents gv_Newsletter As Global.System.Web.UI.WebControls.GridView
+    
+    '''<summary>
+    '''Control id_newsletter.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents id_newsletter As Global.System.Web.UI.WebControls.HiddenField
 End Class
