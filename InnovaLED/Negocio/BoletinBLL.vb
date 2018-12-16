@@ -30,7 +30,8 @@ Public Class BoletinBLL
         Try
             boletin.Suscriptores = obtenerSuscriptores(boletin.TipoBoletin)
             Dim ruta As String = HttpContext.Current.Server.MapPath("Imagenes")
-            MailingBLL.enviarMailNewsletter(boletin, ruta) ' terminar de armar la funcion enviarMailNewsletter
+            Dim body As String = System.IO.File.ReadAllText(HttpContext.Current.Server.MapPath("EmailTemplates/Newsletter.html"))
+            MailingBLL.enviarMailNewsletter(body, boletin, ruta) ' terminar de armar la funcion enviarMailNewsletter
         Catch ex As Exception
 
         End Try

@@ -198,8 +198,10 @@
     <Content Include="IMAGENES\facebook.png" />
     <Content Include="IMAGENES\faro.png" />
     <Content Include="IMAGENES\first.png" />
+    <Content Include="IMAGENES\happy.png" />
     <Content Include="IMAGENES\idea.png" />
     <Content Include="IMAGENES\images.jpg" />
+    <Content Include="IMAGENES\LamparitaLed.jpg" />
     <Content Include="IMAGENES\Lock.png" />
     <Content Include="IMAGENES\luz-led.png" />
     <Content Include="IMAGENES\mastercard.png" />

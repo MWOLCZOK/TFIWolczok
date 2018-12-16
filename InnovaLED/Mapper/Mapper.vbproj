@@ -99,7 +99,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="NovedadMPP.vb" />
     <Compile Include="PagoMPP.vb" />
     <Compile Include="PreguntaOpinionMPP.vb" />
     <Compile Include="ProductoMPP.vb" />

@@ -69,29 +69,32 @@ Public Class MailingBLL
         End Try
     End Sub
 
-    Public Shared Sub enviarMailNewsletter(ByVal _paramBoletin As BoletinEntidad, ByVal ruta As String)
+    Public Shared Sub enviarMailNewsletter(ByVal body As String, ByVal _paramBoletin As BoletinEntidad, ByVal ruta As String)
         Try
             Dim Correo As New System.Net.Mail.MailMessage()
             Correo.Attachments.Add(New Attachment(ruta & "\twitter.png") With {.ContentId = "twitter"})
             Correo.Attachments.Add(New Attachment(ruta & "\bulb.png") With {.ContentId = "logo"})
-            Correo.Attachments.Add(New Attachment(ruta & "\luz-led.png") With {.ContentId = "game-console"})
+            Correo.Attachments.Add(New Attachment(ruta & "\happy.png") With {.ContentId = "game-console"})
             Correo.Attachments.Add(New Attachment(ruta & "\facebook.png") With {.ContentId = "facebook"})
             Correo.Attachments.Add(New Attachment(ruta & "\blue.png") With {.ContentId = "lkdn"})
             Correo.Attachments.Add(New Attachment(ruta & "\red.png") With {.ContentId = "pint"})
 
+
             Correo.Attachments.Add(New Attachment(ruta & "\bannermail.jpg") With {.ContentId = "banner"})
             Correo.IsBodyHtml = True
-            Correo.From = New System.Net.Mail.MailAddress("matias.wolczok@gmail.com", "Innova LED")
             For Each mail As String In _paramBoletin.Suscriptores
                 Correo.To.Add(mail)
             Next
             Correo.Subject = _paramBoletin.Nombre
-            Correo.Body = System.IO.File.ReadAllText(HttpContext.Current.Server.MapPath("EmailTemplates/Cambio_Contraseña.html"))
+            body = body.Replace("{Nombre}", _paramBoletin.Nombre)
+            body = body.Replace("{Cuerpo}", _paramBoletin.Cuerpo)
+            body = body.Replace("{Imagen}", _paramBoletin.Imagen)
+            Correo.Body = body
             Correo.Priority = System.Net.Mail.MailPriority.Normal
             Dim smtp As New System.Net.Mail.SmtpClient
             smtp.Host = "smtp.gmail.com"
             smtp.Port = 587
-            smtp.Credentials = New System.Net.NetworkCredential("matias.wolczok@gmail.com", EncriptarBLL.Desencriptar("DE7F5F9AB2626DD9F622DDF9E9FA2EC5"))
+            smtp.Credentials = New System.Net.NetworkCredential("innovaled.company@gmail.com", EncriptarBLL.Desencriptar("DE7F5F9AB2626DD9F622DDF9E9FA2EC5"))
             smtp.EnableSsl = True
             smtp.Send(Correo)
         Catch ex As Exception
@@ -134,7 +137,7 @@ Public Class MailingBLL
             Dim Correo As New System.Net.Mail.MailMessage()
             Correo.Attachments.Add(New Attachment(ruta & "\twitter.png") With {.ContentId = "twitter"})
             Correo.Attachments.Add(New Attachment(ruta & "\bulb.png") With {.ContentId = "logo"})
-            Correo.Attachments.Add(New Attachment(ruta & "\seo.png") With {.ContentId = "game-console"})
+            Correo.Attachments.Add(New Attachment(ruta & "\seo.png") With {.ContentId = "game-console"}) ' logo de la factura
             Correo.Attachments.Add(New Attachment(ruta & "\facebook.png") With {.ContentId = "facebook"})
             Correo.Attachments.Add(New Attachment(ruta & "\blue.png") With {.ContentId = "lkdn"})
             Correo.Attachments.Add(New Attachment(ruta & "\red.png") With {.ContentId = "pint"})

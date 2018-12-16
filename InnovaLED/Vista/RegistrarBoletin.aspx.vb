@@ -62,14 +62,16 @@ Public Class RegistrarBoletin
             Dim PostedFilesCollection As HttpFileCollection = Request.Files
             Dim PostedFile As HttpPostedFile = PostedFilesCollection(0)
             If PostedFile.FileName <> "" Then
-                Dim MiDirPath As String = Server.MapPath("~/ImagenesBoletin")
+                Dim MiDirPath As String = Server.MapPath("~/IMAGENES")
                 Me.CrearDirectorio(MiDirPath)
                 Dim MiPathAGuardar As String = String.Format("{0}\{1}", MiDirPath, _boletin.Nombre & ".png")
                 PostedFile.SaveAs(MiPathAGuardar)
-                _boletin.Imagen = "~/ImagenesBoletin/" & _boletin.Nombre & ".png"
+                _boletin.Imagen = "~/IMAGENES/" & _boletin.Nombre & ".png"
             Else
                 _boletin.Imagen = ""
             End If
+
+           
 
             GestorboletinBLL.Alta(_boletin)
             Me.success.Visible = True
