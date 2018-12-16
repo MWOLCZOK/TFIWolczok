@@ -10,9 +10,6 @@ Public Class RegistrarBoletin
     Inherits System.Web.UI.Page
 
     Dim GestorboletinBLL As New BoletinBLL
-    Dim GestorEncripBLL As New EncriptarBLL
-
-
 
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -36,19 +33,11 @@ Public Class RegistrarBoletin
     End Sub
 
 
-    Protected Sub btn_cancelar_Click(sender As Object, e As EventArgs) Handles btn_cancelar.Click
-        Response.Redirect("Default.aspx")
-    End Sub
+    'Protected Sub btn_cancelar_Click(sender As Object, e As EventArgs) Handles btn_cancelar.Click
+    '    Response.Redirect("Default.aspx")
+    'End Sub
 
 
-    Protected Sub validadorSize_ServerValidate(source As Object, args As ServerValidateEventArgs)
-        Dim filesize As Double = fu_imagenBoletin.FileContent.Length
-        If filesize > 3000000 Then
-            args.IsValid = False
-        Else
-            args.IsValid = True
-        End If
-    End Sub
 
     Protected Sub btn_agregar_Click(sender As Object, e As EventArgs) Handles btn_agregar.Click
         Try
@@ -61,20 +50,10 @@ Public Class RegistrarBoletin
             If _boletin.TipoBoletin = Entidades.TipoBoletin.Novedad Then
                 _boletin.FechaFinVigencia = Me.datepicker.Text ' esto está así porque las novedades vencen, las otras no, entonces en el mapper, no inserta la fecha.
             End If
-            'CÓDIGO PARA LA IMAGEN
-            Dim PostedFilesCollection As HttpFileCollection = Request.Files
-            Dim PostedFile As HttpPostedFile = PostedFilesCollection(0)
-            If PostedFile.FileName <> "" Then
-                Dim MiDirPath As String = Server.MapPath("~/ImagenesBoletin")
-                Me.CrearDirectorio(MiDirPath)
-                Dim MiPathAGuardar As String = String.Format("{0}\{1}", MiDirPath, _boletin.Nombre & ".png")
-                PostedFile.SaveAs(MiPathAGuardar)
-                _boletin.Imagen = "~/ImagenesBoletin/" & _boletin.Nombre & ".png"
-            Else
-                _boletin.Imagen = ""
-            End If
 
-           
+            _boletin.Imagen = FileUpload1.FileBytes
+            FileUpload1.SaveAs(System.Web.Configuration.WebConfigurationManager.AppSettings("rutaboletin").ToString() & "\" & _boletin.Nombre) ' con esto hago que se guarde las imagenes en la ruta creada en el servidor (C:) que está en el webconfig
+
 
             GestorboletinBLL.Alta(_boletin)
             Me.success.Visible = True
@@ -86,8 +65,6 @@ Public Class RegistrarBoletin
             Me.success.Visible = False
         End Try
     End Sub
-
-
 
 
     Public Sub CrearDirectorio(ByVal paramPath As String)
@@ -105,8 +82,6 @@ Public Class RegistrarBoletin
     End Sub
 
 
-
-
     Protected Sub ddl_TipoBoletin_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_TipoBoletin.SelectedIndexChanged
         If Me.ddl_TipoBoletin.SelectedItem.ToString = Entidades.TipoBoletin.Novedad.ToString Then
             Me.fechaFinVigencia.Visible = True
@@ -114,8 +89,6 @@ Public Class RegistrarBoletin
             Me.fechaFinVigencia.Visible = False
         End If
     End Sub
-
-
 
 
 
@@ -154,12 +127,8 @@ Public Class RegistrarBoletin
                 IdiomaActual = Application(TryCast(Current.Session("Cliente"), Entidades.UsuarioEntidad).Idioma.Nombre)
             End If
             For Each row As GridViewRow In gv_Newsletter.Rows
-                Dim imagen1 As System.Web.UI.WebControls.ImageButton = DirectCast(row.FindControl("btn_Bloquear"), System.Web.UI.WebControls.ImageButton)
-                Dim imagen2 As System.Web.UI.WebControls.ImageButton = DirectCast(row.FindControl("btn_desbloqueo"), System.Web.UI.WebControls.ImageButton)
                 Dim imagen3 As System.Web.UI.WebControls.ImageButton = DirectCast(row.FindControl("btn_editar"), System.Web.UI.WebControls.ImageButton)
 
-                imagen1.CommandArgument = row.RowIndex
-                imagen2.CommandArgument = row.RowIndex
                 imagen3.CommandArgument = row.RowIndex
 
 
@@ -194,13 +163,27 @@ Public Class RegistrarBoletin
 
     End Sub
 
+    Private Sub ModificarBoletin_PreRender(sender As Object, e As EventArgs) Handles Me.PreRender
+        Try
+            If Not IsNothing(gv_Newsletter.HeaderRow) Then
+                gv_Newsletter.HeaderRow.TableSection = TableRowSection.TableHeader
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+
+
+
     Private Sub gv_Usuarios_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles gv_Newsletter.RowCommand
         'Funcion para que luego de clickear en el Grid lo pase a los textbox
         Try
 
-            Dim boletinBLL As New Negocio.BoletinBLL
-            Dim Boletin As Entidades.BoletinEntidad = TryCast(Session("Boletin"), List(Of Entidades.BoletinEntidad))(e.CommandArgument + (gv_Newsletter.PageIndex * gv_Newsletter.PageSize))
-            Me.id_newsletter.Value = e.CommandArgument
+            Dim boletinBLL As New BoletinBLL
+            Dim Boletin As BoletinEntidad = TryCast(Session("Boletin"), List(Of BoletinEntidad))(e.CommandArgument + (gv_Newsletter.PageIndex * gv_Newsletter.PageSize))
+
+            Me.id.Value = e.CommandArgument
             Dim IdiomaActual As Entidades.IdiomaEntidad
             If IsNothing(Current.Session("Cliente")) Then
                 IdiomaActual = Application("Español")
@@ -209,14 +192,15 @@ Public Class RegistrarBoletin
             End If
             Select Case e.CommandName.ToString
                 Case "E"
-                    'txtusuario.Text = Usuario.NombreUsu
-                    'txtapellido.Text = Usuario.Apellido
-                    'txtnombre.Text = Usuario.Nombre
-                    'txtnomusuario.Text = Usuario.NombreUsu
-                    'TxtDNI.Text = Usuario.DNI
-                    'txtmail.Text = Usuario.Mail
 
+                    txt_Nombre.Text = Boletin.Nombre
+                    txt_Descripcion.Text = Boletin.Descripcion
+                    txt_Cuerpo.Text = Boletin.Cuerpo
+                    datepicker.Text = Boletin.FechaFinVigencia
 
+                    'ddl_TipoBoletin.ClearSelection()
+
+                    'ddl_TipoBoletin.Items.FindByText(Boletin.TipoBoletin).Selected = True
 
             End Select
         Catch ex As Exception
@@ -257,10 +241,52 @@ Public Class RegistrarBoletin
     Public Sub CargarBoletin()
         Dim _listaBoletin As List(Of BoletinEntidad)
         _listaBoletin = GestorboletinBLL.ObtenerBoletinNovedad()
-        Me.gv_Newsletter.DataSource = _listaBoletin
-        Me.gv_Newsletter.DataBind()
+        If _listaBoletin.Count > 0 Then
+            Session("Boletin") = _listaBoletin
+            Me.gv_Newsletter.DataSource = _listaBoletin
+            Me.gv_Newsletter.DataBind()
+        Else
+        End If
+
 
     End Sub
+
+
+    Protected Sub btn_eliminar_Click(sender As Object, e As EventArgs) Handles btn_eliminar.Click
+
+
+        Try
+            Dim _boletin As BoletinEntidad = TryCast(Session("Boletin"), List(Of BoletinEntidad))(Me.id.Value + (gv_Newsletter.PageIndex * gv_Newsletter.PageSize))
+            '(Me.id_producto.Value + (gv_Productos.PageIndex * gv_Productos.PageSize)) esto es igual a la posición elegida +(el numero de pagina * la paginación que le puse) eso me devuelve el ID a eliminar, porque el que selecciono desde la grilla no es el ID sino la posicion.
+            Dim IdiomaActual As Entidades.IdiomaEntidad
+            If IsNothing(Current.Session("Cliente")) Then
+                IdiomaActual = Application("Español")
+            Else
+                IdiomaActual = Application(TryCast(Current.Session("Cliente"), Entidades.UsuarioEntidad).Idioma.Nombre)
+            End If
+
+            GestorboletinBLL.bajaNovedad(_boletin)
+            Me.success.InnerText = "Se eliminó el producto correctamente."
+            Me.alertvalid.Visible = False
+            CargarBoletin()
+            LimpiarCampos()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+
+    Public Sub LimpiarCampos()
+
+        txt_Nombre.Text = Nothing
+            txt_Descripcion.Text = Nothing
+            txt_Cuerpo.Text = Nothing
+            datepicker.Text = Nothing
+            ddl_TipoBoletin.ClearSelection()
+
+    End Sub
+
+
 
 
 

@@ -1,6 +1,9 @@
 ﻿Imports System.Data.SqlClient
 Imports Entidades
 Imports DAL
+Imports System.IO
+Imports System.Net.Mail
+
 
 Public Class BoletinMPP
 
@@ -178,6 +181,41 @@ Public Class BoletinMPP
             Throw ex
         End Try
 
+    End Sub
+
+
+    Public Shared Sub enviarMailNewsletter(ByVal body As String, ByVal _paramBoletin As BoletinEntidad, ByVal ruta As String)
+        Try
+            Dim Correo As New System.Net.Mail.MailMessage()
+            Dim ruta2 As String = Acceso.BackupBoletin
+            Correo.Attachments.Add(New Attachment(ruta & "\twitter.png") With {.ContentId = "twitter"})
+            Correo.Attachments.Add(New Attachment(ruta & "\bulb.png") With {.ContentId = "logo"})
+            Correo.Attachments.Add(New Attachment(ruta & "\happy.png") With {.ContentId = "game-console2"})
+            Correo.Attachments.Add(New Attachment(ruta2 & "\" & _paramBoletin.Nombre) With {.ContentId = "game-console"})
+            Correo.Attachments.Add(New Attachment(ruta & "\facebook.png") With {.ContentId = "facebook"})
+            Correo.Attachments.Add(New Attachment(ruta & "\blue.png") With {.ContentId = "lkdn"})
+            Correo.Attachments.Add(New Attachment(ruta & "\red.png") With {.ContentId = "pint"})
+
+
+            Correo.Attachments.Add(New Attachment(ruta & "\bannermail.jpg") With {.ContentId = "banner"})
+            Correo.IsBodyHtml = True
+            For Each mail As String In _paramBoletin.Suscriptores
+                Correo.To.Add(mail)
+            Next
+            Correo.Subject = _paramBoletin.Nombre
+            body = body.Replace("{Nombre}", _paramBoletin.Nombre)
+            body = body.Replace("{Cuerpo}", _paramBoletin.Cuerpo)
+            Correo.Body = body
+            Correo.Priority = System.Net.Mail.MailPriority.Normal
+            Dim smtp As New System.Net.Mail.SmtpClient
+            smtp.Host = "smtp.gmail.com"
+            smtp.Port = 587
+            smtp.Credentials = New System.Net.NetworkCredential("innovaled.company@gmail.com", "Tacho12345")
+            smtp.EnableSsl = True
+            smtp.Send(Correo)
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 
 

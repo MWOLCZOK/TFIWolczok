@@ -127,40 +127,38 @@
                             </div>
                         </div>
                         <div class="col-md-5 col-md-offset-1">
-                            <asp:FileUpload ID="fu_imagenBoletin" runat="server" CssClass="btn btn-default btn-file" />
+                            <%--<asp:FileUpload ID="fu_imagenBoletin" runat="server" CssClass="btn btn-default btn-file" />--%>
+                            <asp:FileUpload ID="FileUpload1" class="btn btn-default btn-file" runat="server" />
                         </div>
                     </div>
 
                     <div class="col-md-1 col-md-offset-1">
-                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="*" ControlToValidate="fu_imagenBoletin" ValidationExpression="(.*).(.jpg|.JPG|.gif|.GIF|.jpeg|.JPEG|.bmp|.BMP|.png|.PNG)$" EnableClientScript="false" Display="Dynamic" CssClass="validador"></asp:RegularExpressionValidator>
+                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="*" ControlToValidate="FileUpload1" ValidationExpression="(.*).(.jpg|.JPG|.gif|.GIF|.jpeg|.JPEG|.bmp|.BMP|.png|.PNG)$" EnableClientScript="false" Display="Dynamic" CssClass="validador"></asp:RegularExpressionValidator>
 
                         <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ErrorMessage="*" ControlToValidate="datepicker" ValidationExpression="^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$" EnableClientScript="false" Display="Dynamic" CssClass="validador"></asp:RegularExpressionValidator>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="fu_imagenBoletin" ErrorMessage="*" EnableClientScript="false" Display="Dynamic" CssClass="validador"></asp:RequiredFieldValidator>
-                        <asp:CustomValidator ID="validadorSize" runat="server" ErrorMessage="*" EnableClientScript="false" Display="Dynamic" CssClass="validador" ControlToValidate="fu_imagenBoletin" OnServerValidate="validadorSize_ServerValidate"></asp:CustomValidator>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="FileUpload1" ErrorMessage="*" EnableClientScript="false" Display="Dynamic" CssClass="validador"></asp:RequiredFieldValidator>
+                        <%--<asp:CustomValidator ID="validadorSize" runat="server" ErrorMessage="*" EnableClientScript="false" Display="Dynamic" CssClass="validador" ControlToValidate="fu_imagenBoletin" OnServerValidate="validadorSize_ServerValidate"></asp:CustomValidator>--%>
                     </div>
 
                 </div>
                 <br />
                 <br />
                 <div class="row">
-                    <div class="col-md-2 col-md-offset-3">
-                        <asp:Button ID="btn_agregar" runat="server" Text="Agregar" CssClass="btn btn-lg btn-primary" />
-                    </div>
-                    <div class="col-md-2 col-md-offset-1">
-                        <asp:Button ID="btn_cancelar" runat="server" Text="Cancelar" CssClass="btn btn-lg btn-warning" />
-                    </div>
+                    <asp:Button ID="btn_agregar" runat="server" Text="Agregar" CssClass="btn btn-success btn-md col-md-2" />
+                    <asp:Button ID="btn_eliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger btn-md col-md-2 col-md-offset-1" />
                 </div>
+
                 <br />
             </div>
         </div>
-
+             
 
 
         <%--Sección GRID Newsletters--%>
 
 
-        <div class="col-md-5 col-md-offset-1">
-            <asp:GridView CssClass="table table-hover table-bordered table-responsive table-success " ID="gv_Newsletter" runat="server" AutoGenerateColumns="False" HorizontalAlign="Center" AllowPaging="true" PageSize="5" OnPageIndexChanging="gv_Newsletter_PageIndexChanging" RowStyle-Height="40px">
+        <div class="col-md-5">
+            <asp:GridView CssClass="table table-hover table-bordered table-responsive table-active " ID="gv_Newsletter" runat="server" AutoGenerateColumns="False" HorizontalAlign="Center" AllowPaging="true" PageSize="5" OnPageIndexChanging="gv_Newsletter_PageIndexChanging" RowStyle-Height="40px">
                 <HeaderStyle CssClass="thead-dark" />
                 <PagerTemplate>
                     <div class="col-md-4 text-left">
@@ -192,8 +190,6 @@
                     <asp:TemplateField HeaderText="Acciones" HeaderStyle-Width="100px">
                         <ItemTemplate>
                             <div>
-                                <asp:ImageButton ID="btn_Bloquear" runat="server" CommandName="B" ImageUrl="~/Imagenes/padlock-close.png" Height="18px" />
-                                <asp:ImageButton ID="btn_desbloqueo" runat="server" CommandName="U" ImageUrl="~/Imagenes/padlock-open.png" Height="18px" />
                                 <asp:ImageButton ID="btn_editar" runat="server" CommandName="E" ImageUrl="~/Imagenes/edit.png" Height="18px" />
                             </div>
                         </ItemTemplate>
@@ -208,6 +204,6 @@
 
     <br />
 
-     <asp:HiddenField ID="id_newsletter" runat="server" />
+    <asp:HiddenField ID="id" runat="server" />
 
 </asp:Content>

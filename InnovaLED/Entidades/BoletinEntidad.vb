@@ -41,14 +41,13 @@
         End Set
     End Property
 
-
-    Private _imagen As String
-    Public Property Imagen() As String
+    Private _Imagen As Byte()
+    Public Property Imagen() As Byte()
         Get
-            Return _imagen
+            Return _Imagen
         End Get
-        Set(ByVal value As String)
-            _imagen = value
+        Set(ByVal value As Byte())
+            _Imagen = value
         End Set
     End Property
 

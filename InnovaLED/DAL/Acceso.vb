@@ -26,6 +26,10 @@ Public Class Acceso
             Throw ex
         End Try
     End Function
+
+    Public Shared BackupBoletin As String = WebConfigurationManager.AppSettings("rutaboletin").ToString()
+
+
     Public Shared Function Scalar(ByVal command As SqlCommand) As Integer
         Try
             Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US")

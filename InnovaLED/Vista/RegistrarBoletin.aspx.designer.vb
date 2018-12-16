@@ -185,13 +185,13 @@ Partial Public Class RegistrarBoletin
     Protected WithEvents lbl_SeleccionarImagenBoletin As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''Control fu_imagenBoletin.
+    '''Control FileUpload1.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents fu_imagenBoletin As Global.System.Web.UI.WebControls.FileUpload
+    Protected WithEvents FileUpload1 As Global.System.Web.UI.WebControls.FileUpload
     
     '''<summary>
     '''Control RegularExpressionValidator1.
@@ -221,15 +221,6 @@ Partial Public Class RegistrarBoletin
     Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
     
     '''<summary>
-    '''Control validadorSize.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents validadorSize As Global.System.Web.UI.WebControls.CustomValidator
-    
-    '''<summary>
     '''Control btn_agregar.
     '''</summary>
     '''<remarks>
@@ -239,13 +230,13 @@ Partial Public Class RegistrarBoletin
     Protected WithEvents btn_agregar As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
-    '''Control btn_cancelar.
+    '''Control btn_eliminar.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents btn_cancelar As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btn_eliminar As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
     '''Control gv_Newsletter.
@@ -257,11 +248,11 @@ Partial Public Class RegistrarBoletin
     Protected WithEvents gv_Newsletter As Global.System.Web.UI.WebControls.GridView
     
     '''<summary>
-    '''Control id_newsletter.
+    '''Control id.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents id_newsletter As Global.System.Web.UI.WebControls.HiddenField
+    Protected WithEvents id As Global.System.Web.UI.WebControls.HiddenField
 End Class

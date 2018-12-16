@@ -201,6 +201,7 @@
     <Content Include="IMAGENES\happy.png" />
     <Content Include="IMAGENES\idea.png" />
     <Content Include="IMAGENES\images.jpg" />
+    <Content Include="IMAGENES\lamp.png" />
     <Content Include="IMAGENES\LamparitaLed.jpg" />
     <Content Include="IMAGENES\Lock.png" />
     <Content Include="IMAGENES\luz-led.png" />
