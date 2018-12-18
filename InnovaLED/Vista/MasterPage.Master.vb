@@ -120,6 +120,8 @@ Public Class MasterPage
         Me.menuVertical.Items.Item(1).ChildItems.Add(New MenuItem("Newslatter", "RegistrarBoletin", Nothing, "/RegistrarBoletin.aspx"))
         Me.menuVertical.Items.Item(1).ChildItems.Add(New MenuItem("Gestionar Publicidad", "GestionarPublicidad", Nothing, "/GestionarPublicidad.aspx"))
         Me.menuVertical.Items.Item(1).ChildItems.Add(New MenuItem("Preguntas S/ Productos", "PreguntasProductos", Nothing, "/GestionarRespuestas.aspx"))
+        Me.menuVertical.Items.Item(1).ChildItems.Add(New MenuItem("Gestionar Encuestas", "GestionarEncuestas", Nothing, "/GestionarEncuestas.aspx"))
+
 
         Me.menuVertical.Items.Add(New MenuItem("Seguridad", "Seguridad"))
         Me.menuVertical.Items.Item(2).ChildItems.Add(New MenuItem("Gestionar Usuarios", "GestionarUsuarios", Nothing, "/GestionarUsuarios.aspx"))
