@@ -53,6 +53,14 @@ Public Class BoletinBLL
         End Try
     End Function
 
+    Public Function DesincribirBoletin(ByVal paramCorreo As String)
+        Try
+            Return boletinMPP.DesinscribirseBoletin(paramCorreo)
+        Catch ex As Exception
+
+        End Try
+    End Function
+
     Public Function ObtenerBoletinNovedad() As List(Of BoletinEntidad)
         Try
             Return boletinMPP.obtenerBoletinNovedad()

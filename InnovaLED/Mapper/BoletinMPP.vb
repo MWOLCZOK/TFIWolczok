@@ -35,10 +35,11 @@ Public Class BoletinMPP
     Public Sub inscribirseBoletin(ByVal paramCorreo As String, ByVal paramTipo As List(Of TipoBoletin))
         Try
             For Each miTipoBoletin As Entidades.TipoBoletin In paramTipo
-                Dim Command As SqlCommand = Acceso.MiComando("insert into Suscripcion values (@Correo, @ID_TipoBoletin)")
+                Dim Command As SqlCommand = Acceso.MiComando("insert into Suscripcion values (@Mail, @ID_Tipoboletin,@BL)")
                 With Command.Parameters
-                    .Add(New SqlParameter("@Correo", paramCorreo))
-                    .Add(New SqlParameter("@ID_TipoBoletin", CInt(miTipoBoletin)))
+                    .Add(New SqlParameter("@Mail", paramCorreo))
+                    .Add(New SqlParameter("@ID_Tipoboletin", CInt(miTipoBoletin)))
+                    .Add(New SqlParameter("@BL", False))
                 End With
                 Acceso.Escritura(Command)
             Next
@@ -47,13 +48,33 @@ Public Class BoletinMPP
         End Try
     End Sub
 
+    Public Function DesinscribirseBoletin(ByVal paramCorreo As String)
+        Try
+            Dim Command As SqlCommand = Acceso.MiComando("Update Suscripcion set BL=@BL where Mail=@Mail")
+            Dim ListaParametros As New List(Of String)
+            With Command.Parameters
+                .Add(New SqlParameter("@Mail", paramCorreo))
+                .Add(New SqlParameter("@BL", True))
+            End With
+            Acceso.Escritura(Command)
+            Command.Dispose()
+            Return True
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+
+
 
     Public Function obtenerSubscriptores(ByVal _idTipoBoletin As Integer) As List(Of String)
         Try
             Dim _listaSubscriptores As New List(Of String)
-            Dim Command As SqlCommand = Acceso.MiComando("Select Mail from Suscripcion where ID_TipoBoletin=@ID_TipoBoletin")
+            Dim Command As SqlCommand = Acceso.MiComando("Select Mail from Suscripcion where ID_TipoBoletin=@ID_TipoBoletin and BL=@BL")
             With Command.Parameters
                 .Add(New SqlParameter("@ID_TipoBoletin", _idTipoBoletin))
+                .Add(New SqlParameter("@BL", False))
             End With
             Dim _dt As DataTable = Acceso.Lectura(Command)
             For Each dr As DataRow In _dt.Rows
@@ -68,9 +89,10 @@ Public Class BoletinMPP
 
     Public Function validarCorreo(ByVal paramCorreo As String) As Boolean
         Try
-            Dim Command As SqlCommand = Acceso.MiComando("Select * from Suscripcion where Mail=@Mail")
+            Dim Command As SqlCommand = Acceso.MiComando("Select * from Suscripcion where Mail=@Mail and BL=@BL")
             With Command.Parameters
                 .Add(New SqlParameter("@Mail", paramCorreo))
+                .Add(New SqlParameter("@BL", False))
             End With
             Dim _dt As DataTable = Acceso.Lectura(Command)
             If _dt.Rows.Count > 0 Then

@@ -136,7 +136,7 @@
                     </div>
 
                     <div class="col-md-offset-6 col-md-2 text-right">
-                        <asp:DropDownList ID="lstidioma" runat="server" CssClass="form-control" AutoPostBack="true" DataValueField="ID_Idioma" DataTextField="Nombre" Height="30px"></asp:DropDownList>
+                        <asp:DropDownList ID="lstidioma" runat="server" CssClass="form-control" DataValueField="ID_Idioma" autopostback="true" DataTextField="Nombre" Height="30px"></asp:DropDownList>
                     </div>
                     <div class="row row col-md-1 text-right">
                         <%-- <asp:Label ID="Lbl_Idioma" runat="server" Text="Selección de Idioma" Font-Size="18px" ForeColor="#368BE1"></asp:Label>--%>
@@ -221,7 +221,22 @@
         </div>
 
         <div class="row Azul lineaCopyright"></div>
+
         <div class="row Azul MenuFrente">
+
+
+            <div class="row">
+                <div class="row col-md-4">
+                    <asp:Label ID="Label1" runat="server" Text="----¿Deseas recibir nuestras últimas novedades?" font="Bahnschrift" Font-Bold="True" Font-Size="18px" CssClass="control-label  labelform text-right" ForeColor="white"></asp:Label>
+                </div>
+                </div>
+            <div class="row">
+                <div class="row col-md-2 col-md-offset-1">
+                    <asp:Button ID="btn_newsletter" runat="server" Text="Suscribite YA!" class="btn  btn-warning text-left" />
+                </div>
+            </div>
+
+
             <br />
             <div class="col-md-8 col-md-offset-2 text-center">
                 <div class="textoCopyright Blanco">

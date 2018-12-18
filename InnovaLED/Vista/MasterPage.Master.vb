@@ -18,38 +18,56 @@ Public Class MasterPage
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         Try
-            'If Not IsPostBack Then
-            '    Try
-            '        CargarIdiomas()
-            '    Catch ex As Exception
+            If Not IsPostBack Then
 
+                If IsNothing(Current.Session("cliente")) Or IsDBNull(Current.Session("Cliente")) Then
+                    Dim UsuarioInvitado As New Entidades.UsuarioEntidad
+                    CargarSinPerfilIdioma(UsuarioInvitado)
+                    VisibilidadAcceso(False)
+                    TraducirPagina(UsuarioInvitado)
+                    miMenuVertical.Attributes.Remove("class")
+                    miContenidoPagina.Attributes.Add("class", "col-md-12")
+                    CargarIdiomas()
+                Else
+                    Try
+                        Dim Usuario As Entidades.UsuarioEntidad = TryCast(Current.Session("cliente"), Entidades.UsuarioEntidad)
+                        CargarPerfil(Usuario)
+                        VisibilidadAcceso(True)
+                        TraducirPagina(Usuario)
+                        miContenidoPagina.Attributes.Add("class", "col-md-10")
+                        miMenuVertical.Attributes.Add("class", "col-md-2")
+                    Catch ex As Exception
 
-            '    End Try
-            'End If
-
-
-            If IsNothing(Current.Session("cliente")) Or IsDBNull(Current.Session("Cliente")) Then
-                Dim UsuarioInvitado As New Entidades.UsuarioEntidad
-                CargarSinPerfilIdioma(UsuarioInvitado)
-                VisibilidadAcceso(False)
-                TraducirPagina(UsuarioInvitado)
-                miMenuVertical.Attributes.Remove("class")
-                miContenidoPagina.Attributes.Add("class", "col-md-12")
-                CargarIdiomas()
-
+                    End Try
+                End If
             Else
-                Try
-                    Dim Usuario As Entidades.UsuarioEntidad = TryCast(Current.Session("cliente"), Entidades.UsuarioEntidad)
 
-                    CargarPerfil(Usuario)
-                    VisibilidadAcceso(True)
-                    TraducirPagina(Usuario)
-                    miContenidoPagina.Attributes.Add("class", "col-md-10")
-                    miMenuVertical.Attributes.Add("class", "col-md-2")
-                Catch ex As Exception
+                If IsNothing(Current.Session("cliente")) Or IsDBNull(Current.Session("Cliente")) Then
+                    Dim UsuarioInvitado As New Entidades.UsuarioEntidad
+                    CargarSinPerfilIdioma(UsuarioInvitado)
+                    VisibilidadAcceso(False)
+                    TraducirPagina(UsuarioInvitado)
+                    miMenuVertical.Attributes.Remove("class")
+                    miContenidoPagina.Attributes.Add("class", "col-md-12")
 
-                End Try
+                Else
+                    Try
+                        Dim Usuario As Entidades.UsuarioEntidad = TryCast(Current.Session("cliente"), Entidades.UsuarioEntidad)
+                        CargarPerfil(Usuario)
+                        VisibilidadAcceso(True)
+                        TraducirPagina(Usuario)
+                        miContenidoPagina.Attributes.Add("class", "col-md-10")
+                        miMenuVertical.Attributes.Add("class", "col-md-2")
+                    Catch ex As Exception
+
+                    End Try
+
+
+
+                End If
             End If
+
+
         Catch ex As Exception
 
         End Try
@@ -164,6 +182,7 @@ Public Class MasterPage
         Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/ComparacionProducto.aspx"})
         Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/EncuestaGlobal.aspx"})
         Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/BusquedaGlobal.aspx"})
+        Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/SuscripcionBoletin.aspx"})
 
         UsuarioInvitado.Rol.Add(Rol)
 
@@ -648,8 +667,7 @@ Public Class MasterPage
         End Try
     End Sub
 
-
-
-
-
+    Protected Sub btn_newsletter_Click(sender As Object, e As EventArgs) Handles btn_newsletter.Click
+        Response.Redirect("/SuscripcionBoletin.aspx", False)
+    End Sub
 End Class
