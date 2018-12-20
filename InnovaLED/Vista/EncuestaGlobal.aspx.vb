@@ -15,14 +15,14 @@ Public Class EncuestaGlobal
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not IsPostBack Then
             cargarPreguntasOpiniones()
-            LlenarChart()
+            'LlenarChart()
         End If
     End Sub
 
     Private Sub cargarPreguntasOpiniones()
         Try
             Dim _listapregunta As New List(Of PreguntaOpinionEntidad)
-            _listapregunta = GestorPreguntaOpinion.TraerTodasPreguntasFichaOpinion(PreguntaOpinionEntidad.TipoPreguntaOpinion.Encuesta)
+            _listapregunta = GestorPreguntaOpinion.TraerTodasPreguntasFichaOpinion(TipoPregunta.Encuesta)
             generarPreguntasOpinion(_listapregunta)
         Catch ex As Exception
             Throw ex
@@ -40,8 +40,6 @@ Public Class EncuestaGlobal
                 label.Text = MiPregunta.Enunciado
                 labelID.Text = MiPregunta.ID
                 _contador += 1
-
-
             Next
             rb_pregunta1.DataSource = System.Enum.GetValues(GetType(RespuestaEntidad.TipoRespuestasCalidad))
             rb_pregunta1.DataBind()
@@ -49,11 +47,6 @@ Public Class EncuestaGlobal
             rb_pregunta2.DataBind()
             rb_pregunta3.DataSource = System.Enum.GetValues(GetType(RespuestaEntidad.TipoRespuestasCalidad))
             rb_pregunta3.DataBind()
-
-
-
-
-
         Catch ex As Exception
 
         End Try
@@ -112,49 +105,7 @@ Public Class EncuestaGlobal
     End Sub
 
 
-    Public Sub LlenarChart()
 
-        Dim ContadorResp As Integer = 0
-        Dim ContadorPreg As Integer = 0
-        Dim listpregunta As List(Of PreguntaOpinionEntidad)
-        Dim oPregunta As New PreguntaOpinionEntidad
-        Dim preguntaOpinionBLL As New GestorPreguntaOpinionBLL
-        listpregunta = preguntaOpinionBLL.TraerTodasPreguntasFichaOpinion(oPregunta.TipoPregunta.Encuesta)
-        ContadorPreg = listpregunta.Count
-
-        For Each _pregunta As PreguntaOpinionEntidad In listpregunta
-            ContadorPreg = ContadorPreg - 1
-            If ContadorPreg > 0 Then
-                Dim _listaRespuesta As New List(Of RespuestaEntidad)
-                Dim respuestaOPinionBLL As New GestorPreguntaOpinionBLL
-                _listaRespuesta = respuestaOPinionBLL.TraerRespuestas(_pregunta)
-                ContadorResp = _listaRespuesta.Count
-                Dim Serie1 = CharEncuesta1.Series("Series1")
-                Serie1.Points.Clear()
-
-                For Each _respuesta As RespuestaEntidad In _listaRespuesta
-                    ContadorResp = ContadorResp - 1
-                    If ContadorResp > 0 Then
-                        Serie1.Points.AddXY("", _respuesta.Valor_Respuesta)
-                        CharEncuesta1.Series(0).ChartType = DataVisualization.Charting.SeriesChartType.Pie
-                        Dim ChartArea = CharEncuesta1.ChartAreas("ChartArea1")
-                        CharEncuesta1.Series(0).XValueMember = _respuesta.Tipo_Respuesta_Calidad.ToString
-                        'CharEncuesta1.Series(0).YValueMembers = "Respuestas"
-                        CharEncuesta1.ChartAreas(0).Area3DStyle.Enable3D = True
-                    End If
-                Next
-
-
-
-
-            Else
-
-                'para la pregunta 2 y luego para la 3.
-            End If
-
-        Next
-
-    End Sub
 
 
 

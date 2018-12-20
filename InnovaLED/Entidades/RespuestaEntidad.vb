@@ -8,6 +8,12 @@
         Pesimo = 4
     End Enum
 
+    Enum TipoRespuestasFichaOpinion
+        Si = 0
+        No = 1
+        Quizas = 2
+    End Enum
+
 
     Private _respuestaCal As TipoRespuestasCalidad
     Public Property Tipo_Respuesta_Calidad() As TipoRespuestasCalidad
@@ -18,6 +24,18 @@
             _respuestaCal = value
         End Set
     End Property
+
+
+    Private _respuestaFichaOpinion As TipoRespuestasFichaOpinion
+    Public Property Tipo_Respuesta_FichaOpinion() As TipoRespuestasFichaOpinion
+        Get
+            Return _respuestaFichaOpinion
+        End Get
+        Set(ByVal value As TipoRespuestasFichaOpinion)
+            _respuestaFichaOpinion = value
+        End Set
+    End Property
+
 
     Private _id As Integer
     Public Property ID_Respuesta() As Integer

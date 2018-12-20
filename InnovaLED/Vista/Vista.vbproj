@@ -229,6 +229,7 @@
     <Content Include="Institucional.aspx" />
     <Content Include="JS\bootstrap.js" />
     <Content Include="JS\bootstrap.min.js" />
+    <Content Include="JS\Chart.js" />
     <Content Include="JS\dropdown.js" />
     <Content Include="JS\jquery-1.10.2.js" />
     <Content Include="JS\jquery-1.11.3.min.js" />

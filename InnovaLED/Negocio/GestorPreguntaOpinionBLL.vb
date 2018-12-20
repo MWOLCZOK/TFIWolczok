@@ -34,13 +34,27 @@ Public Class GestorPreguntaOpinionBLL
 
     End Function
 
-    Public Function TraerTodasPreguntasFichaOpinion(paramTipoPregunta As PreguntaOpinionEntidad.TipoPreguntaOpinion) As List(Of PreguntaOpinionEntidad)
+    Public Function TraerTodasPreguntasFichaOpinion(paramTipoPregunta As TipoPregunta) As List(Of PreguntaOpinionEntidad)
         Try
             Return preguntaMPP.TraerTodasPreguntasFichaOpinion(paramTipoPregunta)
         Catch ex As Exception
             Throw ex
         End Try
 
+    End Function
+
+
+
+
+
+
+
+    Public Function TraerTodasLasPreguntas() As List(Of PreguntaOpinionEntidad)
+        Try
+            Return preguntaMPP.TraerTodasLasPreguntas()
+        Catch ex As Exception
+
+        End Try
     End Function
 
 
@@ -60,6 +74,80 @@ Public Class GestorPreguntaOpinionBLL
     Public Function TraerRespuestas(ByVal paramPregunta As PreguntaOpinionEntidad) As List(Of RespuestaEntidad)
         Return preguntaMPP.TraerRespuestas(paramPregunta)
     End Function
+
+
+    Public Function obtenerRespuestas(ByVal paramPregunta As PreguntaOpinionEntidad, ByVal paramMes As Integer, ByVal paramAno As Integer) As List(Of PreguntaOpinionEntidad.TipoRespuestasCalidad)
+        Try
+            If paramMes = 0 Then
+                'TODOS LOS MESES, UN AÑO EN PARTICULAR
+                Return preguntaMPP.obtenerRespuestas(paramPregunta, paramAno, True)
+            ElseIf paramAno = 0 Then
+                'TODOS LOS AÑOS, UN MES EN PARTICULAR
+                Return preguntaMPP.obtenerRespuestas(paramPregunta, paramMes, False)
+            Else
+                'UN MES Y AÑO EN PARTICULAR
+                Return preguntaMPP.obtenerRespuestas(paramPregunta, paramMes, paramAno)
+            End If
+        Catch ex As Exception
+            Throw New Exception
+        End Try
+
+    End Function
+
+
+    Public Function obtenerRespuestas(ByVal paramPregunta As PreguntaOpinionEntidad) As List(Of PreguntaOpinionEntidad.TipoRespuestasCalidad)
+        Try
+            Return preguntaMPP.obtenerRespuestas(paramPregunta)
+        Catch ex As Exception
+            Throw New Exception
+        End Try
+
+    End Function
+
+
+    Public Function obtenerPreguntas() As List(Of PreguntaOpinionEntidad)
+        Try
+            Return preguntaMPP.obtenerPreguntas()
+        Catch ex As Exception
+            Throw New Exception
+        End Try
+
+    End Function
+
+    Public Function obtenerPreguntas(ByVal paramTipoPregunta As PreguntaOpinionEntidad.TipoRespuestasFichaOpinion) As List(Of PreguntaOpinionEntidad)
+        Try
+            Return preguntaMPP.obtenerPreguntas(paramTipoPregunta)
+        Catch ex As Exception
+            Throw New Exception
+        End Try
+
+    End Function
+
+    Public Function obtenerPreguntas(ByVal paramPregunta As PreguntaOpinionEntidad) As PreguntaOpinionEntidad
+
+        Try
+            Return preguntaMPP.obtenerPreguntas(paramPregunta)
+        Catch ex As Exception
+            Throw New Exception
+        End Try
+
+    End Function
+
+    Public Function obtenerRespuestasFO(ByVal paramPregunta As PreguntaOpinionEntidad) As List(Of PreguntaOpinionEntidad.TipoRespuestasFichaOpinion)
+        Try
+            Return preguntaMPP.obtenerRespuestasFO(paramPregunta)
+        Catch ex As Exception
+            Throw New Exception
+        End Try
+
+    End Function
+
+
+
+
+
+
+
 
 
 

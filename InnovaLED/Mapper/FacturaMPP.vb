@@ -35,7 +35,6 @@ Public Class FacturaMPP
                     .Add(New SqlParameter("@Subtotal", _renglon.Subtotal))
                 End With
                 Acceso.Escritura(Command2)
-
             Next
             Return True
         Catch ex As Exception

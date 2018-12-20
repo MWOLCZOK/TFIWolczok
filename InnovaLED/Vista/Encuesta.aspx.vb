@@ -17,7 +17,7 @@ Public Class Encuesta
     Private Sub cargarPreguntasOpiniones()
         Try
             Dim _listapregunta As New List(Of PreguntaOpinionEntidad)
-            _listapregunta = GestorPreguntaOpinion.TraerTodasPreguntasFichaOpinion(PreguntaOpinionEntidad.TipoPreguntaOpinion.Opinion)
+            _listapregunta = GestorPreguntaOpinion.TraerTodasPreguntasFichaOpinion(TipoPregunta.Opinion)
             generarPreguntasOpinion(_listapregunta)
         Catch ex As Exception
             Throw ex
@@ -36,11 +36,11 @@ Public Class Encuesta
                 labelID.Text = MiPregunta.ID
                 _contador += 1
             Next
-            rb_pregunta1.DataSource = System.Enum.GetValues(GetType(RespuestaEntidad.TipoRespuestasCalidad))
+            rb_pregunta1.DataSource = System.Enum.GetValues(GetType(RespuestaEntidad.TipoRespuestasFichaOpinion))
             rb_pregunta1.DataBind()
-            rb_pregunta2.DataSource = System.Enum.GetValues(GetType(RespuestaEntidad.TipoRespuestasCalidad))
+            rb_pregunta2.DataSource = System.Enum.GetValues(GetType(RespuestaEntidad.TipoRespuestasFichaOpinion))
             rb_pregunta2.DataBind()
-            rb_pregunta3.DataSource = System.Enum.GetValues(GetType(RespuestaEntidad.TipoRespuestasCalidad))
+            rb_pregunta3.DataSource = System.Enum.GetValues(GetType(RespuestaEntidad.TipoRespuestasFichaOpinion))
             rb_pregunta3.DataBind()
         Catch ex As Exception
 
@@ -70,7 +70,7 @@ Public Class Encuesta
                 For i = 1 To 3
                     Dim _resp As New RespuestaEntidad
                     _resp.Pregunta = New PreguntaOpinionEntidad With {.ID = DirectCast(Me.panelPreguntas.FindControl("id_" & i), Label).Text}  ' aca lo lleno con una instanacia de preguntaENtidad
-                    _resp.Valor_Respuesta = [Enum].Parse(GetType(RespuestaEntidad.TipoRespuestasCalidad), DirectCast(Me.panelPreguntas.FindControl("rb_pregunta" & i), RadioButtonList).SelectedValue) ' Para obtener el valor doe RBList necesito el Enum,parse porque sino toma el valor texto
+                    _resp.Valor_Respuesta = [Enum].Parse(GetType(RespuestaEntidad.TipoRespuestasFichaOpinion), DirectCast(Me.panelPreguntas.FindControl("rb_pregunta" & i), RadioButtonList).SelectedValue) ' Para obtener el valor doe RBList necesito el Enum,parse porque sino toma el valor texto
 
                     _resp.Usuario = Session("cliente")
                     _listaRespuesta.Add(_resp)

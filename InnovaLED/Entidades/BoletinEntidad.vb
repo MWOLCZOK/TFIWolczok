@@ -121,7 +121,6 @@ End Class
 
 
 
-
 Public Enum TipoBoletin
     Noticias = 1
     Ofertas = 2
