@@ -32,23 +32,23 @@ Public Class PagoMPP
                     Acceso.Escritura(Command3)
                 Next
 
-                'Genero una variable y recorro la lista
+                ''Genero una variable y recorro la lista
 
-                Dim SumNotas As Single = 0
-                For Each notascredito As DocumentoFinancieroEntidad In notas
-                    SumNotas = SumNotas + notascredito.Monto
-                Next
+                'Dim SumNotas As Single = 0
+                'For Each notascredito As DocumentoFinancieroEntidad In notas
+                '    SumNotas = SumNotas + notascredito.Monto
+                'Next
 
-                'Aca pregunto, si el total de las notas es mayor al monto de la factura total, generar la NC.
-                If SumNotas > pago.Factura.MontoTotal Then
-                    Dim Nota_CredMPP As New DocumentoFinancieroMPP
-                    Dim Nota_Cred_Entidad As New DocumentoFinancieroEntidad
-                    Nota_Cred_Entidad.Descripcion = "Nota de Credito generada por diferencia en compra a favor de Cliente."
-                    Nota_Cred_Entidad.Tipo_Documento = 1
-                    Nota_Cred_Entidad.Monto = SumNotas - pago.Factura.MontoTotal
-                    Nota_Cred_Entidad.Usuario = pago.Factura.Cliente
-                    Nota_CredMPP.Alta(Nota_Cred_Entidad)
-                End If
+                ''Aca pregunto, si el total de las notas es mayor al monto de la factura total, generar la NC.
+                'If SumNotas > pago.Factura.MontoTotal Then
+                '    Dim Nota_CredMPP As New DocumentoFinancieroMPP
+                '    Dim Nota_Cred_Entidad As New DocumentoFinancieroEntidad
+                '    Nota_Cred_Entidad.Descripcion = "Nota de Credito generada por diferencia en compra a favor de Cliente."
+                '    Nota_Cred_Entidad.Tipo_Documento = 1
+                '    Nota_Cred_Entidad.Monto = SumNotas - pago.Factura.MontoTotal
+                '    Nota_Cred_Entidad.Usuario = pago.Factura.Cliente
+                '    Nota_CredMPP.Alta(Nota_Cred_Entidad)
+                'End If
             End If
 
             Return True

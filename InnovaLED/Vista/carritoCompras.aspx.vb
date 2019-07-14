@@ -187,31 +187,32 @@ Public Class carritoCompras
                     Res = Tot - notasSelec
                     Res = Res * (-1)
                     If Res > 0 Then
-                        'Si hay diferente con la nota de credito que pago, creo una nueva por el monto sobrante
+                        'Si hay diferencia con la nota de credito que pago, creo una nueva por el monto sobrante
 
                         Dim notaCred As New DocumentoFinancieroEntidad("Nota de Credito generada en la compra por diferencia a favor", Res, TipoDocumento.Positivo, cli, Now)
 
                         GestorNotaCred.Alta(notaCred)
-                    Else
-                        'sino sigo y elimino la nota de credito usada
-                        GestorNotaCred.Eliminar(listnota)
+                    End If
+                    ' sigo y elimino la nota de credito usada
+                    GestorNotaCred.Eliminar(listnota)
 
 
-                        GestorFacturaBLL.GenerarFactura(factura)
+                    GestorFacturaBLL.GenerarFactura(factura)
                     Dim pago As New PagoEntidad(factura, Now, Tipo_PagoEntidad.Nota_Credito)
                     Dim GestorPagoBLL As New GestorPagoBLL
-                        GestorPagoBLL.Alta(pago, listnota)
+                    GestorPagoBLL.Alta(pago, listnota)
 
-                        Dim LongString As String
-                        For Each _nota As DocumentoFinancieroEntidad In listnota
-                            LongString += _nota.ID & ","
-                        Next
-                        generarComprobante("Factura", factura, cli, Now, listcompra, "Nota de Crédito", LongString)
+                    Dim LongString As String
+                    For Each _nota As DocumentoFinancieroEntidad In listnota
+                        LongString += _nota.ID & ","
+                    Next
+                    generarComprobante("Factura", factura, cli, Now, listcompra, "Nota de Crédito", LongString)
 
-                    End If
+
                 Else
                     'paga mixto
                     If ValidarCampos() = True And validarFecha() = True Then
+                        GestorNotaCred.Eliminar(listnota) ' esto se agrego 30/6/19 ' Verificar porque si hago un pago mixto, al NC ya se elimino en la parte del código de NC
                         GestorFacturaBLL.GenerarFactura(factura)
                         Dim pago As New PagoEntidad(factura, Now, Tipo_PagoEntidad.Mixto)
                         Dim GestorPagoBLL As New GestorPagoBLL
@@ -389,7 +390,7 @@ Public Class carritoCompras
         Dim sum As Single
         Dim lstnc As List(Of DocumentoFinancieroEntidad)
         lstnc = Session("nota")
-        If not IsNothing(lstnc) Then
+        If Not IsNothing(lstnc) Then
             For Each nc In lstnc
                 sum = sum + nc.Monto
                 lbltotalnotasC.Text = "AR$ " & sum

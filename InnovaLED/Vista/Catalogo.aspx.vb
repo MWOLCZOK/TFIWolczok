@@ -256,32 +256,32 @@ Public Class Catalogo
             Modelo = txtmodelo.Text
         End If
 
-        If txtpesodesde.Text = "" Then
-            PesoDesde = Nothing
-        Else
-            PesoDesde = CInt(txtpesodesde.Text)
-        End If
+        'If txtpesodesde.Text = "" Then
+        '    PesoDesde = Nothing
+        'Else
+        '    PesoDesde = CInt(txtpesodesde.Text)
+        'End If
 
-        If txtpesohasta.Text = "" Then
-            PesoHasta = Nothing
-        Else
+        'If txtpesohasta.Text = "" Then
+        '    PesoHasta = Nothing
+        'Else
 
-            PesoHasta = CInt(txtpesohasta.Text)
-        End If
+        '    PesoHasta = CInt(txtpesohasta.Text)
+        'End If
 
-        If txtwattdesde.Text = "" Then
-            WattDesde = Nothing
-        Else
+        'If txtwattdesde.Text = "" Then
+        '    WattDesde = Nothing
+        'Else
 
-            WattDesde = CInt(txtwattdesde.Text)
-        End If
+        '    WattDesde = CInt(txtwattdesde.Text)
+        'End If
 
-        If txtwatthasta.Text = "" Then
-            WattHasta = Nothing
-        Else
+        'If txtwatthasta.Text = "" Then
+        '    WattHasta = Nothing
+        'Else
 
-            WattHasta = CInt(txtwatthasta.Text)
-        End If
+        '    WattHasta = CInt(txtwatthasta.Text)
+        'End If
 
         If txtpreciodesde.Text = "" Then
             PrecioDesde = Nothing
@@ -321,10 +321,10 @@ Public Class Catalogo
     Private Sub Ocultamiento()
         txtmarca.Enabled = False
         txtmodelo.Enabled = False
-        txtpesodesde.Enabled = False
-        txtpesohasta.Enabled = False
-        txtwattdesde.Enabled = False
-        txtwatthasta.Enabled = False
+        'txtpesodesde.Enabled = False
+        'txtpesohasta.Enabled = False
+        'txtwattdesde.Enabled = False
+        'txtwatthasta.Enabled = False
         txtpreciodesde.Enabled = False
         txtpreciohasta.Enabled = False
         DropDownLinea.Enabled = False

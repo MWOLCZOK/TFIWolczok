@@ -107,7 +107,6 @@ Public Class MasterPage
         Me.Menu.Items.Add(New MenuItem("Catalogo", "Catalogo"))
         Me.Menu.Items.Item(2).ChildItems.Add(New MenuItem("Nuestros Productos", "Catalogo", Nothing, "/Catalogo.aspx"))
         Me.Menu.Items.Item(2).ChildItems.Add(New MenuItem("Novedades", "Novedades", Nothing, "/Novedades.aspx"))
-        Me.Menu.Items.Add(New MenuItem("Seleccionar Idioma", "SeleccionarIdioma", Nothing, "/SeleccionarIdioma.aspx"))
         Me.Menu.Items.Add(New MenuItem("¡Nos interesa tu Opinion!", "NosInteresaTuOpinion", Nothing, "/EncuestaGlobal.aspx"))
 
         Me.menuVertical.Items.Clear()
@@ -161,7 +160,7 @@ Public Class MasterPage
         Me.Menu.Items.Item(2).ChildItems.Add(New MenuItem("Nuestros Productos", "Catalogo", Nothing, "/Catalogo.aspx"))
         Me.Menu.Items.Item(2).ChildItems.Add(New MenuItem("Novedades", "Novedades", Nothing, "/Novedades.aspx"))
 
-        Me.Menu.Items.Add(New MenuItem("Seleccionar Idioma", "SeleccionarIdioma", Nothing, "/SeleccionarIdioma.aspx"))
+        'Me.Menu.Items.Add(New MenuItem("Seleccionar Idioma", "SeleccionarIdioma", Nothing, "/SeleccionarIdioma.aspx"))
 
         Me.Menu.Items.Add(New MenuItem("¡Nos interesa tu Opinion!", "NosInteresaTuOpinion", Nothing, "/EncuestaGlobal.aspx"))
 
@@ -178,7 +177,7 @@ Public Class MasterPage
         Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/RecuperarPassword.aspx"})
         Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/Newsletter.aspx"})
         Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/Default.aspx"})
-        Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/SeleccionarIdioma.aspx"})
+        'Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/SeleccionarIdioma.aspx"})
         Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/TerminosyCondiciones.aspx"})
         Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/DetalleProducto.aspx"})
         Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/ComparacionProducto.aspx"})
@@ -410,8 +409,8 @@ Public Class MasterPage
 
     Public Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
         Try
-            'If IsReCaptchaValid() = True Then
-            Dim Cliente As New Entidades.UsuarioEntidad
+            If IsReCaptchaValid() = True Then
+                Dim Cliente As New Entidades.UsuarioEntidad
                 Dim IdiomaActual As Entidades.IdiomaEntidad
                 Dim clienteLogeado As New Entidades.UsuarioEntidad
                 If IsNothing(Current.Session("Cliente")) Then
@@ -435,13 +434,13 @@ Public Class MasterPage
                 Response.Redirect(Request.Url.ToString, False)
             End If
 
-            'descomentar lo q esta debajo para que funcione el captcha y la funcion que esta arriba de todo del IF
+                'descomentar lo q esta debajo para que funcione el captcha y la funcion que esta arriba de todo del IF
 
-            'Else
-            '    Me.label_alert_login.InnerText = "Debe completar el captcha"
-            '    Me.success.Visible = False
-            '    Me.alert_login.Visible = True
-            'End If
+            Else
+                Me.label_alert_login.InnerText = "Debe completar el captcha"
+                Me.success.Visible = False
+                Me.alert_login.Visible = True
+            End If
 
         Catch ex As Exception
             VisibilidadAcceso(False)

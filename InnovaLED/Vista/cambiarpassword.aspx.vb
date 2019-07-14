@@ -57,6 +57,8 @@ Public Class cambiarPassword
                     Me.alert.Visible = False
                     lbl_success.InnerText = "Se ha modificado el perfil satisfactoriamente."
 
+                    'Sumar bitácora.
+
                 Else
                     'no coinciden los passwords
                     Me.div_success.Visible = False

@@ -95,33 +95,6 @@ Partial Public Class Catalogo
     Protected WithEvents txtmodelo As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
-    '''Control Lbl_peso.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents Lbl_peso As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''Control txtpesodesde.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents txtpesodesde As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''Control txtpesohasta.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents txtpesohasta As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
     '''Control Lbl_precio.
     '''</summary>
     '''<remarks>
@@ -147,33 +120,6 @@ Partial Public Class Catalogo
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents txtpreciohasta As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''Control Lbl_watt.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents Lbl_watt As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''Control txtwattdesde.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents txtwattdesde As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''Control txtwatthasta.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents txtwatthasta As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
     '''Control Lbl_linea.
