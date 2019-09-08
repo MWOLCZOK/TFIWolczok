@@ -39,7 +39,7 @@
                 <div class="panel-body">
 
                     <div class="col-md-12">
-                        <asp:GridView CssClass="table table-hover table-bordered table-responsive table-active text-center" ID="gv_facturas" runat="server" AutoGenerateColumns="False" HorizontalAlign="Center" AllowPaging="true" PageSize="5" OnPageIndexChanging="gv_facturas_PageIndexChanging" RowStyle-Height="40px">
+                        <asp:GridView CssClass="table table-hover table-bordered table-responsive table-active text-center" ID="gv_facturas" runat="server" AutoGenerateColumns="False" HorizontalAlign="Center" AllowPaging="true" PageSize="10" OnPageIndexChanging="gv_facturas_PageIndexChanging" RowStyle-Height="40px">
                             <HeaderStyle CssClass="thead-dark" />
                             <PagerTemplate>
                                 <div class="col-md-4 text-left">
@@ -113,7 +113,7 @@
                 <div class="panel-body">
 
                     <div class="col-md-12">
-                        <asp:GridView CssClass="table table-hover table-bordered table-responsive table-active text-center" ID="gv_notas" runat="server" AutoGenerateColumns="False" HorizontalAlign="Center" AllowPaging="true" PageSize="5" OnPageIndexChanging="gv_notas_PageIndexChanging" RowStyle-Height="40px">
+                        <asp:GridView CssClass="table table-hover table-bordered table-responsive table-active text-center" ID="gv_notas" runat="server" AutoGenerateColumns="False" HorizontalAlign="Center" AllowPaging="true" PageSize="10" OnPageIndexChanging="gv_notas_PageIndexChanging" RowStyle-Height="40px">
                             <HeaderStyle CssClass="thead-dark" />
                             <PagerTemplate>
                                 <div class="col-md-4 text-left">

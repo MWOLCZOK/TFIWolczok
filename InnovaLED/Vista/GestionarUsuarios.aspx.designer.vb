@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class ModificarUsuario
+Partial Public Class GestionarUsuarios
     
     '''<summary>
     '''Control alertvalid.
@@ -221,13 +221,13 @@ Partial Public Class ModificarUsuario
     Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''Control DropDownListRol.
+    '''Control gv_Roles.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents DropDownListRol As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents gv_Roles As Global.System.Web.UI.WebControls.GridView
     
     '''<summary>
     '''Control Label3.

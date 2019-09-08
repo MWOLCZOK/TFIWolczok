@@ -136,7 +136,7 @@
                     </div>
 
                     <div class="col-md-offset-6 col-md-2 text-right">
-                        <asp:DropDownList ID="lstidioma" runat="server" CssClass="form-control" DataValueField="ID_Idioma" autopostback="true" DataTextField="Nombre" Height="30px"></asp:DropDownList>
+                        <asp:DropDownList ID="lstidioma" runat="server" CssClass="form-control" DataValueField="ID_Idioma" DataTextField="Nombre" Height="30px"></asp:DropDownList>
                     </div>
                     <div class="row row col-md-1 text-right">
                         <%-- <asp:Label ID="Lbl_Idioma" runat="server" Text="Selección de Idioma" Font-Size="18px" ForeColor="#368BE1"></asp:Label>--%>

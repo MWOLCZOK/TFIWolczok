@@ -4,7 +4,7 @@ Imports Negocio
 
 
 
-Public Class ModificarUsuario
+Public Class GestionarUsuarios
     Inherits System.Web.UI.Page
 
     Private Sub Gestionar_Usuario_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -14,6 +14,7 @@ Public Class ModificarUsuario
                 CargarUsuarios()
                 CargarPerfiles()
                 CargarIdiomas()
+                Session("RolesSeleccionados") = New List(Of RolEntidad)
             Catch ex As Exception
 
             End Try
@@ -53,11 +54,18 @@ Public Class ModificarUsuario
         lista = Gestor.ListarFamiliasGestion()
         If lista.Count > 0 Then
             Session("Roles") = lista
-            Me.DropDownListRol.DataSource = lista
-
-            Me.DropDownListRol.DataBind()
-
-            Me.DropDownListRol.DataBind()
+            Me.gv_Roles.DataSource = lista
+            Me.gv_Roles.DataBind()
+        Else
+            'Dim IdiomaActual As Entidades.IdiomaEntidad
+            'If IsNothing(Current.Session("Cliente")) Then
+            '    IdiomaActual = Application("Español")
+            'Else
+            '    IdiomaActual = Application(TryCast(Current.Session("Cliente"), Entidades.UsuarioEntidad).Idioma.Nombre)
+            'End If
+            'Me.alertvalid.Visible = True
+            'Me.alertvalid.InnerText = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "ModUserError3").Traduccion
+            'Me.success.Visible = False
         End If
 
     End Sub
@@ -151,6 +159,77 @@ Public Class ModificarUsuario
 
     End Sub
 
+    Private Sub gv_Roles_DataBound(sender As Object, e As EventArgs) Handles gv_Roles.DataBound
+        Try
+
+
+            Dim IdiomaActual As Entidades.IdiomaEntidad
+            If IsNothing(Current.Session("Cliente")) Then
+                IdiomaActual = Application("Español")
+            Else
+                IdiomaActual = Application(TryCast(Current.Session("Cliente"), Entidades.UsuarioEntidad).Idioma.Nombre)
+            End If
+            For Each row As GridViewRow In gv_Roles.Rows
+                Dim imagen1 As System.Web.UI.WebControls.ImageButton = DirectCast(row.FindControl("btn_Seleccionar"), System.Web.UI.WebControls.ImageButton)
+
+                imagen1.CommandArgument = row.RowIndex
+            Next
+
+            With gv_Roles.HeaderRow
+                '.Cells(0).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "HeaderID").Traduccion
+                '.Cells(1).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "HeaderNombreUsuario").Traduccion
+                '.Cells(2).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "HeaderIdioma").Traduccion
+                '.Cells(3).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "HeaderBloqueo").Traduccion
+                '.Cells(4).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "HeaderEmpleado").Traduccion
+                '.Cells(5).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "HeaderFechaAlta").Traduccion
+                '.Cells(6).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "HeaderAcciones").Traduccion
+            End With
+
+            gv_Roles.BottomPagerRow.Visible = True
+            gv_Roles.BottomPagerRow.CssClass = "table-bottom-dark"
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+
+    Private Sub gv_Roles_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles gv_Roles.RowCommand
+
+        Try
+            Dim IdiomaActual As Entidades.IdiomaEntidad
+            If IsNothing(Current.Session("Cliente")) Then
+                IdiomaActual = Application("Español")
+            Else
+                IdiomaActual = Application(TryCast(Current.Session("Cliente"), Entidades.UsuarioEntidad).Idioma.Nombre)
+            End If
+
+            Dim Rolsele As RolEntidad = TryCast(Session("Roles"), List(Of RolEntidad))(e.CommandArgument)
+
+            Select Case e.CommandName.ToString
+                Case "S"
+
+                    If TryCast(Session("RolesSeleccionados"), List(Of Entidades.RolEntidad)).Any(Function(p) p.ID_Rol = Rolsele.ID_Rol) Then
+                        gv_Roles.Rows.Item(e.CommandArgument).BackColor = Drawing.Color.FromName("#c3e6cb")
+                        TryCast(Session("RolesSeleccionados"), List(Of Entidades.RolEntidad)).Remove(Rolsele)
+                        Dim imagen3 As System.Web.UI.WebControls.ImageButton = DirectCast(gv_Roles.Rows.Item(e.CommandArgument).FindControl("btn_seleccionar"), System.Web.UI.WebControls.ImageButton)
+                        imagen3.ImageUrl = "~/Imagenes/check.png"
+                    Else
+                        gv_Roles.Rows.Item(e.CommandArgument).BackColor = Drawing.Color.Cyan
+                        TryCast(Session("RolesSeleccionados"), List(Of Entidades.RolEntidad)).Add(Rolsele)
+                        Dim imagen3 As System.Web.UI.WebControls.ImageButton = DirectCast(gv_Roles.Rows.Item(e.CommandArgument).FindControl("btn_seleccionar"), System.Web.UI.WebControls.ImageButton)
+                        imagen3.ImageUrl = "~/Imagenes/clear.png"
+                    End If
+
+
+
+
+            End Select
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+
     Private Sub ModificarUsuario_PreRender(sender As Object, e As EventArgs) Handles Me.PreRender
         Try
             If Not IsNothing(gv_Usuarios.HeaderRow) Then
@@ -216,7 +295,7 @@ Public Class ModificarUsuario
                     End If
 
                 Case "E"
-                    'txtusuario.Text = Usuario.NombreUsu
+
                     txtapellido.Text = Usuario.Apellido
                     txtnombre.Text = Usuario.Nombre
                     txtnomusuario.Text = Usuario.NombreUsu
@@ -224,12 +303,26 @@ Public Class ModificarUsuario
                     txtmail.Text = Usuario.Mail
 
                     DropDownListIdioma.ClearSelection()
-                    DropDownListRol.ClearSelection()
+                    'DropDownListRol.ClearSelection()
 
                     DropDownListIdioma.Items.FindByValue(Usuario.Idioma.ID_Idioma).Selected = True
+                    TryCast(Session("RolesSeleccionados"), List(Of Entidades.RolEntidad)).Clear()
 
-                    DropDownListRol.Items.FindByValue(Usuario.Rol(0).ID_Rol).Selected = True
+                    Dim rolIndice As Integer = 0
+                    For Each rol As RolEntidad In TryCast(Session("Roles"), List(Of Entidades.RolEntidad))
 
+                        If Usuario.Rol.Any(Function(m) m.ID_Rol = rol.ID_Rol) Then
+                            TryCast(Session("RolesSeleccionados"), List(Of Entidades.RolEntidad)).Add(rol)
+                            gv_Roles.Rows.Item(rolIndice).BackColor = Drawing.Color.Cyan
+                            Dim imagen3 As System.Web.UI.WebControls.ImageButton = DirectCast(gv_Roles.Rows.Item(rolIndice).FindControl("btn_seleccionar"), System.Web.UI.WebControls.ImageButton)
+                            imagen3.ImageUrl = "~/Imagenes/clear.png"
+                        Else
+                            gv_Roles.Rows.Item(rolIndice).BackColor = Drawing.Color.FromName("#c3e6cb")
+                            Dim imagen3 As System.Web.UI.WebControls.ImageButton = DirectCast(gv_Roles.Rows.Item(rolIndice).FindControl("btn_seleccionar"), System.Web.UI.WebControls.ImageButton)
+                            imagen3.ImageUrl = "~/Imagenes/check.png"
+                        End If
+                        rolIndice += 1
+                    Next
                     Ocultamiento(True)
             End Select
         Catch ex As Exception
@@ -251,20 +344,26 @@ Public Class ModificarUsuario
             If Page.IsValid = True Then
                 Usuario.NombreUsu = txtnomusuario.Text
                 Usuario.Idioma = New Entidades.IdiomaEntidad With {.ID_Idioma = DropDownListIdioma.SelectedValue}
-                Usuario.Rol.Clear()
-                Usuario.Rol.Add(New RolEntidad With {.ID_Rol = DropDownListRol.SelectedValue})
-                If GestorCliente.Modificar(Usuario) Then
-                    Dim clienteLogeado As Entidades.UsuarioEntidad = Current.Session("cliente")
-                    Dim Bitac As New Bitacora(Usuario, "El usuario " & Usuario.NombreUsu & " Se modificó correctamente", Tipo_Bitacora.Modificacion, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)
-                    BitacoraBLL.CrearBitacora(Bitac)
-                    Me.success.Visible = True
-                    Me.alertvalid.Visible = False
-                    CargarUsuarios()
-                    Ocultamiento(False)
+                Usuario.Rol = Session("RolesSeleccionados")
+                If Usuario.Rol.Count > 0 Then
+                    If GestorCliente.Modificar(Usuario) Then
+                        Dim clienteLogeado As Entidades.UsuarioEntidad = Current.Session("cliente")
+                        Dim Bitac As New Bitacora(Usuario, "El usuario " & Usuario.NombreUsu & " Se modificó correctamente", Tipo_Bitacora.Modificacion, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)
+                        BitacoraBLL.CrearBitacora(Bitac)
+                        Me.success.Visible = True
+                        Me.alertvalid.Visible = False
+                        CargarUsuarios()
+                        Ocultamiento(False)
+                    End If
+                Else
+                    Me.alertvalid.Visible = True
+                    'Me.textovalid.InnerText = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "FieldValidator2").Traduccion
+                    Me.success.Visible = False
                 End If
+
             Else
                 Me.alertvalid.Visible = True
-                Me.textovalid.InnerText = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "FieldValidator1").Traduccion
+                Me.textovalid.InnerText = IdiomaActual.Palabras.FirstOrDefault(Function(p) p.Codigo = "FieldValidator1").Traduccion
                 Me.success.Visible = False
             End If
         Catch ex As Exception
@@ -359,7 +458,7 @@ Public Class ModificarUsuario
                 usu.Salt = PassSalt.Item(0)
                 usu.Password = PassSalt.Item(1)
                 usu.Idioma = New Entidades.IdiomaEntidad With {.ID_Idioma = DropDownListIdioma.SelectedValue}
-                usu.Rol.Add(New RolEntidad With {.ID_Rol = DropDownListRol.SelectedValue})
+                usu.Rol = Session("Roles")
                 usu.FechaAlta = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
                 usu.Empleado = True
                 If GestorCliente.Alta(usu) Then

@@ -79,7 +79,7 @@ Public Class FacturaMPP
 
     Public Function TraerFacturasGestion() As List(Of FacturaEntidad)
         Try
-            Dim consulta As String = "Select * from Factura where  estadoenvio not in( 3,4)"
+            Dim consulta As String = "Select * from Factura where  estadoenvio not in( 3,4) order by Fecha desc"
             Dim Command As SqlCommand = Acceso.MiComando(consulta)
             Dim dt As DataTable = Acceso.Lectura(Command)
             Dim lista As New List(Of FacturaEntidad)

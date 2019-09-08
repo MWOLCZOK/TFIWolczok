@@ -57,4 +57,15 @@ Public Class Palabras
         m.Seek(0, SeekOrigin.Begin)
         Return f.Deserialize(m)
     End Function
+
+    Private _descripcion As String
+    Public Property Descripcion() As String
+        Get
+            Return _descripcion
+        End Get
+        Set(ByVal value As String)
+            _descripcion = value
+        End Set
+    End Property
+
 End Class

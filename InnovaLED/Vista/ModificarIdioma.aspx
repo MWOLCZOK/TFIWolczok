@@ -14,7 +14,7 @@
         </div>
 
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-10">
                 <div class="panel panel-success">
                     <div class="panel-heading text-center">
                         <asp:Label ID="lblPanelModIdioma" runat="server" Text="Modificar Idioma" CssClass="TituloPanel"></asp:Label>
@@ -43,7 +43,7 @@
                             <div class="form-group">
                                 <div>
                                     <div>
-                                        <asp:GridView CssClass="table table-hover table-bordered table-responsive table-success " ID="gv_Traducciones" runat="server" AutoGenerateColumns="False" HorizontalAlign="Center" AllowPaging="true" PageSize="5" OnPageIndexChanging="gv_Traducciones_PageIndexChanging" RowStyle-Height="40px">
+                                        <asp:GridView CssClass="table table-hover table-bordered table-responsive table-success " ID="gv_Traducciones" runat="server" AutoGenerateColumns="False" HorizontalAlign="Center" AllowPaging="true" PageSize="10" OnPageIndexChanging="gv_Traducciones_PageIndexChanging" RowStyle-Height="40px">
                                             <HeaderStyle CssClass="thead-dark" />
                                             <PagerTemplate>
                                                 <div class="col-md-4 text-left">
@@ -67,6 +67,7 @@
                                             </PagerTemplate>
                                             <Columns>
                                                 <asp:BoundField DataField="ID_Control" HeaderText="ID" />
+                                                <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" />
                                                 <asp:BoundField DataField="Traduccion" HeaderText="Traduccion Actual" />
                                                 <asp:TemplateField HeaderText="Nueva Traduccion">
                                                     <ItemTemplate>

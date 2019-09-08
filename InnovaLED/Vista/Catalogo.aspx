@@ -58,7 +58,7 @@
 <br/>
 
 
-<div class="row">
+<%--<div class="row">
    <asp:Label ID="Lbl_peso" runat="server" Text="Peso:" CssClass="col-sm-4 control-label labelform"></asp:Label>
       <div class="col-md-4">         
              <asp:TextBox ID="txtpesodesde" placeholder="Desde" runat="server" CssClass="form-control"></asp:TextBox>
@@ -66,7 +66,7 @@
       <div class="col-md-4">
              <asp:TextBox ID="txtpesohasta" placeholder="Hasta" runat="server" CssClass="form-control"></asp:TextBox>           
      </div>
-</div>
+</div>--%>
 <br/>
 
 <div class="row">
@@ -81,7 +81,7 @@
 <br/>
 
 
-<div class="row">
+<%--<div class="row">
    <asp:Label ID="Lbl_watt" runat="server" Text="Watt:" CssClass="col-sm-4 control-label labelform"></asp:Label>
       <div class="col-md-4">
                  <asp:TextBox ID="txtwattdesde" runat="server" placeholder="Desde" CssClass="form-control"></asp:TextBox>
@@ -89,14 +89,14 @@
           <div class="col-md-4">
               <asp:TextBox ID="txtwatthasta" runat="server" placeholder="Hasta" CssClass="form-control"></asp:TextBox>
        </div>
-</div>
+</div>--%>
 <br/>
 
 <div class="row">
      <asp:Label ID="Lbl_linea" runat="server" Text="Línea del Producto:" CssClass="col-sm-4 control-label labelform"></asp:Label>
           <div class="col-md-8">
 
-                 <asp:DropDownList ID="DropDownLinea" runat="server" CssClass="form-control" AutoPostBack="true" DataValueField="ID_Linea" DataTextField="Nombre"></asp:DropDownList>
+                 <asp:DropDownList ID="DropDownLinea" runat="server" CssClass="form-control" DataValueField="ID_Linea" DataTextField="Nombre"></asp:DropDownList>
                </div>
        
 </div>
@@ -106,7 +106,7 @@
      <asp:Label ID="Lbl_cat" runat="server" Text="Categoria Producto:" CssClass="col-sm-4 control-label labelform"></asp:Label>
           <div class="col-md-8">
               
-                 <asp:DropDownList ID="DropDowncat" runat="server" CssClass="form-control" AutoPostBack="true" DataValueField="ID_CategoriaProducto" DataTextField="Nombre"></asp:DropDownList>
+                 <asp:DropDownList ID="DropDowncat" runat="server" CssClass="form-control"  DataValueField="ID_CategoriaProducto" DataTextField="Nombre"></asp:DropDownList>
           
          </div>
 </div>

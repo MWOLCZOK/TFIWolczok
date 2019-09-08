@@ -59,4 +59,6 @@ Public Class IdiomaEntidad
         m.Seek(0, SeekOrigin.Begin)
         Return f.Deserialize(m)
     End Function
+
+
 End Class

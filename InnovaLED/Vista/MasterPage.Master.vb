@@ -36,6 +36,7 @@ Public Class MasterPage
                         TraducirPagina(Usuario)
                         miContenidoPagina.Attributes.Add("class", "col-md-10")
                         miMenuVertical.Attributes.Add("class", "col-md-2")
+                        CargarIdiomas()
                     Catch ex As Exception
 
                     End Try
@@ -107,7 +108,6 @@ Public Class MasterPage
         Me.Menu.Items.Add(New MenuItem("Catalogo", "Catalogo"))
         Me.Menu.Items.Item(2).ChildItems.Add(New MenuItem("Nuestros Productos", "Catalogo", Nothing, "/Catalogo.aspx"))
         Me.Menu.Items.Item(2).ChildItems.Add(New MenuItem("Novedades", "Novedades", Nothing, "/Novedades.aspx"))
-        Me.Menu.Items.Add(New MenuItem("Seleccionar Idioma", "SeleccionarIdioma", Nothing, "/SeleccionarIdioma.aspx"))
         Me.Menu.Items.Add(New MenuItem("¡Nos interesa tu Opinion!", "NosInteresaTuOpinion", Nothing, "/EncuestaGlobal.aspx"))
 
         Me.menuVertical.Items.Clear()
@@ -161,7 +161,7 @@ Public Class MasterPage
         Me.Menu.Items.Item(2).ChildItems.Add(New MenuItem("Nuestros Productos", "Catalogo", Nothing, "/Catalogo.aspx"))
         Me.Menu.Items.Item(2).ChildItems.Add(New MenuItem("Novedades", "Novedades", Nothing, "/Novedades.aspx"))
 
-        Me.Menu.Items.Add(New MenuItem("Seleccionar Idioma", "SeleccionarIdioma", Nothing, "/SeleccionarIdioma.aspx"))
+        'Me.Menu.Items.Add(New MenuItem("Seleccionar Idioma", "SeleccionarIdioma", Nothing, "/SeleccionarIdioma.aspx"))
 
         Me.Menu.Items.Add(New MenuItem("¡Nos interesa tu Opinion!", "NosInteresaTuOpinion", Nothing, "/EncuestaGlobal.aspx"))
 
@@ -178,7 +178,7 @@ Public Class MasterPage
         Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/RecuperarPassword.aspx"})
         Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/Newsletter.aspx"})
         Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/Default.aspx"})
-        Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/SeleccionarIdioma.aspx"})
+        'Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/SeleccionarIdioma.aspx"})
         Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/TerminosyCondiciones.aspx"})
         Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/DetalleProducto.aspx"})
         Rol.Hijos.Add(New Entidades.PermisoBaseEntidad With {.URL = "/ComparacionProducto.aspx"})
@@ -663,6 +663,7 @@ Public Class MasterPage
             Me.success.Visible = True
             Me.success.InnerText = "Se ha cambiado el idioma satisfactoriamente."
             Me.alertvalid.Visible = False
+            Page_Load(Nothing,Nothing)
             'Response.Redirect("/SeleccionarIdioma.aspx", False)
         Catch ex As Exception
 

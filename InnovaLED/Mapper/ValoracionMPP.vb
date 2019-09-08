@@ -59,7 +59,7 @@ Public Class valoracionMPP
 
     Public Function BuscarvaloracionsProd(ByVal Prod As ProductoEntidad) As List(Of ValoracionEntidad)
         Try
-            Dim consulta As String = "Select * from valoracion_Producto where ID_Producto=@ID_Producto order by Fecha"
+            Dim consulta As String = "Select * from valoracion_Producto where ID_Producto=@ID_Producto order by Fecha desc"
             Dim Command As SqlCommand = Acceso.MiComando(consulta)
             With Command.Parameters
                 .Add(New SqlParameter("@ID_Producto", Prod.ID_Producto))

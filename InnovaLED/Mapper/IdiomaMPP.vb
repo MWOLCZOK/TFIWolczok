@@ -25,7 +25,6 @@ Public Class IdiomaMPP
                     .Add(New SqlParameter("@ID_Control", MiPalabra.ID_Control))
                     .Add(New SqlParameter("@ID_Idioma", Idioma.ID_Idioma))
                     .Add(New SqlParameter("@Palabra", MiPalabra.Traduccion))
-
                 End With
                 Acceso.Escritura(Micomando)
             Next
@@ -58,6 +57,7 @@ Public Class IdiomaMPP
                     .Add(New SqlParameter("@ID_Control", MiPalabra.ID_Control))
                     .Add(New SqlParameter("@ID_Idioma", Idioma.ID_Idioma))
                     .Add(New SqlParameter("@Palabra", MiPalabra.Traduccion))
+
                 End With
                 Acceso.Escritura(Micomando)
             Next
@@ -223,6 +223,7 @@ Public Class IdiomaMPP
                 Palabra.ID_Control = row("ID_Control")
                 Palabra.Codigo = row("Nombre")
                 Palabra.Traduccion = row("Palabra")
+                Palabra.Descripcion = row("Descripcion")
                 listaPalabras.Add(Palabra)
             Next
             Return listaPalabras

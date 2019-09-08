@@ -71,6 +71,7 @@ Public Class GestionarPerfiles
 
             Rol.Nombre = Txtcrearrol.Text
             If GestorRol.Alta(Rol) Then
+                'falta bitacora
                 Me.alertvalid.Visible = False
                 Me.lbl_success.InnerText = "Se ha creado el Rol satisfactoriamente."
                 'poner traducción
@@ -120,6 +121,7 @@ Public Class GestionarPerfiles
             Dim Rol As New RolEntidad
             Dim LstRoles As List(Of RolEntidad) = Session("Roles")
             If GestorRol.Baja(LstRoles(DropdwnrolesElim.SelectedIndex)) Then
+                'falta bitacora
                 Me.alertvalid.Visible = False
                 Me.lbl_success.InnerText = "Se ha eliminado el Rol satisfactoriamente."
                 'poner traducción
@@ -154,6 +156,7 @@ Public Class GestionarPerfiles
         Next
         Dim GestorPermiso As New GestorPermisosBLL
         GestorPermiso.Modificar(Rol)
+        'falta bitacora
         Me.alertvalid.Visible = False
         Me.lbl_success.InnerText = "Se ha modificador el Rol satisfactoriamente."
         'poner traducción

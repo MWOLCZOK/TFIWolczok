@@ -251,7 +251,6 @@
     <Content Include="ReportesVentas.aspx" />
     <Content Include="ReportesTRChat.aspx" />
     <Content Include="Restore.aspx" />
-    <Content Include="script.sql" />
     <Content Include="SeleccionarIdioma.aspx" />
     <Content Include="SuscripcionBoletin.aspx" />
     <Content Include="TerminosyCondiciones.aspx" />

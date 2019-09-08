@@ -221,7 +221,7 @@
                                        <h3> <asp:Label ID="lblNotasDispTit" runat="server" Text="Notas de Crédito Disponible:" CssClass="control-label labelform "></asp:Label></h3>
                                         <br />
                                         
-                                    <asp:GridView CssClass="table table-hover table-bordered table-responsive table-default " ID="gv_notacredito" runat="server" AutoGenerateColumns="False" HorizontalAlign="Center" AllowPaging="true" PageSize="5" OnPageIndexChanging="gv_notacredito_PageIndexChanging" RowStyle-Height="40px">
+                                    <asp:GridView CssClass="table table-hover table-bordered table-responsive table-default " ID="gv_notacredito" runat="server" AutoGenerateColumns="False" HorizontalAlign="Center" AllowPaging="true" PageSize="10" OnPageIndexChanging="gv_notacredito_PageIndexChanging" RowStyle-Height="40px">
                                         <HeaderStyle CssClass="thead-dark" />
                                         <PagerTemplate>
                                             <div class="col-md-4 text-left">

@@ -101,14 +101,14 @@ Public Class GestorProductoBLL
     End Sub
 
 
-    Public Function TraerProductosCatalogo(paginacion As Integer, Optional ByVal Modelo As String = Nothing, Optional ByVal Marca As String = Nothing, Optional ByVal PrecioHasta As Integer = Nothing, Optional ByVal PrecioDesde As Integer = Nothing, Optional ByVal PesoHasta As Integer = Nothing, Optional ByVal PesoDesde As Integer = Nothing, Optional ByVal WattHasta As Integer = Nothing, Optional ByVal WattDesde As Integer = Nothing, Optional ByVal LineaProducto As Entidades.LineaProducto = Nothing, Optional ByVal CategoriaProducto As Entidades.CategoriaProducto = Nothing) As List(Of Entidades.ProductoEntidad)
-        Return ProductoMPP.TraerProductosCatalogo(paginacion, Modelo, Marca, PrecioHasta, PrecioDesde, PesoHasta, PesoDesde, WattHasta, WattDesde, LineaProducto, CategoriaProducto)
+    Public Function TraerProductosCatalogo(paginacion As Integer, Optional ByVal Modelo As String = Nothing, Optional ByVal Marca As String = Nothing, Optional ByVal PrecioHasta As Integer = Nothing, Optional ByVal PrecioDesde As Integer = Nothing, Optional ByVal LineaProducto As Entidades.LineaProducto = Nothing, Optional ByVal CategoriaProducto As Entidades.CategoriaProducto = Nothing) As List(Of Entidades.ProductoEntidad)
+        Return ProductoMPP.TraerProductosCatalogo(paginacion, Modelo, Marca, PrecioHasta, PrecioDesde, LineaProducto, CategoriaProducto)
 
     End Function
 
 
-    Public Function TraerCantProductosCatalogo(paginacion As Integer, Optional ByVal Modelo As String = Nothing, Optional ByVal Marca As String = Nothing, Optional ByVal PrecioHasta As Integer = Nothing, Optional ByVal PrecioDesde As Integer = Nothing, Optional ByVal PesoHasta As Integer = Nothing, Optional ByVal PesoDesde As Integer = Nothing, Optional ByVal WattHasta As Integer = Nothing, Optional ByVal WattDesde As Integer = Nothing, Optional ByVal LineaProducto As Entidades.LineaProducto = Nothing, Optional ByVal CategoriaProducto As Entidades.CategoriaProducto = Nothing) As Integer
-        Return ProductoMPP.TraerCantProductosCatalogo(paginacion, Modelo, Marca, PrecioHasta, PrecioDesde, PesoHasta, PesoDesde, WattHasta, WattDesde, LineaProducto, CategoriaProducto)
+    Public Function TraerCantProductosCatalogo(paginacion As Integer, Optional ByVal Modelo As String = Nothing, Optional ByVal Marca As String = Nothing, Optional ByVal PrecioHasta As Integer = Nothing, Optional ByVal PrecioDesde As Integer = Nothing, Optional ByVal LineaProducto As Entidades.LineaProducto = Nothing, Optional ByVal CategoriaProducto As Entidades.CategoriaProducto = Nothing) As Integer
+        Return ProductoMPP.TraerCantProductosCatalogo(paginacion, Modelo, Marca, PrecioHasta, PrecioDesde, LineaProducto, CategoriaProducto)
 
     End Function
 

@@ -44,7 +44,7 @@ Public Class EliminarIdioma
                 CargarIdiomas()
             Else
                 Me.alertvalid.Visible = True
-                Me.textovalid.InnerText = idiomabitacora.Palabras.Find(Function(p) p.Codigo = "DeleteIdiomaError1").Traduccion
+                Me.textovalid.InnerText = idiomabitacora.Palabras.FirstOrDefault(Function(p) p.Codigo = "DeleteIdiomaError1").Traduccion
                 Me.success.Visible = False
             End If
         Catch ex As Exception

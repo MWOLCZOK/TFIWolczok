@@ -11,10 +11,16 @@ Public Class Catalogo
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         If Not IsPostBack Then
             If IsNumeric(Request.QueryString("pagid")) Then
-                TraerProductosBusqueda(Session("Modelo"), Session("Marca"), Session("PesoDesde"), Session("PesoHasta"), Session("WattDesde"), Session("WattHasta"), Session("PrecioDesde"), Session("PrecioHasta"), Session("LineaProducto"), Session("CategoriaProducto"))
-                'Completar con Método que pase txt=sesion("Marca"), etc
+                Me.txtmarca.Text = Session("Marca")
+                Me.txtmodelo.Text = Session("Modelo")
+                Me.txtpreciodesde.Text = Session("PrecioDesde")
+                Me.txtpreciohasta.Text = Session("PrecioHasta")
+                Me.DropDowncat.SelectedValue = 0
+                Me.DropDownLinea.SelectedValue = 0
+                TraerProductosBusqueda(Session("Modelo"), Session("Marca"), Session("PrecioHasta"), Session("PrecioDesde"), Session("LineaProducto"), Session("CategoriaProducto"))
+
             Else
-                TraerProductosBusqueda(,,,,,,,, New LineaProducto With {.ID_Linea = 0}, New CategoriaProducto With {.ID_Categoria = 0})
+                TraerProductosBusqueda(,,,, New LineaProducto With {.ID_Linea = 0}, New CategoriaProducto With {.ID_Categoria = 0})
             End If
 
             CargarCategoria()
@@ -33,9 +39,10 @@ Public Class Catalogo
                     If Not carrito.Any(Function(p) p.Producto.ID_Producto = Request.QueryString("contid")) Then
                         carrito.Add(New CompraEntidad With {.Cantidad = 1, .Producto = listaprod.Find(Function(p) p.ID_Producto = CInt(Request.QueryString("contid")))})
                     End If
-
                 End If
-                End If
+            Else
+                Return
+            End If
             GenerarDiseño(Session("Listaproductos"), Session("CantListaproductos"))
 
             End If
@@ -43,23 +50,23 @@ Public Class Catalogo
 
     End Sub
 
-    Private Sub TraerProductosBusqueda(Optional ByVal Modelo As String = Nothing, Optional ByVal Marca As String = Nothing, Optional ByVal PrecioHasta As Integer = Nothing, Optional ByVal PrecioDesde As Integer = Nothing, Optional ByVal PesoHasta As Integer = Nothing, Optional ByVal PesoDesde As Integer = Nothing, Optional ByVal WattHasta As Integer = Nothing, Optional ByVal WattDesde As Integer = Nothing, Optional ByVal LineaProducto As LineaProducto = Nothing, Optional ByVal CategoriaProducto As CategoriaProducto = Nothing)
+    Private Sub TraerProductosBusqueda(Optional ByVal Modelo As String = Nothing, Optional ByVal Marca As String = Nothing, Optional ByVal PrecioHasta As Integer = Nothing, Optional ByVal PrecioDesde As Integer = Nothing, Optional ByVal LineaProducto As LineaProducto = Nothing, Optional ByVal CategoriaProducto As CategoriaProducto = Nothing)
         Dim Listaproductos As New List(Of ProductoEntidad)
         Dim GestorProducto As New GestorProductoBLL
         Dim CantProd As Integer
 
         If IsNumeric(Request.QueryString("pagid")) Then
-            Listaproductos = GestorProducto.TraerProductosCatalogo(Request.QueryString("pagid"), Modelo, Marca, PrecioHasta, PrecioDesde, PesoHasta, PesoDesde, WattHasta, WattDesde, LineaProducto, CategoriaProducto)
+            Listaproductos = GestorProducto.TraerProductosCatalogo(Request.QueryString("pagid"), Modelo, Marca, PrecioHasta, PrecioDesde, LineaProducto, CategoriaProducto)
             Session("Paginacion") = Request.QueryString("pagid")
             Session("Listaproductos") = Listaproductos
-            CantProd = GestorProducto.TraerCantProductosCatalogo(Request.QueryString("pagid"), Modelo, Marca, PrecioHasta, PrecioDesde, PesoHasta, PesoDesde, WattHasta, WattDesde, LineaProducto, CategoriaProducto)
+            CantProd = GestorProducto.TraerCantProductosCatalogo(Request.QueryString("pagid"), Modelo, Marca, PrecioHasta, PrecioDesde, LineaProducto, CategoriaProducto)
             Session("CantListaproductos") = CantProd
 
         Else
-            Listaproductos = GestorProducto.TraerProductosCatalogo(1, Modelo, Marca, PrecioHasta, PrecioDesde, PesoHasta, PesoDesde, WattHasta, WattDesde, LineaProducto, CategoriaProducto)
+            Listaproductos = GestorProducto.TraerProductosCatalogo(1, Modelo, Marca, PrecioHasta, PrecioDesde, LineaProducto, CategoriaProducto)
             Session("Paginacion") = 1
             Session("Listaproductos") = Listaproductos
-            CantProd = GestorProducto.TraerCantProductosCatalogo(1, Modelo, Marca, PrecioHasta, PrecioDesde, PesoHasta, PesoDesde, WattHasta, WattDesde, LineaProducto, CategoriaProducto)
+            CantProd = GestorProducto.TraerCantProductosCatalogo(1, Modelo, Marca, PrecioHasta, PrecioDesde, LineaProducto, CategoriaProducto)
             Session("CantListaproductos") = CantProd
         End If
 
@@ -243,88 +250,66 @@ Public Class Catalogo
         Dim LineaProducto As LineaProducto
         Dim CategoriaProducto As CategoriaProducto
 
+        If ValidarCamposFiltro() Then
 
-        If txtmarca.Text = "" Then
-            Marca = Nothing
-        Else
-            Marca = txtmarca.Text
+            alertvalid.Visible = False
+
+
+            If txtmarca.Text = "" Then
+                Marca = Nothing
+            Else
+                Marca = txtmarca.Text
+            End If
+
+            If txtmodelo.Text = "" Then
+                Modelo = Nothing
+            Else
+                Modelo = txtmodelo.Text
+            End If
+
+            If txtpreciodesde.Text = "" Then
+                PrecioDesde = Nothing
+            Else
+
+                PrecioDesde = CInt(txtpreciodesde.Text)
+            End If
+
+            If txtpreciohasta.Text = "" Then
+                PrecioHasta = Nothing
+            Else
+
+                PrecioHasta = CInt(txtpreciohasta.Text)
+            End If
+
+
+
+            LineaProducto = New LineaProducto With {.ID_Linea = DropDownLinea.SelectedValue}
+            CategoriaProducto = New CategoriaProducto With {.ID_Categoria = DropDowncat.SelectedValue}
+
+            Session("Marca") = Marca
+            Session("Modelo") = Modelo
+            Session("PesoDesde") = PesoDesde
+            Session("PesoHasta") = PesoHasta
+            Session("WattDesde") = WattDesde
+            Session("WattHasta") = WattHasta
+            Session("PrecioDesde") = PrecioDesde
+            Session("PrecioHasta") = PrecioHasta
+            Session("LineaProducto") = New LineaProducto With {.ID_Linea = DropDownLinea.SelectedValue}
+            Session("CategoriaProducto") = New CategoriaProducto With {.ID_Categoria = DropDowncat.SelectedValue}
+
+            Session("Paginacion") = 1
+
+            TraerProductosBusqueda(Modelo, Marca, PrecioHasta, PrecioDesde, LineaProducto, CategoriaProducto)
         End If
-
-        If txtmodelo.Text = "" Then
-            Modelo = Nothing
-        Else
-            Modelo = txtmodelo.Text
-        End If
-
-        If txtpesodesde.Text = "" Then
-            PesoDesde = Nothing
-        Else
-            PesoDesde = CInt(txtpesodesde.Text)
-        End If
-
-        If txtpesohasta.Text = "" Then
-            PesoHasta = Nothing
-        Else
-
-            PesoHasta = CInt(txtpesohasta.Text)
-        End If
-
-        If txtwattdesde.Text = "" Then
-            WattDesde = Nothing
-        Else
-
-            WattDesde = CInt(txtwattdesde.Text)
-        End If
-
-        If txtwatthasta.Text = "" Then
-            WattHasta = Nothing
-        Else
-
-            WattHasta = CInt(txtwatthasta.Text)
-        End If
-
-        If txtpreciodesde.Text = "" Then
-            PrecioDesde = Nothing
-        Else
-
-            PrecioDesde = CInt(txtpreciodesde.Text)
-        End If
-
-        If txtpreciohasta.Text = "" Then
-            PrecioHasta = Nothing
-        Else
-
-            PrecioHasta = CInt(txtpreciohasta.Text)
-        End If
-
-
-        LineaProducto = New LineaProducto With {.ID_Linea = DropDownLinea.SelectedValue}
-        CategoriaProducto = New CategoriaProducto With {.ID_Categoria = DropDowncat.SelectedValue}
-
-        Session("Marca") = Marca
-        Session("Modelo") = Modelo
-        Session("PesoDesde") = PesoDesde
-        Session("PesoHasta") = PesoHasta
-        Session("WattDesde") = WattDesde
-        Session("WattHasta") = WattHasta
-        Session("PrecioDesde") = PrecioDesde
-        Session("PrecioHasta") = PrecioHasta
-        Session("LineaProducto") = New LineaProducto With {.ID_Linea = DropDownLinea.SelectedValue}
-        Session("CategoriaProducto") = New CategoriaProducto With {.ID_Categoria = DropDowncat.SelectedValue}
-
-        Session("Paginacion") = 1
-
-        TraerProductosBusqueda(Modelo, Marca, PrecioHasta, PrecioDesde, PesoHasta, PesoDesde, WattHasta, WattDesde, LineaProducto, CategoriaProducto)
-
     End Sub
 
     Private Sub Ocultamiento()
         txtmarca.Enabled = False
         txtmodelo.Enabled = False
-        txtpesodesde.Enabled = False
-        txtpesohasta.Enabled = False
-        txtwattdesde.Enabled = False
-        txtwatthasta.Enabled = False
+        'txtpesodesde.Enabled = False
+        'txtpesohasta.Enabled = False
+        'txtwattdesde.Enabled = False
+        'txtwatthasta.Enabled = False
         txtpreciodesde.Enabled = False
         txtpreciohasta.Enabled = False
         DropDownLinea.Enabled = False
@@ -335,6 +320,25 @@ Public Class Catalogo
     Protected Sub btn_filtrar_Click(sender As Object, e As EventArgs) Handles btn_filtrar.Click
         Filtrar()
     End Sub
+
+    Public Function ValidarCamposFiltro() As Boolean
+
+        If Not IsNumeric(txtpreciodesde.Text) Then
+            alertvalid.InnerText = "En el campo de precio solo debe ingresar números"
+            alertvalid.Visible = True
+            success.Visible = False
+            Return False
+        End If
+
+        If Not IsNumeric(txtpreciohasta.Text) Then
+            alertvalid.InnerText = "En el campo de precio solo debe ingresar números"
+            alertvalid.Visible = True
+            success.Visible = False
+            Return False
+        End If
+
+        Return True
+    End Function
 
     Protected Sub btn_comparar_Click(sender As Object, e As EventArgs) Handles btn_comparar.Click
         Session("ProductosComparar") = New List(Of ProductoEntidad)
@@ -364,4 +368,6 @@ Public Class Catalogo
         End If
 
     End Sub
+
+
 End Class

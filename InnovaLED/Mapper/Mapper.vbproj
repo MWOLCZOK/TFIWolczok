@@ -76,7 +76,6 @@
     <Compile Include="CategoriaProductoMPP.vb" />
     <Compile Include="ChatMPP.vb" />
     <Compile Include="ValoracionMPP.vb" />
-    <Compile Include="ComprobanteMPP.vb" />
     <Compile Include="EncriptarMPP.vb" />
     <Compile Include="ComentarioMPP.vb" />
     <Compile Include="FacturaMPP.vb" />
