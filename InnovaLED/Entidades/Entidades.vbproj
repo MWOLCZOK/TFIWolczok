@@ -70,6 +70,7 @@
     <Compile Include="ChatEntidad.vb" />
     <Compile Include="MensajeChatEntidad.vb" />
     <Compile Include="Pregunta_Respuesta.vb" />
+    <Compile Include="RespuestaEncuestaEntidad.vb" />
     <Compile Include="ValoracionEntidad.vb" />
     <Compile Include="ComentarioEntidad.vb" />
     <Compile Include="CompraEntidad.vb" />

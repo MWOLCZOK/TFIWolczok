@@ -410,8 +410,8 @@ Public Class MasterPage
 
     Public Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
         Try
-            'If IsReCaptchaValid() = True Then
-            Dim Cliente As New Entidades.UsuarioEntidad
+            If IsReCaptchaValid() = True Then
+                Dim Cliente As New Entidades.UsuarioEntidad
                 Dim IdiomaActual As Entidades.IdiomaEntidad
                 Dim clienteLogeado As New Entidades.UsuarioEntidad
                 If IsNothing(Current.Session("Cliente")) Then
@@ -435,13 +435,13 @@ Public Class MasterPage
                 Response.Redirect(Request.Url.ToString, False)
             End If
 
-            'descomentar lo q esta debajo para que funcione el captcha y la funcion que esta arriba de todo del IF
+                'descomentar lo q esta debajo para que funcione el captcha y la funcion que esta arriba de todo del IF
 
-            'Else
-            '    Me.label_alert_login.InnerText = "Debe completar el captcha"
-            '    Me.success.Visible = False
-            '    Me.alert_login.Visible = True
-            'End If
+            Else
+                Me.label_alert_login.InnerText = "Debe completar el captcha"
+                Me.success.Visible = False
+                Me.alert_login.Visible = True
+            End If
 
         Catch ex As Exception
             VisibilidadAcceso(False)

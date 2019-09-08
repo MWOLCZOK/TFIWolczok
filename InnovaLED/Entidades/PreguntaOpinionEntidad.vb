@@ -61,23 +61,14 @@
         End Set
     End Property
 
-    'Private _TipoPreguntaOpinion As TipoPreguntaOpinion
-    'Public Property TipoPreguntaOpinion() As TipoPreguntaOpinion
-    '    Get
-    '        Return _TipoPreguntaOpinion
-    '    End Get
-    '    Set(ByVal value As TipoPreguntaOpinion)
-    '        _TipoPreguntaOpinion = value
-    '    End Set
-    'End Property
 
-    Private _TipoPreguntaEncuesta As TipoRespuestasCalidad
-    Public Property TipoPreguntaEncuesta() As TipoRespuestasCalidad
+    Private _posiblesRespuestas As List(Of RespuestaEncuestaEntidad)
+    Public Property PosiblesRespuestas() As List(Of RespuestaEncuestaEntidad)
         Get
-            Return _TipoPreguntaEncuesta
+            Return _posiblesRespuestas
         End Get
-        Set(ByVal value As TipoRespuestasCalidad)
-            _TipoPreguntaEncuesta = value
+        Set(ByVal value As List(Of RespuestaEncuestaEntidad))
+            _posiblesRespuestas = value
         End Set
     End Property
 
@@ -87,20 +78,6 @@
         Return MyBase.ToString()
     End Function
 
-
-    Enum TipoRespuestasFichaOpinion ' Opinion
-        Si = 0
-        No = 1
-        Quizas = 2
-    End Enum
-
-    Enum TipoRespuestasCalidad ' Encuesta
-        Excelente = 0
-        Bueno = 1
-        Regular = 2
-        Malo = 3
-        Pesimo = 4
-    End Enum
 
 
 End Class

@@ -1,40 +1,17 @@
 ﻿Public Class RespuestaEntidad
 
-    Enum TipoRespuestasCalidad
-        Excelente = 0
-        Bueno = 1
-        Regular = 2
-        Malo = 3
-        Pesimo = 4
-    End Enum
-
-    Enum TipoRespuestasFichaOpinion
-        Si = 0
-        No = 1
-        Quizas = 2
-    End Enum
 
 
-    Private _respuestaCal As TipoRespuestasCalidad
-    Public Property Tipo_Respuesta_Calidad() As TipoRespuestasCalidad
+    Private _respuestaEncuesta As RespuestaEncuestaEntidad
+    Public Property RespuestaEncuesta As RespuestaEncuestaEntidad
         Get
-            Return _respuestaCal
+            Return _respuestaEncuesta
         End Get
-        Set(ByVal value As TipoRespuestasCalidad)
-            _respuestaCal = value
+        Set(ByVal value As RespuestaEncuestaEntidad)
+            _respuestaEncuesta = value
         End Set
     End Property
 
-
-    Private _respuestaFichaOpinion As TipoRespuestasFichaOpinion
-    Public Property Tipo_Respuesta_FichaOpinion() As TipoRespuestasFichaOpinion
-        Get
-            Return _respuestaFichaOpinion
-        End Get
-        Set(ByVal value As TipoRespuestasFichaOpinion)
-            _respuestaFichaOpinion = value
-        End Set
-    End Property
 
 
     Private _id As Integer

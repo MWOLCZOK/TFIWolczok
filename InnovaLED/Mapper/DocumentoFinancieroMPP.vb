@@ -20,8 +20,6 @@ Public Class DocumentoFinancieroMPP
             End With
             nota.ID = Acceso.Scalar(Command)
             generarComprobanteNotaCredito("Factura-NC", nota, Now)
-
-            'Acceso.Escritura(Command)
             Return True
         Catch ex As Exception
             Throw ex

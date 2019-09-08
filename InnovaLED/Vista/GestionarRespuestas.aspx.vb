@@ -144,7 +144,7 @@ Public Class GestionarRespuestas
     End Sub
 
     Protected Sub btnrespuesta_Click(sender As Object, e As EventArgs) Handles btnrespuesta.Click
-        Dim Gestor As New Negocio.GestorComentarioBLL
+
         Try
          
             Dim IdiomaActual As Entidades.IdiomaEntidad
@@ -161,7 +161,7 @@ Public Class GestionarRespuestas
                 Comentario.Pregunta = lista(0)
                 Comentario.Usuario = Current.Session("Cliente")
                 Comentario.Fecha = Now
-
+                Dim Gestor As New Negocio.GestorComentarioBLL
                 If Gestor.GenerarComentario(Comentario) Then
                     '    Dim clienteLogeado As Entidades.UsuarioEntidad = Current.Session("cliente")
                     '    Dim Bitac As New Bitacora(Usuario, "El usuario " & Usuario.NombreUsu & " Se modificó correctamente", Tipo_Bitacora.Modificacion, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)

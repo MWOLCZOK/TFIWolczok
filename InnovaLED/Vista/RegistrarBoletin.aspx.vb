@@ -266,7 +266,7 @@ Public Class RegistrarBoletin
             End If
 
             GestorboletinBLL.bajaNovedad(_boletin)
-            Me.success.InnerText = "Se eliminó el producto correctamente."
+            Me.success.InnerText = "Se eliminó la novedad correctamente."
             Me.alertvalid.Visible = False
             CargarBoletin()
             LimpiarCampos()
