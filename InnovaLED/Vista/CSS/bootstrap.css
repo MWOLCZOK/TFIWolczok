@@ -6070,12 +6070,25 @@ button.close {
 .modal-open {
   overflow: hidden;
 }
+
 .modal {
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
+  z-index: 9999;
+  display: none;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+  outline: 0;
+}
+.modal-normal {
+  position: fixed;
+  top: 200px;
+  right: 200px;
+  bottom:200px;
+  left: 600px;
   z-index: 9999;
   display: none;
   overflow: hidden;

@@ -14,7 +14,7 @@
 
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-                <div class="panel panel-warning">
+                <div class="panel panel-primary class">
                     <div class="panel-heading text-center">
                         <asp:Label ID="lblPanelRecuperoPass" runat="server" Text="Restauracion de Contraseña" CssClass="TituloPanel"></asp:Label>
                     </div>
@@ -24,8 +24,7 @@
                                 <asp:Label ID="lblUsuario" runat="server" Text="Usuario:" CssClass="col-md-4 control-label labelform"></asp:Label>
                                 <div class="col-md-6">
                                     <div class="input-group">
-                                        <asp:TextBox ID="txtUsuario" runat="server" CssClass="form-control"></asp:TextBox>
-                                        <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
+                                        <asp:TextBox ID="txtUsuario" runat="server" CssClass="form-control"></asp:TextBox>                                        
                                     </div>
                                 </div>
                                 <div class="col-md-1">

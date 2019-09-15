@@ -33,39 +33,31 @@ Public Class cambiarPassword
         Me.txtnombre.Text = oUsuario.Nombre
     End Sub
 
-    Protected Sub btnModificar_Click(sender As Object, e As EventArgs) Handles btnModificar.Click
+    Protected Sub btnModificar_Click(sender As Object, e As EventArgs) Handles btnModificarDatosPersonales.Click
         Try
             Dim oUsuarioLogueado As New Entidades.UsuarioEntidad
             Dim GestorCliente As New Negocio.UsuarioBLL
             oUsuarioLogueado = DirectCast(Session("cliente"), UsuarioEntidad)
-            oUsuarioLogueado.Password = txtpass.Value
             Dim GestorUsu As New UsuarioBLL
-            Dim mailingBLL As New Negocio.MailingBLL
-            If Not GestorUsu.ExisteUsuario(oUsuarioLogueado) Is Nothing Then
-                If Me.newpass1.Value = Me.newpass2.Value Then
-                    Dim PassSalt As List(Of String) = Negocio.EncriptarBLL.EncriptarPassword(newpass1.Value)
-                    oUsuarioLogueado.Salt = PassSalt.Item(0)
-                    oUsuarioLogueado.Password = PassSalt.Item(1)
-                    oUsuarioLogueado.Nombre = Me.txtnombre.Text
-                    oUsuarioLogueado.Apellido = Me.txtapellido.Text
-                    oUsuarioLogueado.DNI = Me.TxtDNI.Text
-                    oUsuarioLogueado.Mail = Me.txtmail.Text
-                    GestorUsu.ModificarUsuarioLogueado(oUsuarioLogueado)
-                    enviarMailCambioContraseñaUsuario(oUsuarioLogueado)
+            'Dim mailingBLL As New Negocio.MailingBLL
+            If ValidarCampos() Then
+                oUsuarioLogueado.Nombre = Me.txtnombre.Text
+                oUsuarioLogueado.Apellido = Me.txtapellido.Text
+                oUsuarioLogueado.DNI = Me.TxtDNI.Text
+                oUsuarioLogueado.Mail = Me.txtmail.Text
+                GestorUsu.ModificarUsuarioLogueado(oUsuarioLogueado)
+                'enviarMailCambioContraseñaUsuario(oUsuarioLogueado)
+                Me.div_success.Visible = True
+                Me.alert.Visible = False
+                lbl_success.InnerText = "Se ha modificado los datos personales satisfactoriamente."
 
-                    Me.div_success.Visible = True
-                    Me.alert.Visible = False
-                    lbl_success.InnerText = "Se ha modificado el perfil satisfactoriamente."
+                'Sumar bitácora.
 
-                    'Sumar bitácora.
-
-                Else
-                    'no coinciden los passwords
-                    Me.div_success.Visible = False
-                    Me.alert.Visible = True
-                    Me.lbl_textovalid.InnerText = "Las nuevas contraseñas deben coincidir entre sí"
-                End If
-
+            Else
+                'datos faltantes
+                Me.div_success.Visible = False
+                Me.alert.Visible = True
+                Me.lbl_textovalid.InnerText = "Debe completar todos los campos"
             End If
         Catch ex As Exception
             'contraseña incorrecta
@@ -77,6 +69,16 @@ Public Class cambiarPassword
 
         'AssumingDirectControl()
     End Sub
+
+    Public Function ValidarCampos() As Boolean
+        If txtapellido.Text = "" Or TxtDNI.Text = "" Or txtmail.Text = "" Or txtnombre.Text = "" Then
+            Return False ' si alguno está vacio, devuelvo false
+        Else
+            Return True ' si está completo devuelve true
+        End If
+
+    End Function
+
 
 
     'Private Sub enviarMailCambioContraseñaUsuario(ByVal usu As UsuarioEntidad)
@@ -105,8 +107,42 @@ Public Class cambiarPassword
         Response.Redirect("Default.aspx", False)
     End Sub
 
+    Protected Sub btnModificarContraseña_Click(sender As Object, e As EventArgs) Handles btnModificarContraseña.Click
+        Try
+            Dim oUsuarioLogueado As New Entidades.UsuarioEntidad
+            Dim GestorCliente As New Negocio.UsuarioBLL
+            oUsuarioLogueado = DirectCast(Session("cliente"), UsuarioEntidad)
+            oUsuarioLogueado.Password = txtpass.Value
+            Dim GestorUsu As New UsuarioBLL
+            Dim mailingBLL As New Negocio.MailingBLL
+            If Not GestorUsu.ExisteUsuario(oUsuarioLogueado) Is Nothing Then
+                If Me.newpass1.Value = Me.newpass2.Value Then
+                    Dim PassSalt As List(Of String) = Negocio.EncriptarBLL.EncriptarPassword(newpass1.Value)
+                    oUsuarioLogueado.Salt = PassSalt.Item(0)
+                    oUsuarioLogueado.Password = PassSalt.Item(1)
+                    GestorUsu.ModificarUsuarioLogueado(oUsuarioLogueado)
+                    enviarMailCambioContraseñaUsuario(oUsuarioLogueado)
 
+                    Me.div_success.Visible = True
+                    Me.alert.Visible = False
+                    lbl_success.InnerText = "Se ha modificado la contraseña satisfactoriamente."
 
+                    'Sumar bitácora.
 
+                Else
+                    'no coinciden los passwords
+                    Me.div_success.Visible = False
+                    Me.alert.Visible = True
+                    Me.lbl_textovalid.InnerText = "Las nuevas contraseñas deben coincidir entre sí"
+                End If
 
+            End If
+        Catch ex As Exception
+            'contraseña incorrecta
+            Me.div_success.Visible = False
+            Me.alert.Visible = True
+            Me.lbl_textovalid.InnerText = "Contraseña ingresada incorrecta"
+
+        End Try
+    End Sub
 End Class

@@ -284,13 +284,13 @@ Partial Public Class GestionarProductos
     Protected WithEvents btn_modificar As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
-    '''Control btn_eliminar.
+    '''Control btn_confirmar.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents btn_eliminar As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btn_confirmar As Global.System.Web.UI.HtmlControls.HtmlButton
     
     '''<summary>
     '''Control btn_nuevo.
@@ -309,6 +309,15 @@ Partial Public Class GestionarProductos
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents gv_Productos As Global.System.Web.UI.WebControls.GridView
+    
+    '''<summary>
+    '''Control btneliminar.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btneliminar As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
     '''Control id_producto.

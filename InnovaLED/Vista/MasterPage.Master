@@ -336,7 +336,7 @@
 
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" runat="server" id="chk_terminos" />
+                                <asp:CheckBox id="chk_terminos"  runat="server" />                              
                                 <a class="btn btn-default" href="TerminosyCondiciones.aspx" role="button">Acepto los terminos y condiciones</a>
                             </label>
                         </div>

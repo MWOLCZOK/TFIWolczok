@@ -19,9 +19,18 @@ Public Class RecuperarPassword
             If Page.IsValid = True Then
                 Dim GestorCliente As New Negocio.UsuarioBLL
                 Dim usu As New Entidades.UsuarioEntidad With {.NombreUsu = txtUsuario.Text}
-                EnviarMail(GestorCliente.CreateToken(usu),usu)
-                Me.success.Visible = True
-                Me.alertvalid.Visible = False
+                Dim token = GestorCliente.CreateToken(usu)
+                If Not IsNothing(token) Then
+                    EnviarMail(token, usu)
+                    Me.success.Visible = True
+                    Me.alertvalid.Visible = False
+                Else
+                    Me.alertvalid.Visible = True
+                    Me.textovalid.InnerText = "El usuario que ha ingresado no existe, verifique nuevamente."
+                    Me.success.Visible = False
+
+                End If
+
             Else
                 Me.alertvalid.Visible = True
                 Me.textovalid.InnerText = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "FieldValidator1").Traduccion

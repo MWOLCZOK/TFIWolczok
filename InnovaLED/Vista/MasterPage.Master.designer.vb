@@ -380,7 +380,7 @@ Partial Public Class MasterPage
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents chk_terminos As Global.System.Web.UI.HtmlControls.HtmlInputCheckBox
+    Protected WithEvents chk_terminos As Global.System.Web.UI.WebControls.CheckBox
     
     '''<summary>
     '''Control btnregistracion.

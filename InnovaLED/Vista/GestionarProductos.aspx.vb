@@ -68,7 +68,7 @@ Public Class GestionarProductos
     Private Sub Ocultamiento()
         Me.btn_nuevo.Visible = True
         Me.btn_modificar.Visible = False
-        Me.btn_eliminar.Visible = False
+        Me.btn_confirmar.Visible = False
         Me.btn_agregar.Visible = False
         txtmarca.Enabled = False
         txtmodelo.Enabled = False
@@ -84,14 +84,14 @@ Public Class GestionarProductos
     Private Sub Ocultamiento2()
         Me.btn_nuevo.Visible = True
         Me.btn_modificar.Visible = True
-        Me.btn_eliminar.Visible = True
+        Me.btn_confirmar.Visible = True
         Me.btn_agregar.Visible = False
     End Sub
 
     Private Sub Ocultamiento3()
         Me.btn_agregar.Visible = True
         Me.btn_modificar.Visible = False
-        Me.btn_eliminar.Visible = False
+        Me.btn_confirmar.Visible = False
         Me.btn_nuevo.Visible = False
         txtmarca.Enabled = True
         txtmodelo.Enabled = True
@@ -321,7 +321,7 @@ Public Class GestionarProductos
         End Try
     End Sub
 
-    Protected Sub btn_eliminar_Click(sender As Object, e As EventArgs) Handles btn_eliminar.Click
+    Public Sub btneliminar_Click(sender As Object, e As EventArgs)
 
         Dim GestorProducto As New GestorProductoBLL
         Try
@@ -334,7 +334,7 @@ Public Class GestionarProductos
                 IdiomaActual = Application(TryCast(Current.Session("Cliente"), Entidades.UsuarioEntidad).Idioma.Nombre)
             End If
 
-            GestorProducto.Eliminar(Producto)
+            GestorProducto.Eliminar(producto)
             Me.success.InnerText = "Se eliminó el producto correctamente."
             Me.alertvalid.Visible = False
             CargarProductos()

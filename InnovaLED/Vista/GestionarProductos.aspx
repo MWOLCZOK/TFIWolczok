@@ -166,7 +166,7 @@
 <div class="row">
 <asp:button ID="btn_agregar" runat="server" text="Agregar" type="button" class="btn btn-success btn-md col-md-2" ></asp:button>
 <asp:button ID="btn_modificar" runat="server" text="Modificar" type="button" class="btn btn-info btn-md col-md-2 col-md-offset-1"></asp:button>
-<asp:button ID="btn_eliminar" runat="server" text="Eliminar" type="button" class="btn btn-danger btn-md col-md-2 col-md-offset-1"></asp:button>
+<button id="btn_confirmar" runat="server" type="button" class="btn btn-danger btn-md col-md-2 col-md-offset-1" data-toggle="modal" data-target="#ConfirmacionModalTitle">Eliminar</button> 
 <asp:button ID="btn_nuevo" runat="server" text="Nuevo" type="button" class="btn btn-primary btn-md col-md-2 col-md-offset-1"></asp:button>       
 &nbsp;
 </div>   
@@ -237,6 +237,29 @@
    
 <br />
 <br /> 
+
+    <%-- Modal de Confirmacion de Eliminación --%>
+     <div class="modal-normal " id="ConfirmacionModalTitle"  role="dialog" >
+            <div class="modal-dialog" role="document">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title Blanco" id="ModalTitle">Confirmar Eliminación</h5>
+                    </div>
+
+
+                    <div class="modal-body Blanco">
+                            <label>¿Está seguro que desea realizar la operación de Eliminación?</label>
+
+                    </div>
+                    <div class="modal-footer">
+                        <asp:Button ID="btneliminar" runat="server" CssClass="btn btn-primary" OnClick="btneliminar_Click" Text="Aceptar" />
+                        <button id="btncerrar" type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
 
     <asp:HiddenField ID="id_producto" runat="server" />
 

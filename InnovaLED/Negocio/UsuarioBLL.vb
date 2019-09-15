@@ -35,7 +35,12 @@ Public Class UsuarioBLL
 
     Public Function CreateToken(ByRef usu As Entidades.UsuarioEntidad) As String
         Try
-            Return UsuarioMPP.CrearToken(usu, False)
+            If UsuarioMPP.ExisteUsuarioNoBloqueado(usu) Then
+                Return UsuarioMPP.CrearToken(usu, False)
+            Else
+                Return Nothing
+            End If
+
         Catch ex As Exception
             Throw ex
         End Try

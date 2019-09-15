@@ -286,6 +286,24 @@ Public Class UsuarioMPP
 
     End Function
 
+    Public Function ExisteUsuarioNoBloqueado(ByVal Usuario As Entidades.UsuarioEntidad) As Boolean
+        Try
+            Dim consulta As String = "Select * from UsuarioEntidad  where NombreUsuario= @NombreUsuario And BL = 0 and bloqueo = 0 "
+            Dim Command As SqlCommand = Acceso.MiComando(consulta)
+            With Command.Parameters
+                .Add(New SqlParameter("@NombreUsuario", Usuario.NombreUsu))
+            End With
+            Dim dt As DataTable = Acceso.Lectura(Command)
+            If dt.Rows.Count > 0 Then
+                Return True
+            Else
+                Return False
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+    End Function
     Public Function BuscarUsuarioID(ByVal Usuario As Entidades.UsuarioEntidad) As Entidades.UsuarioEntidad
         Try
             Dim consulta As String = "Select * from UsuarioEntidad where ID_Usuario=@ID_Usuario"

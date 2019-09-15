@@ -80,6 +80,8 @@ Public Class MasterPage
             '    End If
             'End If
 
+            'código para botón aceptar >>>>
+
             If IsNothing(Session("Paginas")) Then
                 Session("Paginas") = New List(Of String)
             End If
@@ -434,6 +436,7 @@ Public Class MasterPage
 
     Public Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
         Try
+
             If IsReCaptchaValid() = True Then
                 Dim Cliente As New Entidades.UsuarioEntidad
                 Dim IdiomaActual As Entidades.IdiomaEntidad
@@ -443,21 +446,21 @@ Public Class MasterPage
                 Else
                     IdiomaActual = Application(TryCast(Current.Session("Cliente"), Entidades.UsuarioEntidad).Idioma.Nombre)
                 End If
-            If Page.IsValid = True Then
-                Cliente.NombreUsu = txtUser.Value
-                Cliente.Password = txtPassword.Value
-                clienteLogeado = GestorUsu.ExisteUsuario(Cliente)
-                Dim Bitac As New Bitacora(clienteLogeado, "El usuario " & clienteLogeado.NombreUsu & " Se logueo correctamente", Tipo_Bitacora.Login, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)
-                BitacoraBLL.CrearBitacora(Bitac)
-                Session("cliente") = clienteLogeado
-                Usuario = DirectCast(Session("cliente"), Entidades.UsuarioEntidad)
-                Me.success.Visible = True
-                Me.lbl_success.InnerText = "Se ha logueado correctamente"
-                Me.alertvalid.Visible = False
-                VisibilidadAcceso(True)
-                'Response.Redirect(Default., False)
-                Response.Redirect(Request.Url.ToString, False)
-            End If
+                If Page.IsValid = True Then
+                    Cliente.NombreUsu = txtUser.Value
+                    Cliente.Password = txtPassword.Value
+                    clienteLogeado = GestorUsu.ExisteUsuario(Cliente)
+                    Dim Bitac As New Bitacora(clienteLogeado, "El usuario " & clienteLogeado.NombreUsu & " Se logueo correctamente", Tipo_Bitacora.Login, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)
+                    BitacoraBLL.CrearBitacora(Bitac)
+                    Session("cliente") = clienteLogeado
+                    Usuario = DirectCast(Session("cliente"), Entidades.UsuarioEntidad)
+                    Me.success.Visible = True
+                    Me.lbl_success.InnerText = "Se ha logueado correctamente"
+                    Me.alertvalid.Visible = False
+                    VisibilidadAcceso(True)
+                    'Response.Redirect(Default., False)
+                    Response.Redirect(Request.Url.ToString, False)
+                End If
 
                 'descomentar lo q esta debajo para que funcione el captcha y la funcion que esta arriba de todo del IF
 
@@ -514,6 +517,12 @@ Public Class MasterPage
 
                 If Page.IsValid = True Then
 
+                    If Not ValidarCamposRegistracion() Then
+                        Me.success.Visible = False
+                        Me.alertvalid.Visible = True
+                        Return
+                    End If
+
                     If IsValidEmail(txtmail.Value) Then
                         usu.Mail = txtmail.Value
                     Else
@@ -548,6 +557,7 @@ Public Class MasterPage
                         Me.alertvalid.Visible = False
                         'Me.txtusuario.Text = ""
                         EnviarMailRegistro(GestorCliente.GEtToken(usu.ID_Usuario), usu)
+                        LimpiarCamposRegistracion()
                     End If
                 Else
                     'Me.alertvalid.Visible = True
@@ -569,6 +579,24 @@ Public Class MasterPage
         End If
 
     End Sub
+
+    Public Function ValidarCamposRegistracion() As Boolean
+        If txtapereg.Value = "" Or txtnombrereg.Value = "" Or txtUserreg.Value = "" Or txtdni.Value = "" Or txtmail.Value = "" Then
+            Return False
+        Else
+            Return True
+
+        End If
+    End Function
+
+    Public Sub LimpiarCamposRegistracion()
+        txtapereg.Value = ""
+        txtnombrereg.Value = ""
+        txtUserreg.Value = ""
+        txtmail.Value = ""
+        txtdni.Value = ""
+    End Sub
+
 
 
     Public Sub btnolvidepass_Click(sender As Object, e As EventArgs) Handles btnolvidepass.Click
@@ -706,4 +734,5 @@ Public Class MasterPage
         End If
 
     End Sub
+
 End Class
