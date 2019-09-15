@@ -5,7 +5,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container-fluid fondoGris" >
+    <div class="container-fluid fondoGris">
         <br />
         <div id="alertvalid" runat="server" name="alertvalid" class="alert alert-danger  text-center" visible="false">
             <label runat="server" id="textovalid" class="text-danger"></label>
@@ -18,21 +18,20 @@
             <div class="col-md-12">
                 <div class="panel panel-primary class">
                     <div class="panel-heading text-center">
-                        <asp:Label ID="lblPanelModUser" runat="server" Text="Catalogo" font-size="24px" CssClass="TituloPanel"></asp:Label>
+                        <asp:Label ID="lblPanelModUser" runat="server" Text="Catalogo" Font-Size="24px" CssClass="TituloPanel"></asp:Label>
                     </div>
-                 </div>
+                </div>
             </div>
-           <br />
-           <br />
-                                   
-            </div>
+            <br />
+            <br />
 
-<asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager> 
- <%--<asp:UpdatePanel ID="UpdatePanel1" runat="server">--%>
-<ContentTemplate>
+        </div>
 
+<%--        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        <%--<asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <contenttemplate>
 
-         <%-- Content Media - Catalogo --%>
+ Content Media - Catalogo --%>
 
 <div class="col-md-4">
 
@@ -147,11 +146,9 @@
       
 
          </div>
-      
-</div>
-   
+    </div>
+
     <asp:HiddenField ID="id_usuario" runat="server" />
-</ContentTemplate>
-  <%-- </asp:UpdatePanel> --%>
-   
+<%--    </ContentTemplate>
+   </asp:UpdatePanel> --%>
 </asp:Content>

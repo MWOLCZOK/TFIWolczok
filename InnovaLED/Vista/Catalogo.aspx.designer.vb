@@ -50,15 +50,6 @@ Partial Public Class Catalogo
     Protected WithEvents lblPanelModUser As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''Control ScriptManager1.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
-    
-    '''<summary>
     '''Control Lbl_marca.
     '''</summary>
     '''<remarks>

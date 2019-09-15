@@ -131,6 +131,15 @@ Partial Public Class MasterPage
     Protected WithEvents txt_busqueda As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
+    '''Control btn_Volver.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btn_Volver As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
     '''Control lstidioma.
     '''</summary>
     '''<remarks>

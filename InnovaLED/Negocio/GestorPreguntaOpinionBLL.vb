@@ -76,33 +76,33 @@ Public Class GestorPreguntaOpinionBLL
     End Function
 
 
-    Public Function obtenerRespuestas(ByVal paramPregunta As PreguntaOpinionEntidad, ByVal paramMes As Integer, ByVal paramAno As Integer) As List(Of PreguntaOpinionEntidad.TipoRespuestasCalidad)
-        Try
-            If paramMes = 0 Then
-                'TODOS LOS MESES, UN AÑO EN PARTICULAR
-                Return preguntaMPP.obtenerRespuestas(paramPregunta, paramAno, True)
-            ElseIf paramAno = 0 Then
-                'TODOS LOS AÑOS, UN MES EN PARTICULAR
-                Return preguntaMPP.obtenerRespuestas(paramPregunta, paramMes, False)
-            Else
-                'UN MES Y AÑO EN PARTICULAR
-                Return preguntaMPP.obtenerRespuestas(paramPregunta, paramMes, paramAno)
-            End If
-        Catch ex As Exception
-            Throw New Exception
-        End Try
+    'Public Function obtenerRespuestas(ByVal paramPregunta As PreguntaOpinionEntidad, ByVal paramMes As Integer, ByVal paramAno As Integer) As List(Of PreguntaOpinionEntidad.TipoRespuestasCalidad)
+    '    Try
+    '        If paramMes = 0 Then
+    '            'TODOS LOS MESES, UN AÑO EN PARTICULAR
+    '            Return preguntaMPP.obtenerRespuestas(paramPregunta, paramAno, True)
+    '        ElseIf paramAno = 0 Then
+    '            'TODOS LOS AÑOS, UN MES EN PARTICULAR
+    '            Return preguntaMPP.obtenerRespuestas(paramPregunta, paramMes, False)
+    '        Else
+    '            'UN MES Y AÑO EN PARTICULAR
+    '            Return preguntaMPP.obtenerRespuestas(paramPregunta, paramMes, paramAno)
+    '        End If
+    '    Catch ex As Exception
+    '        Throw New Exception
+    '    End Try
 
-    End Function
+    'End Function
 
 
-    Public Function obtenerRespuestas(ByVal paramPregunta As PreguntaOpinionEntidad) As List(Of PreguntaOpinionEntidad.TipoRespuestasCalidad)
-        Try
-            Return preguntaMPP.obtenerRespuestas(paramPregunta)
-        Catch ex As Exception
-            Throw New Exception
-        End Try
+    'Public Function obtenerRespuestas(ByVal paramPregunta As PreguntaOpinionEntidad) As List(Of PreguntaOpinionEntidad.TipoRespuestasCalidad)
+    '    Try
+    '        Return preguntaMPP.obtenerRespuestas(paramPregunta)
+    '    Catch ex As Exception
+    '        Throw New Exception
+    '    End Try
 
-    End Function
+    'End Function
 
 
     Public Function obtenerPreguntas() As List(Of PreguntaOpinionEntidad)
@@ -114,14 +114,14 @@ Public Class GestorPreguntaOpinionBLL
 
     End Function
 
-    Public Function obtenerPreguntas(ByVal paramTipoPregunta As PreguntaOpinionEntidad.TipoRespuestasFichaOpinion) As List(Of PreguntaOpinionEntidad)
-        Try
-            Return preguntaMPP.obtenerPreguntas(paramTipoPregunta)
-        Catch ex As Exception
-            Throw New Exception
-        End Try
+    'Public Function obtenerPreguntas(ByVal paramTipoPregunta As PreguntaOpinionEntidad.TipoRespuestasFichaOpinion) As List(Of PreguntaOpinionEntidad)
+    '    Try
+    '        Return preguntaMPP.obtenerPreguntas(paramTipoPregunta)
+    '    Catch ex As Exception
+    '        Throw New Exception
+    '    End Try
 
-    End Function
+    'End Function
 
     Public Function obtenerPreguntas(ByVal paramPregunta As PreguntaOpinionEntidad) As PreguntaOpinionEntidad
 
@@ -133,14 +133,14 @@ Public Class GestorPreguntaOpinionBLL
 
     End Function
 
-    Public Function obtenerRespuestasFO(ByVal paramPregunta As PreguntaOpinionEntidad) As List(Of PreguntaOpinionEntidad.TipoRespuestasFichaOpinion)
-        Try
-            Return preguntaMPP.obtenerRespuestasFO(paramPregunta)
-        Catch ex As Exception
-            Throw New Exception
-        End Try
+    'Public Function obtenerRespuestasFO(ByVal paramPregunta As PreguntaOpinionEntidad) As List(Of PreguntaOpinionEntidad.TipoRespuestasFichaOpinion)
+    '    Try
+    '        Return preguntaMPP.obtenerRespuestasFO(paramPregunta)
+    '    Catch ex As Exception
+    '        Throw New Exception
+    '    End Try
 
-    End Function
+    'End Function
 
 
 

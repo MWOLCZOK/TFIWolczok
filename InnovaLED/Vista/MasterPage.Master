@@ -135,7 +135,12 @@
                         <asp:TextBox ID="txt_busqueda" runat="server" Style="width: 200px; color: black" CssClass="form-control" placeholder="Escriba una palabra"></asp:TextBox>
                     </div>
 
-                    <div class="col-md-offset-6 col-md-2 text-right">
+                    <div class="col-md-offset-4 col-md-2 text-right">
+                        <asp:Button ID="btn_Volver" runat="server" text="Volver" class="btn btn-success" Height="30px" Width="60px"></asp:Button>
+                    </div>
+
+
+                    <div class=" col-md-2 text-right">
                         <asp:DropDownList ID="lstidioma" runat="server" CssClass="form-control" DataValueField="ID_Idioma" DataTextField="Nombre" Height="30px"></asp:DropDownList>
                     </div>
                     <div class="row row col-md-1 text-right">

@@ -67,6 +67,30 @@ Public Class MasterPage
 
                 End If
             End If
+            'If Request.Path <> Session("PaginaActual") Then
+            '    Session("PaginaActual") = Request.Path
+            '    If IsNothing(Session("Verificador")) Then
+            '        Session("Verificador") = -1
+            '    End If
+
+
+            '    Session("Verificador") += 1
+            '    If Session("Verificador") Mod 2 = 0 Then
+            '        Session("PaginaAnterior") = Request.Path
+            '    End If
+            'End If
+
+            If IsNothing(Session("Paginas")) Then
+                Session("Paginas") = New List(Of String)
+            End If
+            If Session("Paginas").count = 0 Then
+                Session("Paginas").Add(Request.RawUrl)
+            Else
+                Dim Paginas As List(Of String) = Session("Paginas")
+                If Paginas.Last <> (Request.RawUrl) Then
+                    Paginas.Add(Request.RawUrl)
+                End If
+            End If
 
 
         Catch ex As Exception
@@ -672,5 +696,14 @@ Public Class MasterPage
 
     Protected Sub btn_newsletter_Click(sender As Object, e As EventArgs) Handles btn_newsletter.Click
         Response.Redirect("/SuscripcionBoletin.aspx", False)
+    End Sub
+
+    Protected Sub btn_Volver_Click(sender As Object, e As EventArgs) Handles btn_Volver.Click
+        Dim Paginas As List(Of String) = Session("Paginas")
+        If Paginas.Count > 1 Then
+            Paginas.RemoveAt(Paginas.Count - 1)
+            Response.Redirect(Paginas.ElementAt(Paginas.Count - 1), False)
+        End If
+
     End Sub
 End Class

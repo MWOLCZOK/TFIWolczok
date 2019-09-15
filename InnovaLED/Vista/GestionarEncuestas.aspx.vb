@@ -291,24 +291,24 @@ Public Class GestionarEncuestas
     'CÓDIGO PARA REPORTE DE ENCUESTAS 
 
     Private Sub obtenerPreguntasOpinion(ByVal paramMes As Integer, ByVal paramAno As Integer)
-        Try
-            Dim _satisfecho As Integer = 0
-            Dim _insatisfecho As Integer = 0
-            Dim _listaPreguntaOpinion As List(Of PreguntaOpinionEntidad) = encuestaBLL.TraerTodasLasPreguntas
-            For Each _preguntaOpinion As PreguntaOpinionEntidad In _listaPreguntaOpinion
-                Dim _listaRespuesta As List(Of PreguntaOpinionEntidad.TipoRespuestasCalidad) = encuestaBLL.obtenerRespuestas(_preguntaOpinion, paramMes, paramAno)
-                For Each _respuestaOpinion As PreguntaOpinionEntidad.TipoRespuestasCalidad In _listaRespuesta
-                    If _respuestaOpinion = PreguntaOpinionEntidad.TipoRespuestasCalidad.Bueno Or _respuestaOpinion = PreguntaOpinionEntidad.TipoRespuestasCalidad.Excelente Then
-                        _satisfecho += 1
-                    ElseIf _respuestaOpinion = PreguntaOpinionEntidad.TipoRespuestasCalidad.Malo Or _respuestaOpinion = PreguntaOpinionEntidad.TipoRespuestasCalidad.Pesimo Then
-                        _insatisfecho += 1
-                    End If
-                Next
-            Next
-            generarGrafico(_satisfecho, _insatisfecho)
-            generarDataGridView(_satisfecho, _insatisfecho)
-        Catch ex As Exception
-        End Try
+        'Try
+        '    Dim _satisfecho As Integer = 0
+        '    Dim _insatisfecho As Integer = 0
+        '    Dim _listaPreguntaOpinion As List(Of PreguntaOpinionEntidad) = encuestaBLL.TraerTodasLasPreguntas
+        '    For Each _preguntaOpinion As PreguntaOpinionEntidad In _listaPreguntaOpinion
+        '        Dim _listaRespuesta As List(Of PreguntaOpinionEntidad.TipoRespuestasCalidad) = encuestaBLL.obtenerRespuestas(_preguntaOpinion, paramMes, paramAno)
+        '        For Each _respuestaOpinion As PreguntaOpinionEntidad.TipoRespuestasCalidad In _listaRespuesta
+        '            If _respuestaOpinion = PreguntaOpinionEntidad.TipoRespuestasCalidad.Bueno Or _respuestaOpinion = PreguntaOpinionEntidad.TipoRespuestasCalidad.Excelente Then
+        '                _satisfecho += 1
+        '            ElseIf _respuestaOpinion = PreguntaOpinionEntidad.TipoRespuestasCalidad.Malo Or _respuestaOpinion = PreguntaOpinionEntidad.TipoRespuestasCalidad.Pesimo Then
+        '                _insatisfecho += 1
+        '            End If
+        '        Next
+        '    Next
+        '    generarGrafico(_satisfecho, _insatisfecho)
+        '    generarDataGridView(_satisfecho, _insatisfecho)
+        'Catch ex As Exception
+        'End Try
 
     End Sub
 
@@ -360,24 +360,24 @@ Public Class GestionarEncuestas
 
 
     Private Sub obtenerPreguntasOpinion()
-        Try
-            Dim _satisfecho As Integer = 0
-            Dim _insatisfecho As Integer = 0
-            Dim _listaPreguntaOpinion As List(Of PreguntaOpinionEntidad) = encuestaBLL.obtenerPreguntas
-            For Each _preguntaOpinion As PreguntaOpinionEntidad In _listaPreguntaOpinion
-                Dim _listaRespuesta As List(Of PreguntaOpinionEntidad.TipoRespuestasCalidad) = encuestaBLL.obtenerRespuestas(_preguntaOpinion)
-                For Each _respuestaOpinion As PreguntaOpinionEntidad.TipoRespuestasCalidad In _listaRespuesta
-                    If _respuestaOpinion = PreguntaOpinionEntidad.TipoRespuestasCalidad.Bueno Or _respuestaOpinion = PreguntaOpinionEntidad.TipoRespuestasCalidad.Excelente Then
-                        _satisfecho += 1
-                    ElseIf _respuestaOpinion = PreguntaOpinionEntidad.TipoRespuestasCalidad.Malo Or _respuestaOpinion = PreguntaOpinionEntidad.TipoRespuestasCalidad.Pesimo Then
-                        _insatisfecho += 1
-                    End If
-                Next
-            Next
-            generarGrafico(_satisfecho, _insatisfecho)
-            generarDataGridView(_satisfecho, _insatisfecho)
-        Catch ex As Exception
-        End Try
+        'Try
+        '    Dim _satisfecho As Integer = 0
+        '    Dim _insatisfecho As Integer = 0
+        '    Dim _listaPreguntaOpinion As List(Of PreguntaOpinionEntidad) = encuestaBLL.obtenerPreguntas
+        '    For Each _preguntaOpinion As PreguntaOpinionEntidad In _listaPreguntaOpinion
+        '        Dim _listaRespuesta As List(Of PreguntaOpinionEntidad.TipoRespuestasCalidad) = encuestaBLL.obtenerRespuestas(_preguntaOpinion)
+        '        For Each _respuestaOpinion As PreguntaOpinionEntidad.TipoRespuestasCalidad In _listaRespuesta
+        '            If _respuestaOpinion = PreguntaOpinionEntidad.TipoRespuestasCalidad.Bueno Or _respuestaOpinion = PreguntaOpinionEntidad.TipoRespuestasCalidad.Excelente Then
+        '                _satisfecho += 1
+        '            ElseIf _respuestaOpinion = PreguntaOpinionEntidad.TipoRespuestasCalidad.Malo Or _respuestaOpinion = PreguntaOpinionEntidad.TipoRespuestasCalidad.Pesimo Then
+        '                _insatisfecho += 1
+        '            End If
+        '        Next
+        '    Next
+        '    generarGrafico(_satisfecho, _insatisfecho)
+        '    generarDataGridView(_satisfecho, _insatisfecho)
+        'Catch ex As Exception
+        'End Try
 
     End Sub
 
@@ -387,13 +387,13 @@ Public Class GestionarEncuestas
 
 
     Private Sub obtenerPreguntasEncuesta()
-        Try
-            Me.ddl_PreguntaEncuesta.DataSource = encuestaBLL.obtenerPreguntas(TipoPregunta.Opinion)
-            Me.ddl_PreguntaEncuesta.DataValueField = "ID"
-            Me.ddl_PreguntaEncuesta.DataTextField = "Enunciado"
-            Me.ddl_PreguntaEncuesta.DataBind()
-        Catch ex As Exception
-        End Try
+        'Try
+        '    Me.ddl_PreguntaEncuesta.DataSource = encuestaBLL.obtenerPreguntas(TipoPregunta.Opinion)
+        '    Me.ddl_PreguntaEncuesta.DataValueField = "ID"
+        '    Me.ddl_PreguntaEncuesta.DataTextField = "Enunciado"
+        '    Me.ddl_PreguntaEncuesta.DataBind()
+        'Catch ex As Exception
+        'End Try
 
     End Sub
 
@@ -405,41 +405,41 @@ Public Class GestionarEncuestas
     End Sub
 
     Private Sub obtenerSeleccionado()
-        Try
-            Dim _preguntaSeleccionada As New PreguntaOpinionEntidad
-            _preguntaSeleccionada.ID = Me.ddl_PreguntaEncuesta.SelectedValue
-            _preguntaSeleccionada = encuestaBLL.obtenerPreguntas(_preguntaSeleccionada)
-            Dim _listaRespuesta As List(Of PreguntaOpinionEntidad.TipoRespuestasFichaOpinion) = encuestaBLL.obtenerRespuestasFO(_preguntaSeleccionada)
-            calcularValoresGrafico(_listaRespuesta)
-        Catch ex As Exception
-        End Try
+        'Try
+        '    Dim _preguntaSeleccionada As New PreguntaOpinionEntidad
+        '    _preguntaSeleccionada.ID = Me.ddl_PreguntaEncuesta.SelectedValue
+        '    _preguntaSeleccionada = encuestaBLL.obtenerPreguntas(_preguntaSeleccionada)
+        '    Dim _listaRespuesta As List(Of PreguntaOpinionEntidad.TipoRespuestasFichaOpinion) = encuestaBLL.obtenerRespuestasFO(_preguntaSeleccionada)
+        '    calcularValoresGrafico(_listaRespuesta)
+        'Catch ex As Exception
+        'End Try
 
     End Sub
 
 
-    Public Sub calcularValoresGrafico(ByVal paramListaRespuesta As List(Of PreguntaOpinionEntidad.TipoRespuestasFichaOpinion))
-        Try
-            Dim _si As Integer = 0
-            Dim _no As Integer = 0
-            Dim _quizas As Integer = 0
+    'Public Sub calcularValoresGrafico(ByVal paramListaRespuesta As List(Of PreguntaOpinionEntidad.TipoRespuestasFichaOpinion))
+    '    'Try
+    '    '    Dim _si As Integer = 0
+    '    '    Dim _no As Integer = 0
+    '    '    Dim _quizas As Integer = 0
 
 
-            For Each _respuesta As PreguntaOpinionEntidad.TipoRespuestasFichaOpinion In paramListaRespuesta
-                If _respuesta = PreguntaOpinionEntidad.TipoRespuestasFichaOpinion.Si Then
-                    _si += 1
-                ElseIf _respuesta = PreguntaOpinionEntidad.TipoRespuestasFichaOpinion.No Then
-                    _no += 1
-                ElseIf _respuesta = PreguntaOpinionEntidad.TipoRespuestasFichaOpinion.Quizas Then
-                    _quizas += 1
-                End If
-            Next
-            generarGrafico2(_si, _no, _quizas)
-            generarDataGridView2(_si, _no, _quizas)
-        Catch ex As Exception
+    '    '    For Each _respuesta As PreguntaOpinionEntidad.TipoRespuestasFichaOpinion In paramListaRespuesta
+    '    '        If _respuesta = PreguntaOpinionEntidad.TipoRespuestasFichaOpinion.Si Then
+    '    '            _si += 1
+    '    '        ElseIf _respuesta = PreguntaOpinionEntidad.TipoRespuestasFichaOpinion.No Then
+    '    '            _no += 1
+    '    '        ElseIf _respuesta = PreguntaOpinionEntidad.TipoRespuestasFichaOpinion.Quizas Then
+    '    '            _quizas += 1
+    '    '        End If
+    '    '    Next
+    '    '    generarGrafico2(_si, _no, _quizas)
+    '    '    generarDataGridView2(_si, _no, _quizas)
+    '    'Catch ex As Exception
 
-        End Try
+    '    'End Try
 
-    End Sub
+    'End Sub
 
     Private Sub generarDataGridView2(_si, _no, _quizas)
         Me.valor_Si.Text = _si

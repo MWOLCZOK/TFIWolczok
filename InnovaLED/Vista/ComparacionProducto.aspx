@@ -16,7 +16,7 @@
             <label id="lblsuccessmodUser" class="text-success">.</label>
         </div>
 
-        <div class="row">
+           <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-primary class">
                     <div class="panel-heading text-center">
@@ -37,6 +37,7 @@
             </div>
         </div>
 
+       
     </div>
 
 

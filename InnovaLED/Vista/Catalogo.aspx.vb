@@ -40,8 +40,6 @@ Public Class Catalogo
                         carrito.Add(New CompraEntidad With {.Cantidad = 1, .Producto = listaprod.Find(Function(p) p.ID_Producto = CInt(Request.QueryString("contid")))})
                     End If
                 End If
-            Else
-                Return
             End If
             GenerarDiseño(Session("Listaproductos"), Session("CantListaproductos"))
 
