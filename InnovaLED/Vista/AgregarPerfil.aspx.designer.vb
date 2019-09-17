@@ -167,13 +167,13 @@ Partial Public Class GestionarPerfiles
     Protected WithEvents Txtcrearrol As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
-    '''Control Btneliminarrol.
+    '''Control btn_confirmar.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents Btneliminarrol As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btn_confirmar As Global.System.Web.UI.HtmlControls.HtmlButton
     
     '''<summary>
     '''Control DropdwnrolesElim.
@@ -183,4 +183,13 @@ Partial Public Class GestionarPerfiles
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents DropdwnrolesElim As Global.System.Web.UI.WebControls.DropDownList
+    
+    '''<summary>
+    '''Control btneliminar.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btneliminar As Global.System.Web.UI.WebControls.Button
 End Class

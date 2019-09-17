@@ -115,7 +115,7 @@ Public Class GestionarPerfiles
         Lstperfilesactuales.Items.Remove(Me.Lstperfilesactuales.SelectedItem)
     End Sub
 
-    Protected Sub Btneliminarrol_Click(sender As Object, e As EventArgs) Handles Btneliminarrol.Click
+    Protected Sub btneliminar_Click(sender As Object, e As EventArgs)
         Try
             Dim GestorRol As New GestorPermisosBLL
             Dim Rol As New RolEntidad

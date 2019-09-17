@@ -398,7 +398,7 @@ Public Class GestionarUsuarios
         End Try
     End Sub
 
-    Protected Sub btneliminar_Click(sender As Object, e As EventArgs) Handles btneliminar.Click
+    Protected Sub btneliminar_Click(sender As Object, e As EventArgs)
 
         Dim GestorCliente As New Negocio.UsuarioBLL
         Try
@@ -412,10 +412,7 @@ Public Class GestionarUsuarios
 
             Dim usulog As New UsuarioEntidad
 
-
             If usulog = Current.Session("Usuarios") Then
-
-
 
                 If GestorCliente.Eliminar(Usuario) Then
                     Dim clienteLogeado As Entidades.UsuarioEntidad = Current.Session("cliente")

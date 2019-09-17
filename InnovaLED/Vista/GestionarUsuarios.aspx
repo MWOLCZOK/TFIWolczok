@@ -4,7 +4,7 @@
     <!-- <script type="text/javascript" src="JS/ClienteValid.js"></script>-->
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container-fluid">
+    <div class="container-fluid fondoGris">
         <br />
         <div id="alertvalid" runat="server" name="alertvalid" class="alert alert-danger  text-center" visible="false">
             <label runat="server" id="textovalid" class="text-danger"></label>
@@ -12,6 +12,8 @@
         <div id="success" runat="server" name="success" class="alert alert-success  text-center" visible="false">
             <label id="lblsuccessmodUser" class="text-success">El Usuario se creó correctamente.</label>
         </div>
+
+         
 
         <div class="row">
             <div class="col-md-12">
@@ -30,7 +32,7 @@
                     <%-- Sección Grid  --%>
 
                     <div class="col-md-5 col-md-offset-1">
-                        <asp:GridView CssClass="table table-hover table-bordered table-responsive table-success " ID="gv_Usuarios" runat="server" AutoGenerateColumns="False" HorizontalAlign="Center" AllowPaging="true" PageSize="10" OnPageIndexChanging="gv_Usuarios_PageIndexChanging" RowStyle-Height="40px">
+                        <asp:GridView CssClass="table table-hover table-bordered table-responsive table-active " ID="gv_Usuarios" runat="server" AutoGenerateColumns="False" HorizontalAlign="Center" AllowPaging="true" PageSize="10" OnPageIndexChanging="gv_Usuarios_PageIndexChanging" RowStyle-Height="40px">
                             <HeaderStyle CssClass="thead-dark" />
                             <PagerTemplate>
                                 <div class="col-md-4 text-left">
@@ -75,13 +77,13 @@
 
                     <%-- Sección Tabla Usuarios  --%>
 
-                    <div class="form-horizontal has-success col-md-6 ">
+                    <div class="form-horizontal col-md-6 ">
                         <div class="form-group">
+                            <br />
                             <asp:Label ID="lblapellido" runat="server" Text="Apellido:" CssClass="col-sm-4 control-label labelform"></asp:Label>
                             <div class="col-md-4">
                                 <div class="input-group">
                                     <asp:TextBox ID="txtapellido" runat="server" CssClass="form-control"></asp:TextBox>
-                                    <span class="input-group-addon" id="basic-addon1"><span class="	glyphicon glyphicon-user" aria-hidden="true"></span></span>
                                 </div>
                             </div>
                             <div class="col-md-1">
@@ -93,7 +95,6 @@
                             <div class="col-md-4">
                                 <div class="input-group">
                                     <asp:TextBox ID="txtnombre" runat="server" CssClass="form-control"></asp:TextBox>
-                                    <span class="input-group-addon" id="basic-addon2"><span class="	glyphicon glyphicon-user" aria-hidden="true"></span></span>
                                 </div>
                             </div>
                             <div class="col-md-1">
@@ -105,7 +106,6 @@
                             <div class="col-md-4">
                                 <div class="input-group">
                                     <asp:TextBox ID="txtnomusuario" runat="server" CssClass="form-control"></asp:TextBox>
-                                    <span class="input-group-addon" id="basic-addon8"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
                                 </div>
                             </div>
                             <div class="col-md-1">
@@ -117,11 +117,8 @@
                             <div class="col-md-4">
                                 <div class="input-group">
                                     <input type="password" id="txtpass" runat="server" class="form-control" />
-                                    <span class="input-group-addon" id="basic-addon9"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></span>
                                 </div>
-                            </div>
-                            <div class="col-md-1">
-                            </div>
+                            </div>                            
                         </div>
 
                         <div class="form-group">
@@ -129,10 +126,7 @@
                             <div class="col-md-4">
                                 <div class="input-group">
                                     <asp:TextBox ID="TxtDNI" runat="server" CssClass="form-control"></asp:TextBox>
-                                    <span class="input-group-addon" id="basic-addon9"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></span>
                                 </div>
-                            </div>
-                            <div class="col-md-1">
                             </div>
                             <div class="col-md-1">
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="TxtDNI" ErrorMessage="*" EnableClientScript="false" Display="Dynamic" CssClass="textoValidacion"></asp:RequiredFieldValidator>
@@ -145,7 +139,6 @@
                             <div class="col-md-4">
                                 <div class="input-group">
                                     <asp:TextBox ID="txtmail" runat="server" CssClass="form-control"></asp:TextBox>
-                                    <span class="input-group-addon" id="basic-addon8"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
                                 </div>
                             </div>
                             <div class="col-md-1">
@@ -163,20 +156,20 @@
                                     <span class="input-group-addon" id="basic-addon10"><span class="	glyphicon glyphicon-list-alt" aria-hidden="true"></span></span>
                                 </div>--%>
 
-                                <asp:GridView CssClass="table table-hover table-bordered table-responsive table-success " ID="gv_Roles" runat="server" AutoGenerateColumns="False" HorizontalAlign="Center"   RowStyle-Height="40px">
-                            <HeaderStyle CssClass="thead-dark" />
-                            <Columns>
-                               <asp:BoundField DataField="Nombre" HeaderText="Rol" />                               
-                                <asp:TemplateField HeaderText="Acciones" HeaderStyle-Width="100px">
-                                    <ItemTemplate>
-                                        <div>
-                                            <asp:ImageButton ID="btn_Seleccionar" runat="server" CommandName="S" ImageUrl="~/Imagenes/check.png" Height="18px" />
-                                        </div>
-                                    </ItemTemplate>
-                                    <HeaderStyle Width="100px"></HeaderStyle>
-                                </asp:TemplateField>
-                            </Columns>
-                        </asp:GridView>
+                                <asp:GridView CssClass="table table-hover table-bordered table-responsive table-success " ID="gv_Roles" runat="server" AutoGenerateColumns="False" HorizontalAlign="Center" RowStyle-Height="40px">
+                                    <HeaderStyle CssClass="thead-dark" />
+                                    <Columns>
+                                        <asp:BoundField DataField="Nombre" HeaderText="Rol" />
+                                        <asp:TemplateField HeaderText="Acciones" HeaderStyle-Width="100px">
+                                            <ItemTemplate>
+                                                <div>
+                                                    <asp:ImageButton ID="btn_Seleccionar" runat="server" CommandName="S" ImageUrl="~/Imagenes/check.png" Height="18px" />
+                                                </div>
+                                            </ItemTemplate>
+                                            <HeaderStyle Width="100px"></HeaderStyle>
+                                        </asp:TemplateField>
+                                    </Columns>
+                                </asp:GridView>
 
 
                             </div>
@@ -186,7 +179,6 @@
                             <div class="col-md-4">
                                 <div class="input-group">
                                     <asp:DropDownList ID="DropDownListIdioma" runat="server" CssClass="form-control" AutoPostBack="true" DataValueField="ID_Idioma" DataTextField="Nombre"></asp:DropDownList>
-                                    <span class="input-group-addon" id="basic-addon11"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></span>
                                 </div>
                             </div>
                         </div>
@@ -198,24 +190,12 @@
 
 
                     <div class="row">
-                        <div class="col-md-2 col-md-offset-1">
-                            <asp:Button ClientIDMode="Static" ID="btnAceptar" name="btnAceptar" runat="server" Text="Crear Usuario" CssClass="btn btn-block btn-success" />
-                        </div>
+                        <asp:Button ClientIDMode="Static" ID="btnAceptar" name="btnAceptar" runat="server" Text="Crear Usuario" class="btn btn-success btn-md col-md-1" />
+                        <asp:Button ClientIDMode="Static" ID="btnModificar" name="btnModificar" runat="server" Text="Modificar" class="btn btn-info btn-md col-md-1 col-md-offset-1" />
+                        <%--<asp:Button ClientIDMode="Static" ID="btneliminar" name="btneliminar" runat="server" Text="Eliminar" CssClass="btn btn-block btn-danger" />--%>
+                        <button id="btn_confirmar" runat="server" type="button" class="btn btn-danger btn-md col-md-1 col-md-offset-1" data-toggle="modal" data-target="#ConfirmacionModalTitle">Eliminar</button>
+                    </div>
 
-                    </div>
-                    <br />
-                    <div class="row">
-                        <div class="col-md-2 col-md-offset-7 ">
-                            <asp:Button ClientIDMode="Static" ID="btnModificar" name="btnModificar" runat="server" Text="Modificar" CssClass="btn btn-block btn-warning" />
-                        </div>
-                    </div>
-                    <br />
-
-                    <div class="row">
-                        <div class="col-md-2 col-md-offset-7 ">
-                            <asp:Button ClientIDMode="Static" ID="btneliminar" name="btneliminar" runat="server" Text="Eliminar" CssClass="btn btn-block btn-danger" />
-                        </div>
-                    </div>
                     <br />
                 </div>
                 <br />
@@ -225,10 +205,34 @@
         <br />
         <br />
     </div>
+
+
+
+    <%-- Modal de Confirmacion de Eliminación --%>
+    <div class="modal-normal " id="ConfirmacionModalTitle" role="dialog">
+        <div class="modal-dialog" role="document">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title Blanco" id="ModalTitle">Confirmar Eliminación</h5>
+                </div>
+
+
+                <div class="modal-body Blanco">
+                    <label>¿Está seguro que desea realizar la operación de Eliminación?</label>
+
+                </div>
+                <div class="modal-footer">
+                    <asp:Button ID="btneliminar" runat="server" CssClass="btn btn-primary" OnClick="btneliminar_Click" Text="Aceptar" />
+                    <button id="btncerrar" type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                </div>
+
+            </div>
+        </div>
     </div>
-      
- 
-   
+
+
+
     <asp:HiddenField ID="id_usuario" runat="server" />
 
 </asp:Content>
