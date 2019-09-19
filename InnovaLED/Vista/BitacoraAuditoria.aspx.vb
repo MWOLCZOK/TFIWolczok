@@ -101,8 +101,6 @@ Public Class ConsultarBitacoraAuditoria
                     .Cells(3).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "HeaderUsuario").Traduccion
                     .Cells(4).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "HeaderIPUsuario").Traduccion
                     .Cells(5).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "HeaderTipoBitacora").Traduccion
-                    .Cells(6).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "HeaderValorAnterior").Traduccion
-                    .Cells(7).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "HeaderValorPosterior").Traduccion
                 End With
                 gv_Bitacora.BottomPagerRow.Visible = True
                 gv_Bitacora.BottomPagerRow.CssClass = "table-bottom-dark"

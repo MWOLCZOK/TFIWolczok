@@ -86,13 +86,22 @@ Partial Public Class EliminarIdioma
     Protected WithEvents botont As Global.System.Web.UI.HtmlControls.HtmlGenericControl
     
     '''<summary>
-    '''Control btndelIdioma.
+    '''Control btn_confirmar.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents btndelIdioma As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btn_confirmar As Global.System.Web.UI.HtmlControls.HtmlButton
+    
+    '''<summary>
+    '''Control btneliminar.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btneliminar As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
     '''Control id_usuario.

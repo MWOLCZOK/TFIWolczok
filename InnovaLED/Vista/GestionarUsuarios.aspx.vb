@@ -398,7 +398,7 @@ Public Class GestionarUsuarios
         End Try
     End Sub
 
-    Protected Sub btneliminar_Click(sender As Object, e As EventArgs)
+    Public Sub btneliminar_Click(sender As Object, e As EventArgs)
 
         Dim GestorCliente As New Negocio.UsuarioBLL
         Try
@@ -410,12 +410,9 @@ Public Class GestionarUsuarios
                 IdiomaActual = Application(TryCast(Current.Session("Cliente"), Entidades.UsuarioEntidad).Idioma.Nombre)
             End If
 
-            Dim usulog As New UsuarioEntidad
-
-            If usulog = Current.Session("Usuarios") Then
+            If Not Usuario.Equals(Current.Session("Cliente")) Then
 
                 If GestorCliente.Eliminar(Usuario) Then
-                    Dim clienteLogeado As Entidades.UsuarioEntidad = Current.Session("cliente")
                     Dim Bitac As New Bitacora(Usuario, "El usuario " & Usuario.NombreUsu & " Se eliminó correctamente", Tipo_Bitacora.Modificacion, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)
                     BitacoraBLL.CrearBitacora(Bitac)
                     Me.success.Visible = True
@@ -426,7 +423,9 @@ Public Class GestionarUsuarios
                     Ocultamiento(False)
                 End If
             Else
-                Me.success.InnerText = "No se puede eliminar el usuario que esta logueado"
+                Me.alertvalid.Visible = True
+                Me.textovalid.InnerText = "No se puede eliminar el usuario que esta logeado"
+                Me.success.Visible = False
             End If
         Catch ex As Exception
 

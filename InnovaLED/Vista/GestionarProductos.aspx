@@ -155,7 +155,7 @@
                         <asp:Button ID="btn_agregar" runat="server" Text="Agregar" type="button" class="btn btn-success btn-md col-md-2"></asp:Button>
                         <asp:Button ID="btn_modificar" runat="server" Text="Modificar" type="button" class="btn btn-info btn-md col-md-2 col-md-offset-1"></asp:Button>
                         <button id="btn_confirmar" runat="server" type="button" class="btn btn-danger btn-md col-md-2 col-md-offset-1" data-toggle="modal" data-target="#ConfirmacionModalTitle">Eliminar</button>
-                        <asp:Button ID="btn_nuevo" runat="server" Text="Nuevo" type="button" class="btn btn-primary btn-md col-md-2 col-md-offset-1"></asp:Button>
+                        <asp:Button ID="btn_nuevo" runat="server" Text="Cancelar" type="button" class="btn btn-warning btn-md col-md-2 col-md-offset-1"></asp:Button>
                         &nbsp;
                     </div>
                 </div>
@@ -163,7 +163,7 @@
         </div>
 
         <%-- Sección GRID --%>
-        <div class="col-md-5 col-md-offset-1">
+        <div class="col-md-6">
             <asp:GridView CssClass="table table-hover table-bordered table-responsive table-active " ID="gv_Productos" runat="server" AutoGenerateColumns="False" HorizontalAlign="Center" AllowPaging="true" PageSize="10" OnPageIndexChanging="gv_Productos_PageIndexChanging" RowStyle-Height="40px">
                 <HeaderStyle CssClass="thead-dark" />
                 <PagerTemplate>

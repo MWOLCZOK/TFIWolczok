@@ -182,20 +182,21 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-
-                    <br />
-                    <br />
-
-
-                    <div class="row">
-                        <asp:Button ClientIDMode="Static" ID="btnAceptar" name="btnAceptar" runat="server" Text="Crear Usuario" class="btn btn-success btn-md col-md-1" />
-                        <asp:Button ClientIDMode="Static" ID="btnModificar" name="btnModificar" runat="server" Text="Modificar" class="btn btn-info btn-md col-md-1 col-md-offset-1" />
+                           <asp:Button ClientIDMode="Static" ID="btnAceptar" name="btnAceptar" runat="server" Text="Crear Usuario" class="btn btn-success btn-md col-md-3" />
+                        <asp:Button ClientIDMode="Static" ID="btnModificar" name="btnModificar" runat="server" Text="Modificar" class="btn btn-info btn-md col-md-3 col-md-offset-1" />
                         <%--<asp:Button ClientIDMode="Static" ID="btneliminar" name="btneliminar" runat="server" Text="Eliminar" CssClass="btn btn-block btn-danger" />--%>
-                        <button id="btn_confirmar" runat="server" type="button" class="btn btn-danger btn-md col-md-1 col-md-offset-1" data-toggle="modal" data-target="#ConfirmacionModalTitle">Eliminar</button>
+                        <button id="btn_confirmar" runat="server" type="button" class="btn btn-danger btn-md col-md-3 col-md-offset-1" data-toggle="modal" data-target="#ConfirmacionModalTitle">Eliminar</button>
+
+
                     </div>
 
+
+                    <br />
+                    <br />
+
+
+                     
                     <br />
                 </div>
                 <br />

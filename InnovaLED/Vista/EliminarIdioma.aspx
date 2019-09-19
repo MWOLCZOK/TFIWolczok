@@ -15,30 +15,29 @@
 
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-success">
+                <div class="panel panel-primary">
                     <div class="panel-heading text-center">
                         <asp:Label ID="lblPanelDelIdioma" runat="server" Text="Eliminar Idioma" CssClass="TituloPanel"></asp:Label>
                     </div>
                     <div class="panel-body FondoPanel">
                         <br />
                         <div class="form-horizontal has-success col-md-12">
-                        <div class="form-group">
+                            <div class="form-group">
                                 <asp:Label ID="lblidioma" runat="server" Text="Idioma:" CssClass="col-sm-4 control-label labelform"></asp:Label>
                                 <div class="col-md-6">
                                     <div class="input-group">
                                         <asp:DropDownList ID="lstidioma" runat="server" CssClass="form-control" AutoPostBack="true" DataValueField="ID_Idioma" DataTextField="Nombre"></asp:DropDownList>
-                                        <span class="input-group-addon" id="basic-addon11"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></span>
                                     </div>
                                 </div>
-                            </div>      
-                                                        <div class="form-group">
+                            </div>
+                            <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-6 col-md-offset-3">
-                                  <asp:GridView ID="gv_idiomas" runat="server" CssClass="Grid-verde" AutoGenerateColumns="False" HorizontalAlign="Center" AllowPaging="true" PageSize="10" RowStyle-Height="40px">
-                                    <Columns>
-                                        <asp:BoundField DataField="NombreUsu" HeaderText="Usuarios con el Perfil Seleccionado" />
-                                    </Columns>
-                                </asp:GridView>
+                                        <asp:GridView ID="gv_idiomas" runat="server" CssClass="Grid-verde" AutoGenerateColumns="False" HorizontalAlign="Center" AllowPaging="true" PageSize="10" RowStyle-Height="40px">
+                                            <Columns>
+                                                <asp:BoundField DataField="NombreUsu" HeaderText="Usuarios con el Perfil Seleccionado" />
+                                            </Columns>
+                                        </asp:GridView>
                                     </div>
                                 </div>
                             </div>
@@ -47,7 +46,8 @@
                         <br />
                         <div id="botont" runat="server" class="row">
                             <div class="col-md-4 col-md-offset-4">
-                                <asp:Button ClientIDMode="Static" ID="btndelIdioma" name="btndelIdioma" runat="server" Text="Eliminar Idioma" CssClass="btn btn-block btn-warning" />
+                                <%--                                <asp:Button ClientIDMode="Static" ID="btndelIdioma" name="btndelIdioma" runat="server" Text="Eliminar Idioma" CssClass="btn btn-block btn-warning" />--%>
+                                <button id="btn_confirmar" runat="server" type="button" class="btn btn-danger btn-md col-md-4 col-md-offset-1" data-toggle="modal" data-target="#ConfirmacionModalTitle">Eliminar</button>
                             </div>
                         </div>
                         <br />
@@ -55,6 +55,26 @@
                 </div>
             </div>
         </div>
+
+        <%-- Modal de Confirmacion de Eliminación --%>
+        <div class="modal-normal " id="ConfirmacionModalTitle" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title Blanco" id="ModalTitle">Confirmar Eliminación</h5>
+                    </div>
+                    <div class="modal-body Blanco">
+                        <label>¿Está seguro que desea realizar la operación de Eliminación?</label>
+                    </div>
+                    <div class="modal-footer">
+                        <asp:Button ID="btneliminar" runat="server" CssClass="btn btn-primary" OnClick="btneliminar_Click" Text="Aceptar" />
+                        <button id="btncerrar" type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </div>
     <asp:HiddenField ID="id_usuario" runat="server" />
 </asp:Content>

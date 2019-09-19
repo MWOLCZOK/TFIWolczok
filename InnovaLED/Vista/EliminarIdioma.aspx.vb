@@ -22,7 +22,7 @@ Public Class EliminarIdioma
         lstidioma_SelectedIndexChanged(Nothing, Nothing)
     End Sub
 
-    Protected Sub btndelIdioma_Click(sender As Object, e As EventArgs) Handles btndelIdioma.Click
+    Public Sub btneliminar_Click(sender As Object, e As EventArgs)
         Dim GestorCliente As New Negocio.UsuarioBLL
         Try
             Dim idiomabitacora As Entidades.IdiomaEntidad
@@ -40,6 +40,7 @@ Public Class EliminarIdioma
                 'Dim Bitac As New Entidades.Bitacora(clienteLogeado, idiomabitacora.Palabras.Find(Function(p) p.Codigo = "BitacoraDelIdiomaSuccess").Traduccion & IdiomaActual.Nombre & ".", Entidades.Tipo_Bitacora.Baja, Now, Request.UserAgent, Request.UserHostAddress, "", "")
                 'Negocio.BitacoraBLL.CrearBitacora(Bitac)
                 Me.success.Visible = True
+                Me.textovalid.InnerText = "Se eliminó el idioma correctamente"
                 Me.alertvalid.Visible = False
                 CargarIdiomas()
             Else

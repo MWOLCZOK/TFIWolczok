@@ -69,16 +69,16 @@ Public Class GestionarProductos
         Me.btn_nuevo.Visible = True
         Me.btn_modificar.Visible = False
         Me.btn_confirmar.Visible = False
-        Me.btn_agregar.Visible = False
-        txtmarca.Enabled = False
-        txtmodelo.Enabled = False
-        txtdesc.Enabled = False
-        txtpeso.Enabled = False
-        txtwatt.Enabled = False
-        txtprecio.Enabled = False
-        DropDownLinea.Enabled = False
-        DropDowncat.Enabled = False
-        FileUpload1.Enabled = False
+        Me.btn_agregar.Visible = True
+        'txtmarca.Enabled = False
+        'txtmodelo.Enabled = False
+        'txtdesc.Enabled = False
+        'txtpeso.Enabled = False
+        'txtwatt.Enabled = False
+        'txtprecio.Enabled = False
+        'DropDownLinea.Enabled = False
+        'DropDowncat.Enabled = False
+        'FileUpload1.Enabled = False
     End Sub
 
     Private Sub Ocultamiento2()
@@ -92,7 +92,7 @@ Public Class GestionarProductos
         Me.btn_agregar.Visible = True
         Me.btn_modificar.Visible = False
         Me.btn_confirmar.Visible = False
-        Me.btn_nuevo.Visible = False
+        Me.btn_nuevo.Visible = True
         txtmarca.Enabled = True
         txtmodelo.Enabled = True
         txtdesc.Enabled = True
@@ -258,8 +258,9 @@ Public Class GestionarProductos
                     'BitacoraBLL.CrearBitacora(Bitac)
                     Me.success.Visible = True
                     Me.alertvalid.Visible = False
+                    Me.success.InnerText = "Se ha modificado el producto correctamente."
                     CargarProductos()
-                    'Ocultamiento(False)
+                    Ocultamiento2()
                 End If
             Else
                 Me.alertvalid.Visible = True
@@ -273,19 +274,18 @@ Public Class GestionarProductos
 
     Protected Sub btn_Nuevo_Click(sender As Object, e As EventArgs) Handles btn_nuevo.Click
 
-        If Page.IsValid = True Then
-            txtmarca.Text = Nothing
-            txtmodelo.Text = Nothing
-            txtdesc.Text = Nothing
-            txtpeso.Text = Nothing
-            txtprecio.Text = Nothing
-            txtprecio.Text = Nothing
-            txtwatt.Text = Nothing
-            DropDownLinea.ClearSelection()
+
+        txtmarca.Text = ""
+        txtmodelo.Text = ""
+        txtdesc.Text = ""
+        txtpeso.Text = ""
+        txtprecio.Text = ""
+        txtprecio.Text = ""
+        txtwatt.Text = ""
+        DropDownLinea.ClearSelection()
             DropDowncat.ClearSelection()
             Ocultamiento3()
 
-        End If
 
 
     End Sub
