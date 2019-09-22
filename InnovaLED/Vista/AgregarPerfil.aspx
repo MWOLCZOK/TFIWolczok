@@ -69,8 +69,6 @@
         <asp:Button ID="Btncrearrol" Class=" btn btn-info col-md-offset-1 col-md-1 btn-sm" runat="server" Text="Button" />
         <asp:TextBox ID="Txtcrearrol" Class=" col-md-2" runat="server"></asp:TextBox>      
         <button id="btn_confirmar" runat="server" type="button" class="btn btn-danger btn-md col-md-1 col-md-offset-1" data-toggle="modal" data-target="#ConfirmacionModalTitle">Eliminar</button>
-        <asp:DropDownList ID="DropdwnrolesElim" class="btn btn-default dropdown-toggle col-md-2" runat="server" Height="25px" Width="200px">
-        </asp:DropDownList>
 
         <br />
         <br />

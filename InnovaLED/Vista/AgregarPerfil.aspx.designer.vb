@@ -176,15 +176,6 @@ Partial Public Class GestionarPerfiles
     Protected WithEvents btn_confirmar As Global.System.Web.UI.HtmlControls.HtmlButton
     
     '''<summary>
-    '''Control DropdwnrolesElim.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents DropdwnrolesElim As Global.System.Web.UI.WebControls.DropDownList
-    
-    '''<summary>
     '''Control btneliminar.
     '''</summary>
     '''<remarks>

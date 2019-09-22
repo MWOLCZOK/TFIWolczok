@@ -11,7 +11,6 @@ Public Class GestionarPerfiles
                 'lo carga solamente la primera vez
                 CargarPerfiles()
                 CargarPermisos()
-                CargarPerfilesParaEliminar()
             End If
         Catch ex As Exception
 
@@ -21,7 +20,6 @@ Public Class GestionarPerfiles
 
     Private Sub ActualizarCampos()
         CargarPerfiles()
-        CargarPerfilesParaEliminar()
     End Sub
 
 
@@ -37,20 +35,6 @@ Public Class GestionarPerfiles
         Me.DropdwnrolesListar_SelectedIndexChanged(Nothing, Nothing)
 
     End Sub
-
-    Private Sub CargarPerfilesParaEliminar()
-        Dim lista As List(Of Entidades.RolEntidad)
-        Dim Gestor As New Negocio.GestorPermisosBLL
-        lista = Gestor.ListarFamilias
-        Session("Roles") = lista
-
-        Me.DropdwnrolesElim.DataSource = lista
-        Me.DropdwnrolesElim.DataBind()
-        Me.DropdwnrolesElim.SelectedIndex = 0
-        Me.DropdwnrolesElim_SelectedIndexChanged(Nothing, Nothing)
-
-    End Sub
-
 
     Private Sub CargarPermisos()
         Dim lista As List(Of Entidades.PermisoBaseEntidad)
@@ -120,7 +104,7 @@ Public Class GestionarPerfiles
             Dim GestorRol As New GestorPermisosBLL
             Dim Rol As New RolEntidad
             Dim LstRoles As List(Of RolEntidad) = Session("Roles")
-            If GestorRol.Baja(LstRoles(DropdwnrolesElim.SelectedIndex)) Then
+            If GestorRol.Baja(LstRoles(DropdwnrolesListar.SelectedIndex)) Then
                 'falta bitacora
                 Me.alertvalid.Visible = False
                 Me.lbl_success.InnerText = "Se ha eliminado el Rol satisfactoriamente."
@@ -136,12 +120,6 @@ Public Class GestionarPerfiles
         Catch ex As Exception
 
         End Try
-
-    End Sub
-
-    Protected Sub DropdwnrolesElim_SelectedIndexChanged(sender As Object, e As EventArgs) Handles DropdwnrolesElim.SelectedIndexChanged
-        Dim LstRoles As List(Of RolEntidad) = Session("Roles")
-        Me.Lstperfilesactuales.Items.Clear()
 
     End Sub
 

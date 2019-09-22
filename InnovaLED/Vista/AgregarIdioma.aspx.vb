@@ -34,7 +34,7 @@ Public Class AgregarIdioma
     End Sub
 
     Private Sub CargarCulturas()
-        Dim culturas = CultureInfo.GetCultures(CultureTypes.AllCultures and not CultureTypes.NeutralCultures) ' aca es donde se cambió
+        Dim culturas = CultureInfo.GetCultures(CultureTypes.AllCultures And Not CultureTypes.NeutralCultures)
         For i As Integer = 1 To culturas.Length - 1
             Dim item As New ListItem(culturas(i).Name, culturas(i).NativeName)
             Me.lstCultura.Items.Add(item)

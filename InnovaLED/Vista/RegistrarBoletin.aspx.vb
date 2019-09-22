@@ -56,8 +56,11 @@ Public Class RegistrarBoletin
 
 
             GestorboletinBLL.Alta(_boletin)
+            CargarBoletin()
+            LimpiarCampos()
             Me.success.Visible = True
             Me.success.InnerText = "Se ha dado de alta el boletín correctamente."
+
             Me.alertvalid.Visible = False
         Catch ex As Exception
             Me.alertvalid.Visible = True
@@ -128,9 +131,10 @@ Public Class RegistrarBoletin
             End If
             For Each row As GridViewRow In gv_Newsletter.Rows
                 Dim imagen3 As System.Web.UI.WebControls.ImageButton = DirectCast(row.FindControl("btn_editar"), System.Web.UI.WebControls.ImageButton)
-
                 imagen3.CommandArgument = row.RowIndex
+                Dim imagen1 As System.Web.UI.WebControls.ImageButton = DirectCast(row.FindControl("btn_download"), System.Web.UI.WebControls.ImageButton)
 
+                imagen1.CommandArgument = row.RowIndex
 
                 If row.Cells(4).Text = "False" Then
                     'row.Cells(4).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "MsjNoBloqueado").Traduccion
@@ -191,16 +195,18 @@ Public Class RegistrarBoletin
                 IdiomaActual = Application(TryCast(Current.Session("Cliente"), Entidades.UsuarioEntidad).Idioma.Nombre)
             End If
             Select Case e.CommandName.ToString
-                Case "E"
+                Case "E" ' Para edición de los Newsletters
 
                     txt_Nombre.Text = Boletin.Nombre
                     txt_Descripcion.Text = Boletin.Descripcion
                     txt_Cuerpo.Text = Boletin.Cuerpo
                     datepicker.Text = Boletin.FechaFinVigencia
 
-                    'ddl_TipoBoletin.ClearSelection()
-
-                    'ddl_TipoBoletin.Items.FindByText(Boletin.TipoBoletin).Selected = True
+                Case "S" ' Para envío de los Newsletters
+                    GestorboletinBLL.EnviarMail(Boletin)
+                    Me.success.InnerText = "Se envió el Boletín correctamente."
+                    Me.success.Visible = True
+                    Me.alertvalid.Visible = False
 
             End Select
         Catch ex As Exception
@@ -252,8 +258,7 @@ Public Class RegistrarBoletin
     End Sub
 
 
-    Protected Sub btn_eliminar_Click(sender As Object, e As EventArgs) Handles btn_eliminar.Click
-
+    Public Sub btn_eliminar_Click(sender As Object, e As EventArgs)
 
         Try
             Dim _boletin As BoletinEntidad = TryCast(Session("Boletin"), List(Of BoletinEntidad))(Me.id.Value + (gv_Newsletter.PageIndex * gv_Newsletter.PageSize))
@@ -267,6 +272,7 @@ Public Class RegistrarBoletin
 
             GestorboletinBLL.bajaNovedad(_boletin)
             Me.success.InnerText = "Se eliminó la novedad correctamente."
+            Me.success.Visible = True
             Me.alertvalid.Visible = False
             CargarBoletin()
             LimpiarCampos()
@@ -286,8 +292,7 @@ Public Class RegistrarBoletin
 
     End Sub
 
-
-
-
-
+    Protected Sub btn_cancelar_Click(sender As Object, e As EventArgs) Handles btn_cancelar.Click
+        LimpiarCampos()
+    End Sub
 End Class

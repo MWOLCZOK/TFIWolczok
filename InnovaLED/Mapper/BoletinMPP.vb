@@ -25,7 +25,7 @@ Public Class BoletinMPP
                     .Add(New SqlParameter("@FechaFinVigencia", DBNull.Value))
                 End If
             End With
-            Acceso.Escritura(Command)
+            Boletin.ID = Acceso.Scalar(Command)
             Return True
         Catch ex As Exception
             Throw ex
@@ -48,7 +48,7 @@ Public Class BoletinMPP
         End Try
     End Sub
 
-    Public Function DesinscribirseBoletin(ByVal paramCorreo As String)
+    Public Function DesinscribirseBoletin(ByVal paramCorreo As String) As Boolean
         Try
             Dim Command As SqlCommand = Acceso.MiComando("Update Suscripcion set BL=@BL where Mail=@Mail")
             Dim ListaParametros As New List(Of String)
@@ -68,12 +68,13 @@ Public Class BoletinMPP
 
 
 
-    Public Function obtenerSubscriptores(ByVal _idTipoBoletin As Integer) As List(Of String)
+    Public Function obtenerSubscriptores(ByVal _boletin As BoletinEntidad) As List(Of String)
         Try
             Dim _listaSubscriptores As New List(Of String)
-            Dim Command As SqlCommand = Acceso.MiComando("Select Mail from Suscripcion where ID_TipoBoletin=@ID_TipoBoletin and BL=@BL")
+            Dim Command As SqlCommand = Acceso.MiComando("Select s.Mail from Suscripcion as s where ID_TipoBoletin=@ID_TipoBoletin and BL=@BL and not exists (select bs.Mail from Boletin_Suscripcion as bs where bs.Mail=s.Mail and bs.ID_Boletin=@ID_Boletin)")
             With Command.Parameters
-                .Add(New SqlParameter("@ID_TipoBoletin", _idTipoBoletin))
+                .Add(New SqlParameter("@ID_TipoBoletin", _boletin.TipoBoletin))
+                .Add(New SqlParameter("@ID_Boletin", _boletin.ID))
                 .Add(New SqlParameter("@BL", False))
             End With
             Dim _dt As DataTable = Acceso.Lectura(Command)
@@ -108,10 +109,8 @@ Public Class BoletinMPP
     Public Function obtenerBoletinNovedad() As List(Of BoletinEntidad)
         Try
             Dim _listaBoletin As New List(Of BoletinEntidad)
-            Dim Command As SqlCommand = Acceso.MiComando("select * from Boletin where ID_TipoBoletin=@ID_TipoBoletin and BL=@BL order by FechaHora desc")
+            Dim Command As SqlCommand = Acceso.MiComando("select * from Boletin where BL=@BL and isnull(FechaFinVigencia,'29990101')>=getdate() order by FechaHora desc")
             With Command.Parameters
-                '4 = Tipo novedad de boletin
-                .Add(New SqlParameter("@ID_TipoBoletin", 4))
                 .Add(New SqlParameter("@BL", False))
             End With
             Dim _dt As DataTable = Acceso.Lectura(Command)
@@ -131,10 +130,8 @@ Public Class BoletinMPP
 
     Public Function obtenerBoletinNovedad(ByVal paramBoletin As BoletinEntidad) As BoletinEntidad
         Try
-            Dim Command As SqlCommand = Acceso.MiComando("select * from Boletin where ID_Boletin=@ID_Boletin and ID_TipoBoletin=@ID_TipoBoletin order by Fecha_Alta desc")
+            Dim Command As SqlCommand = Acceso.MiComando("select * from Boletin where ID_Boletin=@ID_Boletin order by Fecha_Alta desc")
             With Command.Parameters
-                '4 = Tipo novedad de boletin
-                .Add(New SqlParameter("@ID_TipoBoletin", 4))
                 .Add(New SqlParameter("@ID_Boletin", paramBoletin.ID))
             End With
             Dim _dt As DataTable = Acceso.Lectura(Command)
@@ -206,6 +203,21 @@ Public Class BoletinMPP
     End Sub
 
 
+    Public Shared Sub VerificacionEnvioMail(ByVal _paramBoletin As BoletinEntidad)
+        Try
+            For Each Suscriptor In _paramBoletin.Suscriptores
+                Dim Command As SqlCommand = Acceso.MiComando("insert into Boletin_Suscripcion (Mail, ID_Boletin, Fue_Enviado ) values (@Mail, @ID_Boletin,@Fue_Enviado)")
+                With Command.Parameters
+                    .Add(New SqlParameter("@Mail", Suscriptor))
+                    .Add(New SqlParameter("@ID_boletin", _paramBoletin.ID))
+                    .Add(New SqlParameter("@Fue_Enviado", True))
+                End With
+                Acceso.Escritura(Command)
+            Next
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
     Public Shared Sub enviarMailNewsletter(ByVal body As String, ByVal _paramBoletin As BoletinEntidad, ByVal ruta As String)
         Try
             Dim Correo As New System.Net.Mail.MailMessage()
@@ -217,8 +229,6 @@ Public Class BoletinMPP
             Correo.Attachments.Add(New Attachment(ruta & "\facebook.png") With {.ContentId = "facebook"})
             Correo.Attachments.Add(New Attachment(ruta & "\blue.png") With {.ContentId = "lkdn"})
             Correo.Attachments.Add(New Attachment(ruta & "\red.png") With {.ContentId = "pint"})
-
-
             Correo.Attachments.Add(New Attachment(ruta & "\bannermail.jpg") With {.ContentId = "banner"})
             Correo.IsBodyHtml = True
             For Each mail As String In _paramBoletin.Suscriptores
@@ -235,6 +245,7 @@ Public Class BoletinMPP
             smtp.Credentials = New System.Net.NetworkCredential("innovaled.company@gmail.com", "Tacho12345")
             smtp.EnableSsl = True
             smtp.Send(Correo)
+            VerificacionEnvioMail(_paramBoletin)
         Catch ex As Exception
             Throw ex
         End Try

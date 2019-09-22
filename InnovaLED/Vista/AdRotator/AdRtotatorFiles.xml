@@ -20,11 +20,4 @@
     <NavigateUrl>https://www.macro.com.ar/</NavigateUrl>
     <AlternateText>Banco Macro</AlternateText>
   </Ad>
-  <Ad>
-    <ImageUrl>http://localhost:53926/AdRotator/Imagenes/fravega.png</ImageUrl>
-    <NavigateUrl>https://www.fravega.com</NavigateUrl>
-    <AlternateText>Fravega</AlternateText>
-    <Impressions>40</Impressions>
-    <Keyword>Fravega</Keyword>
-  </Ad>
 </Advertisements>

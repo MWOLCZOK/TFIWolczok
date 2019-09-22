@@ -145,7 +145,7 @@ Public Class ProductoMPP
 
     Public Function Alta(ByRef Producto As ProductoEntidad) As Boolean
         Try
-            Dim Command As SqlCommand = Acceso.MiComando("insert into ProductoEntidad (Marca,Modelo,Descripcion,Precio,Peso,Watt,Imagen,ID_Linea,ID_CategoriaProducto,BL) values (@Marca, @Modelo,@Precio,@Peso,@Watt,@Imagen, @ID_Linea ,@ID_CategoriaProducto, @BL)")
+            Dim Command As SqlCommand = Acceso.MiComando("insert into ProductoEntidad (Marca,Modelo,Descripcion,Precio,Peso,Watt,Imagen,ID_Linea,ID_CategoriaProducto,BL) values (@Marca, @Modelo,@Descripcion,@Precio,@Peso,@Watt,@Imagen, @ID_Linea ,@ID_CategoriaProducto, @BL)")
             With Command.Parameters
                 .Add(New SqlParameter("@Marca", Producto.Marca))
                 .Add(New SqlParameter("@Modelo", Producto.Modelo))

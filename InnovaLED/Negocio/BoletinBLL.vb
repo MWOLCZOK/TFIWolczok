@@ -18,7 +18,7 @@ Public Class BoletinBLL
         End Try
     End Sub
 
-    Public Function obtenerSuscriptores(ByVal boletin As TipoBoletin) As List(Of String)
+    Public Function obtenerSuscriptores(ByVal boletin As BoletinEntidad) As List(Of String)
         Try
             Return boletinMPP.obtenerSubscriptores(boletin)
         Catch ex As Exception
@@ -28,7 +28,7 @@ Public Class BoletinBLL
 
     Public Sub EnviarMail(ByVal boletin As BoletinEntidad)
         Try
-            boletin.Suscriptores = obtenerSuscriptores(boletin.TipoBoletin)
+            boletin.Suscriptores = obtenerSuscriptores(boletin)
             Dim ruta As String = HttpContext.Current.Server.MapPath("Imagenes")
             Dim body As String = System.IO.File.ReadAllText(HttpContext.Current.Server.MapPath("EmailTemplates/Newsletter.html"))
             Mapper.BoletinMPP.enviarMailNewsletter(body, boletin, ruta) ' terminar de armar la funcion enviarMailNewsletter
@@ -53,9 +53,14 @@ Public Class BoletinBLL
         End Try
     End Function
 
-    Public Function DesincribirBoletin(ByVal paramCorreo As String)
+    Public Function DesincribirBoletin(ByVal paramCorreo As String) As Boolean
         Try
-            Return boletinMPP.DesinscribirseBoletin(paramCorreo)
+            If Not validarCorreo(paramCorreo) Then
+                Return boletinMPP.DesinscribirseBoletin(paramCorreo)
+            Else
+                Return False
+            End If
+
         Catch ex As Exception
 
         End Try

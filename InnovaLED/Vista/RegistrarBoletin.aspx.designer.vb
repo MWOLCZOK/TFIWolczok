@@ -230,13 +230,22 @@ Partial Public Class RegistrarBoletin
     Protected WithEvents btn_agregar As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
-    '''Control btn_eliminar.
+    '''Control btn_confirmar.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents btn_eliminar As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btn_confirmar As Global.System.Web.UI.HtmlControls.HtmlButton
+    
+    '''<summary>
+    '''Control btn_cancelar.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btn_cancelar As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
     '''Control gv_Newsletter.
@@ -246,6 +255,15 @@ Partial Public Class RegistrarBoletin
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents gv_Newsletter As Global.System.Web.UI.WebControls.GridView
+    
+    '''<summary>
+    '''Control btn_eliminar.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btn_eliminar As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
     '''Control id.

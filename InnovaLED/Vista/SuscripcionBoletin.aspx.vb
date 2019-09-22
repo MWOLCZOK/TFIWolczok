@@ -95,16 +95,23 @@ Public Class SuscripcionBoletin
         Try
             Dim mail As String
             mail = TxtCorreoBaja.Text
-            boletinBLL.DesincribirBoletin(mail)
+
+            If boletinBLL.DesincribirBoletin(mail) Then
+                Me.success.Visible = True
+                Me.success.InnerText = "Se ha dado de baja de la suscripción satisfactoriamente, será redireccionado al Home."
+                Me.alertvalid.Visible = False
+                Response.AddHeader("REFRESH", "5;URL=Default.aspx")
+            Else
+                Me.alertvalid.Visible = True
+                Me.alertvalid.InnerText = "El correo ingresado no está suscripto. Verifique."
+                Me.success.Visible = False
+            End If
 
 
         Catch ex As Exception
 
         End Try
-        Me.success.Visible = True
-        Me.success.InnerText = "Se ha dado de baja de la suscripción satisfactoriamente, será redireccionado al Home."
-        Me.alertvalid.Visible = False
-        Response.AddHeader("REFRESH", "5;URL=Default.aspx")
+
     End Sub
 
 

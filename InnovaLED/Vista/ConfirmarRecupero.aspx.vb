@@ -23,7 +23,7 @@ Public Class ConfirmarRecupero
                         Me.success.Visible = True
                         Me.alertvalid.Visible = False
                         GestorCliente.LimpiarTokens(Request.QueryString("tok"))
-                    
+                        Response.AddHeader("REFRESH", "5;URL=Default.aspx")
                     Else
                         Me.alertvalid.Visible = True
                         Me.textovalid.InnerText = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "RecuperoPassError1").Traduccion

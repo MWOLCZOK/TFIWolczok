@@ -272,9 +272,13 @@ Public Class GestionarProductos
         End Try
     End Sub
 
-    Protected Sub btn_Nuevo_Click(sender As Object, e As EventArgs) Handles btn_nuevo.Click
+    Protected Sub btn_Nuevo_Click(sender As Object, e As EventArgs) Handles btn_nuevo.Click ' Este es el botón cancelar
 
+        LimpiarCampos()
+        Ocultamiento3()
+    End Sub
 
+    Public Sub LimpiarCampos()
         txtmarca.Text = ""
         txtmodelo.Text = ""
         txtdesc.Text = ""
@@ -283,11 +287,7 @@ Public Class GestionarProductos
         txtprecio.Text = ""
         txtwatt.Text = ""
         DropDownLinea.ClearSelection()
-            DropDowncat.ClearSelection()
-            Ocultamiento3()
-
-
-
+        DropDowncat.ClearSelection()
     End Sub
 
     Protected Sub gv_Productos_PageIndexChanging(sender As Object, e As GridViewPageEventArgs)
@@ -335,12 +335,17 @@ Public Class GestionarProductos
             End If
 
             GestorProducto.Eliminar(producto)
+            LimpiarCampos()
             Me.success.InnerText = "Se eliminó el producto correctamente."
+            Me.success.Visible = True
             Me.alertvalid.Visible = False
             CargarProductos()
             'Ocultamiento(False)
         Catch ex As Exception
-
+            Me.alertvalid.Visible = True
+            Me.textovalid.InnerText = "Error. No se pudo eliminar el producto"
+            Me.success.Visible = False
+            CargarProductos()
         End Try
     End Sub
 
@@ -357,6 +362,7 @@ Public Class GestionarProductos
                 IdiomaActual = Application(TryCast(Current.Session("Cliente"), Entidades.UsuarioEntidad).Idioma.Nombre)
             End If
             If Page.IsValid = True Then
+                ' poner aca validación para los texbox
 
                 prod.Marca = txtmarca.Text
                 prod.Modelo = txtmodelo.Text
@@ -364,6 +370,7 @@ Public Class GestionarProductos
                 prod.Precio = txtprecio.Text
                 prod.Watt = txtwatt.Text
                 prod.Imagen = FileUpload1.FileBytes
+                prod.Peso = txtpeso.Text
 
 
                 prod.LineaProducto = New LineaProducto With {.ID_Linea = DropDownLinea.SelectedValue}
@@ -376,6 +383,7 @@ Public Class GestionarProductos
                     Me.success.Visible = True
                     Me.textovalid.InnerText = "Se agregó el producto correctamente"
                     Me.alertvalid.Visible = False
+                    LimpiarCampos()
                 End If
             Else
                 Me.alertvalid.Visible = True

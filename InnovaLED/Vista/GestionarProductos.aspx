@@ -14,149 +14,143 @@
         <br />
 
 
-        <div class="row">
-            <div class="col-md-12">
-                <div class="panel panel-primary class">
-                    <div class="panel-heading text-center">
-                        <asp:Label ID="Lbl_GestionarProd" runat="server" Text="Gestionar Productos" Font-Size="24px" CssClass="TituloPanel"></asp:Label>
-                    </div>
+        <div class="col-md-12">
+            <div class="panel panel-primary class">
+                <div class="panel-heading text-center">
+                    <asp:Label ID="Lbl_GestionarProd" runat="server" Text="Gestionar Productos" Font-Size="24px" CssClass="TituloPanel"></asp:Label>
                 </div>
             </div>
-            <br />
-            <br />
         </div>
+        <br />
+        <br />
         <br />
 
 
-        <div class="panel-group col-md-5">
+        <div class="panel col-md-5">
             <div class="panel-default">
                 <div class="panel-heading ">Producto</div>
                 <div class="panel-body">
-
-                    <div class="row">
+                        <br />
+                    <div class="form-group">
                         <asp:Label ID="Lbl_marca" runat="server" Text="Marca:" CssClass="col-sm-4 control-label labelform"></asp:Label>
                         <div class="col-md-6">
                             <div class="input-group">
                                 <asp:TextBox ID="txtmarca" runat="server" CssClass="form-control"></asp:TextBox>
-
                             </div>
                         </div>
-
                         <div class="col-md-1">
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtmarca" ErrorMessage="*" EnableClientScript="false" Display="Dynamic" CssClass="textoValidacion"></asp:RequiredFieldValidator>
                         </div>
-                    </div>
-                    <br />
-
-                    <div class="row">
+                    </div>    <br />
+                           <br />
+                    <div class="form-group">
                         <asp:Label ID="Lbl_modelo" runat="server" Text="Modelo:" CssClass="col-sm-4 control-label labelform"></asp:Label>
                         <div class="col-md-6">
                             <div class="input-group">
                                 <asp:TextBox ID="txtmodelo" runat="server" CssClass="form-control"></asp:TextBox>
                             </div>
                         </div>
-
                         <div class="col-md-1">
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtmodelo" ErrorMessage="*" EnableClientScript="false" Display="Dynamic" CssClass="textoValidacion"></asp:RequiredFieldValidator>
                         </div>
-                    </div>
-                    <br />
+                    </div>    <br />
+                           <br />
 
-                    <div class="row">
+                    <div class="form-group">
                         <asp:Label ID="Lbl_Descripcion" runat="server" Text="Descripcion:" CssClass="col-sm-4 control-label labelform"></asp:Label>
                         <div class="col-md-6">
                             <div class="input-group">
                                 <asp:TextBox ID="txtdesc" runat="server" CssClass="form-control"></asp:TextBox>
                             </div>
                         </div>
-
                         <div class="col-md-1">
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtdesc" ErrorMessage="*" EnableClientScript="false" Display="Dynamic" CssClass="textoValidacion"></asp:RequiredFieldValidator>
                         </div>
-                    </div>
-                    <br />
-
-
-                    <div class="row">
+                    </div>    <br />
+                           <br />
+                    <div class="form-group">
                         <asp:Label ID="Lbl_peso" runat="server" Text="Peso:" CssClass="col-sm-4 control-label labelform"></asp:Label>
                         <div class="col-md-6">
                             <div class="input-group">
                                 <asp:TextBox ID="txtpeso" runat="server" CssClass="form-control"></asp:TextBox>
                             </div>
                         </div>
-
                         <div class="col-md-1">
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtpeso" ErrorMessage="*" EnableClientScript="false" Display="Dynamic" CssClass="textoValidacion"></asp:RequiredFieldValidator>
+                         <asp:RegularExpressionValidator ID="Numeros3" runat="server" ControlToValidate="txtpeso"
+                                ValidationExpression="^\d+$" ErrorMessage="Solo numeros"  ForeColor="Red" Font-Bold="true"></asp:RegularExpressionValidator>   
                         </div>
-                    </div>
-                    <br />
-
-                    <div class="row">
+                    </div>    <br />
+                           <br />
+                    <div class="form-group">
                         <asp:Label ID="Lbl_precio" runat="server" Text="Precio:" CssClass="col-sm-4 control-label labelform"></asp:Label>
                         <div class="col-md-6">
                             <div class="input-group">
                                 <asp:TextBox ID="txtprecio" runat="server" CssClass="form-control"></asp:TextBox>
                             </div>
                         </div>
-
                         <div class="col-md-1">
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtprecio" ErrorMessage="*" EnableClientScript="false" Display="Dynamic" CssClass="textoValidacion"></asp:RequiredFieldValidator>
+                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtprecio" ErrorMessage="*" EnableClientScript="false" Display="Dynamic" CssClass="textoValidacion"></asp:RequiredFieldValidator>
+                           <asp:RegularExpressionValidator ID="Numeros" runat="server" ControlToValidate="txtprecio"
+                                ValidationExpression="^\d+$" ErrorMessage="Solo numeros"  ForeColor="Red" Font-Bold="true"></asp:RegularExpressionValidator>                         
                         </div>
-                    </div>
-                    <br />
-
-
-                    <div class="row">
+                    </div>    <br />
+                           <br />
+                    <div class="form-group">
                         <asp:Label ID="Lbl_watt" runat="server" Text="Watt:" CssClass="col-sm-4 control-label labelform"></asp:Label>
                         <div class="col-md-6">
                             <div class="input-group">
                                 <asp:TextBox ID="txtwatt" runat="server" CssClass="form-control"></asp:TextBox>
                             </div>
                         </div>
-
                         <div class="col-md-1">
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtwatt" ErrorMessage="*" EnableClientScript="false" Display="Dynamic" CssClass="textoValidacion"></asp:RequiredFieldValidator>
+                          <asp:RegularExpressionValidator ID="Numeros2" runat="server" ControlToValidate="txtwatt"
+                                ValidationExpression="^\d+$" ErrorMessage="Solo numeros"  ForeColor="Red" Font-Bold="true"></asp:RegularExpressionValidator> 
                         </div>
-                    </div>
-                    <br />
-
-                    <div class="row">
+                    </div>    <br />
+                           <br />
+                    <div class="form-group">
                         <asp:Label ID="Lbl_linea" runat="server" Text="Línea del Producto:" CssClass="col-sm-4 control-label labelform"></asp:Label>
                         <div class="col-md-6">
                             <div class="input-group">
                                 <asp:DropDownList ID="DropDownLinea" runat="server" CssClass="form-control" AutoPostBack="true" DataValueField="ID_Linea" DataTextField="Nombre"></asp:DropDownList>
                             </div>
                         </div>
-                    </div>
-                    <br />
-
-                    <div class="row">
+                        <div class="col-md-1">
+                        </div>
+                    </div>    <br />
+                           <br />
+                    <div class="form-group">
                         <asp:Label ID="Lbl_cat" runat="server" Text="Categoria Producto:" CssClass="col-sm-4 control-label labelform"></asp:Label>
                         <div class="col-md-6">
                             <div class="input-group">
                                 <asp:DropDownList ID="DropDowncat" runat="server" CssClass="form-control" AutoPostBack="true" DataValueField="ID_CategoriaProducto" DataTextField="Nombre"></asp:DropDownList>
                             </div>
                         </div>
-                    </div>
-                    <br />
-
-                    <div class="row">
+                        <div class="col-md-1">
+                        </div>
+                    </div>    <br />
+                           <br />
+                    <div class="form-group">
                         <asp:Label ID="Lbl_imagen" runat="server" Text="Imagen:" CssClass="col-sm-4 control-label labelform"></asp:Label>
                         <div class="col-md-6">
                             <div class="input-group">
                                 <asp:FileUpload ID="FileUpload1" class="btn btn-default btn-file" runat="server" />
-                                <%--<span class="input-group-addon" id="basic-addon2"><span class="	glyphicon glyphicon-list-alt" aria-hidden="true"></span></span>--%>
                             </div>
                         </div>
+                        <div class="col-md-1">
+                        </div>
                     </div>
-                    <br />
-
-                    <div class="row">
+                           <br />
+                        <br />
+              
+                    <div class="form-group">
                         <asp:Button ID="btn_agregar" runat="server" Text="Agregar" type="button" class="btn btn-success btn-md col-md-2"></asp:Button>
                         <asp:Button ID="btn_modificar" runat="server" Text="Modificar" type="button" class="btn btn-info btn-md col-md-2 col-md-offset-1"></asp:Button>
                         <button id="btn_confirmar" runat="server" type="button" class="btn btn-danger btn-md col-md-2 col-md-offset-1" data-toggle="modal" data-target="#ConfirmacionModalTitle">Eliminar</button>
-                        <asp:Button ID="btn_nuevo" runat="server" Text="Cancelar" type="button" class="btn btn-warning btn-md col-md-2 col-md-offset-1"></asp:Button>
-                        &nbsp;
+                        <asp:Button ID="btn_nuevo"  CausesValidation="false" runat="server" Text="Cancelar" type="button" class="btn btn-warning btn-md col-md-2 col-md-offset-1"></asp:Button>
+
                     </div>
                 </div>
             </div>

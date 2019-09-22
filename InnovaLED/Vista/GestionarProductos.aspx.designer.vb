@@ -158,6 +158,15 @@ Partial Public Class GestionarProductos
     Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
     
     '''<summary>
+    '''Control Numeros3.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Numeros3 As Global.System.Web.UI.WebControls.RegularExpressionValidator
+    
+    '''<summary>
     '''Control Lbl_precio.
     '''</summary>
     '''<remarks>
@@ -185,6 +194,15 @@ Partial Public Class GestionarProductos
     Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
     
     '''<summary>
+    '''Control Numeros.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Numeros As Global.System.Web.UI.WebControls.RegularExpressionValidator
+    
+    '''<summary>
     '''Control Lbl_watt.
     '''</summary>
     '''<remarks>
@@ -210,6 +228,15 @@ Partial Public Class GestionarProductos
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator3 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    
+    '''<summary>
+    '''Control Numeros2.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Numeros2 As Global.System.Web.UI.WebControls.RegularExpressionValidator
     
     '''<summary>
     '''Control Lbl_linea.

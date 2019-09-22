@@ -144,14 +144,15 @@
                 <br />
                 <br />
                 <div class="row">
-                    <asp:Button ID="btn_agregar" runat="server" Text="Agregar" CssClass="btn btn-success btn-md col-md-2" />
-                    <asp:Button ID="btn_eliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger btn-md col-md-2 col-md-offset-1" />
+                    <asp:Button ID="btn_agregar" runat="server" Text="Agregar" CssClass="btn btn-success btn-md col-md-3" />
+                    <button id="btn_confirmar" runat="server" type="button" class="btn btn-danger btn-md col-md-3 col-md-offset-1" data-toggle="modal" data-target="#ConfirmacionModalTitle">Eliminar</button>
+                     <asp:Button ID="btn_cancelar" runat="server" Text="Cancelar" CssClass="btn btn-warning btn-md col-md-3 col-md-offset-1" />
                 </div>
 
                 <br />
             </div>
         </div>
-             
+
 
 
         <%--Sección GRID Newsletters--%>
@@ -189,8 +190,10 @@
                     <asp:BoundField DataField="FechaAlta" HeaderText="Fecha de Alta" DataFormatString="{0:dd-MM-yyyy HH:mm:ss}" />
                     <asp:TemplateField HeaderText="Acciones" HeaderStyle-Width="100px">
                         <ItemTemplate>
-                            <div>
+                            <div >
                                 <asp:ImageButton ID="btn_editar" runat="server" CommandName="E" ImageUrl="~/Imagenes/edit.png" Height="18px" />
+                                <p> </p>
+                                <asp:ImageButton ID="btn_download" runat="server" CommandName="S" ImageUrl="~/Imagenes/Arrow.png" Height="18px" />
                             </div>
                         </ItemTemplate>
                         <HeaderStyle Width="100px"></HeaderStyle>
@@ -200,6 +203,30 @@
         </div>
 
 
+    </div>
+
+    
+    <%-- Modal de Confirmacion de Eliminación --%>
+    <div class="modal-normal " id="ConfirmacionModalTitle" role="dialog">
+        <div class="modal-dialog" role="document">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title Blanco" id="ModalTitle">Confirmar Eliminación</h5>
+                </div>
+
+
+                <div class="modal-body Blanco">
+                    <label>¿Está seguro que desea realizar la operación de Eliminación?</label>
+
+                </div>
+                <div class="modal-footer">
+                    <asp:Button ID="btn_eliminar" runat="server" CssClass="btn btn-primary" OnClick="btn_eliminar_Click" Text="Aceptar" />
+                    <button id="btncerrar" type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                </div>
+
+            </div>
+        </div>
     </div>
 
     <br />
