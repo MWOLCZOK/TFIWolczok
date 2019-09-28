@@ -19,6 +19,7 @@ Public Class GestionarEncuestas
             cargarDDLAno() ' Carga DropDown de año
             obtenerPreguntasEncuesta()
             obtenerSeleccionado() ' Gráfico Torta Ficha Opinion -Gráfico 2
+            Session("RespuestasSeleccionadas") = New List(Of RespuestaEncuestaEntidad)
         Else
 
 
@@ -35,13 +36,27 @@ Public Class GestionarEncuestas
             pregunta.Enunciado = txt_Nombrepregunta.Text
             pregunta.TipoPregunta = [Enum].Parse(GetType(Entidades.TipoPregunta), ddl_tipopregunta.SelectedValue, True)
             pregunta.FechaFinVigencia = datepicker.Text
+            pregunta.PosiblesRespuestas = Session("RespuestasSeleccionadas")
             GestorpreguntaBLL.Alta(pregunta)
             Me.success.InnerText = "Se agregó la encuesta correctamente."
+            Me.success.Visible = True
             Me.alertvalid.Visible = False
         Catch ex As Exception
         End Try
         CargarEncuestas()
+        LimpiarControles()
     End Sub
+
+    Public Sub LimpiarControles()
+        Session("RespuestasSeleccionadas") = New List(Of RespuestaEncuestaEntidad)
+        gv_respuestas.DataSource = Nothing
+        gv_respuestas.DataBind()
+        ddl_tipopregunta.ClearSelection()
+        txt_Nombrepregunta.Text = ""
+        datepicker.Text = ""
+        txt_rtas.Text = ""
+    End Sub
+
 
 
     Private Sub gv_Encuestas_DataBound(sender As Object, e As EventArgs) Handles gv_Encuestas.DataBound
@@ -85,30 +100,52 @@ Public Class GestionarEncuestas
 
 
                 If row.Cells(4).Text = "False" Then
-                    'row.Cells(4).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "MsjNoBloqueado").Traduccion
+
                 Else
-                    'row.Cells(4).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "MsjBloqueado").Traduccion
+
                 End If
                 If row.Cells(5).Text = "False" Then
-                    'row.Cells(5).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "MsjNo").Traduccion
+
                     imagen3.Visible = False
                 Else
-                    'row.Cells(5).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "MsjSi").Traduccion
+
                 End If
             Next
 
             With gv_Encuestas.HeaderRow
-                '.Cells(0).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "HeaderID").Traduccion
-                '.Cells(1).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "HeaderNombreUsuario").Traduccion
-                '.Cells(2).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "HeaderIdioma").Traduccion
-                '.Cells(3).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "HeaderBloqueo").Traduccion
-                '.Cells(4).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "HeaderEmpleado").Traduccion
-                '.Cells(5).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "HeaderFechaAlta").Traduccion
-                '.Cells(6).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "HeaderAcciones").Traduccion
+
             End With
 
             gv_Encuestas.BottomPagerRow.Visible = True
             gv_Encuestas.BottomPagerRow.CssClass = "table-bottom-dark"
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+
+    Private Sub gv_Respuestas_DataBound(sender As Object, e As EventArgs) Handles gv_respuestas.DataBound
+        Try
+
+
+            Dim IdiomaActual As Entidades.IdiomaEntidad
+            If IsNothing(Current.Session("Cliente")) Then
+                IdiomaActual = Application("Español")
+            Else
+                IdiomaActual = Application(TryCast(Current.Session("Cliente"), Entidades.UsuarioEntidad).Idioma.Nombre)
+            End If
+            For Each row As GridViewRow In gv_respuestas.Rows
+                Dim imagen1 As System.Web.UI.WebControls.ImageButton = DirectCast(row.FindControl("btn_Respuestas"), System.Web.UI.WebControls.ImageButton)
+
+                imagen1.CommandArgument = row.RowIndex
+            Next
+
+            With gv_respuestas.HeaderRow
+
+            End With
+
+            gv_respuestas.BottomPagerRow.Visible = True
+            gv_respuestas.BottomPagerRow.CssClass = "table-bottom-dark"
         Catch ex As Exception
 
         End Try
@@ -128,7 +165,7 @@ Public Class GestionarEncuestas
 
 
 
-    Private Sub gv_Usuarios_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles gv_Encuestas.RowCommand
+    Private Sub gv_Encuestas_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles gv_Encuestas.RowCommand
         'Funcion para que luego de clickear en el Grid lo pase a los textbox
         Try
             Dim _pregunta As PreguntaOpinionEntidad = TryCast(Session("Preguntas"), List(Of PreguntaOpinionEntidad))(e.CommandArgument + (gv_Encuestas.PageIndex * gv_Encuestas.PageSize))
@@ -141,22 +178,52 @@ Public Class GestionarEncuestas
             End If
             Select Case e.CommandName.ToString
                 Case "E"
-
+                    btn_modificar.Visible = True
+                    btn_eliminarPregunta.Visible = True
                     txt_Nombrepregunta.Text = _pregunta.Enunciado
                     datepicker.Text = _pregunta.FechaFinVigencia
                     ddl_tipopregunta.ClearSelection()
+                    Session("RespuestasSeleccionadas") = _pregunta.PosiblesRespuestas
+                    gv_respuestas.DataSource = Nothing
+                    gv_respuestas.DataSource = Session("RespuestasSeleccionadas")
+                    gv_respuestas.DataBind()
+            End Select
+        Catch ex As Exception
+        End Try
+        'Ocultamiento()
+    End Sub
+
+    Private Sub gv_Respuestas_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles gv_respuestas.RowCommand
+
+        Try
+            Dim IdiomaActual As Entidades.IdiomaEntidad
+            If IsNothing(Current.Session("Cliente")) Then
+                IdiomaActual = Application("Español")
+            Else
+                IdiomaActual = Application(TryCast(Current.Session("Cliente"), Entidades.UsuarioEntidad).Idioma.Nombre)
+            End If
+
+            Dim RespuestaSeleccionada As RespuestaEncuestaEntidad = TryCast(Session("RespuestasSeleccionadas"), List(Of RespuestaEncuestaEntidad))(e.CommandArgument)
+
+            Select Case e.CommandName.ToString
+                Case "S"
+                    TryCast(Session("RespuestasSeleccionadas"), List(Of Entidades.RespuestaEncuestaEntidad)).Remove(RespuestaSeleccionada)
+                    gv_respuestas.DataSource = Nothing
+                    gv_respuestas.DataSource = Session("RespuestasSeleccionadas")
+                    gv_respuestas.DataBind()
             End Select
         Catch ex As Exception
 
         End Try
-        Ocultamiento()
     End Sub
 
+
+
     Public Sub Ocultamiento()
-        btn_eliminar.Visible = True
-        btn_modificar.Visible = True
-        btn_agregar.Visible = False
-        btn_nuevo.Visible = True
+        btn_eliminarPregunta.Visible = False
+        btn_modificar.Visible = False
+        btn_agregar.Visible = True
+        'btn_nuevo.Visible = True
     End Sub
 
 
@@ -220,9 +287,11 @@ Public Class GestionarEncuestas
     End Sub
 
 
-    Protected Sub btn_eliminar_Click(sender As Object, e As EventArgs) Handles btn_eliminar.Click
+    Protected Sub btn_eliminarPregunta_Click(sender As Object, e As EventArgs) Handles btn_eliminarPregunta.Click
         Try
+            'Dim _pregunta As PreguntaOpinionEntidad = TryCast(Session("Preguntas"), List(Of PreguntaOpinionEntidad))(Me.ID_encuesta.Value + (gv_Encuestas.PageIndex * gv_Encuestas.PageSize))
             Dim _pregunta As PreguntaOpinionEntidad = TryCast(Session("Preguntas"), List(Of PreguntaOpinionEntidad))(Me.ID_encuesta.Value + (gv_Encuestas.PageIndex * gv_Encuestas.PageSize))
+
             '(Me.id_producto.Value + (gv_Productos.PageIndex * gv_Productos.PageSize)) esto es igual a la posición elegida +(el numero de pagina * la paginación que le puse) eso me devuelve el ID a eliminar, porque el que selecciono desde la grilla no es el ID sino la posicion.
             Dim IdiomaActual As Entidades.IdiomaEntidad
             If IsNothing(Current.Session("Cliente")) Then
@@ -232,7 +301,9 @@ Public Class GestionarEncuestas
             End If
             encuestaBLL.Eliminar(_pregunta)
             Me.success.InnerText = "Se eliminó la encuesta correctamente."
+            Me.success.Visible = True
             Me.alertvalid.Visible = False
+
         Catch ex As Exception
         End Try
         CargarDrop()
@@ -255,6 +326,7 @@ Public Class GestionarEncuestas
             _pregunta.TipoPregunta = [Enum].Parse(GetType(Entidades.TipoPregunta), ddl_tipopregunta.SelectedValue, True)
             _pregunta.FechaFinVigencia = datepicker.Text
             _pregunta.FechaAlta = Now
+            _pregunta.PosiblesRespuestas = Session("RespuestasSeleccionadas")
             GestorpreguntaBLL.Modificar(_pregunta)
             Me.success.InnerText = "Se Modificó la encuesta correctamente."
             Me.alertvalid.Visible = False
@@ -264,28 +336,24 @@ Public Class GestionarEncuestas
     End Sub
 
     Protected Sub btn_nuevo_Click(sender As Object, e As EventArgs) Handles btn_nuevo.Click
-        btn_eliminar.Visible = False
+        btn_eliminarPregunta.Visible = False
         btn_nuevo.Visible = False
         btn_agregar.Visible = True
         btn_modificar.Visible = False
         LimpiarControles()
     End Sub
 
-    Public Sub LimpiarControles()
-        txt_Nombrepregunta.Text = Nothing
-        datepicker.Text = Nothing
-        ddl_tipopregunta.ClearSelection()
-    End Sub
+
 
     Private Sub DropDownList1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_tipopregunta.SelectedIndexChanged
 
-        If ddl_tipopregunta.SelectedItem.ToString = TipoPregunta.Encuesta.ToString Then
-            Me.Div_Encuesta.Visible = True
-            Me.Div_Opinion.Visible = False
-        Else
-            Me.Div_Opinion.Visible = True
-            Me.Div_Encuesta.Visible = False
-        End If
+        'If ddl_tipopregunta.SelectedItem.ToString = TipoPregunta.Encuesta.ToString Then
+        '    Me.Div_Encuesta.Visible = True
+        '    Me.Div_Opinion.Visible = False
+        'Else
+        '    Me.Div_Opinion.Visible = True
+        '    Me.Div_Encuesta.Visible = False
+        'End If
     End Sub
 
     'CÓDIGO PARA REPORTE DE ENCUESTAS 
@@ -454,15 +522,13 @@ Public Class GestionarEncuestas
         obtenerPreguntasOpinion() ' Gráfico Torta Encuesta - Gráfico 1
     End Sub
 
-
-
-
-
-
-
-
-
-
-
+    Protected Sub btn_agregarrta_Click(sender As Object, e As EventArgs) Handles btn_agregarrta.Click
+        Dim Nuevarta As New RespuestaEncuestaEntidad
+        Nuevarta.Descripcion = txt_rtas.Text
+        TryCast(Session("RespuestasSeleccionadas"), List(Of Entidades.RespuestaEncuestaEntidad)).Add(Nuevarta)
+        gv_respuestas.DataSource = Nothing
+        gv_respuestas.DataSource = Session("RespuestasSeleccionadas")
+        gv_respuestas.DataBind()
+    End Sub
 End Class
 

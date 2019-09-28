@@ -86,111 +86,132 @@
                 <div class="panel-body">
                     <br />
                     <br />
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="row">
-                                <asp:Label ID="lbl_Nombrepregunta" runat="server" Font-Bold="true" Text="Pregunta"></asp:Label>
-                            </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <asp:Label ID="lbl_Nombrepregunta" runat="server" Font-Bold="true" Text="Pregunta"></asp:Label>
                         </div>
-                        <div class="col-md-7 ">
+                        <div class="col-md-6">
                             <asp:TextBox ID="txt_Nombrepregunta" runat="server" placeholder="Ingrese enunciado" CssClass="form-control" MaxLength="100"></asp:TextBox>
                         </div>
-                        <div class="col-md-1 col-md-offset-1">
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
-                                ControlToValidate="txt_Nombrepregunta" ErrorMessage="*" EnableClientScript="false" Display="Dynamic" CssClass="validador"></asp:RequiredFieldValidator>
-                        </div>
                     </div>
                     <br />
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="row">
-                                <asp:Label ID="Lbl_tipopreg" runat="server" Font-Bold="true" Text="Tipo de Pregunta"></asp:Label>
-                            </div>
-                        </div>
+                    <br />
+                    <div class="form-group">
                         <div class="col-md-3">
-                            <div class="row">
-                                &nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:DropDownList ID="ddl_tipopregunta" runat="server" CssClass="btn-md btn-default dropdown-toggle" AutoPostBack="true"></asp:DropDownList>
-                            </div>
+                            <asp:Label ID="Lbl_tipopreg" runat="server" Font-Bold="true" Text="Tipo de Pregunta"></asp:Label>
                         </div>
-
+                        <div class="col-md-6">
+                            <asp:DropDownList ID="ddl_tipopregunta" runat="server" CssClass="btn-md btn-default dropdown-toggle form-control" AutoPostBack="true"></asp:DropDownList>
+                        </div>
                     </div>
                     <br />
+                    <br />
 
-
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="row">
-                                <asp:Label ID="lbl_FechaFinVigencia2" runat="server" Text="Fecha Fin Vigencia" Font-Bold="true"></asp:Label>
-                            </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <asp:Label ID="lbl_FechaFinVigencia2" runat="server" Text="Fecha Fin Vigencia" Font-Bold="true"></asp:Label>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <asp:TextBox ID="datepicker" runat="server" placeholder="DD/MM/AAAA" CssClass="form-control"></asp:TextBox>
                         </div>
-
                     </div>
                     <br />
+                    <br />
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <asp:Label ID="Lbl_rtas" runat="server" Text="Respuesta" Font-Bold="true"></asp:Label>
+                        </div>
+                        <div class="col-md-6">
+                            <asp:TextBox ID="txt_rtas" runat="server" placeholder="Ingrese respuesta" CssClass="form-control"></asp:TextBox>
+                        </div>
+                          <div class="col-md-3">
+                             <asp:Button ID="btn_agregarrta" runat="server" Text="Agregar Respuesta" CssClass="btn btn-success btn-md" />
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+
+
                     <div class="row">
+
+
+                        <div class="col-md-4">
+
+                            <asp:GridView CssClass="table table-hover table-bordered table-responsive table-active " ID="gv_respuestas" runat="server" AutoGenerateColumns="False" HorizontalAlign="Center" RowStyle-Height="40px">
+                                <HeaderStyle CssClass="thead-dark" />
+                                <Columns>
+                                    <asp:BoundField DataField="Descripcion" HeaderText="Respuestas" />
+                                    <asp:TemplateField HeaderText="Acciones" HeaderStyle-Width="100px">
+                                        <ItemTemplate>
+                                            <div>
+                                                <asp:ImageButton ID="btn_Respuestas" runat="server" CommandName="S" ImageUrl="~/Imagenes/clear.png" Height="18px" />
+                                            </div>
+                                        </ItemTemplate>
+                                        <HeaderStyle Width="100px"></HeaderStyle>
+                                    </asp:TemplateField>
+                                </Columns>
+                            </asp:GridView>
+                        </div>
+                    </div>
+
+
+                   <%-- <div class="row" id="Div_Encuesta" runat="server" visible="false">
                         <div class="col-md-4">
                             <div class="row">
-                                <asp:Label ID="Lbl_rtas" runat="server" Text="Respuesta" Font-Bold="true"></asp:Label>
-                            </div>
-                        </div>
-                        <div class="row" id="Div_Encuesta" runat="server" visible="false">
-                            <div class="col-md-4">
-                                <div class="row">
-                                    &nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;
                                     <asp:Label ID="Lbl_muybueno" runat="server" Text="Muy bueno"></asp:Label>
-                                </div>
-                                <div class="row">
-                                    &nbsp;&nbsp;&nbsp;
+                            </div>
+                            <div class="row">
+                                &nbsp;&nbsp;&nbsp;
                                     <asp:Label ID="Lbl_bueno" runat="server" Text="Bueno"></asp:Label>
-                                </div>
-                                <div class="row">
-                                    &nbsp;&nbsp;&nbsp;
+                            </div>
+                            <div class="row">
+                                &nbsp;&nbsp;&nbsp;
                                     <asp:Label ID="Lbl_regular" runat="server" Text="Regular"></asp:Label>
-                                </div>
-                                <div class="row">
-                                    &nbsp;&nbsp;&nbsp;
+                            </div>
+                            <div class="row">
+                                &nbsp;&nbsp;&nbsp;
                                     <asp:Label ID="Lbl_malo" runat="server" Text="Malo"></asp:Label>
-                                </div>
-                                <div class="row">
-                                    &nbsp;&nbsp;&nbsp;
+                            </div>
+                            <div class="row">
+                                &nbsp;&nbsp;&nbsp;
                                     <asp:Label ID="Lbl_muymalo" runat="server" Text="Muy malo"></asp:Label>
-                                </div>
                             </div>
                         </div>
-                        <div class="row" id="Div_Opinion" runat="server" visible="false">
-                            <div class="col-md-4">
-                                <div class="row">
-                                    &nbsp;&nbsp;&nbsp;
-                                    <asp:Label ID="Lbl_SI" runat="server" Text="Si"></asp:Label>
-                                </div>
-                                <div class="row">
-                                    &nbsp;&nbsp;&nbsp;
-                                    <asp:Label ID="Lbl_NO" runat="server" Text="No"></asp:Label>
-                                </div>
-                                <div class="row">
-                                    &nbsp;&nbsp;&nbsp;
-                                    <asp:Label ID="Lbl_Quizas" runat="server" Text="Quizas"></asp:Label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <br />
+                    </div>--%>
 
-                    <div class="col-md-offset-1">
-                        <div class="row">
-                            <asp:Button ID="btn_nuevo" runat="server" Text="Nuevo" CssClass="btn btn-primary btn-md col-md-2 " Visible="false" />
-                            <asp:Button ID="btn_agregar" runat="server" Text="Agregar" CssClass="btn btn-success btn-md col-md-2 col-md-offset-1" />
-                            <asp:Button ID="btn_modificar" runat="server" Text="Modificar" CssClass="btn btn-info btn-md col-md-2 col-md-offset-1" Visible="false" />
-                            <asp:Button ID="btn_eliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger btn-md col-md-2 col-md-offset-1" Visible="false" />
+
+                    <div class="row" id="Div_Opinion" runat="server" visible="false">
+                        <div class="col-md-4">
+                            <div class="row">
+                                &nbsp;&nbsp;&nbsp;
+                                    <asp:Label ID="Lbl_SI" runat="server" Text="Si"></asp:Label>
+                            </div>
+                            <div class="row">
+                                &nbsp;&nbsp;&nbsp;
+                                    <asp:Label ID="Lbl_NO" runat="server" Text="No"></asp:Label>
+                            </div>
+                            <div class="row">
+                                &nbsp;&nbsp;&nbsp;
+                                    <asp:Label ID="Lbl_Quizas" runat="server" Text="Quizas"></asp:Label>
+                            </div>
                         </div>
                     </div>
-                    <br />
+                </div>
+                <br />
+
+                <div class="col-md-offset-1">
+                    <div class="row">
+                        <asp:Button ID="btn_nuevo" runat="server" Text="Nuevo" CssClass="btn btn-primary btn-md col-md-2 " Visible="false" />
+                        <asp:Button ID="btn_agregar" runat="server" Text="Agregar Pregunta" CssClass="btn btn-success btn-md col-md-4 col-md-offset-1" />
+                        <asp:Button ID="btn_modificar" runat="server" Text="Modificar" CssClass="btn btn-info btn-md col-md-2 col-md-offset-1" Visible="false" />
+                        <asp:Button ID="btn_eliminarPregunta" runat="server" Text="Eliminar" CssClass="btn btn-danger btn-md col-md-2 col-md-offset-1" Visible="false" />
+                    </div>
+                </div>
+                <br />
                 </div>
             </div>
-        </div>
+
 
         <%-- Sección GRID Encuestas--%>
 

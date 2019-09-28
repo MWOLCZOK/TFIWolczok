@@ -173,19 +173,12 @@
                     <StaticHoverStyle BackColor="#bac4ce" ForeColor="#FDFEFE" />
                     <%--Hover Backcolor Para cambiar el color de fondo de la barra de menú cuando selecciono.--%>
                     <%--  Hover Fore cambia el color de la letra seleccionada de la barra menu--%>
-
                     <DynamicHoverStyle BackColor="#FDFEFE" ForeColor="#368BE1" />
                     <%--Dynamic Hover Style sirve para cambiar el color del sombreado de un submenú cuando pasas el mouse--%>
-
                     <DynamicMenuStyle BackColor="#bac4ce" />
                     <%--Dynamic Menu Style Define el color de los submenú cuando los desplegas--%>
-
                     <DynamicSelectedStyle BackColor="#F7F9F9" />
-
                     <DynamicMenuItemStyle HorizontalPadding="10px" VerticalPadding="7px" />
-
-
-
 
                 </asp:Menu>
             </div>

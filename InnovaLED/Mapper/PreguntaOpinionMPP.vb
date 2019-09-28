@@ -1,6 +1,7 @@
 ﻿Imports System.Data.Sql
 Imports System.Data.SqlClient
 Imports System.Text
+Imports System.Linq
 Imports Entidades
 Imports DAL
 Public Class PreguntaOpinionMPP
@@ -15,7 +16,22 @@ Public Class PreguntaOpinionMPP
                 .Add(New SqlParameter("@Fecha_Fin_Vigencia", parampregunta.FechaFinVigencia))
                 .Add(New SqlParameter("@BL", False))
             End With
-            Acceso.Escritura(Command)
+            parampregunta.ID = Acceso.Scalar(Command)
+            For Each _resp As RespuestaEncuestaEntidad In parampregunta.PosiblesRespuestas
+                Dim Command2 As SqlCommand = Acceso.MiComando("insert into RespuestaEncuesta (Descripcion)  OUTPUT INSERTED.ID_RespuestaEncuesta values (@Descripcion)")
+                With Command2.Parameters
+                    .Add(New SqlParameter("@Descripcion", _resp.Descripcion))
+                End With
+                _resp.ID = Acceso.Scalar(Command2)
+                Dim Command3 As SqlCommand = Acceso.MiComando("insert into RespuestaEncuesta_PreguntaOpinion (ID_PreguntaOpinion, ID_RespuestaEncuesta, BL) values (@ID_PreguntaOpinion,@ID_RespuestaEncuesta,@BL)")
+                With Command3.Parameters
+                    .Add(New SqlParameter("@ID_PreguntaOpinion", parampregunta.ID))
+                    .Add(New SqlParameter("@ID_RespuestaEncuesta", _resp.ID))
+                    .Add(New SqlParameter("@BL", False))
+
+                End With
+                Acceso.Escritura(Command3)
+            Next
             Return True
         Catch ex As Exception
             Throw ex
@@ -37,6 +53,48 @@ Public Class PreguntaOpinionMPP
             End With
             Acceso.Escritura(Command)
             Command.Dispose()
+
+            Dim consulta4 As String = "Select * from RespuestaEncuesta_PreguntaOpinion as rp inner join RespuestaEncuesta as re on re.ID_RespuestaEncuesta= rp.ID_RespuestaEncuesta where BL=@BL and ID_PreguntaOpinion=@ID_PreguntaOpinion"
+            Dim Command4 As SqlCommand = Acceso.MiComando(consulta4)
+            With Command4.Parameters
+                .Add(New SqlParameter("@ID_PreguntaOpinion", paramPregunta.ID))
+                .Add(New SqlParameter("@BL", False))
+            End With
+            Dim dt As DataTable = Acceso.Lectura(Command4)
+            Dim Listarespuesta As List(Of RespuestaEncuestaEntidad) = New List(Of RespuestaEncuestaEntidad)
+            For Each row As DataRow In dt.Rows
+                Dim res As RespuestaEncuestaEntidad = New RespuestaEncuestaEntidad
+                res.ID = row("ID_RespuestaEncuesta")
+                res.Descripcion = row("Descripcion")
+                Listarespuesta.Add(res)
+            Next
+            For Each _resp As RespuestaEncuestaEntidad In paramPregunta.PosiblesRespuestas
+                If _resp.ID = 0 Then
+                    Dim Command2 As SqlCommand = Acceso.MiComando("insert into RespuestaEncuesta (Descripcion)  OUTPUT INSERTED.ID_RespuestaEncuesta values (@Descripcion)")
+                    With Command2.Parameters
+                        .Add(New SqlParameter("@Descripcion", _resp.Descripcion))
+                    End With
+                    _resp.ID = Acceso.Scalar(Command2)
+                    Dim Command3 As SqlCommand = Acceso.MiComando("insert into RespuestaEncuesta_PreguntaOpinion (ID_PreguntaOpinion, ID_RespuestaEncuesta, BL) values (@ID_PreguntaOpinion,@ID_RespuestaEncuesta,@BL)")
+                    With Command3.Parameters
+                        .Add(New SqlParameter("@ID_PreguntaOpinion", paramPregunta.ID))
+                        .Add(New SqlParameter("@ID_RespuestaEncuesta", _resp.ID))
+                        .Add(New SqlParameter("@BL", False))
+
+                    End With
+                    Acceso.Escritura(Command3)
+                End If
+            Next
+            For Each _resp As RespuestaEncuestaEntidad In Listarespuesta
+                If Not paramPregunta.PosiblesRespuestas.Any(Function(p) p.ID = _resp.ID) Then
+                    Dim Command5 As SqlCommand = Acceso.MiComando("update RespuestaEncuesta_PreguntaOpinion set BL=1 where ID_PreguntaOpinion=@ID_PreguntaOpinion and ID_RespuestaEncuesta=@ID_RespuestaEncuesta")
+                    With Command5.Parameters
+                        .Add(New SqlParameter("@ID_PreguntaOpinion", paramPregunta.ID))
+                        .Add(New SqlParameter("@ID_RespuestaEncuesta", _resp.ID))
+                    End With
+                    Acceso.Escritura(Command5)
+                End If
+            Next
             Return True
         Catch ex As Exception
             Throw ex
@@ -181,11 +239,34 @@ Public Class PreguntaOpinionMPP
             parampreguntaopinion.FechaAlta = row("Fecha_Alta")
             parampreguntaopinion.FechaFinVigencia = row("Fecha_Fin_Vigencia")
             parampreguntaopinion.BL = row("BL")
+            parampreguntaopinion.PosiblesRespuestas = traerRespuestasPosibles(parampreguntaopinion)
         Catch ex As Exception
             Throw ex
         End Try
 
     End Sub
+
+    Private Function traerRespuestasPosibles(parampreguntaopinion As PreguntaOpinionEntidad) As List(Of RespuestaEncuestaEntidad)
+        Try
+            Dim consulta As String = " Select r.ID_RespuestaEncuesta ,Descripcion from RespuestaEncuesta as r  inner join RespuestaEncuesta_PreguntaOpinion as rp on rp.ID_RespuestaEncuesta=r.ID_RespuestaEncuesta where BL=@BL and rp.ID_PreguntaOpinion= @ID_PreguntaOpinion"
+            Dim Command As SqlCommand = Acceso.MiComando(consulta)
+            With Command.Parameters
+                .Add(New SqlParameter("@BL", False))
+                .Add(New SqlParameter("@ID_PreguntaOpinion", parampreguntaopinion.ID))
+            End With
+            Dim dt As DataTable = Acceso.Lectura(Command)
+            Dim Listarespuesta As List(Of RespuestaEncuestaEntidad) = New List(Of RespuestaEncuestaEntidad)
+            For Each row As DataRow In dt.Rows
+                Dim res As RespuestaEncuestaEntidad = New RespuestaEncuestaEntidad
+                res.ID = row("ID_RespuestaEncuesta")
+                res.Descripcion = row("Descripcion")
+                Listarespuesta.Add(res)
+            Next
+            Return Listarespuesta
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 
 
 
