@@ -15,7 +15,8 @@ Public Class EncuestaGlobal
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not IsPostBack Then
             cargarPreguntasOpiniones()
-            'LlenarChart()
+        Else
+            cargarPreguntasOpiniones()
         End If
     End Sub
 
@@ -23,7 +24,8 @@ Public Class EncuestaGlobal
         Try
             Dim _listapregunta As New List(Of PreguntaOpinionEntidad)
             _listapregunta = GestorPreguntaOpinion.TraerTodasPreguntasFichaOpinion(TipoPregunta.Encuesta)
-            generarPreguntasOpinion(_listapregunta)
+            Session("Preguntas") = _listapregunta
+            GenerarDiseño(_listapregunta)
         Catch ex As Exception
             Throw ex
         End Try
@@ -31,33 +33,11 @@ Public Class EncuestaGlobal
     End Sub
 
 
-    Private Sub generarPreguntasOpinion(ByVal paramListadoRespuestas As List(Of PreguntaOpinionEntidad))
-        'Try
-        '    Dim _contador As Integer = 1
-        '    For Each MiPregunta As PreguntaOpinionEntidad In paramListadoRespuestas
-        '        Dim label As Label = Me.panelPreguntas.FindControl("lbl_pregunta" & _contador)
-        '        Dim labelID As Label = Me.panelPreguntas.FindControl("id_" & _contador)
-        '        label.Text = MiPregunta.Enunciado
-        '        labelID.Text = MiPregunta.ID
-        '        _contador += 1
-        '    Next
-        '    rb_pregunta1.DataSource = System.Enum.GetValues(GetType(RespuestaEntidad.TipoRespuestasCalidad))
-        '    rb_pregunta1.DataBind()
-        '    rb_pregunta2.DataSource = System.Enum.GetValues(GetType(RespuestaEntidad.TipoRespuestasCalidad))
-        '    rb_pregunta2.DataBind()
-        '    rb_pregunta3.DataSource = System.Enum.GetValues(GetType(RespuestaEntidad.TipoRespuestasCalidad))
-        '    rb_pregunta3.DataBind()
-        'Catch ex As Exception
-
-        'End Try
-
-    End Sub
-
     Private Function validarCuestionario() As Boolean
         Try
-            For i = 1 To 3
+            For i = 1 To Session("Preguntas").Count
                 Dim radioButton As New RadioButtonList
-                radioButton = DirectCast(Me.panelPreguntas.FindControl("rb_pregunta" & i), RadioButtonList)
+                radioButton = DirectCast(Me.preguntasdinamicas.FindControl("rb_pregunta" & i), RadioButtonList)
                 If radioButton.SelectedValue = "" Then
                     Return False
                 End If
@@ -69,63 +49,68 @@ Public Class EncuestaGlobal
     End Function
 
     Protected Sub btn_enviar_Click(sender As Object, e As EventArgs) Handles btn_enviar.Click
-        'Try
-        '    If IsNothing(Current.Session("cliente")) Or IsDBNull(Current.Session("Cliente")) Then
-        '        Me.alertvalid.Visible = True
-        '        Me.alertvalid.InnerText = "Debe loguearse para continuar con la encuesta"
-        '    Else
+        Try
+            If IsNothing(Current.Session("cliente")) Or IsDBNull(Current.Session("Cliente")) Then
+                Me.alertvalid.Visible = True
+                Me.alertvalid.InnerText = "Debe loguearse para continuar con la encuesta"
+            Else
 
-        '        Dim _listaRespuesta As New List(Of RespuestaEntidad)
-        '        If validarCuestionario() = True Then
-        '            For i = 1 To 3
-        '                Dim _resp As New RespuestaEntidad
-        '                _resp.Pregunta = New PreguntaOpinionEntidad With {.ID = DirectCast(Me.panelPreguntas.FindControl("id_" & i), Label).Text}  ' aca lo lleno con una instanacia de preguntaENtidad
-        '                _resp.Valor_Respuesta = [Enum].Parse(GetType(RespuestaEntidad.TipoRespuestasCalidad), DirectCast(Me.panelPreguntas.FindControl("rb_pregunta" & i), RadioButtonList).SelectedValue) ' Para obtener el valor doe RBList necesito el Enum,parse porque sino toma el valor texto
+                Dim _listaRespuesta As New List(Of RespuestaEntidad)
+                If validarCuestionario() = True Then
+                    Dim cant As Integer = 1
+                    For Each Pregunta As PreguntaOpinionEntidad In Session("Preguntas")
+                        Dim _resp As New RespuestaEntidad
+                        _resp.Pregunta = Pregunta
+                        _resp.RespuestaEncuesta = New RespuestaEncuestaEntidad With {.ID = DirectCast(Me.preguntasdinamicas.FindControl("rb_pregunta" & cant), RadioButtonList).SelectedValue}
+                        _resp.Usuario = Session("cliente")
+                        GestorPreguntaOpinion.InsertarRespuesta(_resp)
+                        cant += 1
+                    Next
 
-        '                _resp.Usuario = Session("cliente")
-        '                _listaRespuesta.Add(_resp)
-        '            Next
-
-        '            For Each _resp As RespuestaEntidad In _listaRespuesta
-        '                GestorPreguntaOpinion.InsertarRespuesta(_resp)
-        '            Next
-
-        '            Me.success.Visible = True
-        '            Me.success.InnerText = "¡Gracias por haber respondido ésta encuesta!"
-        '        Else
-        '            Me.alertvalid.InnerText = "Debe completar todos los campos"
-        '            Me.alertvalid.Visible = True
-        '        End If
-        '    End If
+                    Me.alertvalid.Visible = False
+                    Me.success.Visible = True
+                    Me.success.InnerText = "¡Gracias por haber respondido ésta encuesta!"
+                    Response.AddHeader("REFRESH", "5;URL=Default.aspx")
+                Else
+                    Me.alertvalid.InnerText = "Debe completar todos los campos"
+                    Me.alertvalid.Visible = True
+                End If
+            End If
 
 
-        'Catch ex As Exception
-        '    Throw ex
-        'End Try
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 
+    Private Sub GenerarDiseño(ByVal listapreguntas As List(Of PreguntaOpinionEntidad))
+        preguntasdinamicas.Controls.Clear()
+        Dim cant As Integer = 1
+        For Each preg In listapreguntas
+            Dim divh3 As HtmlGenericControl = New HtmlGenericControl("h3")
+            Dim labelpregunta As Label = New Label
+            labelpregunta.Text = preg.Enunciado
+            divh3.Controls.Add(labelpregunta)
+            Dim br1 As HtmlGenericControl = New HtmlGenericControl("br")
+            Dim br2 As HtmlGenericControl = New HtmlGenericControl("br")
+            Dim br3 As HtmlGenericControl = New HtmlGenericControl("br")
+            Dim br4 As HtmlGenericControl = New HtmlGenericControl("br")
+            Dim rblist As RadioButtonList = New RadioButtonList
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            rblist.ID = "rb_pregunta" & cant
+            rblist.DataTextField = "Descripcion"
+            rblist.DataValueField = "ID"
+            rblist.DataSource = preg.PosiblesRespuestas
+            rblist.DataBind()
+            rblist.Attributes.Add("class", "text-left")
+            preguntasdinamicas.Controls.Add(divh3)
+            preguntasdinamicas.Controls.Add(br1)
+            preguntasdinamicas.Controls.Add(br2)
+            preguntasdinamicas.Controls.Add(rblist)
+            preguntasdinamicas.Controls.Add(br3)
+            preguntasdinamicas.Controls.Add(br4)
+            cant += 1
+        Next
+    End Sub
 
 End Class

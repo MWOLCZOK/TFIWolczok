@@ -140,42 +140,6 @@ Partial Public Class GestionarEncuestas
     Protected WithEvents gv_respuestas As Global.System.Web.UI.WebControls.GridView
     
     '''<summary>
-    '''Control Div_Opinion.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents Div_Opinion As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
-    '''<summary>
-    '''Control Lbl_SI.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents Lbl_SI As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''Control Lbl_NO.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents Lbl_NO As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''Control Lbl_Quizas.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents Lbl_Quizas As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
     '''Control btn_nuevo.
     '''</summary>
     '''<remarks>
@@ -203,13 +167,22 @@ Partial Public Class GestionarEncuestas
     Protected WithEvents btn_modificar As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
-    '''Control btn_eliminarPregunta.
+    '''Control btn_confirmar.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents btn_eliminarPregunta As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btn_confirmar As Global.System.Web.UI.HtmlControls.HtmlButton
+    
+    '''<summary>
+    '''Control btneliminar.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btneliminar As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
     '''Control gv_Encuestas.

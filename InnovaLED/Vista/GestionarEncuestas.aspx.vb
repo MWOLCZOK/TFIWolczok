@@ -168,6 +168,7 @@ Public Class GestionarEncuestas
     Private Sub gv_Encuestas_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles gv_Encuestas.RowCommand
         'Funcion para que luego de clickear en el Grid lo pase a los textbox
         Try
+
             Dim _pregunta As PreguntaOpinionEntidad = TryCast(Session("Preguntas"), List(Of PreguntaOpinionEntidad))(e.CommandArgument + (gv_Encuestas.PageIndex * gv_Encuestas.PageSize))
             Me.ID_encuesta.Value = e.CommandArgument
             Dim IdiomaActual As Entidades.IdiomaEntidad
@@ -178,8 +179,10 @@ Public Class GestionarEncuestas
             End If
             Select Case e.CommandName.ToString
                 Case "E"
+                    btn_agregar.Visible = False
+                    btn_nuevo.Visible = True
                     btn_modificar.Visible = True
-                    btn_eliminarPregunta.Visible = True
+                    btn_confirmar.Visible = True
                     txt_Nombrepregunta.Text = _pregunta.Enunciado
                     datepicker.Text = _pregunta.FechaFinVigencia
                     ddl_tipopregunta.ClearSelection()
@@ -220,7 +223,7 @@ Public Class GestionarEncuestas
 
 
     Public Sub Ocultamiento()
-        btn_eliminarPregunta.Visible = False
+        btneliminar.Visible = False
         btn_modificar.Visible = False
         btn_agregar.Visible = True
         'btn_nuevo.Visible = True
@@ -287,7 +290,7 @@ Public Class GestionarEncuestas
     End Sub
 
 
-    Protected Sub btn_eliminarPregunta_Click(sender As Object, e As EventArgs) Handles btn_eliminarPregunta.Click
+    Public Sub btneliminar_Click(sender As Object, e As EventArgs) Handles btneliminar.Click
         Try
             'Dim _pregunta As PreguntaOpinionEntidad = TryCast(Session("Preguntas"), List(Of PreguntaOpinionEntidad))(Me.ID_encuesta.Value + (gv_Encuestas.PageIndex * gv_Encuestas.PageSize))
             Dim _pregunta As PreguntaOpinionEntidad = TryCast(Session("Preguntas"), List(Of PreguntaOpinionEntidad))(Me.ID_encuesta.Value + (gv_Encuestas.PageIndex * gv_Encuestas.PageSize))
@@ -308,6 +311,8 @@ Public Class GestionarEncuestas
         End Try
         CargarDrop()
         CargarEncuestas()
+        LimpiarControles()
+        Ocultamiento()
     End Sub
 
     Protected Sub btn_modificar_Click(sender As Object, e As EventArgs) Handles btn_modificar.Click
@@ -336,24 +341,11 @@ Public Class GestionarEncuestas
     End Sub
 
     Protected Sub btn_nuevo_Click(sender As Object, e As EventArgs) Handles btn_nuevo.Click
-        btn_eliminarPregunta.Visible = False
+        btn_confirmar.Visible = False
         btn_nuevo.Visible = False
         btn_agregar.Visible = True
         btn_modificar.Visible = False
         LimpiarControles()
-    End Sub
-
-
-
-    Private Sub DropDownList1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_tipopregunta.SelectedIndexChanged
-
-        'If ddl_tipopregunta.SelectedItem.ToString = TipoPregunta.Encuesta.ToString Then
-        '    Me.Div_Encuesta.Visible = True
-        '    Me.Div_Opinion.Visible = False
-        'Else
-        '    Me.Div_Opinion.Visible = True
-        '    Me.Div_Encuesta.Visible = False
-        'End If
     End Sub
 
     'CÓDIGO PARA REPORTE DE ENCUESTAS 

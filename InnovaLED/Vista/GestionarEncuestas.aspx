@@ -101,7 +101,7 @@
                             <asp:Label ID="Lbl_tipopreg" runat="server" Font-Bold="true" Text="Tipo de Pregunta"></asp:Label>
                         </div>
                         <div class="col-md-6">
-                            <asp:DropDownList ID="ddl_tipopregunta" runat="server" CssClass="btn-md btn-default dropdown-toggle form-control" AutoPostBack="true"></asp:DropDownList>
+                            <asp:DropDownList ID="ddl_tipopregunta" runat="server" CssClass="btn-md btn-default dropdown-toggle form-control" AutoPostBack="false"></asp:DropDownList>
                         </div>
                     </div>
                     <br />
@@ -181,36 +181,45 @@
                     </div>--%>
 
 
-                    <div class="row" id="Div_Opinion" runat="server" visible="false">
-                        <div class="col-md-4">
-                            <div class="row">
-                                &nbsp;&nbsp;&nbsp;
-                                    <asp:Label ID="Lbl_SI" runat="server" Text="Si"></asp:Label>
-                            </div>
-                            <div class="row">
-                                &nbsp;&nbsp;&nbsp;
-                                    <asp:Label ID="Lbl_NO" runat="server" Text="No"></asp:Label>
-                            </div>
-                            <div class="row">
-                                &nbsp;&nbsp;&nbsp;
-                                    <asp:Label ID="Lbl_Quizas" runat="server" Text="Quizas"></asp:Label>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <br />
 
                 <div class="col-md-offset-1">
                     <div class="row">
                         <asp:Button ID="btn_nuevo" runat="server" Text="Nuevo" CssClass="btn btn-primary btn-md col-md-2 " Visible="false" />
-                        <asp:Button ID="btn_agregar" runat="server" Text="Agregar Pregunta" CssClass="btn btn-success btn-md col-md-4 col-md-offset-1" />
+                        <asp:Button ID="btn_agregar" runat="server" Text="Agregar Pregunta" CssClass="btn btn-success btn-md col-md-4 col-md-offset-1"  />
                         <asp:Button ID="btn_modificar" runat="server" Text="Modificar" CssClass="btn btn-info btn-md col-md-2 col-md-offset-1" Visible="false" />
-                        <asp:Button ID="btn_eliminarPregunta" runat="server" Text="Eliminar" CssClass="btn btn-danger btn-md col-md-2 col-md-offset-1" Visible="false" />
+                       <%-- <asp:Button ID="btn_eliminarPregunta" runat="server" Text="Eliminar" CssClass="btn btn-danger btn-md col-md-2 col-md-offset-1" Visible="false" />--%>
+                        <button id="btn_confirmar" runat="server" type="button" class="btn btn-danger btn-md col-md-2 col-md-offset-1" data-toggle="modal" data-target="#ConfirmacionModalTitle" visible="false">Eliminar</button>
                     </div>
                 </div>
                 <br />
                 </div>
             </div>
+
+        
+    <%-- Modal de Confirmacion de Eliminación --%>
+    <div class="modal-normal " id="ConfirmacionModalTitle" role="dialog">
+        <div class="modal-dialog" role="document">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title Blanco" id="ModalTitle">Confirmar Eliminación</h5>
+                </div>
+
+
+                <div class="modal-body Blanco">
+                    <label>¿Está seguro que desea realizar la operación de Eliminación?</label>
+
+                </div>
+                <div class="modal-footer">
+                    <asp:Button ID="btneliminar" runat="server" CssClass="btn btn-primary" OnClick="btneliminar_Click" Text="Aceptar" />
+                    <button id="btncerrar" type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 
         <%-- Sección GRID Encuestas--%>

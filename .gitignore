@@ -241,3 +241,6 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 /.tmp.drivedownload
+/InnovaLED/Vista/Facturas/Factura_2065.pdf
+/InnovaLED/Vista/Facturas/Factura_2064.pdf
+/InnovaLED/Vista/Facturas/Factura_2063.pdf

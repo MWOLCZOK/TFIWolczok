@@ -206,7 +206,7 @@ Public Class carritoCompras
                     For Each _nota As DocumentoFinancieroEntidad In listnota
                         LongString += _nota.ID & ","
                     Next
-                    generarComprobante("Factura", factura, cli, Now, listcompra, "Nota de Crédito", LongString)
+                    'generarComprobante("Factura", factura, cli, Now, listcompra, "Nota de Crédito", LongString)
 
 
                 Else
@@ -221,7 +221,7 @@ Public Class carritoCompras
                         For Each _nota As DocumentoFinancieroEntidad In listnota
                             LongString += _nota.ID & ","
                         Next
-                        generarComprobante("Factura", factura, cli, Now, listcompra, "Tarjeta de crédito y Nota de Crédito", LongString)
+                        'generarComprobante("Factura", factura, cli, Now, listcompra, "Tarjeta de crédito y Nota de Crédito", LongString)
                     End If
                 End If
             Else
@@ -232,7 +232,7 @@ Public Class carritoCompras
                     pago.TipoPago = Tipo_PagoEntidad.Tarjeta_Credito
                     Dim GestorPagoBLL As New GestorPagoBLL
                     GestorPagoBLL.Alta(pago)
-                    generarComprobante("Factura", factura, cli, Now, listcompra, "Tarjeta de crédito")
+                    'generarComprobante("Factura", factura, cli, Now, listcompra, "Tarjeta de crédito")
                 End If
             End If
 

@@ -126,7 +126,7 @@ Public Class PreguntaOpinionMPP
 
     Public Function TraerTodasPreguntasFichaOpinion(paramTipoPregunta As TipoPregunta) As List(Of PreguntaOpinionEntidad)
         Try
-            Dim consulta As String = "Select * from Pregunta_Opinion where BL=@BL and Tipo=@Tipo"
+            Dim consulta As String = "Select * from Pregunta_Opinion where BL=@BL and Tipo=@Tipo and Fecha_Fin_Vigencia>=getdate()"
             Dim Command As SqlCommand = Acceso.MiComando(consulta)
             With Command.Parameters
                 .Add(New SqlParameter("@Tipo", paramTipoPregunta))
@@ -172,11 +172,11 @@ Public Class PreguntaOpinionMPP
     Public Function InsertarRespuesta(ByVal paramRespuesta As RespuestaEntidad)
         Try
 
-            Dim Command As SqlCommand = Acceso.MiComando("insert into Respuesta_Opinion (ID_Pregunta,ID_Usuario,Valor_Respuesta,Fecha_Alta) values (@ID_Pregunta,@ID_Usuario,@Valor_Respuesta,@Fecha_Alta)")
+            Dim Command As SqlCommand = Acceso.MiComando("insert into Respuesta_Opinion (ID_Pregunta,ID_Usuario,ID_RespuestaEncuesta,Fecha_Alta) values (@ID_Pregunta,@ID_Usuario,@Valor_Respuesta,@Fecha_Alta)")
             With Command.Parameters
                 .Add(New SqlParameter("@ID_Pregunta", paramRespuesta.Pregunta.ID))
                 .Add(New SqlParameter("@ID_Usuario", paramRespuesta.Usuario.ID_Usuario))
-                .Add(New SqlParameter("@Valor_Respuesta", paramRespuesta.Valor_Respuesta))
+                .Add(New SqlParameter("@Valor_Respuesta", paramRespuesta.RespuestaEncuesta.ID))
                 .Add(New SqlParameter("@Fecha_Alta", Now))
             End With
             Acceso.Escritura(Command)

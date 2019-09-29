@@ -41,94 +41,13 @@ Partial Public Class Encuesta
     Protected WithEvents success As Global.System.Web.UI.HtmlControls.HtmlGenericControl
     
     '''<summary>
-    '''Control panelPreguntas.
+    '''Control preguntasdinamicas.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents panelPreguntas As Global.System.Web.UI.WebControls.Panel
-    
-    '''<summary>
-    '''Control lbl_pregunta1.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents lbl_pregunta1 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''Control id_1.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents id_1 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''Control rb_pregunta1.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents rb_pregunta1 As Global.System.Web.UI.WebControls.RadioButtonList
-    
-    '''<summary>
-    '''Control lbl_pregunta2.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents lbl_pregunta2 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''Control id_2.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents id_2 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''Control rb_pregunta2.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents rb_pregunta2 As Global.System.Web.UI.WebControls.RadioButtonList
-    
-    '''<summary>
-    '''Control lbl_pregunta3.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents lbl_pregunta3 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''Control id_3.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents id_3 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''Control rb_pregunta3.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents rb_pregunta3 As Global.System.Web.UI.WebControls.RadioButtonList
+    Protected WithEvents preguntasdinamicas As Global.System.Web.UI.HtmlControls.HtmlGenericControl
     
     '''<summary>
     '''Control btn_enviar.
