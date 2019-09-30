@@ -44,16 +44,6 @@
         End Set
     End Property
 
-    Private _Valor_Respuesta As Integer
-    Public Property Valor_Respuesta() As Integer
-        Get
-            Return _Valor_Respuesta
-        End Get
-        Set(ByVal value As Integer)
-            _Valor_Respuesta = value
-        End Set
-    End Property
-
 
 
 

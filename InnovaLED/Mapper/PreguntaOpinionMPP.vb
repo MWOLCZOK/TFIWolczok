@@ -145,7 +145,26 @@ Public Class PreguntaOpinionMPP
         End Try
     End Function
 
-
+    Public Function TraerTodasPreguntasGraficos(paramTipoPregunta As TipoPregunta) As List(Of PreguntaOpinionEntidad)
+        Try
+            Dim consulta As String = "Select * from Pregunta_Opinion where BL=@BL and Tipo=@Tipo"
+            Dim Command As SqlCommand = Acceso.MiComando(consulta)
+            With Command.Parameters
+                .Add(New SqlParameter("@Tipo", paramTipoPregunta))
+                .Add(New SqlParameter("@BL", False))
+            End With
+            Dim dt As DataTable = Acceso.Lectura(Command)
+            Dim ListaPregunta As List(Of PreguntaOpinionEntidad) = New List(Of PreguntaOpinionEntidad)
+            For Each row As DataRow In dt.Rows
+                Dim preg As PreguntaOpinionEntidad = New PreguntaOpinionEntidad
+                FormatearPreguntaOpinion(preg, row)
+                ListaPregunta.Add(preg)
+            Next
+            Return ListaPregunta
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
     Public Function TraerTodasLasPreguntas() As List(Of PreguntaOpinionEntidad)
         Try
             Dim consulta As String = "Select * from Pregunta_Opinion where BL=@BL"
@@ -268,7 +287,27 @@ Public Class PreguntaOpinionMPP
         End Try
     End Function
 
+    Private Function traerRespuestasID(id As Integer) As RespuestaEncuestaEntidad
+        Try
+            Dim consulta As String = " Select * from RespuestaEncuesta where ID_RespuestaEncuesta= @ID_RespuestaEncuesta"
+            Dim Command As SqlCommand = Acceso.MiComando(consulta)
+            With Command.Parameters
+                .Add(New SqlParameter("@ID_RespuestaEncuesta", id))
+            End With
+            Dim dt As DataTable = Acceso.Lectura(Command)
+            If dt.Rows.Count > 0 Then
+                Dim res As RespuestaEncuestaEntidad = New RespuestaEncuestaEntidad
+                res.ID = dt.Rows(0)("ID_RespuestaEncuesta")
+                res.Descripcion = dt.Rows(0)("Descripcion")
+                Return res
+            Else
+                Return New RespuestaEncuestaEntidad
+            End If
 
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 
 
     'Public Function obtenerPreguntas(ByVal paramTipoPregunta As PreguntaOpinionEntidad.TipoPreguntaOpinion) As List(Of PreguntaOpinionEntidad)
@@ -481,7 +520,6 @@ Public Class PreguntaOpinionMPP
             paramRespuesta.ID_Respuesta = row("ID_Respuesta")
             paramRespuesta.Pregunta = New Entidades.PreguntaOpinionEntidad With {.ID = row("ID_Pregunta")}
             paramRespuesta.Usuario = New Entidades.UsuarioEntidad With {.ID_Usuario = row("ID_Usuario")}
-            paramRespuesta.Valor_Respuesta = row("Valor_Respuesta")
         Catch ex As Exception
             Throw ex
         End Try
@@ -535,24 +573,27 @@ Public Class PreguntaOpinionMPP
     End Function
 
 
-    'Public Function obtenerRespuestasFO(ByVal paramPregunta As PreguntaOpinionEntidad) As List(Of PreguntaOpinionEntidad.TipoRespuestasFichaOpinion)
-    '    Try
-    '        Dim _listaRespuestas As New List(Of PreguntaOpinionEntidad.TipoRespuestasFichaOpinion)
-    '        Dim consulta As String = "select Valor_Respuesta from respuesta_opinion where ID_Pregunta=@ID_Pregunta"
-    '        Dim Command As SqlCommand = Acceso.MiComando(consulta)
-    '        With Command.Parameters
-    '            .Add(New SqlParameter("@ID_Pregunta", paramPregunta.ID))
-    '        End With
-    '        Dim _dt As DataTable = Acceso.Lectura(Command)
-    '        For Each dr As DataRow In _dt.Rows
-    '            Dim _MirespuestaOpinion As PreguntaOpinionEntidad.TipoRespuestasFichaOpinion = dr.Item("Valor_Respuesta")
-    '            _listaRespuestas.Add(_MirespuestaOpinion)
-    '        Next
-    '        Return _listaRespuestas
-    '    Catch ex As Exception
-    '        Throw ex
-    '    End Try
-    'End Function
+    Public Function obtenerRespuestasgrafico(ByVal paramPregunta As PreguntaOpinionEntidad) As List(Of RespuestaEntidad)
+        Try
+            Dim _listaRespuestas As New List(Of RespuestaEntidad)
+            Dim consulta As String = "select * from [Respuesta_Opinion] where ID_Pregunta=@ID_Pregunta"
+            Dim Command As SqlCommand = Acceso.MiComando(consulta)
+            With Command.Parameters
+                .Add(New SqlParameter("@ID_Pregunta", paramPregunta.ID))
+            End With
+            Dim _dt As DataTable = Acceso.Lectura(Command)
+            For Each dr As DataRow In _dt.Rows
+                Dim _MirespuestaOpinion As New RespuestaEntidad
+                _MirespuestaOpinion.Pregunta = paramPregunta
+                _MirespuestaOpinion.ID_Respuesta = dr("ID_Respuesta")
+                _MirespuestaOpinion.RespuestaEncuesta = traerRespuestasID(dr("ID_RespuestaEncuesta"))
+                _listaRespuestas.Add(_MirespuestaOpinion)
+            Next
+            Return _listaRespuestas
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 
 
 

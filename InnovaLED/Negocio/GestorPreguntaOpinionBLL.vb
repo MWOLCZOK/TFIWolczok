@@ -43,7 +43,14 @@ Public Class GestorPreguntaOpinionBLL
 
     End Function
 
+    Public Function TraerTodasPreguntasGraficos(paramTipoPregunta As TipoPregunta) As List(Of PreguntaOpinionEntidad)
+        Try
+            Return preguntaMPP.TraerTodasPreguntasGraficos(paramTipoPregunta)
+        Catch ex As Exception
+            Throw ex
+        End Try
 
+    End Function
 
 
 
@@ -133,14 +140,14 @@ Public Class GestorPreguntaOpinionBLL
 
     End Function
 
-    'Public Function obtenerRespuestasFO(ByVal paramPregunta As PreguntaOpinionEntidad) As List(Of PreguntaOpinionEntidad.TipoRespuestasFichaOpinion)
-    '    Try
-    '        Return preguntaMPP.obtenerRespuestasFO(paramPregunta)
-    '    Catch ex As Exception
-    '        Throw New Exception
-    '    End Try
+    Public Function obtenerRespuestasGrafico(ByVal paramPregunta As PreguntaOpinionEntidad) As List(Of RespuestaEntidad)
+        Try
+            Return preguntaMPP.obtenerRespuestasgrafico(paramPregunta)
+        Catch ex As Exception
+            Throw New Exception
+        End Try
 
-    'End Function
+    End Function
 
 
 

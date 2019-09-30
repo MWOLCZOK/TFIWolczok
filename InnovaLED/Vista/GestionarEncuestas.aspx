@@ -4,55 +4,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <!-- <script type="text/javascript" src="JS/ClienteValid.js"></script>-->
     <script src="JS/Chart.js"></script>
-    <script type="text/javascript">
-        function cargarGraficoTorta(satisfecho, insatisfecho) {
-            var ctx = document.getElementById("chart-area").getContext("2d");
-            var pieData = [
-            {
-                value: satisfecho,
-                color: "#62B581",
-                highlight: "#28A44C",
-                label: "Satisfecho"
-            },
-            {
-                value: insatisfecho,
-                color: "#DD5B7D",
-                highlight: "#D13248",
-                label: "Insatisfecho"
-            }
 
-            ];
-            window.myPie = new Chart(ctx).Pie(pieData);
-        };
-    </script>
-
-    <script type="text/javascript">
-        function cargarGraficoTortaSINO(Si, No, QUIZAS) {
-            var ctx = document.getElementById("chart-area2").getContext("2d");
-            var pieData = [
-            {
-                value: Si,
-                color: "#62B581",
-                highlight: "#28A44C",
-                label: "Si"
-            },
-            {
-                value: No,
-                color: "#5C9AC9",
-                highlight: "#0074AD",
-                label: "No"
-            },
-            {
-                value: QUIZAS,
-                color: "#E3C15F",
-                highlight: "#E1AB31",
-                label: "Quizas"
-            },
-
-            ];
-            window.myPie = new Chart(ctx).Pie(pieData);
-        };
-    </script>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -285,29 +237,10 @@
                     <div class="panel-cuerpo">
                         <br />
                         <div class="fila">
-                            <div class="col-md-3 col-md-offset-1">
-                                <asp:Label ID="Lbl_mesdetalle" Text="Mes: " runat="server"></asp:Label>
-                                <asp:DropDownList ID="ddl_Mes" runat="server" CssClass="combo">
-                                    <asp:ListItem Selected="True" Value="0">Todos</asp:ListItem>
-                                    <asp:ListItem Value="01">Enero</asp:ListItem>
-                                    <asp:ListItem Value="02">Febrero</asp:ListItem>
-                                    <asp:ListItem Value="03">Marzo</asp:ListItem>
-                                    <asp:ListItem Value="04">Abril</asp:ListItem>
-                                    <asp:ListItem Value="05">Mayo</asp:ListItem>
-                                    <asp:ListItem Value="06">Junio</asp:ListItem>
-                                    <asp:ListItem Value="07">Julio</asp:ListItem>
-                                    <asp:ListItem Value="08">Agosto</asp:ListItem>
-                                    <asp:ListItem Value="09">Septiembre</asp:ListItem>
-                                    <asp:ListItem Value="10">Octubre</asp:ListItem>
-                                    <asp:ListItem Value="11">Noviembre</asp:ListItem>
-                                    <asp:ListItem Value="12">Diciembre</asp:ListItem>
-                                </asp:DropDownList>
-                            </div>
-                            <div class="col-md-3 col-md-offset-1">
-                                <asp:Label ID="Lbl_añodetalle" Text="Año: " runat="server"></asp:Label>
-                                <asp:DropDownList ID="ddl_Ano" runat="server" CssClass="combo">
-                                </asp:DropDownList>
-                            </div>
+                            <div class="col-md-6 col-md-offset-1">
+                                           <asp:Label ID="Label1" Text="Encuesta: " runat="server"></asp:Label>
+                                 <asp:DropDownList ID="encuestas" runat="server" AutoPostBack="false" DataTextField="Enunciado" DataValueField="ID" CssClass="combo"></asp:DropDownList>
+                         </div>
                             <div class="col-md-2 col-md-offset-2">
                                 <asp:Button ID="btn_buscar" runat="server" Text="Buscar" CssClass="btn btn-modificar" />
 
@@ -319,37 +252,6 @@
                             <div class="col-md-6 col-md-offset-1">
                                 <div id="canvas-holder">
                                     <canvas id="chart-area" width="300" height="300" />
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-md-offset-1">
-                                <br />
-                                <div class="col-md-10 col-md-offset-1">
-                                    <div class="panel panel-gris">
-                                        <div class="panel-cabecera">
-                                            <asp:Label ID="lbl_Valores" Font-Size="20px" runat="server">Valores</asp:Label>
-                                        </div>
-                                        <br />
-                                        <div class="panel-cuerpo">
-                                            <div class="row">
-                                                <div class="col-md-4 col-md-offset-1">
-                                                    <asp:Label ID="lbl_Satisfecho" runat="server" Text="Satisfecho:" Font-Size="18px" ForeColor="black" CssClass="label"></asp:Label>
-                                                </div>
-                                                <div class="col-md-2 col-md-offset-3">
-                                                    <asp:Label ID="valor_satisfecho" runat="server" ForeColor="black" Font-Size="18px" CssClass="label"></asp:Label>
-                                                </div>
-                                            </div>
-                                            <br />
-                                            <div class="row">
-                                                <div class="col-md-4 col-md-offset-1">
-                                                    <asp:Label ID="lbl_insatisfecho" runat="server" Text="Insatisfecho:" Font-Size="18px" ForeColor="black" CssClass="label"></asp:Label>
-                                                </div>
-                                                <div class="col-md-2 col-md-offset-3">
-                                                    <asp:Label ID="valor_insatisfecho" runat="server" ForeColor="black" Font-Size="18px" CssClass="label"></asp:Label>
-                                                </div>
-                                            </div>
-                                            <br />
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -383,48 +285,6 @@
                                     <canvas id="chart-area2" width="300" height="300" />
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <br />
-                                <div class="col-md-10 col-md-offset-1">
-                                    <div class="panel panel-gris">
-                                        <div class="panel-cabecera">
-                                            <asp:Label ID="Lbl_Valores_FO" Font-Size="20px" runat="server">Valores</asp:Label>
-                                        </div>
-                                        <div class="panel-cuerpo">
-                                            <div class="row">
-                                                <div class="col-md-4 col-md-offset-1">
-                                                    <asp:Label ID="lbl_Si2" runat="server" Text="Si:" Font-Size="18px" ForeColor="black" CssClass="label"></asp:Label>
-                                                </div>
-                                                <div class="col-md-2 col-md-offset-4">
-                                                    <asp:Label ID="valor_Si" runat="server" Font-Size="18px" ForeColor="black" CssClass="label"></asp:Label>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-4 col-md-offset-1">
-                                                    <asp:Label ID="Lbl_No2" runat="server" Text="No:" Font-Size="18px" ForeColor="black" CssClass="label"></asp:Label>
-                                                </div>
-                                                <div class="col-md-2 col-md-offset-4">
-                                                    <asp:Label ID="valor_No" runat="server" Font-Size="18px" ForeColor="black" CssClass="label"></asp:Label>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-4 col-md-offset-1">
-                                                    <asp:Label ID="Lbl_Quizas2" runat="server" Text="Quizas:" Font-Size="18px" ForeColor="black" CssClass="label"></asp:Label>
-                                                </div>
-                                                <div class="col-md-2 col-md-offset-4">
-                                                    <asp:Label ID="valor_Quizas" runat="server" Font-Size="18px" ForeColor="black" CssClass="label"></asp:Label>
-                                                </div>
-                                            </div>
-                                            <br />
-                                            <br />
-                                            <br />
-                                            <br />
-                                            <br />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
                         </div>
                     </div>
                 </div>

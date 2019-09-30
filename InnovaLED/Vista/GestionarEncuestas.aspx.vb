@@ -15,11 +15,12 @@ Public Class GestionarEncuestas
         If Not IsPostBack Then
             CargarDrop()
             CargarEncuestas() ' Carga encuestas para el Grid del ABM
-            obtenerPreguntasOpinion() ' Gráfico Torta Encuesta - Gráfico 1
-            cargarDDLAno() ' Carga DropDown de año
-            obtenerPreguntasEncuesta()
-            obtenerSeleccionado() ' Gráfico Torta Ficha Opinion -Gráfico 2
+            'obtenerPreguntasOpinion() ' Gráfico Torta Encuesta - Gráfico 1
+            'cargarDDLAno() ' Carga DropDown de año
+            cargarPreguntasEncuesta()
+            'obtenerSeleccionado() ' Gráfico Torta Ficha Opinion -Gráfico 2
             Session("RespuestasSeleccionadas") = New List(Of RespuestaEncuestaEntidad)
+            Session("EncuestasGraficos") = New List(Of PreguntaOpinionEntidad)
         Else
 
 
@@ -373,34 +374,58 @@ Public Class GestionarEncuestas
     End Sub
 
 
-    Private Sub generarGrafico(ByVal _satisfecho As Integer, ByVal _insatisfecho As Integer)
+    Private Sub generarGraficoEncuesta(respuestas As List(Of RespuestaEntidad))
         Try
-            Page.ClientScript.RegisterStartupScript(Me.GetType(), "script", "cargarGraficoTorta(" & _satisfecho & "," & _insatisfecho & ");", True)
+
+
+            Dim script As String = " $(document).ready(function () {
+                 var ctx = document.getElementById(""chart-area"").getContext(""2d"");   
+                    var pieData = [ "
+            Dim listaauxilar As New List(Of RespuestaEncuestaEntidad)
+            For Each respuesta In respuestas
+                If Not listaauxilar.Any(Function(p) p.ID = respuesta.RespuestaEncuesta.ID) Then
+                    System.Threading.Thread.Sleep(50)
+                    Dim color As String = [String].Format("#{0:X6}", New Random().Next(&H1000000))
+                    System.Threading.Thread.Sleep(50)
+                    Dim colorh As String = [String].Format("#{0:X6}", New Random().Next(&H1000000))
+                    script += "{ value: " & respuestas.Where(Function(p) p.RespuestaEncuesta.ID = respuesta.RespuestaEncuesta.ID).Count() & ","
+                    script += " color: " + """" + color + ""","
+                    script += " highlight: " + """" + colorh + ""","
+                    script += " label: """ + respuesta.RespuestaEncuesta.Descripcion + """},"
+                    listaauxilar.Add(respuesta.RespuestaEncuesta)
+                End If
+            Next
+            script +=
+                  "  ];
+                    window.myPie = new Chart(ctx).Pie(pieData);
+                 }); "
+
+            Page.ClientScript.RegisterStartupScript(Me.GetType(), "script", script, True)
         Catch ex As Exception
         End Try
     End Sub
 
     Private Sub generarDataGridView(_satisfecho, _insatisfecho)
-        Me.valor_satisfecho.Text = _satisfecho
-        Me.valor_insatisfecho.Text = _insatisfecho
+        'Me.valor_satisfecho.Text = _satisfecho
+        'Me.valor_insatisfecho.Text = _insatisfecho
     End Sub
 
 
     Private Sub cargarDDLAno()
-        Try
-            Dim _item2 As New ListItem
-            _item2.Value = 0
-            _item2.Text = "Todos"
-            Me.ddl_Ano.Items.Add(_item2)
-            Dim fecInicial As Integer = 2018
-            For i = fecInicial To Year(Today)
-                Dim _item As New ListItem
-                _item.Value = i
-                _item.Text = i.ToString
-                Me.ddl_Ano.Items.Add(_item)
-            Next
-        Catch ex As Exception
-        End Try
+        'Try
+        '    Dim _item2 As New ListItem
+        '    _item2.Value = 0
+        '    _item2.Text = "Todos"
+        '    Me.ddl_Ano.Items.Add(_item2)
+        '    Dim fecInicial As Integer = 2018
+        '    For i = fecInicial To Year(Today)
+        '        Dim _item As New ListItem
+        '        _item.Value = i
+        '        _item.Text = i.ToString
+        '        Me.ddl_Ano.Items.Add(_item)
+        '    Next
+        'Catch ex As Exception
+        'End Try
 
 
     End Sub
@@ -408,21 +433,22 @@ Public Class GestionarEncuestas
 
     Protected Sub btn_buscar_Click(sender As Object, e As EventArgs) Handles btn_buscar.Click
         Try
-            If (Me.ddl_Ano.SelectedValue = 0) And (Me.ddl_Mes.SelectedValue = 0) Then
-                obtenerPreguntasOpinion()
-            Else
-                obtenerPreguntasOpinion(CInt(Me.ddl_Mes.SelectedValue), CInt(Me.ddl_Ano.SelectedValue))
-            End If
+            Dim gestorpregunta As New GestorPreguntaOpinionBLL
+            generarGraficoEncuesta(gestorpregunta.obtenerRespuestasGrafico(gestorpregunta.obtenerPreguntas(New PreguntaOpinionEntidad With {.ID = encuestas.SelectedValue})))
+
+            'If (Me.ddl_Ano.SelectedValue = 0) And (Me.ddl_Mes.SelectedValue = 0) Then
+            '    obtenerPreguntasOpinion()
+            'Else
+            '    obtenerPreguntasOpinion(CInt(Me.ddl_Mes.SelectedValue), CInt(Me.ddl_Ano.SelectedValue))
+            'End If
         Catch ex As Exception
         End Try
-        obtenerSeleccionado() ' Gráfico Torta Ficha Opinion -Gráfico 2
+        'obtenerSeleccionado() ' Gráfico Torta Ficha Opinion -Gráfico 2
     End Sub
 
 
     Private Sub obtenerPreguntasOpinion()
         'Try
-        '    Dim _satisfecho As Integer = 0
-        '    Dim _insatisfecho As Integer = 0
         '    Dim _listaPreguntaOpinion As List(Of PreguntaOpinionEntidad) = encuestaBLL.obtenerPreguntas
         '    For Each _preguntaOpinion As PreguntaOpinionEntidad In _listaPreguntaOpinion
         '        Dim _listaRespuesta As List(Of PreguntaOpinionEntidad.TipoRespuestasCalidad) = encuestaBLL.obtenerRespuestas(_preguntaOpinion)
@@ -446,14 +472,19 @@ Public Class GestionarEncuestas
     'CÓDIGO PARA REPORTE DE FICHA OPINION
 
 
-    Private Sub obtenerPreguntasEncuesta()
-        'Try
-        '    Me.ddl_PreguntaEncuesta.DataSource = encuestaBLL.obtenerPreguntas(TipoPregunta.Opinion)
-        '    Me.ddl_PreguntaEncuesta.DataValueField = "ID"
-        '    Me.ddl_PreguntaEncuesta.DataTextField = "Enunciado"
-        '    Me.ddl_PreguntaEncuesta.DataBind()
-        'Catch ex As Exception
-        'End Try
+    Private Sub cargarPreguntasEncuesta()
+        Try
+            Dim _listapreguntas As List(Of PreguntaOpinionEntidad)
+            _listapreguntas = encuestaBLL.TraerTodasPreguntasGraficos(TipoPregunta.Encuesta)
+            If _listapreguntas.Count > 0 Then
+                Session("EncuestasGraficos") = _listapreguntas
+                Me.encuestas.DataSource = _listapreguntas
+                Me.encuestas.DataBind()
+            Else
+            End If
+
+        Catch ex As Exception
+        End Try
 
     End Sub
 
@@ -502,9 +533,9 @@ Public Class GestionarEncuestas
     'End Sub
 
     Private Sub generarDataGridView2(_si, _no, _quizas)
-        Me.valor_Si.Text = _si
-        Me.valor_No.Text = _no
-        Me.valor_Quizas.Text = _quizas
+        'Me.valor_Si.Text = _si
+        'Me.valor_No.Text = _no
+        'Me.valor_Quizas.Text = _quizas
 
     End Sub
 
@@ -522,5 +553,6 @@ Public Class GestionarEncuestas
         gv_respuestas.DataSource = Session("RespuestasSeleccionadas")
         gv_respuestas.DataBind()
     End Sub
+
 End Class
 

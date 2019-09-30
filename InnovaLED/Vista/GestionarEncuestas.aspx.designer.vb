@@ -203,40 +203,22 @@ Partial Public Class GestionarEncuestas
     Protected WithEvents cab_EstadisticasSatisfaccion As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''Control Lbl_mesdetalle.
+    '''Control Label1.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents Lbl_mesdetalle As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''Control ddl_Mes.
+    '''Control encuestas.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents ddl_Mes As Global.System.Web.UI.WebControls.DropDownList
-    
-    '''<summary>
-    '''Control Lbl_añodetalle.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents Lbl_añodetalle As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''Control ddl_Ano.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents ddl_Ano As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents encuestas As Global.System.Web.UI.WebControls.DropDownList
     
     '''<summary>
     '''Control btn_buscar.
@@ -246,51 +228,6 @@ Partial Public Class GestionarEncuestas
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents btn_buscar As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''Control lbl_Valores.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents lbl_Valores As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''Control lbl_Satisfecho.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents lbl_Satisfecho As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''Control valor_satisfecho.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents valor_satisfecho As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''Control lbl_insatisfecho.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents lbl_insatisfecho As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''Control valor_insatisfecho.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents valor_insatisfecho As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
     '''Control cab_EstadisticasEncuestas.
@@ -309,69 +246,6 @@ Partial Public Class GestionarEncuestas
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents ddl_PreguntaEncuesta As Global.System.Web.UI.WebControls.DropDownList
-    
-    '''<summary>
-    '''Control Lbl_Valores_FO.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents Lbl_Valores_FO As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''Control lbl_Si2.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents lbl_Si2 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''Control valor_Si.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents valor_Si As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''Control Lbl_No2.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents Lbl_No2 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''Control valor_No.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents valor_No As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''Control Lbl_Quizas2.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents Lbl_Quizas2 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''Control valor_Quizas.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents valor_Quizas As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
     '''Control ID_encuesta.
