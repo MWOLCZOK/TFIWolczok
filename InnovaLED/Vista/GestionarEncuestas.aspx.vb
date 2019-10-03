@@ -14,15 +14,12 @@ Public Class GestionarEncuestas
 
         If Not IsPostBack Then
             CargarDrop()
-            CargarEncuestas() ' Carga encuestas para el Grid del ABM
-            'obtenerPreguntasOpinion() ' Gráfico Torta Encuesta - Gráfico 1
-            'cargarDDLAno() ' Carga DropDown de año
+            CargarEncuestas()
             cargarPreguntasEncuesta()
-            'obtenerSeleccionado() ' Gráfico Torta Ficha Opinion -Gráfico 2
+            cargarPreguntasFichaOpinion()
             Session("RespuestasSeleccionadas") = New List(Of RespuestaEncuestaEntidad)
-            Session("EncuestasGraficos") = New List(Of PreguntaOpinionEntidad)
+            btn_buscar_Click(Nothing, Nothing)
         Else
-
 
         End If
 
@@ -46,6 +43,8 @@ Public Class GestionarEncuestas
         End Try
         CargarEncuestas()
         LimpiarControles()
+        cargarPreguntasFichaOpinion()
+        cargarPreguntasEncuesta()
     End Sub
 
     Public Sub LimpiarControles()
@@ -194,7 +193,7 @@ Public Class GestionarEncuestas
             End Select
         Catch ex As Exception
         End Try
-        'Ocultamiento()
+
     End Sub
 
     Private Sub gv_Respuestas_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles gv_respuestas.RowCommand
@@ -293,10 +292,8 @@ Public Class GestionarEncuestas
 
     Public Sub btneliminar_Click(sender As Object, e As EventArgs) Handles btneliminar.Click
         Try
-            'Dim _pregunta As PreguntaOpinionEntidad = TryCast(Session("Preguntas"), List(Of PreguntaOpinionEntidad))(Me.ID_encuesta.Value + (gv_Encuestas.PageIndex * gv_Encuestas.PageSize))
-            Dim _pregunta As PreguntaOpinionEntidad = TryCast(Session("Preguntas"), List(Of PreguntaOpinionEntidad))(Me.ID_encuesta.Value + (gv_Encuestas.PageIndex * gv_Encuestas.PageSize))
 
-            '(Me.id_producto.Value + (gv_Productos.PageIndex * gv_Productos.PageSize)) esto es igual a la posición elegida +(el numero de pagina * la paginación que le puse) eso me devuelve el ID a eliminar, porque el que selecciono desde la grilla no es el ID sino la posicion.
+            Dim _pregunta As PreguntaOpinionEntidad = TryCast(Session("Preguntas"), List(Of PreguntaOpinionEntidad))(Me.ID_encuesta.Value + (gv_Encuestas.PageIndex * gv_Encuestas.PageSize))
             Dim IdiomaActual As Entidades.IdiomaEntidad
             If IsNothing(Current.Session("Cliente")) Then
                 IdiomaActual = Application("Español")
@@ -314,6 +311,9 @@ Public Class GestionarEncuestas
         CargarEncuestas()
         LimpiarControles()
         Ocultamiento()
+        cargarPreguntasFichaOpinion()
+        cargarPreguntasEncuesta()
+
     End Sub
 
     Protected Sub btn_modificar_Click(sender As Object, e As EventArgs) Handles btn_modificar.Click
@@ -339,6 +339,8 @@ Public Class GestionarEncuestas
         Catch ex As Exception
         End Try
         CargarEncuestas()
+        cargarPreguntasFichaOpinion()
+        cargarPreguntasEncuesta()
     End Sub
 
     Protected Sub btn_nuevo_Click(sender As Object, e As EventArgs) Handles btn_nuevo.Click
@@ -351,36 +353,19 @@ Public Class GestionarEncuestas
 
     'CÓDIGO PARA REPORTE DE ENCUESTAS 
 
-    Private Sub obtenerPreguntasOpinion(ByVal paramMes As Integer, ByVal paramAno As Integer)
-        'Try
-        '    Dim _satisfecho As Integer = 0
-        '    Dim _insatisfecho As Integer = 0
-        '    Dim _listaPreguntaOpinion As List(Of PreguntaOpinionEntidad) = encuestaBLL.TraerTodasLasPreguntas
-        '    For Each _preguntaOpinion As PreguntaOpinionEntidad In _listaPreguntaOpinion
-        '        Dim _listaRespuesta As List(Of PreguntaOpinionEntidad.TipoRespuestasCalidad) = encuestaBLL.obtenerRespuestas(_preguntaOpinion, paramMes, paramAno)
-        '        For Each _respuestaOpinion As PreguntaOpinionEntidad.TipoRespuestasCalidad In _listaRespuesta
-        '            If _respuestaOpinion = PreguntaOpinionEntidad.TipoRespuestasCalidad.Bueno Or _respuestaOpinion = PreguntaOpinionEntidad.TipoRespuestasCalidad.Excelente Then
-        '                _satisfecho += 1
-        '            ElseIf _respuestaOpinion = PreguntaOpinionEntidad.TipoRespuestasCalidad.Malo Or _respuestaOpinion = PreguntaOpinionEntidad.TipoRespuestasCalidad.Pesimo Then
-        '                _insatisfecho += 1
-        '            End If
-        '        Next
-        '    Next
-        '    generarGrafico(_satisfecho, _insatisfecho)
-        '    generarDataGridView(_satisfecho, _insatisfecho)
-        'Catch ex As Exception
-        'End Try
-
-    End Sub
-
-
-    Private Sub generarGraficoEncuesta(respuestas As List(Of RespuestaEntidad))
+    Private Sub generarGrafico(ByVal respuestas As List(Of RespuestaEntidad), ByVal tipo As TipoPregunta)
         Try
-
-
-            Dim script As String = " $(document).ready(function () {
+            Dim script As String
+            If tipo = TipoPregunta.Encuesta Then
+                script = " $(document).ready(function () {
                  var ctx = document.getElementById(""chart-area"").getContext(""2d"");   
                     var pieData = [ "
+            Else
+                script = " $(document).ready(function () {
+                 var ctx = document.getElementById(""chart-area2"").getContext(""2d"");   
+                    var pieData = [ "
+            End If
+
             Dim listaauxilar As New List(Of RespuestaEncuestaEntidad)
             For Each respuesta In respuestas
                 If Not listaauxilar.Any(Function(p) p.ID = respuesta.RespuestaEncuesta.ID) Then
@@ -399,77 +384,22 @@ Public Class GestionarEncuestas
                   "  ];
                     window.myPie = new Chart(ctx).Pie(pieData);
                  }); "
-
-            Page.ClientScript.RegisterStartupScript(Me.GetType(), "script", script, True)
+            If tipo = TipoPregunta.Encuesta Then
+                Page.ClientScript.RegisterStartupScript(Me.GetType(), "encuestas", script, True)
+            Else
+                Page.ClientScript.RegisterStartupScript(Me.GetType(), "opiniones", script, True)
+            End If
         Catch ex As Exception
         End Try
-    End Sub
-
-    Private Sub generarDataGridView(_satisfecho, _insatisfecho)
-        'Me.valor_satisfecho.Text = _satisfecho
-        'Me.valor_insatisfecho.Text = _insatisfecho
-    End Sub
-
-
-    Private Sub cargarDDLAno()
-        'Try
-        '    Dim _item2 As New ListItem
-        '    _item2.Value = 0
-        '    _item2.Text = "Todos"
-        '    Me.ddl_Ano.Items.Add(_item2)
-        '    Dim fecInicial As Integer = 2018
-        '    For i = fecInicial To Year(Today)
-        '        Dim _item As New ListItem
-        '        _item.Value = i
-        '        _item.Text = i.ToString
-        '        Me.ddl_Ano.Items.Add(_item)
-        '    Next
-        'Catch ex As Exception
-        'End Try
-
-
     End Sub
 
 
     Protected Sub btn_buscar_Click(sender As Object, e As EventArgs) Handles btn_buscar.Click
         Try
-            Dim gestorpregunta As New GestorPreguntaOpinionBLL
-            generarGraficoEncuesta(gestorpregunta.obtenerRespuestasGrafico(gestorpregunta.obtenerPreguntas(New PreguntaOpinionEntidad With {.ID = encuestas.SelectedValue})))
-
-            'If (Me.ddl_Ano.SelectedValue = 0) And (Me.ddl_Mes.SelectedValue = 0) Then
-            '    obtenerPreguntasOpinion()
-            'Else
-            '    obtenerPreguntasOpinion(CInt(Me.ddl_Mes.SelectedValue), CInt(Me.ddl_Ano.SelectedValue))
-            'End If
+            CargarGraficos()
         Catch ex As Exception
         End Try
-        'obtenerSeleccionado() ' Gráfico Torta Ficha Opinion -Gráfico 2
     End Sub
-
-
-    Private Sub obtenerPreguntasOpinion()
-        'Try
-        '    Dim _listaPreguntaOpinion As List(Of PreguntaOpinionEntidad) = encuestaBLL.obtenerPreguntas
-        '    For Each _preguntaOpinion As PreguntaOpinionEntidad In _listaPreguntaOpinion
-        '        Dim _listaRespuesta As List(Of PreguntaOpinionEntidad.TipoRespuestasCalidad) = encuestaBLL.obtenerRespuestas(_preguntaOpinion)
-        '        For Each _respuestaOpinion As PreguntaOpinionEntidad.TipoRespuestasCalidad In _listaRespuesta
-        '            If _respuestaOpinion = PreguntaOpinionEntidad.TipoRespuestasCalidad.Bueno Or _respuestaOpinion = PreguntaOpinionEntidad.TipoRespuestasCalidad.Excelente Then
-        '                _satisfecho += 1
-        '            ElseIf _respuestaOpinion = PreguntaOpinionEntidad.TipoRespuestasCalidad.Malo Or _respuestaOpinion = PreguntaOpinionEntidad.TipoRespuestasCalidad.Pesimo Then
-        '                _insatisfecho += 1
-        '            End If
-        '        Next
-        '    Next
-        '    generarGrafico(_satisfecho, _insatisfecho)
-        '    generarDataGridView(_satisfecho, _insatisfecho)
-        'Catch ex As Exception
-        'End Try
-
-    End Sub
-
-
-
-    'CÓDIGO PARA REPORTE DE FICHA OPINION
 
 
     Private Sub cargarPreguntasEncuesta()
@@ -488,62 +418,23 @@ Public Class GestionarEncuestas
 
     End Sub
 
-    Private Sub generarGrafico2(ByVal _Si As Integer, ByVal _No As Integer, ByVal _Quizas As Integer)
+    Private Sub cargarPreguntasFichaOpinion()
         Try
-            Page.ClientScript.RegisterStartupScript(Me.GetType(), "script2", "cargarGraficoTortaSINO(" & _Si & "," & _No & ", " & _Quizas & ");", True)
+            Dim _listapreguntas As List(Of PreguntaOpinionEntidad)
+            _listapreguntas = encuestaBLL.TraerTodasPreguntasGraficos(TipoPregunta.Opinion)
+            If _listapreguntas.Count > 0 Then
+                'Session("EncuestasGraficos") = _listapreguntas
+                Me.opinion.DataSource = _listapreguntas
+                Me.opinion.DataBind()
+            Else
+            End If
+
         Catch ex As Exception
         End Try
-    End Sub
-
-    Private Sub obtenerSeleccionado()
-        'Try
-        '    Dim _preguntaSeleccionada As New PreguntaOpinionEntidad
-        '    _preguntaSeleccionada.ID = Me.ddl_PreguntaEncuesta.SelectedValue
-        '    _preguntaSeleccionada = encuestaBLL.obtenerPreguntas(_preguntaSeleccionada)
-        '    Dim _listaRespuesta As List(Of PreguntaOpinionEntidad.TipoRespuestasFichaOpinion) = encuestaBLL.obtenerRespuestasFO(_preguntaSeleccionada)
-        '    calcularValoresGrafico(_listaRespuesta)
-        'Catch ex As Exception
-        'End Try
 
     End Sub
 
 
-    'Public Sub calcularValoresGrafico(ByVal paramListaRespuesta As List(Of PreguntaOpinionEntidad.TipoRespuestasFichaOpinion))
-    '    'Try
-    '    '    Dim _si As Integer = 0
-    '    '    Dim _no As Integer = 0
-    '    '    Dim _quizas As Integer = 0
-
-
-    '    '    For Each _respuesta As PreguntaOpinionEntidad.TipoRespuestasFichaOpinion In paramListaRespuesta
-    '    '        If _respuesta = PreguntaOpinionEntidad.TipoRespuestasFichaOpinion.Si Then
-    '    '            _si += 1
-    '    '        ElseIf _respuesta = PreguntaOpinionEntidad.TipoRespuestasFichaOpinion.No Then
-    '    '            _no += 1
-    '    '        ElseIf _respuesta = PreguntaOpinionEntidad.TipoRespuestasFichaOpinion.Quizas Then
-    '    '            _quizas += 1
-    '    '        End If
-    '    '    Next
-    '    '    generarGrafico2(_si, _no, _quizas)
-    '    '    generarDataGridView2(_si, _no, _quizas)
-    '    'Catch ex As Exception
-
-    '    'End Try
-
-    'End Sub
-
-    Private Sub generarDataGridView2(_si, _no, _quizas)
-        'Me.valor_Si.Text = _si
-        'Me.valor_No.Text = _no
-        'Me.valor_Quizas.Text = _quizas
-
-    End Sub
-
-
-    Private Sub ddl_PreguntaEncuesta_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_PreguntaEncuesta.SelectedIndexChanged
-        obtenerSeleccionado()
-        obtenerPreguntasOpinion() ' Gráfico Torta Encuesta - Gráfico 1
-    End Sub
 
     Protected Sub btn_agregarrta_Click(sender As Object, e As EventArgs) Handles btn_agregarrta.Click
         Dim Nuevarta As New RespuestaEncuestaEntidad
@@ -554,5 +445,16 @@ Public Class GestionarEncuestas
         gv_respuestas.DataBind()
     End Sub
 
+    Protected Sub btn_buscaropinion_Click(sender As Object, e As EventArgs) Handles btn_buscaropinion.Click
+        Try
+            CargarGraficos()
+        Catch ex As Exception
+        End Try
+    End Sub
+    Private Sub CargarGraficos()
+        Dim gestorpregunta As New GestorPreguntaOpinionBLL
+        generarGrafico(gestorpregunta.obtenerRespuestasGrafico(gestorpregunta.obtenerPreguntas(New PreguntaOpinionEntidad With {.ID = opinion.SelectedValue})), TipoPregunta.Opinion)
+        generarGrafico(gestorpregunta.obtenerRespuestasGrafico(gestorpregunta.obtenerPreguntas(New PreguntaOpinionEntidad With {.ID = encuestas.SelectedValue})), TipoPregunta.Encuesta)
+    End Sub
 End Class
 

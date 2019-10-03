@@ -76,8 +76,8 @@
                         <div class="col-md-6">
                             <asp:TextBox ID="txt_rtas" runat="server" placeholder="Ingrese respuesta" CssClass="form-control"></asp:TextBox>
                         </div>
-                          <div class="col-md-3">
-                             <asp:Button ID="btn_agregarrta" runat="server" Text="Agregar Respuesta" CssClass="btn btn-success btn-md" />
+                        <div class="col-md-3">
+                            <asp:Button ID="btn_agregarrta" runat="server" Text="Agregar Respuesta" CssClass="btn btn-success btn-md" />
                         </div>
                     </div>
                     <br />
@@ -107,7 +107,7 @@
                     </div>
 
 
-                   <%-- <div class="row" id="Div_Encuesta" runat="server" visible="false">
+                    <%-- <div class="row" id="Div_Encuesta" runat="server" visible="false">
                         <div class="col-md-4">
                             <div class="row">
                                 &nbsp;&nbsp;&nbsp;
@@ -131,47 +131,45 @@
                             </div>
                         </div>
                     </div>--%>
-
-
                 </div>
                 <br />
 
                 <div class="col-md-offset-1">
                     <div class="row">
                         <asp:Button ID="btn_nuevo" runat="server" Text="Nuevo" CssClass="btn btn-primary btn-md col-md-2 " Visible="false" />
-                        <asp:Button ID="btn_agregar" runat="server" Text="Agregar Pregunta" CssClass="btn btn-success btn-md col-md-4 col-md-offset-1"  />
+                        <asp:Button ID="btn_agregar" runat="server" Text="Agregar Pregunta" CssClass="btn btn-success btn-md col-md-4 col-md-offset-1" />
                         <asp:Button ID="btn_modificar" runat="server" Text="Modificar" CssClass="btn btn-info btn-md col-md-2 col-md-offset-1" Visible="false" />
-                       <%-- <asp:Button ID="btn_eliminarPregunta" runat="server" Text="Eliminar" CssClass="btn btn-danger btn-md col-md-2 col-md-offset-1" Visible="false" />--%>
+                        <%-- <asp:Button ID="btn_eliminarPregunta" runat="server" Text="Eliminar" CssClass="btn btn-danger btn-md col-md-2 col-md-offset-1" Visible="false" />--%>
                         <button id="btn_confirmar" runat="server" type="button" class="btn btn-danger btn-md col-md-2 col-md-offset-1" data-toggle="modal" data-target="#ConfirmacionModalTitle" visible="false">Eliminar</button>
                     </div>
                 </div>
                 <br />
-                </div>
-            </div>
-
-        
-    <%-- Modal de Confirmacion de Eliminación --%>
-    <div class="modal-normal " id="ConfirmacionModalTitle" role="dialog">
-        <div class="modal-dialog" role="document">
-
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title Blanco" id="ModalTitle">Confirmar Eliminación</h5>
-                </div>
-
-
-                <div class="modal-body Blanco">
-                    <label>¿Está seguro que desea realizar la operación de Eliminación?</label>
-
-                </div>
-                <div class="modal-footer">
-                    <asp:Button ID="btneliminar" runat="server" CssClass="btn btn-primary" OnClick="btneliminar_Click" Text="Aceptar" />
-                    <button id="btncerrar" type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
-                </div>
-
             </div>
         </div>
-    </div>
+
+
+        <%-- Modal de Confirmacion de Eliminación --%>
+        <div class="modal-normal " id="ConfirmacionModalTitle" role="dialog">
+            <div class="modal-dialog" role="document">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title Blanco" id="ModalTitle">Confirmar Eliminación</h5>
+                    </div>
+
+
+                    <div class="modal-body Blanco">
+                        <label>¿Está seguro que desea realizar la operación de Eliminación?</label>
+
+                    </div>
+                    <div class="modal-footer">
+                        <asp:Button ID="btneliminar" runat="server" CssClass="btn btn-primary" OnClick="btneliminar_Click" Text="Aceptar" />
+                        <button id="btncerrar" type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
 
 
         <%-- Sección GRID Encuestas--%>
@@ -238,12 +236,11 @@
                         <br />
                         <div class="fila">
                             <div class="col-md-6 col-md-offset-1">
-                                           <asp:Label ID="Label1" Text="Encuesta: " runat="server"></asp:Label>
-                                 <asp:DropDownList ID="encuestas" runat="server" AutoPostBack="false" DataTextField="Enunciado" DataValueField="ID" CssClass="combo"></asp:DropDownList>
-                         </div>
+                                <asp:Label ID="Label1" Text="Enunciado: " runat="server"></asp:Label>
+                                <asp:DropDownList ID="encuestas" runat="server" AutoPostBack="false" DataTextField="Enunciado" DataValueField="ID" CssClass="combo"></asp:DropDownList>
+                            </div>
                             <div class="col-md-2 col-md-offset-2">
                                 <asp:Button ID="btn_buscar" runat="server" Text="Buscar" CssClass="btn btn-modificar" />
-
                             </div>
                         </div>
                         <br />
@@ -273,14 +270,18 @@
                     <div class="panel-cuerpo">
                         <br />
                         <div class="fila">
-                            <div class="col-md-10 col-md-offset-1">
-                                <asp:DropDownList ID="ddl_PreguntaEncuesta" runat="server" AutoPostBack="true" CssClass="combo"></asp:DropDownList>
+                            <div class="col-md-6 col-md-offset-1">
+                                 <asp:Label ID="Label2" Text="Enunciado: " runat="server"></asp:Label>
+                                <asp:DropDownList ID="opinion" runat="server" DataTextField="Enunciado" DataValueField="ID" AutoPostBack="false" CssClass="combo"></asp:DropDownList>
+                            </div>
+                            <div class="col-md-2 col-md-offset-2 ">
+                                <asp:Button ID="btn_buscaropinion" runat="server" Text="Buscar" CssClass="btn btn-modificar" />
                             </div>
                         </div>
                         <br />
                         <br />
                         <div class="fila">
-                            <div class="col-md-6 col-md-offset-1">
+                            <div class="col-md-6  col-md-offset-1">
                                 <div id="canvas-holder2">
                                     <canvas id="chart-area2" width="300" height="300" />
                                 </div>
@@ -290,14 +291,6 @@
                 </div>
             </div>
         </div>
-
-
-
-
-
-
-
-
 
 
 

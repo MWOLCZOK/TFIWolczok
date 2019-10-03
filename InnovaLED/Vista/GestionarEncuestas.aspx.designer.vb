@@ -239,13 +239,31 @@ Partial Public Class GestionarEncuestas
     Protected WithEvents cab_EstadisticasEncuestas As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''Control ddl_PreguntaEncuesta.
+    '''Control Label2.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents ddl_PreguntaEncuesta As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Control opinion.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents opinion As Global.System.Web.UI.WebControls.DropDownList
+    
+    '''<summary>
+    '''Control btn_buscaropinion.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btn_buscaropinion As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
     '''Control ID_encuesta.
