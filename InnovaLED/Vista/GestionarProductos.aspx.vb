@@ -7,35 +7,24 @@ Public Class GestionarProductos
     Inherits System.Web.UI.Page
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-
-
         If Not IsPostBack Then
             Try
                 Ocultamiento()
                 CargarProductos()
                 CargarCategoria()
                 CargarLinea()
-
-
             Catch ex As Exception
-
             End Try
         Else
             Ocultamiento3()
-
         End If
     End Sub
-
-
 
 
     Private Sub CargarProductos()
         Dim lista As List(Of ProductoEntidad)
         Dim Gestor As New GestorProductoBLL
-        'If Not IsNothing(Current.Session("producto")) Then
         lista = Gestor.TraerTodosProductos()
-        'Else Return
-        'End If
         If lista.Count > 0 Then
             Session("producto") = lista
             Me.gv_Productos.DataSource = lista
@@ -70,15 +59,7 @@ Public Class GestionarProductos
         Me.btn_modificar.Visible = False
         Me.btn_confirmar.Visible = False
         Me.btn_agregar.Visible = True
-        'txtmarca.Enabled = False
-        'txtmodelo.Enabled = False
-        'txtdesc.Enabled = False
-        'txtpeso.Enabled = False
-        'txtwatt.Enabled = False
-        'txtprecio.Enabled = False
-        'DropDownLinea.Enabled = False
-        'DropDowncat.Enabled = False
-        'FileUpload1.Enabled = False
+
     End Sub
 
     Private Sub Ocultamiento2()
@@ -104,10 +85,6 @@ Public Class GestionarProductos
         FileUpload1.Enabled = True
 
     End Sub
-
-
-
-
 
     Private Sub gv_Productos_DataBound(sender As Object, e As EventArgs) Handles gv_Productos.DataBound
         Try
@@ -362,8 +339,6 @@ Public Class GestionarProductos
                 IdiomaActual = Application(TryCast(Current.Session("Cliente"), Entidades.UsuarioEntidad).Idioma.Nombre)
             End If
             If Page.IsValid = True Then
-                ' poner aca validación para los texbox
-
                 prod.Marca = txtmarca.Text
                 prod.Modelo = txtmodelo.Text
                 prod.Descripcion = txtdesc.Text
@@ -371,14 +346,8 @@ Public Class GestionarProductos
                 prod.Watt = txtwatt.Text
                 prod.Imagen = FileUpload1.FileBytes
                 prod.Peso = txtpeso.Text
-
-
                 prod.LineaProducto = New LineaProducto With {.ID_Linea = DropDownLinea.SelectedValue}
                 prod.CategoriaProducto = New CategoriaProducto With {.ID_Categoria = DropDowncat.SelectedValue}
-
-
-
-
                 If GestorProducto.Alta(prod) Then
                     Me.success.Visible = True
                     Me.textovalid.InnerText = "Se agregó el producto correctamente"
@@ -387,7 +356,6 @@ Public Class GestionarProductos
                 End If
             Else
                 Me.alertvalid.Visible = True
-                'Me.textovalid.InnerText = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "FieldValidator1").Traduccion
                 Me.textovalid.InnerText = "Completar los campos correctamente"
                 Me.success.Visible = False
             End If
@@ -398,13 +366,19 @@ Public Class GestionarProductos
             Else
                 IdiomaActual = Application(TryCast(Current.Session("Cliente"), Entidades.UsuarioEntidad).Idioma.Nombre)
             End If
-            Me.alertvalid.Visible = True
-            Me.textovalid.InnerText = "MensajeaCompletar"
-            Me.success.Visible = False
         Catch ex As Exception
-
         End Try
     End Sub
+
+    Public Function ValidarCampos() As Boolean
+        If txtmodelo.Text = "" Or txtdesc.Text = "" Or txtprecio.Text Or txtwatt.Text = "" Or FileUpload1.FileBytes Is "" Or txtpeso.Text = "" Then
+            Return False ' si alguno está vacio, devuelvo false
+        Else
+            Return True ' si está completo devuelve true
+        End If
+
+    End Function
+
 
 
 

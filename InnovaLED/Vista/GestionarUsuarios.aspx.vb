@@ -10,14 +10,15 @@ Public Class GestionarUsuarios
     Private Sub Gestionar_Usuario_Load(sender As Object, e As EventArgs) Handles Me.Load
         If Not IsPostBack Then
             Try
-                Ocultamiento(False)
+                Ocultamiento()
                 CargarUsuarios()
                 CargarPerfiles()
                 CargarIdiomas()
                 Session("RolesSeleccionados") = New List(Of RolEntidad)
             Catch ex As Exception
-
             End Try
+        Else
+
 
         End If
     End Sub
@@ -239,16 +240,32 @@ Public Class GestionarUsuarios
 
         End Try
     End Sub
-    Private Sub Ocultamiento(ByVal bi As Boolean)
+    'Private Sub Ocultamiento(ByVal bi As Boolean)
 
-        Me.btnModificar.Visible = bi
-        Me.btneliminar.Visible = bi
+    '    Me.btnModificar.Visible = bi
+    '    Me.btneliminar.Visible = bi
+    'End Sub
+
+    Private Sub Ocultamiento()
+        Me.btn_nuevo.Visible = True
+        Me.btnModificar.Visible = False
+        Me.btn_confirmar.Visible = False
+        Me.btnAceptar.Visible = True
+
+    End Sub
+
+    Private Sub Ocultamiento2()
+        Me.btn_nuevo.Visible = True
+        Me.btnModificar.Visible = True
+        Me.btn_confirmar.Visible = True
+        Me.btnAceptar.Visible = False
+
     End Sub
 
     Private Sub gv_Usuarios_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles gv_Usuarios.RowCommand
         'Funcion para que luego de clickear en el Grid lo pase a los textbox
         Try
-            Ocultamiento(False)
+            Ocultamiento2()
             Dim gestor As New Negocio.UsuarioBLL
             Dim Usuario As Entidades.UsuarioEntidad = TryCast(Session("Usuarios"), List(Of Entidades.UsuarioEntidad))(e.CommandArgument + (gv_Usuarios.PageIndex * gv_Usuarios.PageSize))
             Me.id_usuario.Value = e.CommandArgument
@@ -323,7 +340,7 @@ Public Class GestionarUsuarios
                         End If
                         rolIndice += 1
                     Next
-                    Ocultamiento(True)
+                    Ocultamiento2()
             End Select
         Catch ex As Exception
 
@@ -343,6 +360,11 @@ Public Class GestionarUsuarios
             End If
             If Page.IsValid = True Then
                 Usuario.NombreUsu = txtnomusuario.Text
+                'Usuario.Apellido = txtapellido.Text
+                'Usuario.Nombre = txtnombre.Text
+                'Usuario.Password = txtpass.text
+                'Usuario.DNI = TxtDNI.Text
+                'Usuario.Mail = txtmail.Text
                 Usuario.Idioma = New Entidades.IdiomaEntidad With {.ID_Idioma = DropDownListIdioma.SelectedValue}
                 Usuario.Rol = Session("RolesSeleccionados")
                 If Usuario.Rol.Count > 0 Then
@@ -353,12 +375,18 @@ Public Class GestionarUsuarios
                         Me.success.Visible = True
                         Me.alertvalid.Visible = False
                         CargarUsuarios()
-                        Ocultamiento(False)
+                        Ocultamiento2()
+                        Me.alertvalid.Visible = False
+                        Me.success.Visible = True
+                        Me.success.InnerText = "Se modificó el usuario correctamente."
                     End If
                 Else
+                    'Me.alertvalid.Visible = True
+                    ''Me.textovalid.InnerText = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "FieldValidator2").Traduccion
+                    'Me.success.Visible = False
                     Me.alertvalid.Visible = True
-                    'Me.textovalid.InnerText = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "FieldValidator2").Traduccion
                     Me.success.Visible = False
+                    Me.alertvalid.InnerText = "Debe seleccionar al menos un Rol para continuar."
                 End If
 
             Else
@@ -420,7 +448,7 @@ Public Class GestionarUsuarios
                     Me.success.InnerText = "Se eliminó el usuario correctamente."
                     Me.alertvalid.Visible = False
                     CargarUsuarios()
-                    Ocultamiento(False)
+                    Ocultamiento()
                 End If
             Else
                 Me.alertvalid.Visible = True
@@ -483,5 +511,29 @@ Public Class GestionarUsuarios
 
         End Try
     End Sub
+
+    Protected Sub btn_Nuevo_Click(sender As Object, e As EventArgs) Handles btn_nuevo.Click ' Este es el botón cancelar
+
+        LimpiarCampos()
+        Ocultamiento3()
+
+    End Sub
+
+    Public Function LimpiarCampos()
+        txtnomusuario.Text = ""
+        txtnombre.Text = ""
+        txtapellido.Text = ""
+        TxtDNI.Text = ""
+        txtmail.Text = ""
+
+    End Function
+
+    Private Sub Ocultamiento3()
+        Me.btnAceptar.Visible = True
+        Me.btnModificar.Visible = False
+        Me.btn_confirmar.Visible = False
+        Me.btn_nuevo.Visible = True
+    End Sub
+
 
 End Class

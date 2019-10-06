@@ -45,6 +45,9 @@
                         <div class="col-md-6">
                             <asp:TextBox ID="txt_Nombrepregunta" runat="server" placeholder="Ingrese enunciado" CssClass="form-control" MaxLength="100"></asp:TextBox>
                         </div>
+                        <div class="col-md-1">
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txt_Nombrepregunta" ErrorMessage="*" EnableClientScript="false" Display="Dynamic" CssClass="textoValidacion"></asp:RequiredFieldValidator>
+                        </div>
                     </div>
                     <br />
                     <br />
@@ -65,6 +68,9 @@
                         </div>
                         <div class="col-md-6">
                             <asp:TextBox ID="datepicker" runat="server" placeholder="DD/MM/AAAA" CssClass="form-control"></asp:TextBox>
+                        </div>
+                        <div class="col-md-1">
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="datepicker" ErrorMessage="*" EnableClientScript="false" Display="Dynamic" CssClass="textoValidacion"></asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <br />
@@ -271,7 +277,7 @@
                         <br />
                         <div class="fila">
                             <div class="col-md-6 col-md-offset-1">
-                                 <asp:Label ID="Label2" Text="Enunciado: " runat="server"></asp:Label>
+                                <asp:Label ID="Label2" Text="Enunciado: " runat="server"></asp:Label>
                                 <asp:DropDownList ID="opinion" runat="server" DataTextField="Enunciado" DataValueField="ID" AutoPostBack="false" CssClass="combo"></asp:DropDownList>
                             </div>
                             <div class="col-md-2 col-md-offset-2 ">

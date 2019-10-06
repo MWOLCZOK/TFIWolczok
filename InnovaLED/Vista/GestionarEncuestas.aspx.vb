@@ -29,16 +29,29 @@ Public Class GestionarEncuestas
 
     Protected Sub btn_agregar_Click(sender As Object, e As EventArgs) Handles btn_agregar.Click
         Try
-            Dim GestorpreguntaBLL As New GestorPreguntaOpinionBLL
-            Dim pregunta As New PreguntaOpinionEntidad
-            pregunta.Enunciado = txt_Nombrepregunta.Text
-            pregunta.TipoPregunta = [Enum].Parse(GetType(Entidades.TipoPregunta), ddl_tipopregunta.SelectedValue, True)
-            pregunta.FechaFinVigencia = datepicker.Text
-            pregunta.PosiblesRespuestas = Session("RespuestasSeleccionadas")
-            GestorpreguntaBLL.Alta(pregunta)
-            Me.success.InnerText = "Se agregó la encuesta correctamente."
-            Me.success.Visible = True
-            Me.alertvalid.Visible = False
+            If ValidarCampos() Then
+                Dim GestorpreguntaBLL As New GestorPreguntaOpinionBLL
+                Dim pregunta As New PreguntaOpinionEntidad
+                pregunta.Enunciado = txt_Nombrepregunta.Text
+                pregunta.TipoPregunta = [Enum].Parse(GetType(Entidades.TipoPregunta), ddl_tipopregunta.SelectedValue, True)
+                pregunta.FechaFinVigencia = datepicker.Text
+                pregunta.PosiblesRespuestas = Session("RespuestasSeleccionadas")
+                If pregunta.PosiblesRespuestas.Count >= 2 Then
+                    GestorpreguntaBLL.Alta(pregunta)
+                    Me.success.InnerText = "Se agregó la encuesta correctamente."
+                    Me.success.Visible = True
+                    Me.alertvalid.Visible = False
+                Else
+                    Me.alertvalid.Visible = True
+                    Me.success.Visible = False
+                    Me.alertvalid.InnerText = "Ingrese más de dos respuestas para continuar."
+                End If
+            Else
+                    Me.alertvalid.Visible = True
+                    Me.success.Visible = False
+                Me.alertvalid.InnerText = "Complete todos los campos para continuar."
+            End If
+
         Catch ex As Exception
         End Try
         CargarEncuestas()
@@ -46,6 +59,15 @@ Public Class GestionarEncuestas
         cargarPreguntasFichaOpinion()
         cargarPreguntasEncuesta()
     End Sub
+
+    Public Function ValidarCampos() As Boolean
+        If txt_Nombrepregunta.Text = "" Or datepicker.Text = "" Then
+            Return False ' si alguno está vacio, devuelvo false
+        Else
+            Return True ' si está completo devuelve true
+        End If
+
+    End Function
 
     Public Sub LimpiarControles()
         Session("RespuestasSeleccionadas") = New List(Of RespuestaEncuestaEntidad)
@@ -223,10 +245,10 @@ Public Class GestionarEncuestas
 
 
     Public Sub Ocultamiento()
-        btneliminar.Visible = False
+        'btn_confirmar.Visible = False
         btn_modificar.Visible = False
         btn_agregar.Visible = True
-        'btn_nuevo.Visible = True
+        btn_nuevo.Visible = False
     End Sub
 
 
@@ -333,14 +355,33 @@ Public Class GestionarEncuestas
             _pregunta.FechaFinVigencia = datepicker.Text
             _pregunta.FechaAlta = Now
             _pregunta.PosiblesRespuestas = Session("RespuestasSeleccionadas")
-            GestorpreguntaBLL.Modificar(_pregunta)
-            Me.success.InnerText = "Se Modificó la encuesta correctamente."
-            Me.alertvalid.Visible = False
+            If _pregunta.PosiblesRespuestas.Count >= 2 Then
+
+                If ValidarCampos() Then
+                    GestorpreguntaBLL.Modificar(_pregunta)
+                    Me.success.InnerText = "Se Modificó la encuesta correctamente."
+                    Me.alertvalid.Visible = False
+                    Me.success.Visible = True
+                    Ocultamiento()
+
+                Else
+                    Me.alertvalid.InnerText = "Complete todos los campos para continuar."
+                    Me.alertvalid.Visible = True
+                    Me.success.Visible = False
+                End If
+            Else
+                Me.alertvalid.Visible = True
+                Me.success.Visible = False
+                Me.alertvalid.InnerText = "Ingrese más de dos respuestas para continuar."
+            End If
+
         Catch ex As Exception
         End Try
         CargarEncuestas()
         cargarPreguntasFichaOpinion()
         cargarPreguntasEncuesta()
+        LimpiarControles()
+        CargarDrop()
     End Sub
 
     Protected Sub btn_nuevo_Click(sender As Object, e As EventArgs) Handles btn_nuevo.Click
@@ -457,4 +498,3 @@ Public Class GestionarEncuestas
         generarGrafico(gestorpregunta.obtenerRespuestasGrafico(gestorpregunta.obtenerPreguntas(New PreguntaOpinionEntidad With {.ID = encuestas.SelectedValue})), TipoPregunta.Encuesta)
     End Sub
 End Class
-

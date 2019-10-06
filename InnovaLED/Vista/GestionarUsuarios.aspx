@@ -13,7 +13,7 @@
             <label id="lblsuccessmodUser" class="text-success">El Usuario se creó correctamente.</label>
         </div>
 
-         
+
 
         <div class="row">
             <div class="col-md-12">
@@ -118,7 +118,7 @@
                                 <div class="input-group">
                                     <input type="password" id="txtpass" runat="server" class="form-control" />
                                 </div>
-                            </div>                            
+                            </div>
                         </div>
 
                         <div class="form-group">
@@ -151,11 +151,6 @@
                         <div class="form-group">
                             <asp:Label ID="Label2" runat="server" Text="Rol:" CssClass="col-sm-4 control-label labelform"></asp:Label>
                             <div class="col-md-4">
-                                <%--<div class="input-group">
-                                    <asp:DropDownList ID="DropDownListRol" runat="server" CssClass="form-control" AutoPostBack="true" DataValueField="ID_Rol" DataTextField="Nombre"></asp:DropDownList>
-                                    <span class="input-group-addon" id="basic-addon10"><span class="	glyphicon glyphicon-list-alt" aria-hidden="true"></span></span>
-                                </div>--%>
-
                                 <asp:GridView CssClass="table table-hover table-bordered table-responsive table-success " ID="gv_Roles" runat="server" AutoGenerateColumns="False" HorizontalAlign="Center" RowStyle-Height="40px">
                                     <HeaderStyle CssClass="thead-dark" />
                                     <Columns>
@@ -183,20 +178,14 @@
                             </div>
                         </div>
 
-                           <asp:Button ClientIDMode="Static" ID="btnAceptar" name="btnAceptar" runat="server" Text="Crear Usuario" class="btn btn-success btn-md col-md-3" />
-                        <asp:Button ClientIDMode="Static" ID="btnModificar" name="btnModificar" runat="server" Text="Modificar" class="btn btn-info btn-md col-md-3 col-md-offset-1" />
+                        <asp:Button ClientIDMode="Static" ID="btnAceptar" name="btnAceptar" runat="server" Text="Crear Usuario" class="btn btn-success btn-md col-md-2 col-md-offset-1" />
+                        <asp:Button ClientIDMode="Static" ID="btnModificar" name="btnModificar" runat="server" Text="Modificar" class="btn btn-info btn-md col-md-3 col-md-2 col-md-offset-1" />
                         <%--<asp:Button ClientIDMode="Static" ID="btneliminar" name="btneliminar" runat="server" Text="Eliminar" CssClass="btn btn-block btn-danger" />--%>
-                        <button id="btn_confirmar" runat="server" type="button" class="btn btn-danger btn-md col-md-3 col-md-offset-1" data-toggle="modal" data-target="#ConfirmacionModalTitle">Eliminar</button>
-
-
+                        <button id="btn_confirmar" runat="server" type="button" class="btn btn-danger btn-md col-md-2 col-md-offset-1" data-toggle="modal" data-target="#ConfirmacionModalTitle">Eliminar</button>
+                        <asp:Button ID="btn_nuevo" CausesValidation="false" runat="server" Text="Cancelar" type="button" class="btn btn-warning btn-md col-md-2 col-md-offset-1"></asp:Button>
                     </div>
-
-
                     <br />
                     <br />
-
-
-                     
                     <br />
                 </div>
                 <br />

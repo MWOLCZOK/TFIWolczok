@@ -147,6 +147,7 @@ Public Class UsuarioMPP
 
             With Command.Parameters
                 .Add(New SqlParameter("@ID_Usuario", Usuario.ID_Usuario))
+                .Add(New SqlParameter("@ID_Usuario", Usuario.ID_Usuario))
                 .Add(New SqlParameter("@NombreUsuario", Usuario.NombreUsu))
                 .Add(New SqlParameter("@Idioma", Usuario.Idioma.ID_Idioma))
 
