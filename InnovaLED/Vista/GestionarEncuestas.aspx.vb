@@ -207,7 +207,7 @@ Public Class GestionarEncuestas
                     btn_confirmar.Visible = True
                     txt_Nombrepregunta.Text = _pregunta.Enunciado
                     datepicker.Text = _pregunta.FechaFinVigencia
-                    ddl_tipopregunta.ClearSelection()
+                    ddl_tipopregunta.SelectedIndex = _pregunta.TipoPregunta - 1
                     Session("RespuestasSeleccionadas") = _pregunta.PosiblesRespuestas
                     gv_respuestas.DataSource = Nothing
                     gv_respuestas.DataSource = Session("RespuestasSeleccionadas")

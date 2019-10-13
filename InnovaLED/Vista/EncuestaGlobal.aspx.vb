@@ -25,7 +25,13 @@ Public Class EncuestaGlobal
             Dim _listapregunta As New List(Of PreguntaOpinionEntidad)
             _listapregunta = GestorPreguntaOpinion.TraerTodasPreguntasFichaOpinion(TipoPregunta.Encuesta)
             Session("Preguntas") = _listapregunta
-            GenerarDiseño(_listapregunta)
+            If _listapregunta.Count = 0 Then
+                Me.alertvalid.Visible = True
+                Me.alertvalid.InnerText = "Por el momento no hay encuestas disponibles para mostrar."
+                Me.success.Visible = False
+            Else
+                GenerarDiseño(_listapregunta)
+            End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -50,13 +56,8 @@ Public Class EncuestaGlobal
 
     Protected Sub btn_enviar_Click(sender As Object, e As EventArgs) Handles btn_enviar.Click
         Try
-            If IsNothing(Current.Session("cliente")) Or IsDBNull(Current.Session("Cliente")) Then
-                Me.alertvalid.Visible = True
-                Me.alertvalid.InnerText = "Debe loguearse para continuar con la encuesta"
-            Else
-
-                Dim _listaRespuesta As New List(Of RespuestaEntidad)
-                If validarCuestionario() = True Then
+            Dim _listaRespuesta As New List(Of RespuestaEntidad)
+            If validarCuestionario() = True Then
                     Dim cant As Integer = 1
                     For Each Pregunta As PreguntaOpinionEntidad In Session("Preguntas")
                         Dim _resp As New RespuestaEntidad
@@ -70,13 +71,11 @@ Public Class EncuestaGlobal
                     Me.alertvalid.Visible = False
                     Me.success.Visible = True
                     Me.success.InnerText = "¡Gracias por haber respondido ésta encuesta!"
-                    Response.AddHeader("REFRESH", "5;URL=Default.aspx")
-                Else
+                Response.AddHeader("REFRESH", "4;URL=Default.aspx")
+            Else
                     Me.alertvalid.InnerText = "Debe completar todos los campos"
                     Me.alertvalid.Visible = True
                 End If
-            End If
-
 
         Catch ex As Exception
             Throw ex

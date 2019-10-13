@@ -194,10 +194,15 @@ Public Class PreguntaOpinionMPP
             Dim Command As SqlCommand = Acceso.MiComando("insert into Respuesta_Opinion (ID_Pregunta,ID_Usuario,ID_RespuestaEncuesta,Fecha_Alta) values (@ID_Pregunta,@ID_Usuario,@Valor_Respuesta,@Fecha_Alta)")
             With Command.Parameters
                 .Add(New SqlParameter("@ID_Pregunta", paramRespuesta.Pregunta.ID))
-                .Add(New SqlParameter("@ID_Usuario", paramRespuesta.Usuario.ID_Usuario))
+
                 .Add(New SqlParameter("@Valor_Respuesta", paramRespuesta.RespuestaEncuesta.ID))
                 .Add(New SqlParameter("@Fecha_Alta", Now))
             End With
+            If IsNothing(paramRespuesta.Usuario) Then
+                Command.Parameters.Add(New SqlParameter("@ID_Usuario", 0))
+            Else
+                Command.Parameters.Add(New SqlParameter("@ID_Usuario", paramRespuesta.Usuario.ID_Usuario))
+            End If
             Acceso.Escritura(Command)
             Return True
         Catch ex As Exception

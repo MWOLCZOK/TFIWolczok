@@ -31,7 +31,7 @@ Public Class Restore
         Next fri
     End Sub
 
-    Protected Sub btnserver_Click(sender As Object, e As EventArgs) Handles btnserver.Click
+    Public Sub btnserver_Click(sender As Object, e As EventArgs)
         Dim gestorBK As New Negocio.BackupRestoreBLL
         Dim bkre = New Entidades.BackupRestoreEntidad("")
         bkre.Nombre = Me.Backups.SelectedValue
@@ -81,7 +81,7 @@ Public Class Restore
         Response.Redirect("Default.aspx", False)
     End Sub
 
-    Protected Sub btnlocal_Click(sender As Object, e As EventArgs) Handles btnlocal.Click
+    Public Sub btnlocal_Click(sender As Object, e As EventArgs)
         FileUpload1.SaveAs(System.Web.Configuration.WebConfigurationManager.AppSettings("RutaBackup").ToString() & "\restoreUpload")
 
         Dim bkre = New Entidades.BackupRestoreEntidad("")
@@ -89,7 +89,7 @@ Public Class Restore
         Restore(bkre, False)
     End Sub
 
-    Protected Sub hacerBackup(sender As Object, e As EventArgs) Handles BtnBackup.Click
+    Public Sub btnbackup_Click(sender As Object, e As EventArgs)
         Try
             Dim IdiomaActual As Entidades.IdiomaEntidad
             If IsNothing(Current.Session("Cliente")) Then
@@ -108,7 +108,10 @@ Public Class Restore
                 Negocio.BitacoraBLL.CrearBitacora(Bitac)
             End If
             ofrecerDownloadAlUsuario()
-             CargarBackups()
+            CargarBackups()
+            Me.alertvalid.Visible = False
+            Me.success.Visible = True
+            Me.success.InnerText = "Se realizó el backup exitosamente"
         Catch ex As Exception
             'Dim clienteLogeado As Entidades.UsuarioEntidad = Current.Session("cliente")
             'Dim Bitac As New Entidades.BitacoraErrores(clienteLogeado, ex.Message, Entidades.Tipo_Bitacora.Errores, Now, Request.UserAgent, Request.UserHostAddress, ex.StackTrace, ex.GetType().ToString, Request.Url.ToString)

@@ -59,13 +59,13 @@ Partial Public Class Restore
     Protected WithEvents lblinfobackup As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''Control BtnBackup.
+    '''Control btn_confirmar3.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents BtnBackup As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btn_confirmar3 As Global.System.Web.UI.HtmlControls.HtmlButton
     
     '''<summary>
     '''Control lblinforestore.
@@ -113,6 +113,24 @@ Partial Public Class Restore
     Protected WithEvents FileUpload1 As Global.System.Web.UI.WebControls.FileUpload
     
     '''<summary>
+    '''Control btn_confirmar.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btn_confirmar As Global.System.Web.UI.HtmlControls.HtmlButton
+    
+    '''<summary>
+    '''Control btn_confirmar2.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btn_confirmar2 As Global.System.Web.UI.HtmlControls.HtmlButton
+    
+    '''<summary>
     '''Control btnserver.
     '''</summary>
     '''<remarks>
@@ -129,4 +147,13 @@ Partial Public Class Restore
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents btnlocal As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''Control btnbackup.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btnbackup As Global.System.Web.UI.WebControls.Button
 End Class
