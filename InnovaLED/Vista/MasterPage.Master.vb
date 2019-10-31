@@ -164,6 +164,8 @@ Public Class MasterPage
         Me.menuVertical.Items.Add(New MenuItem("Reportes", "Reportes"))
         Me.menuVertical.Items.Item(4).ChildItems.Add(New MenuItem("Mis Reportes Ventas", "ReportesVentas", Nothing, "/ReportesVentas.aspx"))
         Me.menuVertical.Items.Item(4).ChildItems.Add(New MenuItem("Mis Tiempos de Rta", "ReportesTRChat", Nothing, "/ReportesTRChat.aspx"))
+        Me.menuVertical.Items.Item(4).ChildItems.Add(New MenuItem("Mis Reportes Encuestas", "ReporteEncuestas", Nothing, "/ReporteEncuestas.aspx"))
+
 
         Me.menuVertical.Items.Add(New MenuItem("Mis Chats", "MisChats"))
         Me.menuVertical.Items.Item(5).ChildItems.Add(New MenuItem("Ingresar al Chat", "IngresaralChat", Nothing, "/Chat.aspx"))
@@ -267,6 +269,19 @@ Public Class MasterPage
                 If Usuario.ValidarURL(pagina.NavigateUrl) = False Then
                     listaAremover.Add(pagina)
                 End If
+            End If
+            If pagina.Value = "MisChats" Then
+                usu = Usuario
+                Dim mischats As List(Of Entidades.ChatEntidad) = TryCast(Application("ChatGlobal"), List(Of Entidades.ChatEntidad)).FindAll(Function(p) p.Usuario.ID_Usuario = usu.ID_Usuario And p.Finalizado = False)
+
+                For Each chat In mischats
+                    For Each mensaje In chat.MensajesChat.Where(Function(t) t.Fecha = chat.MensajesChat.Max(Function(p) p.Fecha))
+                        If Not mensaje.Usuario.ID_Usuario = usu.ID_Usuario Then
+                            pagina.Text = "Mis Chats (*)"
+                        End If
+                    Next
+                Next
+
             End If
         Next
         For Each item As MenuItem In listaAremover

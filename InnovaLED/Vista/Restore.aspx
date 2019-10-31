@@ -27,7 +27,7 @@
                         </div>
                         <br />
                         <div class="row">
-                            <div class="col-md-4 col-md-offset-4">
+                            <div class="col-md-5 col-md-offset-4">
                                 <%--<asp:Button ID="BtnBackup" runat="server" Text="Realizar Backup" CssClass="btn btn-block btn-warning" />--%>
                              <button id="btn_confirmar3" runat="server" type="button" class="btn btn-warning btn-md col-md-6 col-md-offset-1" data-toggle="modal" data-target="#ConfirmacionModalTitle3">Realizar Backup</button>
                             </div>
@@ -141,7 +141,7 @@
                 </div>
                 <div class="modal-footer">
                     <asp:Button ID="btnbackup" runat="server" CssClass="btn btn-primary" OnClick="btnbackup_Click" Text="Aceptar" />
-                    <button id="btncerrar3" type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                    <button id="btncerrar3" runat="server" type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
                 </div>
 
             </div>

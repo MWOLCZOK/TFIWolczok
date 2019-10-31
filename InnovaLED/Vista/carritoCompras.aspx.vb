@@ -20,6 +20,7 @@ Public Class carritoCompras
                 ddl_FormaPago_SelectedIndexChanged(Nothing, Nothing)
                 lsttipotarj.SelectedValue = 1
                 lsttipotarj_SelectedIndexChanged(Nothing, Nothing)
+                'Me.Div_Cargando.Visible=False
                 CargarNC()
                 SumarTotalaPagar()
             Else
@@ -28,8 +29,10 @@ Public Class carritoCompras
                     Dim list As List(Of CompraEntidad) = Session("carrito")
                     list.Remove(list.Find(Function(p) p.Producto.ID_Producto = Request.QueryString("carrid")))
                     SumarTotalaPagar()
+
                 End If
                 GenerarDiseño(Session("carrito"))
+                'Me.Div_Cargando.Visible = True
 
             End If
         Catch ex As Exception
@@ -43,6 +46,32 @@ Public Class carritoCompras
     Private Sub GenerarDiseño(ByVal listaproductos As List(Of CompraEntidad))
         ID_Catalogo.Controls.Clear()
         ID_Catalogo.Controls.Add(New LiteralControl("<table id=""cart"" class=""table table-hover table-condensed"">"))
+        ID_Catalogo.Controls.Add(New LiteralControl("<thead>"))
+        ID_Catalogo.Controls.Add(New LiteralControl("<tr>"))
+        ID_Catalogo.Controls.Add(New LiteralControl("<td >"))
+        ID_Catalogo.Controls.Add(New LiteralControl("<div class=""row"">"))
+        ID_Catalogo.Controls.Add(New LiteralControl("<div Class=""col-md-1"">"))
+        ID_Catalogo.Controls.Add(New LiteralControl("</div>"))
+        ID_Catalogo.Controls.Add(New LiteralControl("<div class=""col-md-5 left"">"))
+        ID_Catalogo.Controls.Add(New LiteralControl("<h3>Producto</h3>"))
+        ID_Catalogo.Controls.Add(New LiteralControl("</div>"))
+        ID_Catalogo.Controls.Add(New LiteralControl("<div class=""col-md-2"">"))
+        ID_Catalogo.Controls.Add(New LiteralControl("<h3>Cantidad</h3>"))
+        ID_Catalogo.Controls.Add(New LiteralControl("</div>"))
+        ID_Catalogo.Controls.Add(New LiteralControl("<div class=""col-md-2"">"))
+        ID_Catalogo.Controls.Add(New LiteralControl("<h3>Precio Unitario</h3>"))
+        ID_Catalogo.Controls.Add(New LiteralControl("</div>"))
+
+
+        ID_Catalogo.Controls.Add(New LiteralControl("<div class=""col-md-2"">"))
+        ID_Catalogo.Controls.Add(New LiteralControl("<h3>Accion</h3>"))
+        ID_Catalogo.Controls.Add(New LiteralControl("</div>"))
+        ID_Catalogo.Controls.Add(New LiteralControl("</td>"))
+        ID_Catalogo.Controls.Add(New LiteralControl("</tr>"))
+        ID_Catalogo.Controls.Add(New LiteralControl("</thead>"))
+
+
+
         ID_Catalogo.Controls.Add(New LiteralControl("<tbody>"))
 
 
@@ -79,12 +108,12 @@ Public Class carritoCompras
 
 
             Dim div As HtmlGenericControl = New HtmlGenericControl("div")
-            div.Attributes.Add("class", "col-md-2")
+            div.Attributes.Add("class", "col-md-2 ")
             Dim ImgBut As New ImageButton() ' Creamos una imagen que funciona como botón.
 
             ImgBut.ImageUrl = "IMAGENES\cart.png"
             ImgBut.Width = 50
-            ImgBut.CssClass = "media-object"
+            ImgBut.CssClass = "media-object col-md-offset-4"
             ImgBut.PostBackUrl = "/carritoCompras.aspx" & "?carrid=" & prod.Producto.ID_Producto ' le pasamos por query string el ID de producto a la página del detalleProducto.
             div.Controls.Add(ImgBut)
             ID_Catalogo.Controls.Add(div)
@@ -163,6 +192,11 @@ Public Class carritoCompras
 
 
     Protected Sub btn_aceptar_Click(sender As Object, e As EventArgs) Handles btn_aceptar.Click
+        Me.alertvalid.Visible = False
+        Me.success.Visible = True
+        Me.success.InnerText = "Estamos procesando su factura, aguarde .. "
+
+        'Me.Div_Cargando.Visible = True
         Try
             Dim listnota As List(Of DocumentoFinancieroEntidad) = TryCast(Session("notaSeleccionadas"), List(Of DocumentoFinancieroEntidad))
             Dim cli As UsuarioEntidad = TryCast(Session("cliente"), UsuarioEntidad)
@@ -196,7 +230,6 @@ Public Class carritoCompras
                     ' sigo y elimino la nota de credito usada
                     GestorNotaCred.Eliminar(listnota)
 
-
                     GestorFacturaBLL.GenerarFactura(factura)
                     Dim pago As New PagoEntidad(factura, Now, Tipo_PagoEntidad.Nota_Credito)
                     Dim GestorPagoBLL As New GestorPagoBLL
@@ -206,44 +239,54 @@ Public Class carritoCompras
                     For Each _nota As DocumentoFinancieroEntidad In listnota
                         LongString += _nota.ID & ","
                     Next
-                    'generarComprobante("Factura", factura, cli, Now, listcompra, "Nota de Crédito", LongString)
 
+                    generarComprobante("Factura", factura, cli, Now, listcompra, "Nota de Crédito", LongString)
+                    Response.Redirect("Encuesta.aspx")
 
                 Else
                     'paga mixto
                     If ValidarCampos() = True And validarFecha() = True Then
+                        Dim GestorPagoBLL As New GestorPagoBLL
+
                         GestorNotaCred.Eliminar(listnota) ' esto se agrego 30/6/19 ' Verificar porque si hago un pago mixto, al NC ya se elimino en la parte del código de NC
                         GestorFacturaBLL.GenerarFactura(factura)
                         Dim pago As New PagoEntidad(factura, Now, Tipo_PagoEntidad.Mixto)
-                        Dim GestorPagoBLL As New GestorPagoBLL
+
                         GestorPagoBLL.Alta(pago, listnota)
                         Dim LongString As String
                         For Each _nota As DocumentoFinancieroEntidad In listnota
                             LongString += _nota.ID & ","
                         Next
-                        'generarComprobante("Factura", factura, cli, Now, listcompra, "Tarjeta de crédito y Nota de Crédito", LongString)
+
+                        generarComprobante("Factura", factura, cli, Now, listcompra, "Tarjeta de crédito y Nota de Crédito", LongString)
+                        Response.Redirect("Encuesta.aspx")
                     End If
                 End If
             Else
                 'paga con tarjeta de crédito
                 If ValidarCampos() = True And validarFecha() = True Then
+                    Me.Div_Cargando.Visible = True
+
                     GestorFacturaBLL.GenerarFactura(factura)
                     Dim pago As New PagoEntidad(factura, Now, Tipo_PagoEntidad.Tarjeta_Credito)
                     pago.TipoPago = Tipo_PagoEntidad.Tarjeta_Credito
                     Dim GestorPagoBLL As New GestorPagoBLL
                     GestorPagoBLL.Alta(pago)
-                    'generarComprobante("Factura", factura, cli, Now, listcompra, "Tarjeta de crédito")
+                    generarComprobante("Factura", factura, cli, Now, listcompra, "Tarjeta de crédito")
+                    Response.Redirect("Encuesta.aspx")
                 End If
             End If
-
-
 
 
         Catch ex As Exception
 
         End Try
-        Response.Redirect("Encuesta.aspx")
 
+
+    End Sub
+
+    Public Sub prenderDiv()
+        Me.Div_Cargando.Visible = True
     End Sub
 
 
@@ -417,8 +460,6 @@ Public Class carritoCompras
             varActualizacionNota = notaTotal - sum
             lbltotalnotasC.Text = "AR$ " & varActualizacionNota
 
-
-
         Next
         Return sum
 
@@ -490,7 +531,18 @@ Public Class carritoCompras
 
     Public Function ValidarCamposVisa() As Boolean
         If txtnrotarjetaVisa.Text <> "" And txtexpiracion.Text <> "" And txtCodSeg.Text <> "" Then
-            Return True
+            Dim GestorPagoBLL As New GestorPagoBLL
+            If GestorPagoBLL.ConsultaTarjeta(txtnrotarjetaVisa.Text, txtnomyape.Text, txtexpiracion.Text, txtCodSeg.Text) Then
+                Return True
+
+            Else
+                Me.alertvalid.Visible = True
+                Me.success.Visible = False
+                Me.alertvalid.InnerText = "Tarjeta Inválida"
+                Return False
+
+            End If
+
         Else
             Me.alertvalid.Visible = True
             Me.success.Visible = False
@@ -503,7 +555,18 @@ Public Class carritoCompras
 
     Public Function ValidarCamposMaster() As Boolean
         If txtnrotarjetaMaster.Text <> "" And txtexpiracion.Text <> "" And txtCodSeg.Text <> "" Then
-            Return True
+            Dim GestorPagoBLL As New GestorPagoBLL
+            If GestorPagoBLL.ConsultaTarjeta(txtnrotarjetaMaster.Text, txtnomyape.Text, txtexpiracion.Text, txtCodSeg.Text) Then
+                prenderDiv()
+                Return True
+            Else
+                Me.alertvalid.Visible = True
+                Me.success.Visible = False
+                Me.alertvalid.InnerText = "Tarjeta Inválida"
+                Return False
+
+            End If
+
         Else
             Me.alertvalid.Visible = True
             Me.success.Visible = False
@@ -514,7 +577,18 @@ Public Class carritoCompras
 
     Public Function ValidarCamposAmex() As Boolean
         If txtnrotarjetaAmex.Text <> "" And txtexpiracion.Text <> "" And txtCodSeg.Text <> "" Then
-            Return True
+            Dim GestorPagoBLL As New GestorPagoBLL
+            If GestorPagoBLL.ConsultaTarjeta(txtnrotarjetaAmex.Text, txtnomyape.Text, txtexpiracion.Text, txtCodSeg.Text) Then
+                prenderDiv()
+                Return True
+            Else
+                Me.alertvalid.Visible = True
+                Me.success.Visible = False
+                Me.alertvalid.InnerText = "Tarjeta Inválida"
+                Return False
+
+            End If
+
         Else
             Me.alertvalid.Visible = True
             Me.success.Visible = False
@@ -600,9 +674,6 @@ Public Class carritoCompras
         Negocio.MailingBLL.enviarMailFactura(body, ruta, usu, PDF)
 
     End Sub
-
-
-
 
 
 

@@ -26,7 +26,7 @@
                                 <asp:Label ID="lblidiomaname" runat="server" Text="Nombre de Idioma:" CssClass="col-sm-4 control-label labelform"></asp:Label>
                                 <div class="col-md-6">
                                     <div class="input-group">
-                                        <asp:TextBox ID="txtidioma" runat="server" CssClass="form-control"></asp:TextBox>
+                                        <asp:TextBox ID="txtidioma" runat="server"  MaxLength="50" CssClass="form-control"></asp:TextBox>
                                         <span class="input-group-addon" id="basic-addon8"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
                                     </div>
                                 </div>

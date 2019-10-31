@@ -194,23 +194,40 @@
                         </div>
                     </div>
                 </div>
-
             </div>
-            <br />
-            <br />
+            <div class="row" id="Div_Cargando" runat="server" visible="false">
+                <div class="col-md-7">
+                    <h3>
+                        <asp:Label ID="lblcargando" runat="server" Text="Aguarde por favor..." CssClass="control-label labelform"></asp:Label>
+                        <i class="fa fa-spinner fa-spin" style="font-size: 36px"></i>
+                    </h3>
+                    <%--<div class="row col-md-offset-5">
+                    </div>--%>
+                </div>
+            </div>
             <br />
             <br />
 
             <div class="row">
-                <div class="row col-md-3">
+                 <div class="row col-md-3">
                     <asp:Button ID="btn_aceptar" runat="server" Text="Confirmar Pago" class="btn btn-success btn-lg" Visible="false"></asp:Button>
                 </div>
+
+               <%-- <div class="row col-md-3">
+                    <button class="btn btn-success btn-lg" text="Confirmar Pago" runat="server" id="btn_aceptar" visible="false">
+                        <span class="spinner-border spinner-border-sm"></span>
+                    </button>
+                </div>--%>
+
                 <div class="row col-md-3 col-md-offset-2">
                     <asp:Button ID="btn_cancelar" runat="server" Text="Cancelar Pago" class="btn btn-warning btn-lg" Visible="false"></asp:Button>
                 </div>
+
             </div>
             <br />
             <br />
+
+
 
         </div>
 
@@ -302,6 +319,7 @@
 
 
     <br />
+    <asp:Label ID="Label3" runat="server"></asp:Label>
     <br />
 
     <%--  </ContentTemplate>

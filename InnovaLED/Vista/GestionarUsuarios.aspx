@@ -80,10 +80,10 @@
                     <div class="form-horizontal col-md-6 ">
                         <div class="form-group">
                             <br />
-                            <asp:Label ID="lblapellido" runat="server" Text="Apellido:" CssClass="col-sm-4 control-label labelform"></asp:Label>
+                            <asp:Label ID="lblapellido" runat="server"  Text="Apellido:" CssClass="col-sm-4 control-label labelform"></asp:Label>
                             <div class="col-md-4">
                                 <div class="input-group">
-                                    <asp:TextBox ID="txtapellido" runat="server" CssClass="form-control"></asp:TextBox>
+                                    <asp:TextBox ID="txtapellido"  MaxLength="50" runat="server" CssClass="form-control"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="col-md-1">
@@ -91,10 +91,10 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <asp:Label ID="lblnombre" runat="server" Text="Nombre:" CssClass="col-sm-4 control-label labelform"></asp:Label>
+                            <asp:Label ID="lblnombre" runat="server"  Text="Nombre:" CssClass="col-sm-4 control-label labelform"></asp:Label>
                             <div class="col-md-4">
                                 <div class="input-group">
-                                    <asp:TextBox ID="txtnombre" runat="server" CssClass="form-control"></asp:TextBox>
+                                    <asp:TextBox ID="txtnombre" MaxLength="50" runat="server" CssClass="form-control"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="col-md-1">
@@ -102,10 +102,10 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <asp:Label ID="Label1" runat="server" Text="Nombre de Usuario:" CssClass="col-sm-4 control-label labelform"></asp:Label>
+                            <asp:Label ID="Label1" runat="server"  Text="Nombre de Usuario:" CssClass="col-sm-4 control-label labelform"></asp:Label>
                             <div class="col-md-4">
                                 <div class="input-group">
-                                    <asp:TextBox ID="txtnomusuario" runat="server" CssClass="form-control"></asp:TextBox>
+                                    <asp:TextBox ID="txtnomusuario" MaxLength="50" runat="server" CssClass="form-control"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="col-md-1">
@@ -113,7 +113,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <asp:Label ID="lblpass" runat="server" Text="Contraseña:" CssClass="col-sm-4 control-label labelform"></asp:Label>
+                            <asp:Label ID="lblpass" runat="server"  Text="Contraseña:" CssClass="col-sm-4 control-label labelform"></asp:Label>
                             <div class="col-md-4">
                                 <div class="input-group">
                                     <input type="password" id="txtpass" runat="server" class="form-control" />
@@ -122,10 +122,10 @@
                         </div>
 
                         <div class="form-group">
-                            <asp:Label ID="LblDNI" runat="server" Text="DNI:" CssClass="col-sm-4 control-label labelform"></asp:Label>
+                            <asp:Label ID="LblDNI" runat="server"  Text="DNI:" CssClass="col-sm-4 control-label labelform"></asp:Label>
                             <div class="col-md-4">
                                 <div class="input-group">
-                                    <asp:TextBox ID="TxtDNI" runat="server" CssClass="form-control"></asp:TextBox>
+                                    <asp:TextBox ID="TxtDNI"  MaxLength="9" runat="server" CssClass="form-control"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="col-md-1">
@@ -135,10 +135,10 @@
 
 
                         <div class="form-group">
-                            <asp:Label ID="Lblmail" runat="server" Text="Mail:" CssClass="col-sm-4 control-label labelform"></asp:Label>
+                            <asp:Label ID="Lblmail" runat="server"   Text="Mail:" CssClass="col-sm-4 control-label labelform"></asp:Label>
                             <div class="col-md-4">
                                 <div class="input-group">
-                                    <asp:TextBox ID="txtmail" runat="server" CssClass="form-control"></asp:TextBox>
+                                    <asp:TextBox ID="txtmail" MaxLength="50" runat="server" CssClass="form-control"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="col-md-1">

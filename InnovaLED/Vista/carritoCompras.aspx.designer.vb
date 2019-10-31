@@ -374,6 +374,24 @@ Partial Public Class carritoCompras
     Protected WithEvents txtCodSeg As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
+    '''Control Div_Cargando.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Div_Cargando As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    
+    '''<summary>
+    '''Control lblcargando.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lblcargando As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
     '''Control btn_aceptar.
     '''</summary>
     '''<remarks>
@@ -462,4 +480,13 @@ Partial Public Class carritoCompras
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents btn_seguircontj As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''Control Label3.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Label3 As Global.System.Web.UI.WebControls.Label
 End Class

@@ -78,7 +78,7 @@
             </div>
             <div class="col-sm-8">
                 <asp:Label runat="server" for="txtURL">URL:</asp:Label>
-                <asp:TextBox ID="txtURL" runat="server" class="form-control" Required="true" MaxLength="150"></asp:TextBox>
+                <asp:TextBox ID="txtURL" runat="server" class="form-control" Required="true" MaxLength="100"></asp:TextBox>
             </div>
         </div>
 

@@ -49,7 +49,7 @@
                                 <%--                                <asp:Button ClientIDMode="Static" ID="btndelIdioma" name="btndelIdioma" runat="server" Text="Eliminar Idioma" CssClass="btn btn-block btn-warning" />--%>
                                 <button id="btn_confirmar" runat="server" type="button" class="btn btn-danger btn-md col-md-4 col-md-offset-1" data-toggle="modal" data-target="#ConfirmacionModalTitle">Eliminar</button>
                             </div>
-                        </div>
+                        </div>                
                         <br />
                     </div>
                 </div>

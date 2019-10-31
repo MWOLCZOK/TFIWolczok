@@ -90,7 +90,7 @@ Public Class DocumentoFinancieroMPP
 
 
     Public Shared Sub generarComprobanteNotaCredito(ByRef comprobante As String, ByRef nota As DocumentoFinancieroEntidad, fecha As DateTime)
-        Dim Renderer = New IronPdf.HtmlToPdf()
+        Dim Renderer = New IronPdf.HtmlToPdf
         Dim FilePath As String = HttpContext.Current.Server.MapPath("~") & "FacturTem\NotaCredito.html"
         Dim str = New StreamReader(FilePath)
         Dim body = str.ReadToEnd()
@@ -116,10 +116,10 @@ Public Class DocumentoFinancieroMPP
         Dim OutputPath = HttpContext.Current.Server.MapPath("~") & name
         PDF.SaveAs(OutputPath)
 
-        ' SendMail(BLL.Usuario.current.email, name_comprobante, body)
-
 
     End Sub
+
+
 
 
 

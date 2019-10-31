@@ -2,6 +2,8 @@
 Imports Entidades
 Imports Negocio
 
+Imports System.IO
+
 
 
 Public Class GestionarFacturas
@@ -189,6 +191,10 @@ Public Class GestionarFacturas
 
                     Dim nota As New DocumentoFinancieroEntidad("Nota de Credito generada por Cancelación de factura", fact.MontoTotal, TipoDocumento.Positivo, usuNota, Now)
                     GestorNota.Alta(nota)
+                    Dim cli As UsuarioEntidad = fact.Cliente
+                    Dim listcompra As List(Of CompraEntidad) = fact.DetalleFactura
+
+                    generarComprobanteNotaCredito("Factura-NC", nota, usuNota, Now)
                 Else
                     fact.EstadoEnvio = Me.lstestadoenvio.SelectedValue
                 End If
@@ -248,4 +254,43 @@ Public Class GestionarFacturas
 
 
     End Sub
+
+    Public Sub generarComprobanteNotaCredito(ByRef comprobante As String, ByRef nota As DocumentoFinancieroEntidad, clie As UsuarioEntidad, fecha As DateTime)
+        Dim Renderer = New IronPdf.HtmlToPdf
+        Dim FilePath As String = HttpContext.Current.Server.MapPath("~") & "FacturTem\NotaCredito.html"
+        Dim str = New StreamReader(FilePath)
+        Dim body = str.ReadToEnd()
+
+        body = body.Replace("{notaID}", nota.ID)
+        body = body.Replace("{comprobante}", comprobante)
+        body = body.Replace("{fecha}", fecha)
+        body = body.Replace("{cliente}", nota.Usuario.Nombre)
+        body = body.Replace("{Apellido}", " " & nota.Usuario.Apellido)
+
+
+        body = body.Replace("{NotaCreditoDescripcion}", nota.Descripcion)
+
+        body = body.Replace("{subtotal}", nota.Monto)
+
+
+        body = body.Replace("{totalnota}", nota.Monto)
+
+        Dim name_comprobante = comprobante & "_" & Right("0000" & nota.ID, 4)
+        Dim name = "Facturas\" & name_comprobante & ".pdf"
+
+        Dim PDF = Renderer.RenderHtmlAsPdf(body)
+        Dim OutputPath = HttpContext.Current.Server.MapPath("~") & name
+        PDF.SaveAs(OutputPath)
+
+        EnviarMail(clie, OutputPath)
+
+    End Sub
+    Public Sub EnviarMail(usu As UsuarioEntidad, PDF As String)
+        Dim body As String = System.IO.File.ReadAllText(HttpContext.Current.Server.MapPath("EmailTemplates/EnvioNotaCredito.html"))
+        Dim ruta As String = HttpContext.Current.Server.MapPath("Imagenes")
+        Dim ur As Uri = Request.Url
+        Negocio.MailingBLL.enviarNotadeCredito(body, ruta, usu, PDF)
+
+    End Sub
+
 End Class

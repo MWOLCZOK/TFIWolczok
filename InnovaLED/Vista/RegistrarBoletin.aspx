@@ -48,7 +48,7 @@
                             </div>
                         </div>
                         <div class="col-md-7 col-md-offset-1">
-                            <asp:TextBox ID="txt_Nombre" runat="server" CssClass="form-control" MaxLength="100"></asp:TextBox>
+                            <asp:TextBox ID="txt_Nombre" runat="server"  CssClass="form-control" MaxLength="100"></asp:TextBox>
                         </div>
                         <div class="col-md-1 col-md-offset-1">
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"

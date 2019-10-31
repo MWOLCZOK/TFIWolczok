@@ -70,6 +70,29 @@ Public Class PagoMPP
     End Sub
 
 
+    Public Function ConsultaTarjeta(ByVal Nro_Tarjeta As String, ByVal Nombre_Ape As String, ByVal Fecha_expiracion As String, ByVal Codigo_Seguridad As Integer)
+        Try
+            Dim consulta As String = "Select * from Tarjeta where  Nro_Tarjeta=@Nro_Tarjeta and Nombre_Ape=@Nombre_Ape and Fecha_expiracion=@Fecha_expiracion and Codigo_Seguridad=@Codigo_Seguridad and Bloqueada=0"
+            Dim Command As SqlCommand = Acceso.MiComando(consulta)
+            With Command.Parameters
+                .Add(New SqlParameter("@Nro_Tarjeta", Nro_Tarjeta))
+                .Add(New SqlParameter("@Nombre_Ape", Nombre_Ape))
+                .Add(New SqlParameter("@Fecha_expiracion", Fecha_expiracion))
+                .Add(New SqlParameter("@Codigo_Seguridad", Codigo_Seguridad))
+            End With
+            Dim dt As DataTable = Acceso.Lectura(Command)
+            If dt.Rows.Count > 0 Then
+                Return True
+            Else
+                Return False
+            End If
+        Catch ex As Exception
+
+            Return False
+        End Try
+    End Function
+
+
 
 
 End Class

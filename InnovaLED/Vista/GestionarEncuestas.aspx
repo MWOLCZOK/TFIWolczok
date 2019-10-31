@@ -40,10 +40,10 @@
                     <br />
                     <div class="form-group">
                         <div class="col-md-3">
-                            <asp:Label ID="lbl_Nombrepregunta" runat="server" Font-Bold="true" Text="Pregunta"></asp:Label>
+                            <asp:Label ID="lbl_Nombrepregunta" runat="server"  Font-Bold="true" Text="Pregunta"></asp:Label>
                         </div>
                         <div class="col-md-6">
-                            <asp:TextBox ID="txt_Nombrepregunta" runat="server" placeholder="Ingrese enunciado" CssClass="form-control" MaxLength="100"></asp:TextBox>
+                            <asp:TextBox ID="txt_Nombrepregunta" runat="server"  placeholder="Ingrese enunciado" CssClass="form-control" MaxLength="70"></asp:TextBox>
                         </div>
                         <div class="col-md-1">
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txt_Nombrepregunta" ErrorMessage="*" EnableClientScript="false" Display="Dynamic" CssClass="textoValidacion"></asp:RequiredFieldValidator>
@@ -80,7 +80,7 @@
                             <asp:Label ID="Lbl_rtas" runat="server" Text="Respuesta" Font-Bold="true"></asp:Label>
                         </div>
                         <div class="col-md-6">
-                            <asp:TextBox ID="txt_rtas" runat="server" placeholder="Ingrese respuesta" CssClass="form-control"></asp:TextBox>
+                            <asp:TextBox ID="txt_rtas" runat="server" MaxLength="50" placeholder="Ingrese respuesta" CssClass="form-control"></asp:TextBox>
                         </div>
                         <div class="col-md-3">
                             <asp:Button ID="btn_agregarrta" runat="server" Text="Agregar Respuesta" CssClass="btn btn-success btn-md" />

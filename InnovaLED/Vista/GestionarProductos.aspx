@@ -32,10 +32,10 @@
                 <div class="panel-body">
                         <br />
                     <div class="form-group">
-                        <asp:Label ID="Lbl_marca" runat="server" Text="Marca:" CssClass="col-sm-4 control-label labelform"></asp:Label>
+                        <asp:Label ID="Lbl_marca" runat="server" Text="Marca:"  CssClass="col-sm-4 control-label labelform"></asp:Label>
                         <div class="col-md-6">
                             <div class="input-group">
-                                <asp:TextBox ID="txtmarca" runat="server" CssClass="form-control"></asp:TextBox>
+                                <asp:TextBox ID="txtmarca" runat="server" MaxLength="50" CssClass="form-control"></asp:TextBox>
                             </div>
                         </div>
                         <div class="col-md-1">
@@ -44,10 +44,10 @@
                     </div>    <br />
                            <br />
                     <div class="form-group">
-                        <asp:Label ID="Lbl_modelo" runat="server" Text="Modelo:" CssClass="col-sm-4 control-label labelform"></asp:Label>
+                        <asp:Label ID="Lbl_modelo" runat="server" Text="Modelo:"  CssClass="col-sm-4 control-label labelform"></asp:Label>
                         <div class="col-md-6">
                             <div class="input-group">
-                                <asp:TextBox ID="txtmodelo" runat="server" CssClass="form-control"></asp:TextBox>
+                                <asp:TextBox ID="txtmodelo" runat="server" MaxLength="50" CssClass="form-control"></asp:TextBox>
                             </div>
                         </div>
                         <div class="col-md-1">
@@ -57,10 +57,10 @@
                            <br />
 
                     <div class="form-group">
-                        <asp:Label ID="Lbl_Descripcion" runat="server" Text="Descripcion:" CssClass="col-sm-4 control-label labelform"></asp:Label>
+                        <asp:Label ID="Lbl_Descripcion" runat="server" Text="Descripcion:"  CssClass="col-sm-4 control-label labelform"></asp:Label>
                         <div class="col-md-6">
                             <div class="input-group">
-                                <asp:TextBox ID="txtdesc" runat="server" CssClass="form-control"></asp:TextBox>
+                                <asp:TextBox ID="txtdesc" runat="server" MaxLength="50" CssClass="form-control"></asp:TextBox>
                             </div>
                         </div>
                         <div class="col-md-1">
@@ -72,7 +72,7 @@
                         <asp:Label ID="Lbl_peso" runat="server" Text="Peso:" CssClass="col-sm-4 control-label labelform"></asp:Label>
                         <div class="col-md-6">
                             <div class="input-group">
-                                <asp:TextBox ID="txtpeso" runat="server" CssClass="form-control"></asp:TextBox>
+                                <asp:TextBox ID="txtpeso" runat="server" MaxLength="3" CssClass="form-control"></asp:TextBox>
                             </div>
                         </div>
                         <div class="col-md-1">
@@ -83,10 +83,10 @@
                     </div>    <br />
                            <br />
                     <div class="form-group">
-                        <asp:Label ID="Lbl_precio" runat="server" Text="Precio:" CssClass="col-sm-4 control-label labelform"></asp:Label>
+                        <asp:Label ID="Lbl_precio" runat="server" Text="Precio:"  CssClass="col-sm-4 control-label labelform"></asp:Label>
                         <div class="col-md-6">
                             <div class="input-group">
-                                <asp:TextBox ID="txtprecio" runat="server" CssClass="form-control"></asp:TextBox>
+                                <asp:TextBox ID="txtprecio" runat="server" MaxLength="9" CssClass="form-control"></asp:TextBox>
                             </div>
                         </div>
                         <div class="col-md-1">
@@ -97,10 +97,10 @@
                     </div>    <br />
                            <br />
                     <div class="form-group">
-                        <asp:Label ID="Lbl_watt" runat="server" Text="Watt:" CssClass="col-sm-4 control-label labelform"></asp:Label>
+                        <asp:Label ID="Lbl_watt" runat="server" Text="Watt:"  CssClass="col-sm-4 control-label labelform"></asp:Label>
                         <div class="col-md-6">
                             <div class="input-group">
-                                <asp:TextBox ID="txtwatt" runat="server" CssClass="form-control"></asp:TextBox>
+                                <asp:TextBox ID="txtwatt" runat="server" MaxLength="3" CssClass="form-control"></asp:TextBox>
                             </div>
                         </div>
                         <div class="col-md-1">

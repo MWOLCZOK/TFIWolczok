@@ -46,8 +46,8 @@
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="IronPdf, Version=4.4.9.15720, Culture=neutral, PublicKeyToken=94e1c31412563c75, processorArchitecture=MSIL">
-      <HintPath>..\packages\IronPdf.4.4.9\lib\net40\IronPdf.dll</HintPath>
+    <Reference Include="IronPdf, Version=2019.7.0.21100, Culture=neutral, PublicKeyToken=94e1c31412563c75, processorArchitecture=MSIL">
+      <HintPath>..\packages\IronPdf.2019.7.0\lib\net40\IronPdf.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -145,6 +145,7 @@
     <Content Include="Chat.aspx" />
     <Content Include="DetalleProducto.aspx" />
     <Content Include="EliminarIdioma.aspx" />
+    <Content Include="EmailTemplates\EnvioNotaCredito.html" />
     <Content Include="EmailTemplates\EnvioFactura.html" />
     <Content Include="EmailTemplates\Newsletter.html" />
     <Content Include="EmailTemplates\Cambio_Contraseña.html" />
@@ -243,6 +244,7 @@
     <Content Include="Novedades.aspx" />
     <Content Include="Orders.aspx" />
     <Content Include="ComparacionProducto.aspx" />
+    <Content Include="ReporteEncuestas.aspx" />
     <Content Include="PaginaGenerica.aspx" />
     <Content Include="PoliticasySeguridad.aspx" />
     <Content Include="publicidad\AdRtotatorFiles.xml" />
@@ -254,7 +256,9 @@
     <Content Include="SeleccionarIdioma.aspx" />
     <Content Include="SuscripcionBoletin.aspx" />
     <Content Include="TerminosyCondiciones.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccesoRestringido.aspx.designer.vb">
@@ -495,6 +499,13 @@
     </Compile>
     <Compile Include="ComparacionProducto.aspx.vb">
       <DependentUpon>ComparacionProducto.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="ReporteEncuestas.aspx.designer.vb">
+      <DependentUpon>ReporteEncuestas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteEncuestas.aspx.vb">
+      <DependentUpon>ReporteEncuestas.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="PaginaGenerica.aspx.designer.vb">

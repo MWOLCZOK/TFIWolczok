@@ -156,4 +156,13 @@ Partial Public Class Restore
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents btnbackup As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''Control btncerrar3.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btncerrar3 As Global.System.Web.UI.HtmlControls.HtmlButton
 End Class

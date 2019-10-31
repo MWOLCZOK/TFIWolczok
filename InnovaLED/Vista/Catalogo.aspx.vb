@@ -27,21 +27,27 @@ Public Class Catalogo
             CargarLinea()
         Else
             If IsNumeric(Request.QueryString("contid")) Then
-                If IsNothing(Session("Carrito")) Then
-                    Dim listaprod As List(Of ProductoEntidad) = Session("Listaproductos")
-                    Dim carrito As New List(Of CompraEntidad)
-                    carrito.Add(New CompraEntidad With {.Cantidad = 1, .Producto = listaprod.Find(Function(p) p.ID_Producto = CInt(Request.QueryString("contid")))})
-                    Session("Carrito") = carrito
-
-                Else
-                    Dim listaprod As List(Of ProductoEntidad) = Session("Listaproductos")
-                    Dim carrito As List(Of CompraEntidad) = Session("Carrito")
-                    If Not carrito.Any(Function(p) p.Producto.ID_Producto = Request.QueryString("contid")) Then
+                If Not IsNothing(Session("cliente")) Then
+                    If IsNothing(Session("Carrito")) Then
+                        Dim listaprod As List(Of ProductoEntidad) = Session("Listaproductos")
+                        Dim carrito As New List(Of CompraEntidad)
                         carrito.Add(New CompraEntidad With {.Cantidad = 1, .Producto = listaprod.Find(Function(p) p.ID_Producto = CInt(Request.QueryString("contid")))})
+                        Session("Carrito") = carrito
+
+                    Else
+                        Dim listaprod As List(Of ProductoEntidad) = Session("Listaproductos")
+                        Dim carrito As List(Of CompraEntidad) = Session("Carrito")
+                        If Not carrito.Any(Function(p) p.Producto.ID_Producto = Request.QueryString("contid")) Then
+                            carrito.Add(New CompraEntidad With {.Cantidad = 1, .Producto = listaprod.Find(Function(p) p.ID_Producto = CInt(Request.QueryString("contid")))})
+                        End If
                     End If
+                Else
+                    alertvalid.InnerText = "Debe loguearse para continuar con la compra"
+                    alertvalid.Visible = True
+                    success.Visible = False
                 End If
             End If
-            GenerarDiseño(Session("Listaproductos"), Session("CantListaproductos"))
+                GenerarDiseño(Session("Listaproductos"), Session("CantListaproductos"))
 
             End If
 
