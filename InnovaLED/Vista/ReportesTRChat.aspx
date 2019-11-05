@@ -4,6 +4,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <!-- <script type="text/javascript" src="JS/ClienteValid.js"></script>-->
+         <script src="JS/Chart.js"></script>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -65,36 +66,10 @@
                         <hr />
                         <div class="panel-heading text-center">Distribución Total de Chats Ingresados</div>
                         <hr />
-                        <div class="panel-body">
-
-                            <div id="div1" class="row col-md-offset-2" runat="server">
-                                <div id="div2" runat="server" style="width: 100%; font-size: 4vh; font-weight: bold" />
-                                <div id="div3" runat="server" style="width: 408px; height: 308px">
-                                    <asp:Chart EnableViewState="True" ID="CharCantChatsRespondidos" runat="server" Style="max-width: 100%" Height="334px" Width="384px">
-                                        <Legends>
-                                            <asp:Legend Name="Distribución de Chat">
-                                            </asp:Legend>
-                                        </Legends>
-                                        <Titles>
-                                            <asp:Title Text="Distribución de Chats"></asp:Title>
-                                        </Titles>
-                                        <Series>
-                                            <asp:Series Name="Series1" ChartType="Pie" IsValueShownAsLabel="true" Legend="Distribución de Chat"></asp:Series>
-                                        </Series>
-                                        <ChartAreas>
-                                            <asp:ChartArea Name="ChartArea1" AlignmentOrientation="Horizontal" Area3DStyle-Enable3D="true"
-                                                Area3DStyle-WallWidth="2" Area3DStyle-Rotation="20"
-                                                Area3DStyle-LightStyle="Simplistic" Area3DStyle-Inclination="40"
-                                                BorderColor="White" ShadowColor="#CCCCCC">
-
-                                                <Area3DStyle Enable3D="True" Inclination="40" Rotation="20" WallWidth="2"></Area3DStyle>
-
-                                            </asp:ChartArea>
-
-                                        </ChartAreas>
-                                    </asp:Chart>
-                                </div>
-                            </div>
+                        <div class="panel-body text-center" >
+                                  <div id="canvas-holder1">
+                                        <canvas id="chart-area1" width="250" height="250" />
+                                    </div>
                         </div>
                     </div>
 

@@ -589,6 +589,7 @@ Public Class MasterPage
             End Try
         Else
             Me.alertvalid.Visible = True
+            Me.success.Visible = False
             Me.alertvalid.InnerText = "Debe completar todos los campos y aceptar los terminos y condiciones."
 
         End If

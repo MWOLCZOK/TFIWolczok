@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
     <div class="container-fluid fondoGris">
 
         <div id="alertvalid" runat="server" name="alertvalid" class="alert alert-danger  text-center" visible="false">
@@ -195,29 +196,21 @@
                     </div>
                 </div>
             </div>
-            <div class="row" id="Div_Cargando" runat="server" visible="false">
+            <div class="row" id="DivC" runat="server" style="display:none">
                 <div class="col-md-7">
                     <h3>
                         <asp:Label ID="lblcargando" runat="server" Text="Aguarde por favor..." CssClass="control-label labelform"></asp:Label>
                         <i class="fa fa-spinner fa-spin" style="font-size: 36px"></i>
                     </h3>
-                    <%--<div class="row col-md-offset-5">
-                    </div>--%>
                 </div>
             </div>
             <br />
             <br />
 
             <div class="row">
-                 <div class="row col-md-3">
-                    <asp:Button ID="btn_aceptar" runat="server" Text="Confirmar Pago" class="btn btn-success btn-lg" Visible="false"></asp:Button>
+                <div class="row col-md-3">
+                    <asp:Button ID="btn_aceptar" OnClientClick="ShowDiv()" runat="server" Text="Confirmar Pago" class="btn btn-success btn-lg" Visible="false"></asp:Button>
                 </div>
-
-               <%-- <div class="row col-md-3">
-                    <button class="btn btn-success btn-lg" text="Confirmar Pago" runat="server" id="btn_aceptar" visible="false">
-                        <span class="spinner-border spinner-border-sm"></span>
-                    </button>
-                </div>--%>
 
                 <div class="row col-md-3 col-md-offset-2">
                     <asp:Button ID="btn_cancelar" runat="server" Text="Cancelar Pago" class="btn btn-warning btn-lg" Visible="false"></asp:Button>
@@ -230,7 +223,16 @@
 
 
         </div>
-
+        <script type="text/javascript">
+            function ShowDiv() {
+                var x = document.getElementById("DivC");
+                if (x.style.display === "none") {
+                    x.style.display = "block";
+                }else {
+                    x.style.display = "none";
+                }
+            }
+        </script>
 
 
         <%-- ACA ARRANCA LA GRILLA DE NOTAS DE CREDITO--%>

@@ -1,7 +1,7 @@
 ﻿Imports System.Web.HttpContext
 Imports Entidades
 Imports Negocio
-
+Imports SelectPdf
 Imports System.IO
 
 
@@ -256,7 +256,9 @@ Public Class GestionarFacturas
     End Sub
 
     Public Sub generarComprobanteNotaCredito(ByRef comprobante As String, ByRef nota As DocumentoFinancieroEntidad, clie As UsuarioEntidad, fecha As DateTime)
-        Dim Renderer = New IronPdf.HtmlToPdf
+        Dim Renderer = New SelectPdf.HtmlToPdf
+        Renderer.Options.MarginTop = 90
+        Renderer.Options.MarginLeft = 90
         Dim FilePath As String = HttpContext.Current.Server.MapPath("~") & "FacturTem\NotaCredito.html"
         Dim str = New StreamReader(FilePath)
         Dim body = str.ReadToEnd()
@@ -278,9 +280,9 @@ Public Class GestionarFacturas
         Dim name_comprobante = comprobante & "_" & Right("0000" & nota.ID, 4)
         Dim name = "Facturas\" & name_comprobante & ".pdf"
 
-        Dim PDF = Renderer.RenderHtmlAsPdf(body)
+        Dim PDF = Renderer.ConvertHtmlString(body)
         Dim OutputPath = HttpContext.Current.Server.MapPath("~") & name
-        PDF.SaveAs(OutputPath)
+        PDF.Save(OutputPath)
 
         EnviarMail(clie, OutputPath)
 

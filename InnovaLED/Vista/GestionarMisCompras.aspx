@@ -140,14 +140,7 @@
                                 <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" />
                                 <asp:BoundField DataField="Fecha_Emision" HeaderText="Fecha" />
                                 <asp:BoundField DataField="Monto" HeaderText="Monto" />
-                                <asp:TemplateField HeaderText="Acciones" HeaderStyle-Width="100px">
-                                    <ItemTemplate>
-                                        <div>
-                                            <asp:ImageButton ID="btn_Seleccionar" runat="server" CommandName="S" ImageUrl="~/Imagenes/check.png" Height="18px" />
-                                        </div>
-                                    </ItemTemplate>
-                                    <HeaderStyle Width="100px"></HeaderStyle>
-                                </asp:TemplateField>
+
                             </Columns>
                         </asp:GridView>
                     </div>

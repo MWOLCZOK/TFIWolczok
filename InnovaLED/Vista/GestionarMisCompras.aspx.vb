@@ -75,9 +75,11 @@ Public Class GestionMisCompras
             End If
             For Each row As GridViewRow In gv_facturas.Rows
                 If row.Cells(4).Text = "Rechazado" Then
-                    row.Cells(6).Visible = False
+                    Dim cell6 As System.Web.UI.WebControls.ImageButton = DirectCast(row.FindControl("btn_Seleccionar"), System.Web.UI.WebControls.ImageButton)
+                    cell6.Visible = False
                 ElseIf row.Cells(5).Text = "PendienteCancelacion" Then
-                    row.Cells(6).Visible = False
+                    Dim cell6 As System.Web.UI.WebControls.ImageButton = DirectCast(row.FindControl("btn_Seleccionar"), System.Web.UI.WebControls.ImageButton)
+                    cell6.Visible = False
                 End If
 
                 Dim imagen1 As System.Web.UI.WebControls.ImageButton = DirectCast(row.FindControl("btn_Seleccionar"), System.Web.UI.WebControls.ImageButton)
@@ -233,11 +235,7 @@ Public Class GestionMisCompras
             Else
                 IdiomaActual = Application(TryCast(Current.Session("Cliente"), Entidades.UsuarioEntidad).Idioma.Nombre)
             End If
-            For Each row As GridViewRow In gv_notas.Rows
-                Dim imagen1 As System.Web.UI.WebControls.ImageButton = DirectCast(row.FindControl("btn_Seleccionar"), System.Web.UI.WebControls.ImageButton)
 
-                imagen1.CommandArgument = row.RowIndex
-            Next
 
             With gv_notas.HeaderRow
                 '.Cells(0).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "HeaderID").Traduccion

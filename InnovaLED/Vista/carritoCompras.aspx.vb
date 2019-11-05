@@ -4,6 +4,7 @@ Imports System.Web.HttpContext
 Imports System.IO
 
 
+
 Public Class carritoCompras
     Inherits System.Web.UI.Page
 
@@ -192,11 +193,8 @@ Public Class carritoCompras
 
 
     Protected Sub btn_aceptar_Click(sender As Object, e As EventArgs) Handles btn_aceptar.Click
-        Me.alertvalid.Visible = False
-        Me.success.Visible = True
-        Me.success.InnerText = "Estamos procesando su factura, aguarde .. "
 
-        'Me.Div_Cargando.Visible = True
+
         Try
             Dim listnota As List(Of DocumentoFinancieroEntidad) = TryCast(Session("notaSeleccionadas"), List(Of DocumentoFinancieroEntidad))
             Dim cli As UsuarioEntidad = TryCast(Session("cliente"), UsuarioEntidad)
@@ -226,6 +224,7 @@ Public Class carritoCompras
                         Dim notaCred As New DocumentoFinancieroEntidad("Nota de Credito generada en la compra por diferencia a favor", Res, TipoDocumento.Positivo, cli, Now)
 
                         GestorNotaCred.Alta(notaCred)
+                        generarComprobanteNotaCredito("Factura-NC", notaCred, cli, Now)
                     End If
                     ' sigo y elimino la nota de credito usada
                     GestorNotaCred.Eliminar(listnota)
@@ -265,7 +264,7 @@ Public Class carritoCompras
             Else
                 'paga con tarjeta de crédito
                 If ValidarCampos() = True And validarFecha() = True Then
-                    Me.Div_Cargando.Visible = True
+
 
                     GestorFacturaBLL.GenerarFactura(factura)
                     Dim pago As New PagoEntidad(factura, Now, Tipo_PagoEntidad.Tarjeta_Credito)
@@ -277,7 +276,6 @@ Public Class carritoCompras
                 End If
             End If
 
-
         Catch ex As Exception
 
         End Try
@@ -286,7 +284,7 @@ Public Class carritoCompras
     End Sub
 
     Public Sub prenderDiv()
-        Me.Div_Cargando.Visible = True
+        Me.DivC.Visible = True
     End Sub
 
 
@@ -598,6 +596,9 @@ Public Class carritoCompras
     End Function
 
     Private Function validarFecha() As Boolean
+        If Me.txtexpiracion.Text = "" Then
+            Return False
+        End If
         Dim mes As Integer = CInt(Left(Me.txtexpiracion.Text, 2))
         Dim ano As Integer = CInt(Right(Me.txtexpiracion.Text, 4))
         If mes > 12 Then
@@ -612,7 +613,11 @@ Public Class carritoCompras
 
 
     Private Sub generarComprobante(ByRef comprobante As String, ByRef fact As FacturaEntidad, ByRef clie As UsuarioEntidad, fecha As DateTime, detFac As List(Of CompraEntidad), ByRef tipoPago As String, Optional nc As String = "nada")
-        Dim Renderer = New IronPdf.HtmlToPdf()
+
+        Dim SelectPdf As New SelectPdf.HtmlToPdf
+        SelectPdf.Options.MarginTop = 90
+        SelectPdf.Options.MarginLeft = 90
+
         Dim FilePath As String = HttpContext.Current.Server.MapPath("~") & "FacturTem\Factura.html"
         Dim str = New StreamReader(FilePath)
         Dim body = str.ReadToEnd()
@@ -657,10 +662,17 @@ Public Class carritoCompras
         Dim name_comprobante = comprobante & "_" & Right("0000" & fact.ID, 4)
         Dim name = "Facturas\" & name_comprobante & ".pdf"
 
-        Dim PDF = Renderer.RenderHtmlAsPdf(body)
+
+        Dim PDF2 = SelectPdf.ConvertHtmlString(body)
+
         Dim OutputPath = HttpContext.Current.Server.MapPath("~") & name
-        PDF.SaveAs(OutputPath)
-        fact.PDF = PDF.Stream.ToArray() ' lo convierto en un array para luego guardarlo en la base y poder descargarlo
+        PDF2.Save(OutputPath)
+        Dim memoryStream As New MemoryStream()
+        PDF2.Save(memoryStream)
+        Dim bytes As Byte() = memoryStream.ToArray()
+        memoryStream.Close()
+        PDF2.Close()
+        fact.PDF = bytes
         Dim facturaBLL As New GestorFacturaBLL
 
         facturaBLL.ModificarFacturaPDF(fact)
@@ -675,6 +687,44 @@ Public Class carritoCompras
 
     End Sub
 
+    Public Sub generarComprobanteNotaCredito(ByRef comprobante As String, ByRef nota As DocumentoFinancieroEntidad, clie As UsuarioEntidad, fecha As DateTime)
+        Dim Renderer = New SelectPdf.HtmlToPdf
+        Renderer.Options.MarginTop = 90
+        Renderer.Options.MarginLeft = 90
+        Dim FilePath As String = HttpContext.Current.Server.MapPath("~") & "FacturTem\NotaCredito.html"
+        Dim str = New StreamReader(FilePath)
+        Dim body = str.ReadToEnd()
 
+        body = body.Replace("{notaID}", nota.ID)
+        body = body.Replace("{comprobante}", comprobante)
+        body = body.Replace("{fecha}", fecha)
+        body = body.Replace("{cliente}", nota.Usuario.Nombre)
+        body = body.Replace("{Apellido}", " " & nota.Usuario.Apellido)
+
+
+        body = body.Replace("{NotaCreditoDescripcion}", nota.Descripcion)
+
+        body = body.Replace("{subtotal}", nota.Monto)
+
+
+        body = body.Replace("{totalnota}", nota.Monto)
+
+        Dim name_comprobante = comprobante & "_" & Right("0000" & nota.ID, 4)
+        Dim name = "Facturas\" & name_comprobante & ".pdf"
+
+        Dim PDF = Renderer.ConvertHtmlString(body)
+        Dim OutputPath = HttpContext.Current.Server.MapPath("~") & name
+        PDF.Save(OutputPath)
+
+        EnviarMailNotaCredito(clie, OutputPath)
+
+    End Sub
+    Public Sub EnviarMailNotaCredito(usu As UsuarioEntidad, PDF As String)
+        Dim body As String = System.IO.File.ReadAllText(HttpContext.Current.Server.MapPath("EmailTemplates/EnvioNotaCredito.html"))
+        Dim ruta As String = HttpContext.Current.Server.MapPath("Imagenes")
+        Dim ur As Uri = Request.Url
+        Negocio.MailingBLL.enviarNotadeCredito(body, ruta, usu, PDF)
+
+    End Sub
 
 End Class

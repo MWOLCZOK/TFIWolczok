@@ -1,5 +1,9 @@
 ﻿Imports System.IO
 Imports System.Xml.Linq
+Imports Entidades
+Imports Negocio
+Imports System.Web.HttpContext
+
 
 
 Public Class GestorPublicidad
@@ -108,6 +112,9 @@ Public Class GestorPublicidad
                 If extension <> ".jpg" And extension <> ".jpeg" And extension <> ".gif" And extension <> ".png" Then
                     'Error seleccione imgn para publicidad
                     Me.fuImagen.Focus()
+                    Dim clienteLogeado As Entidades.UsuarioEntidad = Current.Session("cliente")
+                    Dim Bitac As New Bitacora(clienteLogeado, "El usuario " & clienteLogeado.NombreUsu & " creo una nueva publicidad del tipo AdRotator ", Tipo_Bitacora.Alta, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)
+                    BitacoraBLL.CrearBitacora(Bitac)
                     Return
                 End If
             End If

@@ -144,6 +144,26 @@ Public Class PreguntaOpinionMPP
             Throw ex
         End Try
     End Function
+    Public Function TraerTodasPreguntasFichaOpinionRandom(paramTipoPregunta As TipoPregunta) As List(Of PreguntaOpinionEntidad)
+        Try
+            Dim consulta As String = "Select top 2 * from Pregunta_Opinion where BL=@BL and Tipo=@Tipo and Fecha_Fin_Vigencia>=getdate() order by NewID()"
+            Dim Command As SqlCommand = Acceso.MiComando(consulta)
+            With Command.Parameters
+                .Add(New SqlParameter("@Tipo", paramTipoPregunta))
+                .Add(New SqlParameter("@BL", False))
+            End With
+            Dim dt As DataTable = Acceso.Lectura(Command)
+            Dim ListaPregunta As List(Of PreguntaOpinionEntidad) = New List(Of PreguntaOpinionEntidad)
+            For Each row As DataRow In dt.Rows
+                Dim preg As PreguntaOpinionEntidad = New PreguntaOpinionEntidad
+                FormatearPreguntaOpinion(preg, row)
+                ListaPregunta.Add(preg)
+            Next
+            Return ListaPregunta
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 
     Public Function TraerTodasPreguntasGraficos(paramTipoPregunta As TipoPregunta) As List(Of PreguntaOpinionEntidad)
         Try

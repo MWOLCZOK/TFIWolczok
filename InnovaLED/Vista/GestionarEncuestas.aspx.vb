@@ -38,6 +38,9 @@ Public Class GestionarEncuestas
                 pregunta.PosiblesRespuestas = Session("RespuestasSeleccionadas")
                 If pregunta.PosiblesRespuestas.Count >= 2 Then
                     GestorpreguntaBLL.Alta(pregunta)
+                    Dim clienteLogeado As Entidades.UsuarioEntidad = Current.Session("cliente")
+                    Dim Bitac As New Bitacora(clienteLogeado, "El usuario " & clienteLogeado.NombreUsu & " dio de alta una encuesta ", Tipo_Bitacora.Alta, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)
+                    BitacoraBLL.CrearBitacora(Bitac)
                     Me.success.InnerText = "Se agregó la encuesta correctamente."
                     Me.success.Visible = True
                     Me.alertvalid.Visible = False
@@ -323,6 +326,10 @@ Public Class GestionarEncuestas
                 IdiomaActual = Application(TryCast(Current.Session("Cliente"), Entidades.UsuarioEntidad).Idioma.Nombre)
             End If
             encuestaBLL.Eliminar(_pregunta)
+            Dim clienteLogeado As Entidades.UsuarioEntidad = Current.Session("cliente")
+            Dim Bitac As New Bitacora(clienteLogeado, "El usuario " & clienteLogeado.NombreUsu & " elimino una encuesta ", Tipo_Bitacora.Baja, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)
+            BitacoraBLL.CrearBitacora(Bitac)
+            Me.success.InnerText = "Se agregó la encuesta correctamente."
             Me.success.InnerText = "Se eliminó la encuesta correctamente."
             Me.success.Visible = True
             Me.alertvalid.Visible = False
@@ -359,6 +366,9 @@ Public Class GestionarEncuestas
 
                 If ValidarCampos() Then
                     GestorpreguntaBLL.Modificar(_pregunta)
+                    Dim clienteLogeado As Entidades.UsuarioEntidad = Current.Session("cliente")
+                    Dim Bitac As New Bitacora(clienteLogeado, "El usuario " & clienteLogeado.NombreUsu & " modificó una encuesta ", Tipo_Bitacora.Modificacion, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)
+                    BitacoraBLL.CrearBitacora(Bitac)
                     Me.success.InnerText = "Se Modificó la encuesta correctamente."
                     Me.alertvalid.Visible = False
                     Me.success.Visible = True

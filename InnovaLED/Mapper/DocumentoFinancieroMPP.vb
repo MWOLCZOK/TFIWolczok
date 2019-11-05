@@ -19,7 +19,7 @@ Public Class DocumentoFinancieroMPP
                 .Add(New SqlParameter("@BL", False))
             End With
             nota.ID = Acceso.Scalar(Command)
-            generarComprobanteNotaCredito("Factura-NC", nota, Now)
+
             Return True
         Catch ex As Exception
             Throw ex
@@ -87,37 +87,6 @@ Public Class DocumentoFinancieroMPP
             Throw ex
         End Try
     End Function
-
-
-    Public Shared Sub generarComprobanteNotaCredito(ByRef comprobante As String, ByRef nota As DocumentoFinancieroEntidad, fecha As DateTime)
-        Dim Renderer = New IronPdf.HtmlToPdf
-        Dim FilePath As String = HttpContext.Current.Server.MapPath("~") & "FacturTem\NotaCredito.html"
-        Dim str = New StreamReader(FilePath)
-        Dim body = str.ReadToEnd()
-
-        body = body.Replace("{notaID}", nota.ID)
-        body = body.Replace("{comprobante}", comprobante)
-        body = body.Replace("{fecha}", fecha)
-        body = body.Replace("{cliente}", nota.Usuario.Nombre)
-        body = body.Replace("{Apellido}", " " & nota.Usuario.Apellido)
-
-
-        body = body.Replace("{NotaCreditoDescripcion}", nota.Descripcion)
-
-        body = body.Replace("{subtotal}", nota.Monto)
-
-
-        body = body.Replace("{totalnota}", nota.Monto)
-
-        Dim name_comprobante = comprobante & "_" & Right("0000" & nota.ID, 4)
-        Dim name = "Facturas\" & name_comprobante & ".pdf"
-
-        Dim PDF = Renderer.RenderHtmlAsPdf(body)
-        Dim OutputPath = HttpContext.Current.Server.MapPath("~") & name
-        PDF.SaveAs(OutputPath)
-
-
-    End Sub
 
 
 

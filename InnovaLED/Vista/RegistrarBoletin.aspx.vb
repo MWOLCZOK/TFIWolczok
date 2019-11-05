@@ -56,6 +56,9 @@ Public Class RegistrarBoletin
 
 
             GestorboletinBLL.Alta(_boletin)
+            Dim clienteLogeado As Entidades.UsuarioEntidad = Current.Session("cliente")
+            Dim Bitac As New Bitacora(clienteLogeado, "El usuario " & clienteLogeado.NombreUsu & " dio de alta una nuevo boletín ", Tipo_Bitacora.Alta, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)
+            BitacoraBLL.CrearBitacora(Bitac)
             CargarBoletin()
             LimpiarCampos()
             Me.success.Visible = True
@@ -271,6 +274,9 @@ Public Class RegistrarBoletin
             End If
 
             GestorboletinBLL.bajaNovedad(_boletin)
+            Dim clienteLogeado As Entidades.UsuarioEntidad = Current.Session("cliente")
+            Dim Bitac As New Bitacora(clienteLogeado, "El usuario " & clienteLogeado.NombreUsu & " eliminó el boletín ID: " & _boletin.ID, Tipo_Bitacora.Alta, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)
+            BitacoraBLL.CrearBitacora(Bitac)
             Me.success.InnerText = "Se eliminó la novedad correctamente."
             Me.success.Visible = True
             Me.alertvalid.Visible = False

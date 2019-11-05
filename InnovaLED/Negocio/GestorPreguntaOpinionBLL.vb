@@ -43,6 +43,15 @@ Public Class GestorPreguntaOpinionBLL
 
     End Function
 
+    Public Function TraerTodasPreguntasFichaOpinionRandom(paramTipoPregunta As TipoPregunta) As List(Of PreguntaOpinionEntidad)
+        Try
+            Return preguntaMPP.TraerTodasPreguntasFichaOpinionRandom(paramTipoPregunta)
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+    End Function
+
     Public Function TraerTodasPreguntasGraficos(paramTipoPregunta As TipoPregunta) As List(Of PreguntaOpinionEntidad)
         Try
             Return preguntaMPP.TraerTodasPreguntasGraficos(paramTipoPregunta)

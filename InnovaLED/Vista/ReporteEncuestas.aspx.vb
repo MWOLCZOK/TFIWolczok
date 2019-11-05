@@ -37,6 +37,7 @@ Public Class ReporteEncuestas
             Dim listaauxilar As New List(Of RespuestaEncuestaEntidad)
             For Each respuesta In respuestas
                 If Not listaauxilar.Any(Function(p) p.ID = respuesta.RespuestaEncuesta.ID) Then
+
                     System.Threading.Thread.Sleep(50)
                     Dim color As String = [String].Format("#{0:X6}", New Random().Next(&H1000000))
                     System.Threading.Thread.Sleep(50)

@@ -39,7 +39,9 @@ Public Class BoletinBLL
 
     Public Sub inscripbirseBoletin(ByVal paramCorreo As String, ByVal paramTipo As List(Of TipoBoletin))
         Try
+
             boletinMPP.inscribirseBoletin(paramCorreo, paramTipo)
+
         Catch ex As Exception
 
         End Try
@@ -56,7 +58,7 @@ Public Class BoletinBLL
     Public Function DesincribirBoletin(ByVal paramCorreo As String) As Boolean
         Try
             If Not validarCorreo(paramCorreo) Then
-                Return boletinMPP.DesinscribirseBoletin(paramCorreo)
+                Return boletinMPP.DesinscribirseBoletin(paramCorreo, True)
             Else
                 Return False
             End If

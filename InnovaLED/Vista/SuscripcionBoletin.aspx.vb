@@ -36,24 +36,23 @@ Public Class SuscripcionBoletin
             If validarListaTipoBoletin() Then
                 Dim _gestorBoletin As New Negocio.BoletinBLL
                 Dim _mail As String = Me.txt_correo.Text
-                If _gestorBoletin.validarCorreo(_mail) = True Then
-                    Dim _listasuscripcion As New List(Of Entidades.TipoBoletin)
+
+                Dim _listasuscripcion As New List(Of Entidades.TipoBoletin)
                     For Each _nodo As TreeNode In tv_TipoBoletin.CheckedNodes
                         Dim _tipoBoletin As Entidades.TipoBoletin = [Enum].Parse(GetType(Entidades.TipoBoletin), _nodo.Text, True)
                         _listasuscripcion.Add(_tipoBoletin)
                     Next
-                    _gestorBoletin.inscripbirseBoletin(_mail, _listasuscripcion)
-
-                Else
-
-                End If
+                _gestorBoletin.inscripbirseBoletin(_mail, _listasuscripcion)
+                Me.success.Visible = True
+                Me.success.InnerText = "Se ha suscripto satisfactoriamente, muchas gracias!! Será redireccionado al Home."
+                Me.alertvalid.Visible = False
+                Response.AddHeader("REFRESH", "5;URL=Default.aspx")
             Else
-
+                Me.success.Visible = False
+                Me.alertvalid.Visible = True
+                Me.alertvalid.InnerText = "El correo ingresado ya está suscripto a las novedades"
             End If
-            Me.success.Visible = True
-            Me.success.InnerText = "Se ha suscripto satisfactoriamente, muchas gracias!! Será redireccionado al Home."
-            Me.alertvalid.Visible = False
-            Response.AddHeader("REFRESH", "5;URL=Default.aspx")
+
 
         Catch ex As Exception
 

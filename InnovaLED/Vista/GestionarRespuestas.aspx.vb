@@ -163,9 +163,9 @@ Public Class GestionarRespuestas
                 Comentario.Fecha = Now
                 Dim Gestor As New Negocio.GestorComentarioBLL
                 If Gestor.GenerarComentario(Comentario) Then
-                    '    Dim clienteLogeado As Entidades.UsuarioEntidad = Current.Session("cliente")
-                    '    Dim Bitac As New Bitacora(Usuario, "El usuario " & Usuario.NombreUsu & " Se modificó correctamente", Tipo_Bitacora.Modificacion, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)
-                    '    BitacoraBLL.CrearBitacora(Bitac)
+                    Dim clienteLogeado As Entidades.UsuarioEntidad = Current.Session("cliente")
+                    Dim Bitac As New Bitacora(clienteLogeado, "El usuario " & clienteLogeado.NombreUsu & " respondio una pregunta pendiente del cliente " & Comentario.Usuario.NombreUsu, Tipo_Bitacora.Alta, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)
+                    BitacoraBLL.CrearBitacora(Bitac)
                     Me.success.Visible = True
                     Me.alertvalid.Visible = False
                     Cargarcomentarios()
@@ -173,7 +173,7 @@ Public Class GestionarRespuestas
                 End If
             Else
                 Me.alertvalid.Visible = True
-                Me.textovalid.InnerText = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "FieldValidator1").Traduccion
+                Me.textovalid.InnerText = "Debe cargar la respuesta para continuar "
                 Me.success.Visible = False
             End If
         Catch ex As Exception

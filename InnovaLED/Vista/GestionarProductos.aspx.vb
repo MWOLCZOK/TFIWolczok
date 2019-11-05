@@ -230,9 +230,9 @@ Public Class GestionarProductos
                 Producto.CategoriaProducto = New CategoriaProducto With {.ID_Categoria = DropDowncat.SelectedValue}
 
                 If GestorProducto.Modificar(Producto) Then
-                    'Dim clienteLogeado As Entidades.UsuarioEntidad = Current.Session("cliente")
-                    'Dim Bitac As New Bitacora(Usuario, "El usuario " & Usuario.NombreUsu & " Se modificó correctamente", Tipo_Bitacora.Modificacion, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)
-                    'BitacoraBLL.CrearBitacora(Bitac)
+                    Dim clienteLogeado As Entidades.UsuarioEntidad = Current.Session("cliente")
+                    Dim Bitac As New Bitacora(clienteLogeado, "El usuario " & clienteLogeado.NombreUsu & " modificó correctamente el producto " & producto.Modelo, Tipo_Bitacora.Modificacion, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)
+                    BitacoraBLL.CrearBitacora(Bitac)
                     Me.success.Visible = True
                     Me.alertvalid.Visible = False
                     Me.success.InnerText = "Se ha modificado el producto correctamente."
@@ -312,6 +312,9 @@ Public Class GestionarProductos
             End If
 
             GestorProducto.Eliminar(producto)
+            Dim clienteLogeado As Entidades.UsuarioEntidad = Current.Session("cliente")
+            Dim Bitac As New Bitacora(clienteLogeado, "El usuario " & clienteLogeado.NombreUsu & " eliminó el producto " & producto.Modelo, Tipo_Bitacora.Baja, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)
+            BitacoraBLL.CrearBitacora(Bitac)
             LimpiarCampos()
             Me.success.InnerText = "Se eliminó el producto correctamente."
             Me.success.Visible = True
@@ -349,10 +352,14 @@ Public Class GestionarProductos
                 prod.LineaProducto = New LineaProducto With {.ID_Linea = DropDownLinea.SelectedValue}
                 prod.CategoriaProducto = New CategoriaProducto With {.ID_Categoria = DropDowncat.SelectedValue}
                 If GestorProducto.Alta(prod) Then
+                    Dim clienteLogeado As Entidades.UsuarioEntidad = Current.Session("cliente")
+                    Dim Bitac As New Bitacora(clienteLogeado, "El usuario " & clienteLogeado.NombreUsu & " dió de alta el producto " & prod.Modelo, Tipo_Bitacora.Alta, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)
+                    BitacoraBLL.CrearBitacora(Bitac)
                     Me.success.Visible = True
                     Me.textovalid.InnerText = "Se agregó el producto correctamente"
                     Me.alertvalid.Visible = False
                     LimpiarCampos()
+                    CargarProductos()
                 End If
             Else
                 Me.alertvalid.Visible = True
@@ -360,6 +367,9 @@ Public Class GestionarProductos
                 Me.success.Visible = False
             End If
         Catch nombreuso As Negocio.ExceptionNombreEnUso
+            Me.success.Visible = False
+            Me.alertvalid.InnerText = "Nombre de modelo en uso, utilice otro nombre para el producto."
+            Me.alertvalid.Visible = True
             Dim IdiomaActual As Entidades.IdiomaEntidad
             If IsNothing(Current.Session("Cliente")) Then
                 IdiomaActual = Application("Español")

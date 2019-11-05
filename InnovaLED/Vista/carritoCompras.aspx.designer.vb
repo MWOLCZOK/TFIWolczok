@@ -374,13 +374,13 @@ Partial Public Class carritoCompras
     Protected WithEvents txtCodSeg As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
-    '''Control Div_Cargando.
+    '''Control DivC.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents Div_Cargando As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents DivC As Global.System.Web.UI.HtmlControls.HtmlGenericControl
     
     '''<summary>
     '''Control lblcargando.

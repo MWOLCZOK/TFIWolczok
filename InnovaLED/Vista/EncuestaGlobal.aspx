@@ -5,6 +5,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <!-- <script type="text/javascript" src="JS/ClienteValid.js"></script>-->
+        <script src="JS/Chart.js"></script>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -41,12 +42,29 @@
                         <asp:Panel ID="panelPreguntas" runat="server">
 
 
-                                    <div id="preguntasdinamicas" runat="server">
-
+                            <div id="preguntasdinamicas" runat="server" class="col-md-6">
                             </div>
-
+                           <div class="col-md-6">
+                                   <div id="canvas-holder1">
+                                        <canvas id="chart-area1" width="250" height="250" />
+                                    </div>
+                               <br />
+                               <br />
+                                  <div id="canvas-holder2">
+                                        <canvas id="chart-area2" width="250" height="250" />
+                                    </div>
+                                <%--  <div id="canvas-holder3">
+                                        <canvas id="chart-area3" width="300" height="300" />
+                                    </div>
+                                     <div id="canvas-holder4">
+                                        <canvas id="chart-area4" width="300" height="300" />
+                                    </div>
+                                  <div id="canvas-holder5">
+                                        <canvas id="chart-area5" width="300" height="300" />
+                                    </div>--%>
+                           </div>
                             <asp:Button ID="btn_enviar" class="btn btn-primary btn-lg" runat="server" Text="Enviar" />
-                        </asp:Panel>
+                             </asp:Panel>
                     </div>
                 </div>
             </div>
