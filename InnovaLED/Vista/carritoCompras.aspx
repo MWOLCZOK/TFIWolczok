@@ -28,11 +28,19 @@
    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
 <ContentTemplate>--%>
 
+        <script>
+            function CalcularMontoxProd() {
+                $('#dd_1 option:selected').val();
+            }
+</script>
+
+
+
 
         <div class="row">
             <div id="ID_Catalogo" runat="server" class="col-md-12">
             </div>
-
+            <asp:Label ID="lblprueba" runat="server" Text=""></asp:Label>
         </div>
         <br />
         <div class="panel-group">
@@ -58,7 +66,7 @@
                         </div>
                         <div class="row col-md-3 text-right">
                             <h3>
-                                <asp:Label ID="lblTotalPendientePago" runat="server" Text="AR$ 0" CssClass="control-label labelform"></asp:Label></h3>
+                                <asp:Label ID="lblTotalPendientePago" runat="server" Text="$ 0" CssClass="control-label labelform"></asp:Label></h3>
                         </div>
                     </div>
                 </div>
@@ -196,7 +204,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row" id="DivC" runat="server" style="display:none">
+            <div class="row" id="DivC" runat="server" style="display: none">
                 <div class="col-md-7">
                     <h3>
                         <asp:Label ID="lblcargando" runat="server" Text="Aguarde por favor..." CssClass="control-label labelform"></asp:Label>
@@ -228,7 +236,7 @@
                 var x = document.getElementById("DivC");
                 if (x.style.display === "none") {
                     x.style.display = "block";
-                }else {
+                } else {
                     x.style.display = "none";
                 }
             }
@@ -299,10 +307,19 @@
                 </div>
                 <div class="row col-md-3 col-md-offset-1">
                     <h3>
-                        <asp:Label ID="lbltotalnotaselec" runat="server" Text="AR$ 0" CssClass="control-label labelform"></asp:Label></h3>
+                        <asp:Label ID="lbltotalnotaselec" runat="server" Text="$ 0" CssClass="control-label labelform"></asp:Label></h3>
                 </div>
             </div>
-
+            <div class="row">
+                <div class="row col-md-4">
+                    <h3>
+                        <asp:Label ID="LbltotalpendientepagoTit2" runat="server" Text="Total Pendiente de Pago: " CssClass="control-label labelform"></asp:Label></h3>
+                </div>
+                <div class="row col-md-3 col-md-offset-1">
+                    <h3>
+                        <asp:Label ID="Lbltotalpendientepago2" runat="server" Text="$ 0" CssClass="control-label labelform"></asp:Label></h3>
+                </div>
+            </div>
 
             <div class="row col-md-5">
                 <asp:Button ID="btn_seguircontj" runat="server" Text="Continuar el Pago con Tarjeta" class="btn btn-warning btn-lg"></asp:Button>

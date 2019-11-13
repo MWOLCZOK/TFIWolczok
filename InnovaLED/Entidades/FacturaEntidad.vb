@@ -105,8 +105,18 @@ Public Class FacturaEntidad
         End Set
     End Property
 
+    Private _FormaDePago As String
+    Public Property FormaDePago() As String
+        Get
+            Return _FormaDePago
+        End Get
+        Set(ByVal value As String)
+            _FormaDePago = value
+        End Set
+    End Property
 
-    Sub New(ByRef clie As UsuarioEntidad, ByRef Detalle As List(Of CompraEntidad), ByRef notas As List(Of DocumentoFinancieroEntidad), ByRef fec As DateTime, ByRef EstadoCompra As EstadoCompraEntidad)
+
+    Sub New(ByRef clie As UsuarioEntidad, ByRef Detalle As List(Of CompraEntidad), ByRef notas As List(Of DocumentoFinancieroEntidad), ByRef fec As DateTime, ByRef EstadoCompra As EstadoCompraEntidad, ByVal FormaDePago As String)
         Me.Cliente = clie
         Me.DetalleFactura = Detalle
         Me.Notas = notas
@@ -114,6 +124,7 @@ Public Class FacturaEntidad
         Me.Fecha = Now
         Me.EstadoCompra = EstadoCompra
         Me.EstadoEnvio = 0
+        Me.FormaDePago = FormaDePago
     End Sub
 
     Sub New()

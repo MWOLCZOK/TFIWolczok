@@ -146,7 +146,7 @@ Public Class PreguntaOpinionMPP
     End Function
     Public Function TraerTodasPreguntasFichaOpinionRandom(paramTipoPregunta As TipoPregunta) As List(Of PreguntaOpinionEntidad)
         Try
-            Dim consulta As String = "Select top 2 * from Pregunta_Opinion where BL=@BL and Tipo=@Tipo and Fecha_Fin_Vigencia>=getdate() order by NewID()"
+            Dim consulta As String = "Select top 1 * from Pregunta_Opinion where BL=@BL and Tipo=@Tipo and Fecha_Fin_Vigencia>=getdate() order by NewID()"
             Dim Command As SqlCommand = Acceso.MiComando(consulta)
             With Command.Parameters
                 .Add(New SqlParameter("@Tipo", paramTipoPregunta))

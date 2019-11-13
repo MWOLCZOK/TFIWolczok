@@ -24,6 +24,7 @@ Public Class carritoCompras
                 'Me.Div_Cargando.Visible=False
                 CargarNC()
                 SumarTotalaPagar()
+
             Else
 
                 If IsNumeric(Request.QueryString("carrid")) Then
@@ -53,7 +54,7 @@ Public Class carritoCompras
         ID_Catalogo.Controls.Add(New LiteralControl("<div class=""row"">"))
         ID_Catalogo.Controls.Add(New LiteralControl("<div Class=""col-md-1"">"))
         ID_Catalogo.Controls.Add(New LiteralControl("</div>"))
-        ID_Catalogo.Controls.Add(New LiteralControl("<div class=""col-md-5 left"">"))
+        ID_Catalogo.Controls.Add(New LiteralControl("<div class=""col-md-3 left"">"))
         ID_Catalogo.Controls.Add(New LiteralControl("<h3>Producto</h3>"))
         ID_Catalogo.Controls.Add(New LiteralControl("</div>"))
         ID_Catalogo.Controls.Add(New LiteralControl("<div class=""col-md-2"">"))
@@ -61,6 +62,9 @@ Public Class carritoCompras
         ID_Catalogo.Controls.Add(New LiteralControl("</div>"))
         ID_Catalogo.Controls.Add(New LiteralControl("<div class=""col-md-2"">"))
         ID_Catalogo.Controls.Add(New LiteralControl("<h3>Precio Unitario</h3>"))
+        ID_Catalogo.Controls.Add(New LiteralControl("</div>"))
+        ID_Catalogo.Controls.Add(New LiteralControl("<div class=""col-md-2"">"))
+        ID_Catalogo.Controls.Add(New LiteralControl("<h3>Precio Total</h3>"))
         ID_Catalogo.Controls.Add(New LiteralControl("</div>"))
 
 
@@ -85,7 +89,7 @@ Public Class carritoCompras
             Dim base64string As String = Convert.ToBase64String(prod.Producto.Imagen, 0, prod.Producto.Imagen.Length)
             ID_Catalogo.Controls.Add(New LiteralControl("<img src=" & Convert.ToString("data:image/jpg;base64,") & base64string & " alt=""..."" class=""img-responsive""/>"))
             ID_Catalogo.Controls.Add(New LiteralControl("</div>"))
-            ID_Catalogo.Controls.Add(New LiteralControl("<div class=""col-md-5 left"">"))
+            ID_Catalogo.Controls.Add(New LiteralControl("<div class=""col-md-3 left"">"))
             ID_Catalogo.Controls.Add(New LiteralControl("<h3>" & prod.Producto.Modelo & "</h3>"))
             ID_Catalogo.Controls.Add(New LiteralControl("<h4>" & prod.Producto.Descripcion & "</h4>"))
             ID_Catalogo.Controls.Add(New LiteralControl("</div>"))
@@ -95,16 +99,28 @@ Public Class carritoCompras
             Dropnumeric.DataSource = Enumerable.Range(1, 50)
             Dropnumeric.DataBind()
             Dropnumeric.SelectedIndex = prod.Cantidad - 1
+
+
             Dropnumeric.AutoPostBack = True
             Dropnumeric.ID = "dp" & prod.Producto.ID_Producto
             Dropnumeric.CssClass = "btn btn-lg btn-default dropdown-toggle"
+
+            Dropnumeric.Attributes.Add("onchange", "CalcularMontoxProd()")
+
+
             AddHandler Dropnumeric.SelectedIndexChanged, AddressOf CambioCantidad
+
+
 
             ID_Catalogo.Controls.Add(Dropnumeric)
 
             ID_Catalogo.Controls.Add(New LiteralControl("</div>"))
             ID_Catalogo.Controls.Add(New LiteralControl("<div class=""col-md-2"">"))
-            ID_Catalogo.Controls.Add(New LiteralControl("<h3>" & "AR$ " & prod.Producto.Precio & "</h3>"))
+            ID_Catalogo.Controls.Add(New LiteralControl("<h3>" & "$ " & prod.Producto.Precio & "</h3>"))
+            ID_Catalogo.Controls.Add(New LiteralControl("</div>"))
+
+            ID_Catalogo.Controls.Add(New LiteralControl("<div class=""col-md-2"">"))
+            ID_Catalogo.Controls.Add(New LiteralControl("<h3>" & "$ " & lblprueba.Text & "</h3>"))
             ID_Catalogo.Controls.Add(New LiteralControl("</div>"))
 
 
@@ -131,14 +147,26 @@ Public Class carritoCompras
 
     End Sub
 
+
     Private Sub CambioCantidad(sender As Object, e As EventArgs)
         Dim Dropdownlist = TryCast(sender, DropDownList)
         Dim list As List(Of CompraEntidad) = Session("carrito")
         Dim Producto As CompraEntidad = list.Find(Function(p) p.Producto.ID_Producto = Replace(Dropdownlist.ID, "dp", ""))
         Producto.Cantidad = Dropdownlist.SelectedValue
+        lblprueba.Text = "$" & Producto.Producto.Precio * Producto.Cantidad
         SumarTotalaPagar()
+    End Sub
+
+    Private Sub CambioCantidadxProducto(sender As Object, e As EventArgs)
+        Dim Dropdownlist = TryCast(sender, DropDownList)
+        Dim list As List(Of CompraEntidad) = Session("carrito")
+        Dim Producto As CompraEntidad = list.Find(Function(p) p.Producto.ID_Producto = Replace(Dropdownlist.ID, "dp", ""))
+        Producto.Cantidad = Dropdownlist.SelectedValue
+        lblprueba.Text = "$" & Producto.Producto.Precio * Producto.Cantidad
 
     End Sub
+
+
 
     Protected Sub ddl_FormaPago_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_FormaPago.SelectedIndexChanged
         If Me.ddl_FormaPago.SelectedValue = 1 Then
@@ -201,81 +229,111 @@ Public Class carritoCompras
             Dim EstadoCompra As EstadoCompraEntidad = EstadoCompraEntidad.Aprobado
             Dim listcompra As List(Of CompraEntidad) = TryCast(Session("carrito"), List(Of CompraEntidad))
 
-            Dim factura As New FacturaEntidad(cli, listcompra, listnota, Now, 1)
+
             Dim GestorFacturaBLL As New GestorFacturaBLL
             Dim GestorNotaCred As New GestorDocFinancieroBLL
 
+            If listcompra.Count = 0 Then
+                Me.alertvalid.Visible = True
+                Me.success.Visible = False
+                Me.alertvalid.InnerText = "Debe seleccionar un producto para realizar la compra, regrese al catalogo de productos."
+            Else
 
-            If listnota.Count > 0 Then
-                If Session("totalApagar") <= Session("notasSeleccionadasTotal") Then
-                    'paga con nota credito
+                If listnota.Count > 0 Then
+                    If Session("totalApagar") <= Session("notasSeleccionadasTotal") Then
+                        'paga con nota credito
 
-                    Dim Tot As Single = 0
-                    Dim notasSelec As Single = 0
-                    Dim Res As Single = 0
+                        Dim Tot As Single = 0
+                        Dim notasSelec As Single = 0
+                        Dim Res As Single = 0
 
-                    Tot = Session("totalApagar")
-                    notasSelec = Session("notasSeleccionadasTotal")
-                    Res = Tot - notasSelec
-                    Res = Res * (-1)
-                    If Res > 0 Then
-                        'Si hay diferencia con la nota de credito que pago, creo una nueva por el monto sobrante
+                        Tot = Session("totalApagar")
+                        notasSelec = Session("notasSeleccionadasTotal")
+                        Res = Tot - notasSelec
+                        Res = Res * (-1)
+                        If Res > 0 Then
+                            'Si hay diferencia con la nota de credito que pago, creo una nueva por el monto sobrante
 
-                        Dim notaCred As New DocumentoFinancieroEntidad("Nota de Credito generada en la compra por diferencia a favor", Res, TipoDocumento.Positivo, cli, Now)
+                            Dim factura As New FacturaEntidad(cli, listcompra, listnota, Now, 1, "Se abonó mediante Nota de Crédito")
+                            Dim pago As New PagoEntidad(factura, Now, Tipo_PagoEntidad.Nota_Credito)
+                            Dim GestorPagoBLL As New GestorPagoBLL
+                            GestorPagoBLL.Alta(pago, listnota)
+                            GestorFacturaBLL.GenerarFactura(factura)
+                            Dim notaCred As New DocumentoFinancieroEntidad("Nota de Credito generada en la compra por diferencia a favor", Res, TipoDocumento.Positivo, cli, Now, factura)
+                            GestorNotaCred.Alta(notaCred)
+                            GestorNotaCred.Eliminar(listnota)
+                            generarComprobanteNotaCredito("Factura-NC", notaCred, cli, Now)
 
-                        GestorNotaCred.Alta(notaCred)
-                        generarComprobanteNotaCredito("Factura-NC", notaCred, cli, Now)
+                            Dim LongString As String
+                            For Each _nota As DocumentoFinancieroEntidad In listnota
+                                LongString += _nota.ID & ","
+                            Next
+
+                            generarComprobante("Factura", factura, cli, Now, listcompra, "Nota de Crédito", LongString)
+                            Response.Redirect("Encuesta.aspx")
+
+                        Else
+                            ' sigo y elimino la nota de credito usada
+                            GestorNotaCred.Eliminar(listnota)
+                            Dim factura As New FacturaEntidad(cli, listcompra, listnota, Now, 1, "Se abonó mediante Nota de Crédito")
+                            Dim pago As New PagoEntidad(factura, Now, Tipo_PagoEntidad.Nota_Credito)
+                            Dim GestorPagoBLL As New GestorPagoBLL
+                            GestorPagoBLL.Alta(pago, listnota)
+                            GestorFacturaBLL.GenerarFactura(factura)
+                            Dim LongString As String
+                            For Each _nota As DocumentoFinancieroEntidad In listnota
+                                LongString += _nota.ID & ","
+                            Next
+
+                            generarComprobante("Factura", factura, cli, Now, listcompra, "Nota de Crédito", LongString)
+                            Response.Redirect("Encuesta.aspx")
+
+                        End If
+
+                    Else
+                        'paga mixto
+                        If ValidarCampos() = True And validarFecha() = True Then
+                            Dim GestorPagoBLL As New GestorPagoBLL
+
+                            GestorNotaCred.Eliminar(listnota) ' esto se agrego 30/6/19 ' Verificar porque si hago un pago mixto, al NC ya se elimino en la parte del código de NC
+                            Dim factura As New FacturaEntidad(cli, listcompra, listnota, Now, 1, "Se abonó mediante Tarjeta de Crédito y Nota de Crédito")
+                            GestorFacturaBLL.GenerarFactura(factura)
+                            Dim pago As New PagoEntidad(factura, Now, Tipo_PagoEntidad.Mixto)
+
+                            GestorPagoBLL.Alta(pago, listnota)
+                            Dim clienteLogeado As Entidades.UsuarioEntidad = Current.Session("cliente")
+                            Dim Bitac As New Bitacora(clienteLogeado, "El usuario " & clienteLogeado.NombreUsu & " ha realizado una compra con pago mixto bajo el ID de factura: " & factura.ID, Tipo_Bitacora.Alta, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)
+                            BitacoraBLL.CrearBitacora(Bitac)
+                            Dim LongString As String
+                            For Each _nota As DocumentoFinancieroEntidad In listnota
+                                LongString += _nota.ID & ","
+                            Next
+
+                            generarComprobante("Factura", factura, cli, Now, listcompra, "Tarjeta de crédito y Nota de Crédito", LongString)
+                            Response.Redirect("Encuesta.aspx")
+                        End If
                     End If
-                    ' sigo y elimino la nota de credito usada
-                    GestorNotaCred.Eliminar(listnota)
-
-                    GestorFacturaBLL.GenerarFactura(factura)
-                    Dim pago As New PagoEntidad(factura, Now, Tipo_PagoEntidad.Nota_Credito)
-                    Dim GestorPagoBLL As New GestorPagoBLL
-                    GestorPagoBLL.Alta(pago, listnota)
-
-                    Dim LongString As String
-                    For Each _nota As DocumentoFinancieroEntidad In listnota
-                        LongString += _nota.ID & ","
-                    Next
-
-                    generarComprobante("Factura", factura, cli, Now, listcompra, "Nota de Crédito", LongString)
-                    Response.Redirect("Encuesta.aspx")
-
                 Else
-                    'paga mixto
+                    'paga con tarjeta de crédito
                     If ValidarCampos() = True And validarFecha() = True Then
-                        Dim GestorPagoBLL As New GestorPagoBLL
 
-                        GestorNotaCred.Eliminar(listnota) ' esto se agrego 30/6/19 ' Verificar porque si hago un pago mixto, al NC ya se elimino en la parte del código de NC
+                        Dim factura As New FacturaEntidad(cli, listcompra, listnota, Now, 1, "Se abonó mediante Tarjeta de Crédito")
                         GestorFacturaBLL.GenerarFactura(factura)
-                        Dim pago As New PagoEntidad(factura, Now, Tipo_PagoEntidad.Mixto)
-
-                        GestorPagoBLL.Alta(pago, listnota)
-                        Dim LongString As String
-                        For Each _nota As DocumentoFinancieroEntidad In listnota
-                            LongString += _nota.ID & ","
-                        Next
-
-                        generarComprobante("Factura", factura, cli, Now, listcompra, "Tarjeta de crédito y Nota de Crédito", LongString)
+                        Dim pago As New PagoEntidad(factura, Now, Tipo_PagoEntidad.Tarjeta_Credito)
+                        pago.TipoPago = Tipo_PagoEntidad.Tarjeta_Credito
+                        Dim GestorPagoBLL As New GestorPagoBLL
+                        GestorPagoBLL.Alta(pago)
+                        generarComprobante("Factura", factura, cli, Now, listcompra, "Tarjeta de crédito")
+                        Dim clienteLogeado As Entidades.UsuarioEntidad = Current.Session("cliente")
+                        Dim Bitac As New Bitacora(clienteLogeado, "El usuario " & clienteLogeado.NombreUsu & " ha realizado una compra bajo el ID de factura: " & factura.ID, Tipo_Bitacora.Alta, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)
+                        BitacoraBLL.CrearBitacora(Bitac)
                         Response.Redirect("Encuesta.aspx")
                     End If
                 End If
-            Else
-                'paga con tarjeta de crédito
-                If ValidarCampos() = True And validarFecha() = True Then
-
-
-                    GestorFacturaBLL.GenerarFactura(factura)
-                    Dim pago As New PagoEntidad(factura, Now, Tipo_PagoEntidad.Tarjeta_Credito)
-                    pago.TipoPago = Tipo_PagoEntidad.Tarjeta_Credito
-                    Dim GestorPagoBLL As New GestorPagoBLL
-                    GestorPagoBLL.Alta(pago)
-                    generarComprobante("Factura", factura, cli, Now, listcompra, "Tarjeta de crédito")
-                    Response.Redirect("Encuesta.aspx")
-                End If
+                Me.alertvalid.Visible = True
+                Me.success.Visible = False
+                Me.alertvalid.InnerText = "Tarjeta Inválida"
             End If
-
         Catch ex As Exception
 
         End Try
@@ -434,7 +492,7 @@ Public Class carritoCompras
         If Not IsNothing(lstnc) Then
             For Each nc In lstnc
                 sum = sum + nc.Monto
-                lbltotalnotasC.Text = "AR$ " & sum
+                lbltotalnotasC.Text = "$ " & sum
                 Session("notaTotal") = sum
             Next
         End If
@@ -449,14 +507,14 @@ Public Class carritoCompras
         lstnc = Session("notaSeleccionadas")
         For Each nc In lstnc
             sum = sum + nc.Monto
-            lbltotalnotaselec.Text = "AR$ " & sum
+            lbltotalnotaselec.Text = "$ " & sum
             Session("notasSeleccionadasTotal") = sum
 
             Dim varActualizacionNota As Single
             Dim notaTotal As Single
             notaTotal = Session("notaTotal")
             varActualizacionNota = notaTotal - sum
-            lbltotalnotasC.Text = "AR$ " & varActualizacionNota
+            lbltotalnotasC.Text = "$ " & varActualizacionNota
 
         Next
         Return sum
@@ -469,15 +527,30 @@ Public Class carritoCompras
         Dim lstsum As List(Of CompraEntidad)
         lstsum = Session("carrito")
         If lstsum.Count = 0 Then
-            LbltotalApagar.Text = "AR$ " & sum
-            lblTotalPendientePago.Text = "AR$ " & sum
+            LbltotalApagar.Text = "$ " & sum
+            lblTotalPendientePago.Text = "$ " & sum
+            Lbltotalpendientepago2.Text = "$ " & sum
             Session("totalApagar") = sum
         End If
         For Each compra In lstsum
             sum = sum + (compra.Producto.Precio * compra.Cantidad)
-            LbltotalApagar.Text = "AR$ " & sum
-            lblTotalPendientePago.Text = "AR$ " & sum
+            LbltotalApagar.Text = "$ " & sum
+            lblTotalPendientePago.Text = "$ " & sum
             Session("totalApagar") = sum
+        Next
+        Return sum
+    End Function
+
+    Public Function SumarTotalaPagarxProd()
+        Dim sum As Single
+        Dim lstsum As List(Of CompraEntidad)
+        lstsum = Session("carrito")
+
+        For Each prod In lstsum
+            sum = sum + (prod.Producto.Precio * prod.Cantidad)
+
+            lblprueba.Text = sum
+
         Next
         Return sum
     End Function
@@ -491,7 +564,8 @@ Public Class carritoCompras
         Dim varNotaSeleccionadas As Single
         varNotaSeleccionadas = Session("notasSeleccionadasTotal")
         tot = varTotal - varNotaSeleccionadas
-        lblTotalPendientePago.Text = "AR$ " & tot
+        lblTotalPendientePago.Text = "$ " & tot
+        Lbltotalpendientepago2.Text = "$ " & tot
 
         If tot < 0 Then
             btn_seguircontj.Visible = False
@@ -606,6 +680,8 @@ Public Class carritoCompras
         End If
         If ano > Today.Year Then
             Return True
+        Else
+            Return False
         End If
         Return True
     End Function
@@ -631,7 +707,7 @@ Public Class carritoCompras
 
         Dim total As String
 
-        total = fact.MontoTotal
+        total = Session("totalApagar")
 
         body = body.Replace("{metodoPago}", tipoPago)
         body = body.Replace("{FactID}", fact.ID)
@@ -645,8 +721,8 @@ Public Class carritoCompras
         Dim prodyscants As String
         Dim montos As String
         For Each itemDetfac As CompraEntidad In detFac
-            prodyscants += itemDetfac.Producto.Marca + " " + itemDetfac.Producto.Modelo + "     Cant: " + itemDetfac.Cantidad.ToString + "<br />"
-            montos += "AR$ " & itemDetfac.Subtotal.ToString + "<br />"
+            prodyscants += itemDetfac.Producto.Marca + " " + itemDetfac.Producto.Modelo + " - Cant: " + itemDetfac.Cantidad.ToString + " - Precio Unitario: $" + itemDetfac.Producto.Precio.ToString + "<br />"
+            montos += "$ " & itemDetfac.Subtotal.ToString + "<br />"
         Next
 
 

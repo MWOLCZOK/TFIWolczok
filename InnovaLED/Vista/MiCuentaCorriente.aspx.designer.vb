@@ -11,8 +11,8 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class GestionMisCompras
-    
+Partial Public Class MiCuentaCorriente
+
     '''<summary>
     '''Control alertvalid.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class GestionMisCompras
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents alertvalid As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''Control textovalid.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class GestionMisCompras
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents textovalid As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''Control success.
     '''</summary>
@@ -39,31 +39,13 @@ Partial Public Class GestionMisCompras
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents success As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
-    '''Control lblGestionMisCompras.
+    '''Control lblPanelModUser.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents lblGestionMisCompras As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''Control gv_facturas.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents gv_facturas As Global.System.Web.UI.WebControls.GridView
-    
-    '''<summary>
-    '''Control btn_cancelacion.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents btn_cancelacion As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents lblPanelModUser As Global.System.Web.UI.WebControls.Label
 End Class

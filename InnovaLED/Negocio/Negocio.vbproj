@@ -85,6 +85,7 @@
     <Compile Include="GestorPagoBLL.vb" />
     <Compile Include="GestorPermisosBLL.vb" />
     <Compile Include="GestorProductoBLL.vb" />
+    <Compile Include="HistorialBLL.vb" />
     <Compile Include="IdiomaBLL.vb" />
     <Compile Include="MailingBLL.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />

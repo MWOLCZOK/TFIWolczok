@@ -18,7 +18,7 @@
             <div class="col-md-12">
                 <div class="panel panel-primary class">
                     <div class="panel-heading text-center">
-                        <asp:Label ID="lblGestionMisCompras" runat="server" Text="Mi Cuenta Corriente" Font-Size="24px" CssClass="TituloPanel"></asp:Label>
+                        <asp:Label ID="lblGestionMisCompras" runat="server" Text="Mi Tracking" Font-Size="24px" CssClass="TituloPanel"></asp:Label>
                     </div>
                 </div>
             </div>
@@ -34,7 +34,7 @@
         <div class="panel-group col-md-12">
             <div class="panel-default">
                 <hr />
-                <div class="panel-heading text-center">Resumen Facturas</div>
+                <div class="panel-heading text-center">Tracking</div>
                 <hr />
                 <div class="panel-body">
 
@@ -81,10 +81,10 @@
 
 
 
-                                <asp:TemplateField HeaderText="Descarga" HeaderStyle-Width="100px">
+                                <asp:TemplateField HeaderText="Descarga" HeaderStyle-Width="100px" Visible="false">
                                     <ItemTemplate>
                                         <div>
-                                            <asp:ImageButton ID="btn_descargar" runat="server" CommandName="D" ImageUrl="~/Imagenes/Arrow.png" Height="18px" />
+                                            <asp:ImageButton ID="btn_descargar" runat="server" CommandName="D" ImageUrl="~/Imagenes/Arrow.png" Height="18px" visible="false"/>
 
                                         </div>
                                     </ItemTemplate>
@@ -105,7 +105,7 @@
 
         <%-- Sección GRID NOTAS CREDITO--%>
 
-        <div class="panel-group col-md-12">
+<%--        <div class="panel-group col-md-12">
             <div class="panel-default">
                 <hr />
                 <div class="panel-heading text-center">Resumen Notas de Crédito</div>
@@ -148,12 +148,12 @@
 
                 </div>
             </div>
-        </div>
+        </div>--%>
         <br />
         <br />
 
 
-        <div class="panel-group col-md-4">
+       <%-- <div class="panel-group col-md-4">
             <div class="panel-default">
                 <hr />
                 <div class="panel-heading text-center">Saldo en Innova LED</div>
@@ -173,7 +173,7 @@
                 </div>
             </div>
             <hr />
-        </div>
+        </div>--%>
 
 
 

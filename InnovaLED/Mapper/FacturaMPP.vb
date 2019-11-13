@@ -10,13 +10,14 @@ Public Class FacturaMPP
 
     Public Function Alta(ByVal Fact As FacturaEntidad) As Boolean
         Try
-            Dim Command As SqlCommand = Acceso.MiComando("insert into Factura (ID_Cliente,MontoTotal,Fecha,EstadoCompra,EstadoEnvio,BL) OUTPUT INSERTED.ID_Fact values (@ID_Cliente, @MontoTotal,@Fecha,@EstadoCompra,@EstadoEnvio, @BL)")
+            Dim Command As SqlCommand = Acceso.MiComando("insert into Factura (ID_Cliente,MontoTotal,Fecha,EstadoCompra,EstadoEnvio,FormaDePago,BL) OUTPUT INSERTED.ID_Fact values (@ID_Cliente, @MontoTotal,@Fecha,@EstadoCompra,@EstadoEnvio,@FormaDePago, @BL)")
             With Command.Parameters
                 .Add(New SqlParameter("@ID_Cliente", Fact.Cliente.ID_Usuario))
                 .Add(New SqlParameter("@MontoTotal", Fact.MontoTotal))
                 .Add(New SqlParameter("@Fecha", Now))
                 .Add(New SqlParameter("@EstadoCompra", Fact.EstadoCompra))
                 .Add(New SqlParameter("@EstadoEnvio", 1))
+                .Add(New SqlParameter("@FormaDePago", Fact.FormaDePago))
                 .Add(New SqlParameter("@BL", False))
             End With
 
@@ -96,10 +97,10 @@ Public Class FacturaMPP
 
     Public Function BuscarFacturaID(ByVal Factura As FacturaEntidad) As FacturaEntidad
         Try
-            Dim consulta As String = "Select * from Factura where ID_Factura=@ID_Factura"
+            Dim consulta As String = "Select * from Factura where ID_Fact=@ID_Fact"
             Dim Command As SqlCommand = Acceso.MiComando(consulta)
             With Command.Parameters
-                .Add(New SqlParameter("@ID_Factura", Factura.ID))
+                .Add(New SqlParameter("@ID_Fact", Factura.ID))
             End With
             Dim dt As DataTable = Acceso.Lectura(Command)
             If dt.Rows.Count > 0 Then
@@ -136,7 +137,7 @@ Public Class FacturaMPP
 
     Public Function TraerFacturasGestionPorUsuario(ByVal usu As UsuarioEntidad) As List(Of FacturaEntidad)
         Try
-            Dim consulta As String = "Select * from Factura where  ID_Cliente=@ID_Cliente and BL=0"
+            Dim consulta As String = "Select * from Factura where  ID_Cliente=@ID_Cliente and BL=0 order by ID_Fact DESC"
             Dim Command As SqlCommand = Acceso.MiComando(consulta)
             With Command.Parameters
                 .Add(New SqlParameter("@ID_Cliente", usu.ID_Usuario))
@@ -175,6 +176,7 @@ Public Class FacturaMPP
             Fact.Fecha = row("Fecha")
             Fact.EstadoCompra = row("EstadoCompra")
             Fact.EstadoEnvio = row("EstadoEnvio")
+            Fact.FormaDePago = row("FormaDePago")
             Fact.PDF = row("PDF")
         Catch ex As Exception
             Throw ex

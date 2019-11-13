@@ -244,6 +244,7 @@
     <Content Include="Novedades.aspx" />
     <Content Include="Orders.aspx" />
     <Content Include="ComparacionProducto.aspx" />
+    <Content Include="MiCuentaCorriente.aspx" />
     <Content Include="ReporteEncuestas.aspx" />
     <Content Include="PaginaGenerica.aspx" />
     <Content Include="PoliticasySeguridad.aspx" />
@@ -499,6 +500,13 @@
     </Compile>
     <Compile Include="ComparacionProducto.aspx.vb">
       <DependentUpon>ComparacionProducto.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="MiCuentaCorriente.aspx.designer.vb">
+      <DependentUpon>MiCuentaCorriente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MiCuentaCorriente.aspx.vb">
+      <DependentUpon>MiCuentaCorriente.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="ReporteEncuestas.aspx.designer.vb">

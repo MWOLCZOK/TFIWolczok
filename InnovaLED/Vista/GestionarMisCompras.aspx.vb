@@ -14,8 +14,8 @@ Public Class GestionMisCompras
             Try
                 Session("FactCanceladaSeleccionada") = New List(Of FacturaEntidad)
                 CargarFacturas()
-                CargarNotasCredito()
-                SumarNotasC()
+                'CargarNotasCredito()
+                'SumarNotasC()
             Catch ex As Exception
 
             End Try
@@ -187,118 +187,118 @@ Public Class GestionMisCompras
     End Sub
 
 
-    Private Sub CargarNotasCredito()
-        Dim listaNotasCre As New List(Of DocumentoFinancieroEntidad)
-        Dim GestorNotasCre As New GestorDocFinancieroBLL
-        Dim Usu As New UsuarioEntidad
-        Usu = Session("cliente")
-        listaNotasCre = GestorNotasCre.TraerDocumentoF(Usu)
-        If listaNotasCre.Count > 0 Then
-            Session("NotasCreUsuario") = listaNotasCre
-            gv_notas.DataSource = listaNotasCre
-            gv_notas.DataBind()
-        End If
-    End Sub
+    'Private Sub CargarNotasCredito()
+    '    Dim listaNotasCre As New List(Of DocumentoFinancieroEntidad)
+    '    Dim GestorNotasCre As New GestorDocFinancieroBLL
+    '    Dim Usu As New UsuarioEntidad
+    '    Usu = Session("cliente")
+    '    listaNotasCre = GestorNotasCre.TraerDocumentoF(Usu)
+    '    If listaNotasCre.Count > 0 Then
+    '        Session("NotasCreUsuario") = listaNotasCre
+    '        gv_notas.DataSource = listaNotasCre
+    '        gv_notas.DataBind()
+    '    End If
+    'End Sub
 
 
-    Private Sub gv_notas_DataBound(sender As Object, e As EventArgs) Handles gv_notas.DataBound
-        Try
+    'Private Sub gv_notas_DataBound(sender As Object, e As EventArgs) Handles gv_notas.DataBound
+    '    Try
 
-            Try
-                Dim ddl2 As DropDownList = CType(gv_notas.BottomPagerRow.Cells(0).FindControl("ddlPagingnotas"), DropDownList)
-            Catch ex As Exception
-                Return
-            End Try
+    '        Try
+    '            Dim ddl2 As DropDownList = CType(gv_notas.BottomPagerRow.Cells(0).FindControl("ddlPagingnotas"), DropDownList)
+    '        Catch ex As Exception
+    '            Return
+    '        End Try
 
-            Dim ddl As DropDownList = CType(gv_notas.BottomPagerRow.Cells(0).FindControl("ddlPagingnotas"), DropDownList)
-            Dim ddlpage As DropDownList = CType(gv_notas.BottomPagerRow.Cells(0).FindControl("ddlPageSizenotas"), DropDownList)
-            Dim txttotal As Label = CType(gv_notas.BottomPagerRow.Cells(0).FindControl("lbltotalpages"), Label)
+    '        Dim ddl As DropDownList = CType(gv_notas.BottomPagerRow.Cells(0).FindControl("ddlPagingnotas"), DropDownList)
+    '        Dim ddlpage As DropDownList = CType(gv_notas.BottomPagerRow.Cells(0).FindControl("ddlPageSizenotas"), DropDownList)
+    '        Dim txttotal As Label = CType(gv_notas.BottomPagerRow.Cells(0).FindControl("lbltotalpages"), Label)
 
-            ddlpage.ClearSelection()
-            ddlpage.Items.FindByValue(gv_notas.PageSize).Selected = True
+    '        ddlpage.ClearSelection()
+    '        ddlpage.Items.FindByValue(gv_notas.PageSize).Selected = True
 
-            txttotal.Text = gv_notas.PageCount
+    '        txttotal.Text = gv_notas.PageCount
 
-            For cnt As Integer = 0 To gv_notas.PageCount - 1
-                Dim curr As Integer = cnt + 1
-                Dim item As New ListItem(curr.ToString())
-                If cnt = gv_notas.PageIndex Then
-                    item.Selected = True
-                End If
+    '        For cnt As Integer = 0 To gv_notas.PageCount - 1
+    '            Dim curr As Integer = cnt + 1
+    '            Dim item As New ListItem(curr.ToString())
+    '            If cnt = gv_notas.PageIndex Then
+    '                item.Selected = True
+    '            End If
 
-                ddl.Items.Add(item)
+    '            ddl.Items.Add(item)
 
-            Next cnt
-            Dim IdiomaActual As Entidades.IdiomaEntidad
-            If IsNothing(Current.Session("Cliente")) Then
-                IdiomaActual = Application("Español")
-            Else
-                IdiomaActual = Application(TryCast(Current.Session("Cliente"), Entidades.UsuarioEntidad).Idioma.Nombre)
-            End If
-
-
-            With gv_notas.HeaderRow
-                '.Cells(0).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "HeaderID").Traduccion
-                '.Cells(1).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "HeaderNombreUsuario").Traduccion
-                '.Cells(2).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "HeaderIdioma").Traduccion
-                '.Cells(3).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "HeaderBloqueo").Traduccion
-                '.Cells(4).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "HeaderEmpleado").Traduccion
-                '.Cells(5).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "HeaderFechaAlta").Traduccion
-                '.Cells(6).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "HeaderAcciones").Traduccion
-            End With
-
-            gv_notas.BottomPagerRow.Visible = True
-            gv_notas.BottomPagerRow.CssClass = "table-bottom-dark"
-        Catch ex As Exception
-
-        End Try
-
-    End Sub
-
-    Protected Sub gv_notas_PageIndexChanging(sender As Object, e As GridViewPageEventArgs)
-        Try
-            CargarNotasCredito()
-            gv_notas.PageIndex = e.NewPageIndex
-            gv_notas.DataBind()
-        Catch ex As Exception
-
-        End Try
-
-    End Sub
-    Protected Sub ddlPagingnotas_SelectedIndexChanged(sender As Object, e As EventArgs)
-        Try
-            Dim ddl As DropDownList = CType(gv_notas.BottomPagerRow.Cells(0).FindControl("ddlPagingnotas"), DropDownList)
-            gv_notas.SetPageIndex(ddl.SelectedIndex)
-        Catch ex As Exception
-
-        End Try
-    End Sub
-    Protected Sub ddlPageSizenotas_SelectedPageSizeChanged(sender As Object, e As EventArgs)
-        Try
-            Dim ddl As DropDownList = CType(gv_notas.BottomPagerRow.Cells(0).FindControl("ddlPageSizenotas"), DropDownList)
-            gv_notas.PageSize = ddl.SelectedValue
-            CargarNotasCredito()
-        Catch ex As Exception
-
-        End Try
-    End Sub
+    '        Next cnt
+    '        Dim IdiomaActual As Entidades.IdiomaEntidad
+    '        If IsNothing(Current.Session("Cliente")) Then
+    '            IdiomaActual = Application("Español")
+    '        Else
+    '            IdiomaActual = Application(TryCast(Current.Session("Cliente"), Entidades.UsuarioEntidad).Idioma.Nombre)
+    '        End If
 
 
-    Public Function SumarNotasC()
-        Dim sum As Single
-        Dim lstnc As List(Of DocumentoFinancieroEntidad)
-        lstnc = Session("NotasCreUsuario")
-        If Not IsNothing(lstnc) Then
-            For Each nc In lstnc
-                sum = sum + nc.Monto
-                lbltotalnotasC.Text = "AR$ " & sum
-                Session("NotasCreUsuario") = sum
-            Next
-        End If
+    '        With gv_notas.HeaderRow
+    '            '.Cells(0).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "HeaderID").Traduccion
+    '            '.Cells(1).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "HeaderNombreUsuario").Traduccion
+    '            '.Cells(2).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "HeaderIdioma").Traduccion
+    '            '.Cells(3).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "HeaderBloqueo").Traduccion
+    '            '.Cells(4).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "HeaderEmpleado").Traduccion
+    '            '.Cells(5).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "HeaderFechaAlta").Traduccion
+    '            '.Cells(6).Text = IdiomaActual.Palabras.Find(Function(p) p.Codigo = "HeaderAcciones").Traduccion
+    '        End With
 
-        Return sum
+    '        gv_notas.BottomPagerRow.Visible = True
+    '        gv_notas.BottomPagerRow.CssClass = "table-bottom-dark"
+    '    Catch ex As Exception
 
-    End Function
+    '    End Try
+
+    'End Sub
+
+    'Protected Sub gv_notas_PageIndexChanging(sender As Object, e As GridViewPageEventArgs)
+    '    Try
+    '        CargarNotasCredito()
+    '        gv_notas.PageIndex = e.NewPageIndex
+    '        gv_notas.DataBind()
+    '    Catch ex As Exception
+
+    '    End Try
+
+    'End Sub
+    'Protected Sub ddlPagingnotas_SelectedIndexChanged(sender As Object, e As EventArgs)
+    '    Try
+    '        Dim ddl As DropDownList = CType(gv_notas.BottomPagerRow.Cells(0).FindControl("ddlPagingnotas"), DropDownList)
+    '        gv_notas.SetPageIndex(ddl.SelectedIndex)
+    '    Catch ex As Exception
+
+    '    End Try
+    'End Sub
+    'Protected Sub ddlPageSizenotas_SelectedPageSizeChanged(sender As Object, e As EventArgs)
+    '    Try
+    '        Dim ddl As DropDownList = CType(gv_notas.BottomPagerRow.Cells(0).FindControl("ddlPageSizenotas"), DropDownList)
+    '        gv_notas.PageSize = ddl.SelectedValue
+    '        CargarNotasCredito()
+    '    Catch ex As Exception
+
+    '    End Try
+    'End Sub
+
+
+    'Public Function SumarNotasC()
+    '    Dim sum As Single
+    '    Dim lstnc As List(Of DocumentoFinancieroEntidad)
+    '    lstnc = Session("NotasCreUsuario")
+    '    If Not IsNothing(lstnc) Then
+    '        For Each nc In lstnc
+    '            sum = sum + nc.Monto
+    '            lbltotalnotasC.Text = "AR$ " & sum
+    '            Session("NotasCreUsuario") = sum
+    '        Next
+    '    End If
+
+    '    Return sum
+
+    'End Function
 
     Protected Sub btn_cancelacion_Click(sender As Object, e As EventArgs) Handles btn_cancelacion.Click
 

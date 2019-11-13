@@ -68,6 +68,7 @@
     <Compile Include="BoletinEntidad.vb" />
     <Compile Include="CategoriaProducto.vb" />
     <Compile Include="ChatEntidad.vb" />
+    <Compile Include="HistorialEntidad.vb" />
     <Compile Include="MensajeChatEntidad.vb" />
     <Compile Include="Pregunta_Respuesta.vb" />
     <Compile Include="RespuestaEncuestaEntidad.vb" />

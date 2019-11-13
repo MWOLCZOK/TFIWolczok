@@ -189,7 +189,7 @@ Public Class GestionarFacturas
                     fact.EstadoEnvio = 4
                     Dim usuNota As UsuarioEntidad = fact.Cliente
 
-                    Dim nota As New DocumentoFinancieroEntidad("Nota de Credito generada por Cancelación de factura", fact.MontoTotal, TipoDocumento.Positivo, usuNota, Now)
+                    Dim nota As New DocumentoFinancieroEntidad("Nota de Credito generada por Cancelación de factura", fact.MontoTotal, TipoDocumento.Positivo, usuNota, Now, fact)
                     GestorNota.Alta(nota)
                     Dim cli As UsuarioEntidad = fact.Cliente
                     Dim listcompra As List(Of CompraEntidad) = fact.DetalleFactura

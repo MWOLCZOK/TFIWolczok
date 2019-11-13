@@ -39,7 +39,7 @@ Public Class GestionarEncuestas
                 If pregunta.PosiblesRespuestas.Count >= 2 Then
                     GestorpreguntaBLL.Alta(pregunta)
                     Dim clienteLogeado As Entidades.UsuarioEntidad = Current.Session("cliente")
-                    Dim Bitac As New Bitacora(clienteLogeado, "El usuario " & clienteLogeado.NombreUsu & " dio de alta una encuesta ", Tipo_Bitacora.Alta, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)
+                    Dim Bitac As New Bitacora(clienteLogeado, "El usuario " & clienteLogeado.NombreUsu & " dio de alta la encuesta " & pregunta.Enunciado, Tipo_Bitacora.Alta, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)
                     BitacoraBLL.CrearBitacora(Bitac)
                     Me.success.InnerText = "Se agregó la encuesta correctamente."
                     Me.success.Visible = True
@@ -327,7 +327,7 @@ Public Class GestionarEncuestas
             End If
             encuestaBLL.Eliminar(_pregunta)
             Dim clienteLogeado As Entidades.UsuarioEntidad = Current.Session("cliente")
-            Dim Bitac As New Bitacora(clienteLogeado, "El usuario " & clienteLogeado.NombreUsu & " elimino una encuesta ", Tipo_Bitacora.Baja, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)
+            Dim Bitac As New Bitacora(clienteLogeado, "El usuario " & clienteLogeado.NombreUsu & " elimino la encuesta " & _pregunta.Enunciado, Tipo_Bitacora.Baja, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)
             BitacoraBLL.CrearBitacora(Bitac)
             Me.success.InnerText = "Se agregó la encuesta correctamente."
             Me.success.InnerText = "Se eliminó la encuesta correctamente."
@@ -367,7 +367,7 @@ Public Class GestionarEncuestas
                 If ValidarCampos() Then
                     GestorpreguntaBLL.Modificar(_pregunta)
                     Dim clienteLogeado As Entidades.UsuarioEntidad = Current.Session("cliente")
-                    Dim Bitac As New Bitacora(clienteLogeado, "El usuario " & clienteLogeado.NombreUsu & " modificó una encuesta ", Tipo_Bitacora.Modificacion, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)
+                    Dim Bitac As New Bitacora(clienteLogeado, "El usuario " & clienteLogeado.NombreUsu & " modificó la encuesta " & _pregunta.Enunciado, Tipo_Bitacora.Modificacion, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)
                     BitacoraBLL.CrearBitacora(Bitac)
                     Me.success.InnerText = "Se Modificó la encuesta correctamente."
                     Me.alertvalid.Visible = False
@@ -488,12 +488,16 @@ Public Class GestionarEncuestas
 
 
     Protected Sub btn_agregarrta_Click(sender As Object, e As EventArgs) Handles btn_agregarrta.Click
-        Dim Nuevarta As New RespuestaEncuestaEntidad
-        Nuevarta.Descripcion = txt_rtas.Text
-        TryCast(Session("RespuestasSeleccionadas"), List(Of Entidades.RespuestaEncuestaEntidad)).Add(Nuevarta)
-        gv_respuestas.DataSource = Nothing
-        gv_respuestas.DataSource = Session("RespuestasSeleccionadas")
-        gv_respuestas.DataBind()
+        Try
+            Dim Nuevarta As New RespuestaEncuestaEntidad
+            Nuevarta.Descripcion = txt_rtas.Text
+            TryCast(Session("RespuestasSeleccionadas"), List(Of Entidades.RespuestaEncuestaEntidad)).Add(Nuevarta)
+            gv_respuestas.DataSource = Nothing
+            gv_respuestas.DataSource = Session("RespuestasSeleccionadas")
+            gv_respuestas.DataBind()
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Protected Sub btn_buscaropinion_Click(sender As Object, e As EventArgs) Handles btn_buscaropinion.Click

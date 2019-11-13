@@ -59,6 +59,15 @@ Partial Public Class carritoCompras
     Protected WithEvents ID_Catalogo As Global.System.Web.UI.HtmlControls.HtmlGenericControl
     
     '''<summary>
+    '''Control lblprueba.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lblprueba As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
     '''Control LbltotalApagarTit.
     '''</summary>
     '''<remarks>
@@ -471,6 +480,24 @@ Partial Public Class carritoCompras
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents lbltotalnotaselec As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Control LbltotalpendientepagoTit2.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents LbltotalpendientepagoTit2 As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Control Lbltotalpendientepago2.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Lbltotalpendientepago2 As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
     '''Control btn_seguircontj.

@@ -72,22 +72,30 @@
         End Set
     End Property
 
+    Private _factura As FacturaEntidad
+    Public Property Factura() As FacturaEntidad
+        Get
+            Return _factura
+        End Get
+        Set(ByVal value As FacturaEntidad)
+            _factura = value
+        End Set
+    End Property
 
-    Sub New(ByRef descr As String, ByRef monto As Single, ByRef tipo As TipoDocumento, ByRef clie As UsuarioEntidad, ByRef fec As DateTime)
+
+    Sub New(ByRef descr As String, ByRef monto As Single, ByRef tipo As TipoDocumento, ByRef clie As UsuarioEntidad, ByRef fec As DateTime, ByVal ID_Fact As FacturaEntidad)
         Me.Descripcion = descr
         Me.Monto = monto
         Me.Tipo_Documento = tipo
         Me.Usuario = clie
         Me.Fecha_Emision = Now
+        Me.Factura = ID_Fact
 
     End Sub
-
-
 
     Sub New()
 
     End Sub
-
 
 
 

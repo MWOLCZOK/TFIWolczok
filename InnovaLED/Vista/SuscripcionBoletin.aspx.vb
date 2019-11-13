@@ -50,7 +50,7 @@ Public Class SuscripcionBoletin
             Else
                 Me.success.Visible = False
                 Me.alertvalid.Visible = True
-                Me.alertvalid.InnerText = "El correo ingresado ya está suscripto a las novedades"
+                Me.alertvalid.InnerText = "Debe ingresar al menos una opción para continuar"
             End If
 
 

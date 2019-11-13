@@ -1,5 +1,4 @@
 ﻿Imports System.IO
-
 Imports System.Web.HttpContext
 Imports System.Environment
 Imports System.Net
@@ -159,7 +158,8 @@ Public Class MasterPage
         Me.menuVertical.Items.Item(2).ChildItems.Add(New MenuItem("Backup & Restore", "Backup&Restore", Nothing, "/Restore.aspx"))
 
         Me.menuVertical.Items.Add(New MenuItem("Mi Cuenta Corriente ", "MiCuentaCorriente"))
-        Me.menuVertical.Items.Item(3).ChildItems.Add(New MenuItem("Saldos y Movimientos", "SaldosyMovimientos", Nothing, "/GestionarMisCompras.aspx"))
+        Me.menuVertical.Items.Item(3).ChildItems.Add(New MenuItem("Tracking", "MiTracking", Nothing, "/GestionarMisCompras.aspx"))
+        Me.menuVertical.Items.Item(3).ChildItems.Add(New MenuItem("Cuenta Corriente", "MiCuentaCorriente", Nothing, "/MiCuentaCorriente.aspx"))
 
         Me.menuVertical.Items.Add(New MenuItem("Reportes", "Reportes"))
         Me.menuVertical.Items.Item(4).ChildItems.Add(New MenuItem("Mis Reportes Ventas", "ReportesVentas", Nothing, "/ReportesVentas.aspx"))
@@ -684,6 +684,9 @@ Public Class MasterPage
     Protected Sub btnlogout_Click(sender As Object, e As EventArgs) Handles btnlogout.Click
 
         Session("cliente") = Nothing
+        'Dim clienteLogeado As Entidades.UsuarioEntidad = Current.Session("cliente")
+        'Dim Bitac As New Bitacora(clienteLogeado, "El usuario " & clienteLogeado.NombreUsu & "se ha deslogueado de la plataforma WEB.", Tipo_Bitacora.Login, Now, Request.UserAgent, Request.UserHostAddress, "", "", Request.Url.ToString)
+        'BitacoraBLL.CrearBitacora(Bitac)
         VisibilidadAcceso(False)
         Response.Redirect("Default.aspx", False)
 

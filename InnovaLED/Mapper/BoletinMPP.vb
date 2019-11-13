@@ -44,7 +44,7 @@ Public Class BoletinMPP
                     End With
                     Acceso.Escritura(Command)
                 Else
-                    DesinscribirseBoletin(paramCorreo, False)
+                    DesinscribirseBoletin2(paramCorreo, CInt(miTipoBoletin), False)
                 End If
 
             Next
@@ -52,6 +52,24 @@ Public Class BoletinMPP
             Throw ex
         End Try
     End Sub
+
+    Public Function DesinscribirseBoletin2(ByVal paramCorreo As String, ByVal paramTipo As Integer, ByVal paramBaja As Boolean) As Boolean
+        Try
+            Dim Command As SqlCommand = Acceso.MiComando("Update Suscripcion set BL=@BL where Mail=@Mail and ID_Tipoboletin=@ID_Tipoboletin")
+            Dim ListaParametros As New List(Of String)
+            With Command.Parameters
+                .Add(New SqlParameter("@Mail", paramCorreo))
+                .Add(New SqlParameter("@ID_Tipoboletin", paramTipo))
+                .Add(New SqlParameter("@BL", paramBaja))
+            End With
+            Acceso.Escritura(Command)
+            Command.Dispose()
+            Return True
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 
     Public Function DesinscribirseBoletin(ByVal paramCorreo As String, ByVal paramBaja As Boolean) As Boolean
         Try
@@ -69,6 +87,16 @@ Public Class BoletinMPP
             Throw ex
         End Try
     End Function
+
+
+
+
+
+
+
+
+
+
 
 
 
