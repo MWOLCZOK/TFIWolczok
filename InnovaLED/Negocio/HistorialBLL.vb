@@ -12,19 +12,18 @@ Public Class HistorialBLL
 
         Dim listaFacturas As New List(Of FacturaEntidad)
         Dim GestorFacturas As New GestorFacturaBLL
-        Dim usu As Entidades.UsuarioEntidad = Current.Session("cliente")
-        listaFacturas = GestorFacturas.TraerFacturasGestionPorUsuario(usu)
+        listaFacturas = GestorFacturas.TraerFacturasGestionPorUsuario(cliente)
 
         Dim listaNotasCre As New List(Of DocumentoFinancieroEntidad)
         Dim GestorNotasCre As New GestorDocFinancieroBLL
-        listaNotasCre = GestorNotasCre.TraerDocumentoF(usu)
+        listaNotasCre = GestorNotasCre.TraerDocumentoF(cliente)
 
         For Each oFactu In listaFacturas
             Dim oHisto As New HistorialEntidad
             oHisto.NroDoc = oFactu.ID
             oHisto.FechaEmision = oFactu.Fecha
             oHisto.Documento = "Factura"
-            oHisto.Estado = oFactu.EstadoCompra
+            oHisto.Estado = oFactu.EstadoCompra.ToString
             oHisto.Descripcion = oFactu.FormaDePago
             oHisto.Debe = oFactu.MontoTotal
 
