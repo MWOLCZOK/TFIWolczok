@@ -22,6 +22,11 @@ Public Class GestorDocFinancieroBLL
     End Function
 
 
+    Public Function ModificarNCPDF(ByVal NC As DocumentoFinancieroEntidad)
+        Return documentoMPP.ModificarNCPDF(NC)
+    End Function
+
+
 
 
 

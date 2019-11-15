@@ -30,7 +30,7 @@
                     <%-- Sección Grid  --%>
 
                     <div class="col-md-12">
-                        <asp:GridView CssClass="table table-hover table-bordered table-responsive table-success " ID="gv_facturas" runat="server" AutoGenerateColumns="False" HorizontalAlign="Center" AllowPaging="true" PageSize="10" OnPageIndexChanging="gv_facturas_PageIndexChanging" RowStyle-Height="40px">
+                        <asp:GridView CssClass="table table-hover table-bordered table-responsive table-active text-center " ID="gv_facturas" runat="server" AutoGenerateColumns="False" HorizontalAlign="Center" AllowPaging="true" PageSize="10" OnPageIndexChanging="gv_facturas_PageIndexChanging" RowStyle-Height="40px">
                             <HeaderStyle CssClass="thead-dark" />
                             <PagerTemplate>
                                 <div class="col-md-4 text-left">
@@ -56,9 +56,9 @@
                                 <asp:BoundField DataField="ID" HeaderText="Numero" />
                                 <asp:BoundField DataField="Cliente.NombreUsu" HeaderText="Cliente" />
                                 <asp:BoundField DataField="Fecha" HeaderText="Fecha" />
-                                <asp:BoundField DataField="MontoTotal" HeaderText="Monto" />
-                                <asp:BoundField DataField="EstadoCompra" HeaderText="Estado Compra" />
-                                <asp:BoundField DataField="EstadoEnvio" HeaderText="Estado Envio" />
+                                <asp:BoundField DataField="MontoTotal" HeaderText="Monto " DataFormatString="{0:C1}"/>
+                                <asp:BoundField DataField="EstadoCompra" HeaderText="Estado de Compra" />
+                                <asp:BoundField DataField="EstadoEnvio" HeaderText="Estado de Envio" />
                                 <asp:TemplateField HeaderText="Acciones" HeaderStyle-Width="100px">
                                     <ItemTemplate>
                                         <div>

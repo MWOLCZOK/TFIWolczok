@@ -65,9 +65,9 @@
                                 <asp:BoundField DataField="ID" HeaderText="Numero Factura" />
                                 <asp:BoundField DataField="Cliente.NombreUsu" HeaderText="Cliente" />
                                 <asp:BoundField DataField="Fecha" HeaderText="Fecha" />
-                                <asp:BoundField DataField="MontoTotal" HeaderText="Monto" />
-                                <asp:BoundField DataField="EstadoCompra" HeaderText="Estado Compra" />
-                                <asp:BoundField DataField="EstadoEnvio" HeaderText="Estado Envio" />
+                                <asp:BoundField DataField="MontoTotal" HeaderText="Monto"  DataFormatString="{0:C1}" />
+                                <asp:BoundField DataField="EstadoCompra" HeaderText="Estado de Compra" />
+                                <asp:BoundField DataField="EstadoEnvio" HeaderText="Estado de Envio" />
                                 <asp:TemplateField HeaderText="Acciones" HeaderStyle-Width="100px">
                                     <ItemTemplate>
                                         <div>

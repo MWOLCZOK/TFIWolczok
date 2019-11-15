@@ -97,6 +97,16 @@
 
     End Sub
 
+    Private _pdf As Byte()
+    Public Property PDF() As Byte()
+        Get
+            Return _pdf
+        End Get
+        Set(ByVal value As Byte())
+            _pdf = value
+        End Set
+    End Property
+
 
 
 

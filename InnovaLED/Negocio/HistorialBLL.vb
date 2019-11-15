@@ -26,6 +26,7 @@ Public Class HistorialBLL
             oHisto.Estado = oFactu.EstadoCompra.ToString
             oHisto.Descripcion = oFactu.FormaDePago
             oHisto.Debe = oFactu.MontoTotal
+            oHisto.PDF = oFactu.PDF
 
             lstResult.Add(oHisto)
         Next
@@ -39,10 +40,11 @@ Public Class HistorialBLL
             If oNC.Descripcion.StartsWith("Nota de Credito generada en") Then
                 oHisto.Descripcion = oNC.Descripcion
             Else
-                oHisto.Descripcion = oNC.Descripcion & "Nro Fact: " & oNC.Factura.ID
+                oHisto.Descripcion = oNC.Descripcion & " Nro : " & oNC.Factura.ID
             End If
 
             oHisto.Haber = oNC.Monto
+            oHisto.PDF = oNC.PDF
 
             lstResult.Add(oHisto)
         Next

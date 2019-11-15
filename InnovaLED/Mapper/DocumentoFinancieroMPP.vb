@@ -90,6 +90,22 @@ Public Class DocumentoFinancieroMPP
         End Try
     End Function
 
+    Public Function ModificarNCPDF(NotaCredito As DocumentoFinancieroEntidad) As Boolean
+        Try
+
+            Dim Command As SqlCommand = Acceso.MiComando("Update DocFinancieroEntidad set PDF=@PDF where ID_Doc=@ID_Doc")
+            With Command.Parameters
+                .Add(New SqlParameter("@ID_Doc", NotaCredito.ID))
+                .Add(New SqlParameter("@PDF", NotaCredito.PDF))
+            End With
+
+            Acceso.Escritura(Command)
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+
 
 
 

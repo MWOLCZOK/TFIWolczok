@@ -120,7 +120,7 @@ Public Class carritoCompras
             ID_Catalogo.Controls.Add(New LiteralControl("</div>"))
 
             ID_Catalogo.Controls.Add(New LiteralControl("<div class=""col-md-2"">"))
-            ID_Catalogo.Controls.Add(New LiteralControl("<h3>" & "$ " & lblprueba.Text & "</h3>"))
+            ID_Catalogo.Controls.Add(New LiteralControl("<h3>" & "$ " & Dropnumeric.SelectedValue * prod.Producto.Precio & "</h3>"))
             ID_Catalogo.Controls.Add(New LiteralControl("</div>"))
 
 
@@ -791,6 +791,15 @@ Public Class carritoCompras
         Dim PDF = Renderer.ConvertHtmlString(body)
         Dim OutputPath = HttpContext.Current.Server.MapPath("~") & name
         PDF.Save(OutputPath)
+        Dim memoryStream As New MemoryStream
+        PDF.Save(memoryStream)
+        Dim bytes As Byte() = memoryStream.ToArray()
+        memoryStream.Close()
+        PDF.Close()
+        nota.PDF = bytes
+
+        Dim notaCreditoBLL As New GestorDocFinancieroBLL
+        notaCreditoBLL.ModificarNCPDF(nota)
 
         EnviarMailNotaCredito(clie, OutputPath)
 

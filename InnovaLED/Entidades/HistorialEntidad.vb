@@ -69,6 +69,16 @@
         End Set
     End Property
 
+    Private _pdf As Byte()
+    Public Property PDF() As Byte()
+        Get
+            Return _pdf
+        End Get
+        Set(ByVal value As Byte())
+            _pdf = value
+        End Set
+    End Property
+
 
     Public Overrides Function Equals(obj As Object) As Boolean
         Return Me._TipoDoc & " " & FechaEmision

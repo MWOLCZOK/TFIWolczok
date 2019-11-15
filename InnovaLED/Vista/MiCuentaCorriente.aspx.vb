@@ -121,11 +121,14 @@ Public Class MiCuentaCorriente
                 '    End If
 
                 Case "D"
-                    Dim fact As FacturaEntidad = TryCast(Session("FacturasUsuario"), List(Of FacturaEntidad))(e.CommandArgument + (gv_facturas.PageIndex * gv_facturas.PageSize))
+
+
+                    Dim documento As HistorialEntidad = TryCast(Session("oHistorial"), List(Of HistorialEntidad))(e.CommandArgument + (gv_facturas.PageIndex * gv_facturas.PageSize))
+
 
                     Response.ContentType = "application/octet-stream"
-                    Response.AppendHeader("Content-Disposition", "attachment; filename=Factura_" & Right("0000" & fact.ID, 4) + ".pdf")
-                    Response.BinaryWrite(fact.PDF)
+                    Response.AppendHeader("Content-Disposition", "attachment; filename=Factura_" & Right("0000" & documento.NroDoc, 4) + ".pdf")
+                    Response.BinaryWrite(documento.PDF)
                     Response.Flush()
 
 

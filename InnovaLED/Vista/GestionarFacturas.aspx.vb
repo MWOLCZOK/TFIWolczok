@@ -283,6 +283,15 @@ Public Class GestionarFacturas
         Dim PDF = Renderer.ConvertHtmlString(body)
         Dim OutputPath = HttpContext.Current.Server.MapPath("~") & name
         PDF.Save(OutputPath)
+        Dim memoryStream As New MemoryStream
+        PDF.Save(memoryStream)
+        Dim bytes As Byte() = memoryStream.ToArray()
+        memoryStream.Close()
+        PDF.Close()
+        nota.PDF = bytes
+
+        Dim notaCreditoBLL As New GestorDocFinancieroBLL
+        notaCreditoBLL.ModificarNCPDF(nota)
 
         EnviarMail(clie, OutputPath)
 
