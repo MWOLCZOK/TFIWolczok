@@ -81,10 +81,10 @@
 
 
 
-                                <asp:TemplateField HeaderText="Descarga" HeaderStyle-Width="100px" Visible="false">
+                                <asp:TemplateField HeaderText="Descarga" HeaderStyle-Width="100px" Visible="true">
                                     <ItemTemplate>
                                         <div>
-                                            <asp:ImageButton ID="btn_descargar" runat="server" CommandName="D" ImageUrl="~/Imagenes/Arrow.png" Height="18px" visible="false"/>
+                                            <asp:ImageButton ID="btn_descargar" runat="server" CommandName="D" ImageUrl="~/Imagenes/Arrow.png" Height="18px" visible="true"/>
 
                                         </div>
                                     </ItemTemplate>

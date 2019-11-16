@@ -743,6 +743,8 @@ Public Class carritoCompras
 
         Dim OutputPath = HttpContext.Current.Server.MapPath("~") & name
         PDF2.Save(OutputPath)
+
+
         Dim memoryStream As New MemoryStream()
         PDF2.Save(memoryStream)
         Dim bytes As Byte() = memoryStream.ToArray()
