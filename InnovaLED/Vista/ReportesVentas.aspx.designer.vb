@@ -95,6 +95,33 @@ Partial Public Class Reportes_Ventas
     Protected WithEvents chartGananciMensual As Global.System.Web.UI.DataVisualization.Charting.Chart
     
     '''<summary>
+    '''Control ddl_Mes.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents ddl_Mes As Global.System.Web.UI.WebControls.DropDownList
+    
+    '''<summary>
+    '''Control lblmensual.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lblmensual As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Control btn_buscarMensual.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btn_buscarMensual As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
     '''Control chartGananciaSemanal.
     '''</summary>
     '''<remarks>
@@ -102,4 +129,49 @@ Partial Public Class Reportes_Ventas
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents chartGananciaSemanal As Global.System.Web.UI.DataVisualization.Charting.Chart
+    
+    '''<summary>
+    '''Control ddl_Semanal.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents ddl_Semanal As Global.System.Web.UI.WebControls.DropDownList
+    
+    '''<summary>
+    '''Control btn_buscarSemanal.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btn_buscarSemanal As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''Control chartGananciaSemanal2.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents chartGananciaSemanal2 As Global.System.Web.UI.DataVisualization.Charting.Chart
+    
+    '''<summary>
+    '''Control ddl_Semanal2.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents ddl_Semanal2 As Global.System.Web.UI.WebControls.DropDownList
+    
+    '''<summary>
+    '''Control Btn_Semanal2.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Btn_Semanal2 As Global.System.Web.UI.WebControls.Button
 End Class

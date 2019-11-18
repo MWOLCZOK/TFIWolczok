@@ -16,6 +16,10 @@ Public Class GestorFacturaBLL
         Return facturaMPP.TraerFacturasGestion()
     End Function
 
+    Public Function TraerFacturasGestionxMes(ByVal paramMes As Integer) As List(Of FacturaEntidad)
+        Return facturaMPP.TraerFacturasGestionxMes(paramMes)
+    End Function
+
     Public Function ModificarFactura(facturaEntidad As FacturaEntidad) As Boolean
         Return facturaMPP.ModificarFactura(facturaEntidad)
     End Function

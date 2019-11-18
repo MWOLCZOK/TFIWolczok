@@ -104,6 +104,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="GestorPreguntaOpinionBLL.vb" />
+    <Compile Include="ResultadoBLL.vb" />
     <Compile Include="SerializadorJSON.vb" />
     <Compile Include="UsuarioBLL.vb" />
   </ItemGroup>
