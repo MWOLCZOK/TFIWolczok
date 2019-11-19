@@ -85,6 +85,13 @@
             <div class="col-md-offset-1 col-md-2">
                 <br />
                 <br />
+                <asp:DropDownList ID="ddl_Ano_Mes" runat="server" CssClass="form-control">
+                    <asp:ListItem Selected="True" Value="0">2019</asp:ListItem>
+                    <asp:ListItem Value="01">2020</asp:ListItem>
+                    <asp:ListItem Value="02">2021</asp:ListItem>
+                    <asp:ListItem Value="03">2022</asp:ListItem>
+                </asp:DropDownList>
+                <br />
                 <asp:DropDownList ID="ddl_Mes" runat="server" CssClass="form-control">
                     <asp:ListItem Selected="True" Value="0">Todos</asp:ListItem>
                     <asp:ListItem Value="01">Enero</asp:ListItem>
@@ -100,6 +107,7 @@
                     <asp:ListItem Value="11">Noviembre</asp:ListItem>
                     <asp:ListItem Value="12">Diciembre</asp:ListItem>
                 </asp:DropDownList>
+                <br />
                 <asp:Button ID="btn_buscarMensual" runat="server" Text="Buscar" class="btn btn-success btn-sm" />
             </div>
             <div class="row col-md-offset-3">
@@ -137,6 +145,13 @@
             <div class="col-md-offset-1 col-md-2">
                 <br />
                 <br />
+                <asp:DropDownList ID="ddl_Ano_semanal" runat="server" CssClass="form-control">
+                    <asp:ListItem Selected="True" Value="0">2019</asp:ListItem>
+                    <asp:ListItem Value="01">2020</asp:ListItem>
+                    <asp:ListItem Value="02">2021</asp:ListItem>
+                    <asp:ListItem Value="03">2022</asp:ListItem>
+                </asp:DropDownList>
+                <br />
                 <asp:DropDownList ID="ddl_Semanal" runat="server" CssClass="form-control">
                     <asp:ListItem Selected="True" Value="0">Todos</asp:ListItem>
                     <asp:ListItem Value="01">Enero</asp:ListItem>
@@ -152,6 +167,7 @@
                     <asp:ListItem Value="11">Noviembre</asp:ListItem>
                     <asp:ListItem Value="12">Diciembre</asp:ListItem>
                 </asp:DropDownList>
+                <br />
                 <asp:Button ID="Btn_Semanal" runat="server" Text="Buscar" class="btn btn-success btn-sm" />
             </div>
             <div class="row col-md-offset-2">
@@ -190,6 +206,13 @@
             <div class="col-md-offset-1 col-md-2">
                 <br />
                 <br />
+                <asp:DropDownList ID="ddl_Ano_diario" runat="server" CssClass="form-control">
+                    <asp:ListItem Selected="True" Value="0">2019</asp:ListItem>
+                    <asp:ListItem Value="01">2020</asp:ListItem>
+                    <asp:ListItem Value="02">2021</asp:ListItem>
+                    <asp:ListItem Value="03">2022</asp:ListItem>
+                </asp:DropDownList>
+                <br />
                 <asp:DropDownList ID="ddl_Diario" runat="server" CssClass="form-control">
                     <asp:ListItem Selected="True" Value="0">Todos</asp:ListItem>
                     <asp:ListItem Value="01">Enero</asp:ListItem>
@@ -205,6 +228,7 @@
                     <asp:ListItem Value="11">Noviembre</asp:ListItem>
                     <asp:ListItem Value="12">Diciembre</asp:ListItem>
                 </asp:DropDownList>
+                <br />
                 <asp:Button ID="btn_buscarDiario" runat="server" Text="Buscar" class="btn btn-success btn-sm" />
             </div>
             <div class="row col-md-offset-2">

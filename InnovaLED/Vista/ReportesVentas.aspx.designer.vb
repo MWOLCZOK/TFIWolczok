@@ -77,6 +77,15 @@ Partial Public Class Reportes_Ventas
     Protected WithEvents chartGananciaMensual As Global.System.Web.UI.DataVisualization.Charting.Chart
     
     '''<summary>
+    '''Control ddl_Ano_Mes.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents ddl_Ano_Mes As Global.System.Web.UI.WebControls.DropDownList
+    
+    '''<summary>
     '''Control ddl_Mes.
     '''</summary>
     '''<remarks>
@@ -113,6 +122,15 @@ Partial Public Class Reportes_Ventas
     Protected WithEvents chartGananciaSemanal As Global.System.Web.UI.DataVisualization.Charting.Chart
     
     '''<summary>
+    '''Control ddl_Ano_semanal.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents ddl_Ano_semanal As Global.System.Web.UI.WebControls.DropDownList
+    
+    '''<summary>
     '''Control ddl_Semanal.
     '''</summary>
     '''<remarks>
@@ -147,6 +165,15 @@ Partial Public Class Reportes_Ventas
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents chartGananciaDiario As Global.System.Web.UI.DataVisualization.Charting.Chart
+    
+    '''<summary>
+    '''Control ddl_Ano_diario.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents ddl_Ano_diario As Global.System.Web.UI.WebControls.DropDownList
     
     '''<summary>
     '''Control ddl_Diario.
