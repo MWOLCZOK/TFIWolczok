@@ -50,49 +50,31 @@ Partial Public Class Reportes_Ventas
     Protected WithEvents lblpanelReportesVentas As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''Control divGanancias_Content.
+    '''Control chartGananciasAnuales.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents divGanancias_Content As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents chartGananciasAnuales As Global.System.Web.UI.DataVisualization.Charting.Chart
     
     '''<summary>
-    '''Control divPreguntaGanancias.
+    '''Control Lbl_anual.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents divPreguntaGanancias As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents Lbl_anual As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''Control tblGanancias.
+    '''Control chartGananciaMensual.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents tblGanancias As Global.System.Web.UI.WebControls.Table
-    
-    '''<summary>
-    '''Control chartGanancias.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents chartGanancias As Global.System.Web.UI.DataVisualization.Charting.Chart
-    
-    '''<summary>
-    '''Control chartGananciMensual.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents chartGananciMensual As Global.System.Web.UI.DataVisualization.Charting.Chart
+    Protected WithEvents chartGananciaMensual As Global.System.Web.UI.DataVisualization.Charting.Chart
     
     '''<summary>
     '''Control ddl_Mes.
@@ -104,15 +86,6 @@ Partial Public Class Reportes_Ventas
     Protected WithEvents ddl_Mes As Global.System.Web.UI.WebControls.DropDownList
     
     '''<summary>
-    '''Control lblmensual.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents lblmensual As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
     '''Control btn_buscarMensual.
     '''</summary>
     '''<remarks>
@@ -120,6 +93,15 @@ Partial Public Class Reportes_Ventas
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents btn_buscarMensual As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''Control lblmensual.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lblmensual As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
     '''Control chartGananciaSemanal.
@@ -140,38 +122,56 @@ Partial Public Class Reportes_Ventas
     Protected WithEvents ddl_Semanal As Global.System.Web.UI.WebControls.DropDownList
     
     '''<summary>
-    '''Control btn_buscarSemanal.
+    '''Control Btn_Semanal.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents btn_buscarSemanal As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents Btn_Semanal As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
-    '''Control chartGananciaSemanal2.
+    '''Control Lbl_Semanal.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents chartGananciaSemanal2 As Global.System.Web.UI.DataVisualization.Charting.Chart
+    Protected WithEvents Lbl_Semanal As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''Control ddl_Semanal2.
+    '''Control chartGananciaDiario.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents ddl_Semanal2 As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents chartGananciaDiario As Global.System.Web.UI.DataVisualization.Charting.Chart
     
     '''<summary>
-    '''Control Btn_Semanal2.
+    '''Control ddl_Diario.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents Btn_Semanal2 As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents ddl_Diario As Global.System.Web.UI.WebControls.DropDownList
+    
+    '''<summary>
+    '''Control btn_buscarDiario.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents btn_buscarDiario As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''Control Lbl_Diario.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Lbl_Diario As Global.System.Web.UI.WebControls.Label
 End Class

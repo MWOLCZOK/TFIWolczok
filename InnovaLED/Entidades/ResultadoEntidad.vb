@@ -1,11 +1,11 @@
 ﻿Public Class ResultadoEntidad
 
-    Private _fecha As DateTime
-    Public Property Fecha() As DateTime
+    Private _fecha As Integer
+    Public Property Fecha() As Integer
         Get
             Return _fecha
         End Get
-        Set(ByVal value As DateTime)
+        Set(ByVal value As Integer)
             _fecha = value
         End Set
     End Property

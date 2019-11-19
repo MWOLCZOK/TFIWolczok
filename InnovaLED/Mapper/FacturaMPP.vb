@@ -97,19 +97,33 @@ Public Class FacturaMPP
 
     Public Function TraerFacturasGestionxMes(ByVal paramMes As Integer) As List(Of FacturaEntidad)
         Try
-            Dim consulta As String = "Select * from Factura where  estadoenvio not in( 3,4) And Month(Fecha) = @Mes order by Fecha desc"
-            Dim Command As SqlCommand = Acceso.MiComando(consulta)
-            With Command.Parameters
-                .Add(New SqlParameter("@Mes", paramMes))
-            End With
-            Dim dt As DataTable = Acceso.Lectura(Command)
-            Dim lista As New List(Of FacturaEntidad)
-            For Each _dr As DataRow In dt.Rows
-                Dim _factura As New FacturaEntidad
-                FormatearFactura(_factura, _dr)
-                lista.Add(_factura)
-            Next
-            Return lista
+            If paramMes = 0 Then
+                Dim consulta As String = "Select * from Factura where  estadoenvio not in( 3,4) order by Fecha desc"
+                Dim Command As SqlCommand = Acceso.MiComando(consulta)
+                Dim dt As DataTable = Acceso.Lectura(Command)
+                Dim lista As New List(Of FacturaEntidad)
+                For Each _dr As DataRow In dt.Rows
+                    Dim _factura As New FacturaEntidad
+                    FormatearFactura(_factura, _dr)
+                    lista.Add(_factura)
+                Next
+                Return lista
+            Else
+                Dim consulta As String = "Select * from Factura where  estadoenvio not in( 3,4) And Month(Fecha) = @Mes order by Fecha desc"
+                Dim Command As SqlCommand = Acceso.MiComando(consulta)
+                With Command.Parameters
+                    .Add(New SqlParameter("@Mes", paramMes))
+                End With
+                Dim dt As DataTable = Acceso.Lectura(Command)
+                Dim lista As New List(Of FacturaEntidad)
+                For Each _dr As DataRow In dt.Rows
+                    Dim _factura As New FacturaEntidad
+                    FormatearFactura(_factura, _dr)
+                    lista.Add(_factura)
+                Next
+                Return lista
+            End If
+
         Catch ex As Exception
             Throw ex
         End Try
