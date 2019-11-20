@@ -153,19 +153,9 @@ Public Class carritoCompras
         Dim list As List(Of CompraEntidad) = Session("carrito")
         Dim Producto As CompraEntidad = list.Find(Function(p) p.Producto.ID_Producto = Replace(Dropdownlist.ID, "dp", ""))
         Producto.Cantidad = Dropdownlist.SelectedValue
-        lblprueba.Text = "$" & Producto.Producto.Precio * Producto.Cantidad
         SumarTotalaPagar()
+        GenerarDiseño(Session("carrito")) ' esto es para que luego de cambiar la cantidad, genere el diseño nuvamente y muestre los valores con la nueva cantidad
     End Sub
-
-    Private Sub CambioCantidadxProducto(sender As Object, e As EventArgs)
-        Dim Dropdownlist = TryCast(sender, DropDownList)
-        Dim list As List(Of CompraEntidad) = Session("carrito")
-        Dim Producto As CompraEntidad = list.Find(Function(p) p.Producto.ID_Producto = Replace(Dropdownlist.ID, "dp", ""))
-        Producto.Cantidad = Dropdownlist.SelectedValue
-        lblprueba.Text = "$" & Producto.Producto.Precio * Producto.Cantidad
-
-    End Sub
-
 
 
     Protected Sub ddl_FormaPago_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_FormaPago.SelectedIndexChanged

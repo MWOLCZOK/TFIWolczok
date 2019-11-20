@@ -113,6 +113,15 @@ Partial Public Class Chat
     Protected WithEvents btn_mensaje As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
+    '''Control Lbl_TiempoRta.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Lbl_TiempoRta As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
     '''Control id_chat.
     '''</summary>
     '''<remarks>

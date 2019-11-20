@@ -277,7 +277,7 @@ Public Class MasterPage
                 For Each chat In mischats
                     For Each mensaje In chat.MensajesChat.Where(Function(t) t.Fecha = chat.MensajesChat.Max(Function(p) p.Fecha))
                         If Not mensaje.Usuario.ID_Usuario = usu.ID_Usuario Then
-                            pagina.Text = "Mis Chats (*)"
+                            pagina.Text = "Mis Chats (**)"
                         End If
                     Next
                 Next

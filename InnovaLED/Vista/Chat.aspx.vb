@@ -32,6 +32,8 @@ Public Class Chat
             End If
 
             CargarChats()
+            CalcularTiempoAproxRta()
+
         End If
     End Sub
 
@@ -67,9 +69,24 @@ Public Class Chat
 
         Next
 
+
+
         mensajes.Controls.Add(New LiteralControl("</tbody>"))
         mensajes.Controls.Add(New LiteralControl("</table>"))
     End Sub
+
+    'Private Function TraerMensajesChat(id_chat As Integer)
+    '    Dim usu As UsuarioEntidad = Session("cliente")
+    '    Dim mismensajes As List(Of MensajeChatEntidad) = TryCast(Application("ChatGlobal"), List(Of Entidades.ChatEntidad)).Find(Function(p) p.ID = id_chat).MensajesChat
+    '    Dim PromedioTiempoChat As Integer = 0
+
+    '    For Each mensaje As MensajeChatEntidad In mismensajes
+    '        PromedioTiempoChat = mensaje.Fecha.TimeOfDay.Hours - mensaje.Fecha.TimeOfDay.Hours
+    '    Next
+
+    '    Lbl_TiempoRta.Text = PromedioTiempoChat
+
+    'End Function
 
     Private Sub CargarChats()
         Dim usu As UsuarioEntidad = Session("cliente")
@@ -193,7 +210,7 @@ Public Class Chat
             End If
             CargarMensajes(Chat.ID)
             txt_mensaje.InnerText = ""
-
+            CalcularTiempoAproxRta()
         Catch ex As Exception
 
         End Try
@@ -205,4 +222,37 @@ Public Class Chat
         'End If
 
     End Sub
+
+    Public Sub CalcularTiempoAproxRta()
+
+        Dim chatBLL As New GestorChatBLL
+
+        Dim listChat As List(Of MensajeChatEntidad)
+        listChat = chatBLL.TraerMensajesChatParaReporte()
+
+        If listChat.Count = 0 Then
+            Lbl_TiempoRta.Visible = False
+        Else
+
+            Dim horaTemp
+            Dim res As Integer
+            Dim resTOT As Integer
+            Dim prom As Integer
+
+
+            For Each r As MensajeChatEntidad In listChat
+                If horaTemp = 0 Then
+                    horaTemp = r.Fecha.Minute
+                Else
+                    res = r.Fecha.Minute - horaTemp
+                    resTOT = resTOT + res
+                End If
+            Next
+            prom = resTOT / listChat.Count
+            Lbl_TiempoRta.Visible = True
+            Lbl_TiempoRta.Text = "   Tiempo de Respuesta promedio: " & prom & " minutos "
+        End If
+
+    End Sub
+
 End Class

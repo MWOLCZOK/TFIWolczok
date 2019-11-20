@@ -118,8 +118,6 @@
 
                                         </div>
                                     </div>
-
-
                                 </div>
                                 <br />
 
@@ -132,18 +130,26 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                <br />
+                                <div class="row">
+                                    <asp:Label ID="Lbl_DescripcionPromedioValoracion" runat="server" Text="Valoracion:" CssClass="col-sm-4 control-label labelform"></asp:Label>
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            <h3>
+                                            <asp:Label ID="Lbl_PromValoracion" runat="server"></asp:Label></h3>
+                                        </div>
+                                    </div>
+                                </div>
                                 <br />
                                 <br />
 
                                 <div class="row">
                                     <h1>
                                         <asp:Label ID="Lblprecio_descr" runat="server"></asp:Label></h1>
-
                                 </div>
+                                <br />
 
                                 <div class="row">
-
                                     <div class="row col-md-4 col-md-offset-1">
                                         <asp:Button ID="btn_comprar" runat="server" Text="Comprar" type="button" class="btn btn-success btn-lg "></asp:Button>
                                     </div>

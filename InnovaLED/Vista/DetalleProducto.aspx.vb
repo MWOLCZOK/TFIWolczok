@@ -71,6 +71,20 @@ Public Class DetalleProducto
 
     Private Sub LlenarCampos(ByVal prod As ProductoEntidad)
 
+        Dim ListaValoraciones As New List(Of ValoracionEntidad)
+        Dim gestorvaloraciones As New GestorvaloracionBLL
+        ListaValoraciones = gestorvaloraciones.BuscarvaloracionsProd(prod)
+        Dim TotValoraciones As Integer = 0
+        Dim PromValoracion As Single = 0
+       
+
+        For Each Valoracion As ValoracionEntidad In ListaValoraciones
+            TotValoraciones = TotValoraciones + Valoracion.Valor
+            PromValoracion = TotValoraciones / ListaValoraciones.Count
+
+        Next
+
+
         Lblmarca_descr.Text = prod.Marca
         Lblmodelo_descr.Text = prod.Modelo
         Lbldescrip_descrip.Text = prod.Descripcion
@@ -78,7 +92,8 @@ Public Class DetalleProducto
         Lblwatt_descr.Text = prod.Watt
         Lbllinea_descr.Text = prod.LineaProducto.Descripcion
         Lblcat_descr.Text = prod.CategoriaProducto.Descripcion
-        Lblprecio_descr.Text = "AR$ " & prod.Precio
+        Lblprecio_descr.Text = "$ " & prod.Precio
+        Lbl_PromValoracion.Text = Math.Round(Convert.ToDouble(PromValoracion), 1)
 
     End Sub
 

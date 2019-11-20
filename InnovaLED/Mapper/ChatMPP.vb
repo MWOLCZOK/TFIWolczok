@@ -85,7 +85,7 @@ Public Class ChatMPP
         End Try
     End Function
 
-    Private Function TraerMensajesChat(iD As Integer) As List(Of MensajeChatEntidad)
+    Public Function TraerMensajesChat(iD As Integer) As List(Of MensajeChatEntidad) ' Ojo que acá antes decía Private no Public, VER
         Try
             Dim consulta As String = "Select * from Mensaje_Chat where ID_Chat = @ID_Chat"
 
@@ -124,6 +124,9 @@ Public Class ChatMPP
             Throw ex
         End Try
     End Function
+
+
+
 
     Public Sub FormatearChat(ByVal chat As ChatEntidad, ByVal row As DataRow)
         Try

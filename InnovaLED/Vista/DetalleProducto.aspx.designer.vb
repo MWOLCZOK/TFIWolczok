@@ -203,6 +203,24 @@ Partial Public Class DetalleProducto
     Protected WithEvents Dropnumeric As Global.System.Web.UI.WebControls.DropDownList
     
     '''<summary>
+    '''Control Lbl_DescripcionPromedioValoracion.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Lbl_DescripcionPromedioValoracion As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Control Lbl_PromValoracion.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Lbl_PromValoracion As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
     '''Control Lblprecio_descr.
     '''</summary>
     '''<remarks>

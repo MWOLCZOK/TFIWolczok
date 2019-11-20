@@ -50,19 +50,14 @@
                             <div class="col-md-2">
                                 <asp:Button ID="btn_mensaje" runat="server" Text="Enviar" type="button" class="btn btn-info btn-lg " Visible="False"></asp:Button>
                                 <br />
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <br />
+                                <br />                                                            
                             </div>
 
-
-                        </div>
-                    </div>
+                        </div>                        
+                    </div>                    
                 </div>
+                <h4>
+                        <asp:Label ID="Lbl_TiempoRta" runat="server" Text="" Font-Size="20px" forecolor="SteelBlue" Font-Italic="true" Visible="false"></asp:Label></h4>
             </div>
             <asp:HiddenField ID="id_chat" runat="server" Value="-1" />
             <asp:Timer ID="Timer1" runat="server" EnableViewState="False" Interval="5000">
